@@ -1,0 +1,29 @@
+/* Centers images in Editor Mode */
+
+.cm-editor img {
+
+  display: block;           /* Makes the img tag a block element */
+
+  margin-left: auto;        /* Auto margin on the left */
+
+  margin-right: auto;       /* Auto margin on the right */
+
+  max-width: 100%;          /* Prevents image from overflowing */
+
+}
+
+
+
+/* Centers images in Reading Mode */
+
+.markdown-preview-view img {
+
+  display: block;
+
+  margin-left: auto;
+
+  margin-right: auto;
+
+  max-width: 100%;
+
+}

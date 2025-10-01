@@ -1,0 +1,11 @@
+{
+  "nativeMenus": true,
+  "cssTheme": "",
+  "theme": "moonstone",
+  "accentColor": "",
+  "showRibbon": true,
+  "textFontFamily": "",
+  "enabledCssSnippets": [
+    "Diego-Autocenter"
+  ]
+}
