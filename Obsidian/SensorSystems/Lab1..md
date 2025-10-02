@@ -1,4 +1,4 @@
-	
+
 # <span style="color:rgb(223, 109, 109)">General Purpose Input/Outputs</span>
 ![[Pasted image 20250922143233.png]]
 Diodes used for protection $\rightarrow$ Against Electrostatic charge.
@@ -210,16 +210,5 @@ MX_TIM2_Init(); /* USER CODE BEGIN 2 */ HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1)
 ```
 
 
-![[Pasted image 20250929144309.png]]
 
-
----
-
-
-melodia = [
-    392, 440, 392, 330, 392, 523, 494, 440,  # Frase 1
-    349, 349, 330, 294, 330, 349,             # Frase 2
-    392, 440, 392, 330, 392, 523, 494, 440,  # Frase 3
-    392, 523, 392, 330, 262, 392              # Frase 4
-]
 
