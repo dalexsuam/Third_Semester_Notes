@@ -181,7 +181,7 @@ Then we have the interrupt routine as following:
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 	GPIO_PinState snap;
 	switch(GPIO_Pin){
-	case GPIO_PIN_8: //It checks if that PIN generated the interrupt
+	case GPIO_PIN_8: //It checks if that PIN generated the interrupt/MIC
 		snap = HAL_GPIO_ReadPin(MIC); //checks arriving snap
 		if (snap){//if snap detected
 		HAL_GPIO_TogglePin(LED);//LED toggles
@@ -206,7 +206,8 @@ channel.
 HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
 
 ``` C#
-MX_TIM2_Init(); /* USER CODE BEGIN 2 */ HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1); // Add this line! /* USER CODE END 2 */
+MX_TIM2_Init(); /* USER CODE BEGIN 2 */ 
+HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1); // Add this line! /* USER CODE END 2 */
 ```
 
 
