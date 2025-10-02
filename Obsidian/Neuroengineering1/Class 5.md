@@ -1,3 +1,4 @@
+26/09/2025
 
 Networks which operate convolutional operations are now Convolutional Neural Networks
 

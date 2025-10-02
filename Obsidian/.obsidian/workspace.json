@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SensorSystems/Lab2..md",
+                "file": "Neuroengineering1/Class 6..md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Lab2."
+              "title": "Class 6."
             }
           }
         ]
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 309.5
+    "width": 309.5,
+    "collapsed": true
   },
   "right": {
     "id": "08c62664d820768e",
@@ -156,8 +157,8 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "icon": "lucide-ghost",
+              "title": "review-queue-list-view"
             }
           },
           {
@@ -199,9 +200,19 @@
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
+          },
+          {
+            "id": "458c112d270e64d2",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
         ],
-        "currentTab": 8
+        "currentTab": 9
       },
       {
         "id": "6e76e51c84860994",
@@ -239,7 +250,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 296.5
+    "width": 296.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -260,35 +272,36 @@
   },
   "active": "a5e605dd4f46e2d4",
   "lastOpenFiles": [
-    "MotorBehaviourTech/Images/Pasted image 20251001070854.png",
-    "MotorBehaviourTech/Images/Pasted image 20251001070843.png",
-    "MotorBehaviourTech/Images/Pasted image 20251001065411.png",
-    "MotorBehaviourTech/Images/Pasted image 20251001065351.png",
-    "MotorBehaviourTech/Images/Pasted image 20251001065339.png",
-    "MotorBehaviourTech/Images/Pasted image 20251001065101.png",
-    "MotorBehaviourTech/Images/Pasted image 20251001064901.png",
-    "MotorBehaviourTech/Images/Pasted image 20251001064806.png",
-    "MotorBehaviourTech/Images/Pasted image 20251001064558.png",
-    "MotorBehaviourTech/Images/Pasted image 20251001064450.png",
-    "MotorBehaviourTech/Images/Pasted image 20251001064432.png",
-    "MotorBehaviourTech/Practice 2.1.md",
-    "MotorBehaviourTech/Practice 2.2.md",
-    "MotorBehaviourTech/Lecture 5.md",
-    "SensorSystems/Lab1..md",
+    "Excalidraw/Drawing 2025-09-28 09.50.54.excalidraw.md",
+    "Neuroengineering1/Class 6..md",
+    "Neuroengineering1/Images/Pasted image 20251002100951.png",
+    "Neuroengineering1/Images/Pasted image 20251002100558.png",
+    "Neuroengineering1/Images/Pasted image 20251002100256.png",
+    "Neuroengineering1/Images/Pasted image 20251002100235.png",
+    "Neuroengineering1/Images/Pasted image 20251002100005.png",
+    "Neuroengineering1/Images/Pasted image 20251002095858.png",
+    "Neuroengineering1/Images/Pasted image 20251002095724.png",
+    "Neuroengineering1/Images/Pasted image 20251002095215.png",
+    "Neuroengineering1/Images/Pasted image 20251002095149.png",
+    "Neuroengineering1/Images/Pasted image 20251002094934.png",
+    "Neuroengineering1/Lecture 3.md",
+    "MotorBehaviourTech/Lecture 4.md",
     "Neuroengineering1/Class 3..md",
     "Neuroengineering1/Class 4.md",
-    "Neuroengineering1/Lecture 3.md",
-    "Neuroengineering1/Lecture 2.md",
     "Neuroengineering1/Class 5.md",
-    "Neuroengineering1/Class 2..md",
-    "MotorBehaviourTech/Lecture 4.md",
     "MotorBehaviourTech/Practice 1.md",
+    "MotorBehaviourTech/Practice 2.2.md",
+    "MotorBehaviourTech/Practice 2.1.md",
+    "SensorSystems/Lab2..md",
+    "MotorBehaviourTech/Lecture 5.md",
+    "SensorSystems/Lab1..md",
+    "Neuroengineering1/Lecture 2.md",
+    "Neuroengineering1/Class 2..md",
     "MotorBehaviourTech/Lecture 3.md",
     "MotorBehaviourTech/Lecture 2.md",
     "MotorBehaviourTech/Lecture 1.md",
     "Neuroengineering1/Gradient Descend.pdf",
     "Neuroengineering1/Lecture 1.md",
-    "Excalidraw/Drawing 2025-09-28 09.50.54.excalidraw.md",
     "Untitled.md",
     "Excalidraw",
     "SensorSystems/Lecture 1.md",
@@ -298,8 +311,6 @@
     "Neuroengineering1/Class 1..md",
     "SensorSystems/Images",
     "SummaryFormat/Text Format Guidelines.md",
-    "2025-09-18.md",
-    "MotorBehaviourTech/Concepts/distal.md",
     "MotorBehaviourTech/Concepts",
     "Neuroengineering1/Images",
     "MotorBehaviourTech/Images",
