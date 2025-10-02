@@ -1,6 +1,8 @@
 We continue with filtering and we're gonna do an exercise of MA filter
 
 ![[Pasted image 20251001064432.png]]
+
+
 ![[Pasted image 20251001064450.png]]
 We control cut-off f using less or more points...
 
