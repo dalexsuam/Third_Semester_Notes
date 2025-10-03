@@ -4,53 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "35c6c4603521ba98",
+        "id": "9731830aef69eca5",
         "type": "tabs",
         "children": [
           {
-            "id": "a5e605dd4f46e2d4",
+            "id": "14b229b24801ddd0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "MotorBehaviourTech/Practice 2.2.md",
+                "file": "SensorSystems/Lecture 3.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Practice 2.2"
-            }
-          },
-          {
-            "id": "a50defc717e35e9b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "MotorBehaviourTech/Lecture 6.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Lecture 6"
-            }
-          },
-          {
-            "id": "7d7776255c17b088",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SensorSystems/Lab1..md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Lab1."
+              "title": "Lecture 3"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -309,26 +280,29 @@
       "oz-clear-unused-images:Clear Unused Images": false
     }
   },
-  "active": "a50defc717e35e9b",
+  "active": "14b229b24801ddd0",
   "lastOpenFiles": [
+    "SensorSystems/Images/Pasted image 20251002232900.png",
+    "SensorSystems/Images/Pasted image 20251002232838.png",
+    "SensorSystems/Images/Pasted image 20251002231603.png",
+    "SensorSystems/Images/Pasted image 20251002231539.png",
+    "SensorSystems/Images/Pasted image 20251002230039.png",
+    "SensorSystems/Images/Pasted image 20251002224935.png",
+    "SensorSystems/Images/Pasted image 20251002224742.png",
+    "SensorSystems/Images/Pasted image 20251002224012.png",
+    "SensorSystems/Images/Pasted image 20251002223920.png",
+    "SensorSystems/Untitled.md",
+    "SensorSystems/Lecture 3.md",
+    "SensorSystems/Lecture 1.md",
+    "SensorSystems/Lecture 2.md",
+    "SensorSystems/Lab1..md",
+    "MotorBehaviourTech/Lecture 6.md",
+    "SensorSystems/Lab2..md",
+    "MotorBehaviourTech/Practice 2.2.md",
     "MotorBehaviourTech/Images/Pasted image 20251002190154.png",
     "MotorBehaviourTech/Images/Pasted image 20251002185618.png",
-    "MotorBehaviourTech/Images/Pasted image 20251002185416.png",
-    "MotorBehaviourTech/Images/Pasted image 20251002185301.png",
-    "MotorBehaviourTech/Images/Pasted image 20251002185148.png",
-    "MotorBehaviourTech/Images/Pasted image 20251002184823.png",
-    "MotorBehaviourTech/Images/Pasted image 20251002184216.png",
-    "MotorBehaviourTech/Images/Pasted image 20251002183933.png",
-    "MotorBehaviourTech/Images/Pasted image 20251002183800.png",
-    "MotorBehaviourTech/Images/Pasted image 20251002183727.png",
-    "MotorBehaviourTech/Images/Pasted image 20251002183220.png",
-    "MotorBehaviourTech/Practice 2.2.md",
     "MotorBehaviourTech/Practice 2.1.md",
-    "MotorBehaviourTech/Lecture 6.md",
     "MotorBehaviourTech/Lecture 5.md",
-    "SensorSystems/Lab2..md",
-    "SensorSystems/Lab1..md",
-    "SensorSystems/Lecture 2.md",
     "Neuroengineering1/Class 6..md",
     "Neuroengineering2/Untitled.md",
     "Excalidraw/Drawing 2025-09-28 09.50.54.excalidraw.md",
@@ -345,11 +319,8 @@
     "MotorBehaviourTech/Lecture 1.md",
     "Neuroengineering1/Gradient Descend.pdf",
     "Neuroengineering1/Lecture 1.md",
-    "Untitled.md",
     "Excalidraw",
-    "SensorSystems/Lecture 1.md",
     "SensorSystems/Resistance Thermal Noise.pdf",
-    "Neuroengineering1/Lecture 1 1.md",
     "SensorSystems/Images",
     "MotorBehaviourTech/Concepts",
     "Neuroengineering1/Images",
