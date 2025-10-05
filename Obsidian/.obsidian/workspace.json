@@ -4,24 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "270b29f6a22f71e6",
+        "id": "4ad3dafeabeffb4e",
         "type": "tabs",
         "children": [
           {
-            "id": "33baa3983eb376ad",
+            "id": "f746946477a4ba13",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SensorSystems/Laboratory 2.md",
+                "file": "SensorSystems/Lecture 3.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Laboratory 2"
+              "title": "Lecture 3"
+            }
+          },
+          {
+            "id": "5c517258b5cb2844",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SensorSystems/Lecture 4.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Lecture 4"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -53,7 +68,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#review",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -279,28 +294,31 @@
       "oz-clear-unused-images:Clear Unused Images": false
     }
   },
-  "active": "33baa3983eb376ad",
+  "active": "5c517258b5cb2844",
   "lastOpenFiles": [
+    "SensorSystems/Lecture 3.md",
     "SensorSystems/Lecture 2.md",
-    "SensorSystems/Laboratory 1.md",
+    "SensorSystems/Laboratory 3.md",
+    "SensorSystems/Lecture 4.md",
+    "SensorSystems/alskd;.md",
     "SensorSystems/Laboratory 2.md",
+    "SensorSystems/Images/Pasted image 20251005192229.png",
+    "SensorSystems/Images/Pasted image 20251005191819.png",
+    "SensorSystems/Images/Pasted image 20251005190921.png",
+    "SensorSystems/Images/Pasted image 20251005190619.png",
+    "SensorSystems/Images/Pasted image 20251005190334.png",
+    "SensorSystems/Images/Pasted image 20251005183931.png",
+    "SensorSystems/Images/Pasted image 20251005183913.png",
+    "SensorSystems/Images/Pasted image 20251005183912.png",
+    "SensorSystems/Images/Pasted image 20251005183910.png",
+    "SensorSystems/Images/Pasted image 20251005183809.png",
+    "SensorSystems/Lecture 1.md",
+    "SensorSystems/Attachments/Resistance Thermal Noise.pdf",
+    "SensorSystems/Attachments",
     "SensorSystems/Lab1.-DESKTOP-88CILVL.md",
     "Neuroengineering1/Class 3..md",
     "Neuroengineering1/Lecture 3.md",
-    "SensorSystems/Untitled.md",
     "Untitled.canvas",
-    "SensorSystems/Lecture 3.md",
-    "SensorSystems/Images/Pasted image 20251004181227.png",
-    "SensorSystems/Images/Pasted image 20251004181214.png",
-    "SensorSystems/Images/Pasted image 20251004181155.png",
-    "SensorSystems/Images/Pasted image 20251004180226.png",
-    "SensorSystems/Images/Pasted image 20251004180005.png",
-    "SensorSystems/Images/Pasted image 20251004175939.png",
-    "SensorSystems/Images/Pasted image 20251004175105.png",
-    "SensorSystems/Images/Pasted image 20251004175049.png",
-    "SensorSystems/Images/Pasted image 20251004174210.png",
-    "SensorSystems/Images/Pasted image 20251004173549.png",
-    "SensorSystems/Lecture 1.md",
     "MotorBehaviourTech/Lecture 6.md",
     "MotorBehaviourTech/Practice 2.2.md",
     "MotorBehaviourTech/Practice 2.1.md",
@@ -318,9 +336,7 @@
     "MotorBehaviourTech/Lecture 2.md",
     "MotorBehaviourTech/Lecture 1.md",
     "Neuroengineering1/Gradient Descend.pdf",
-    "Neuroengineering1/Lecture 1.md",
     "Excalidraw",
-    "SensorSystems/Resistance Thermal Noise.pdf",
     "SensorSystems/Images",
     "MotorBehaviourTech/Concepts",
     "Neuroengineering1/Images",
@@ -328,7 +344,6 @@
     "Untitled.base",
     "Neuroengineering1/Untitled.canvas",
     "SummaryFormat",
-    "VirtualModelling",
     "Untitled 1.canvas"
   ]
 }

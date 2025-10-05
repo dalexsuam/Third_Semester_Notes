@@ -13,7 +13,8 @@
     "flashcards": 1,
     "flashcards/tag1": 1,
     "review": 2,
-    "excalidraw": 3
+    "excalidraw": 3,
+    "define": 4
   },
   "_version": 3
 }
