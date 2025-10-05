@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SensorSystems/Lecture 4.md",
+                "file": "SensorSystems/Laboratory 3.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Lecture 4"
+              "title": "Laboratory 3"
             }
           }
         ],
@@ -296,12 +296,12 @@
   },
   "active": "5c517258b5cb2844",
   "lastOpenFiles": [
+    "SensorSystems/Lecture 4.md",
+    "SensorSystems/Laboratory 2.md",
+    "SensorSystems/Laboratory 3.md",
     "SensorSystems/Lecture 3.md",
     "SensorSystems/Lecture 2.md",
-    "SensorSystems/Laboratory 3.md",
-    "SensorSystems/Lecture 4.md",
     "SensorSystems/alskd;.md",
-    "SensorSystems/Laboratory 2.md",
     "SensorSystems/Images/Pasted image 20251005192229.png",
     "SensorSystems/Images/Pasted image 20251005191819.png",
     "SensorSystems/Images/Pasted image 20251005190921.png",

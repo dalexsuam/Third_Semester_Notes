@@ -1,6 +1,11 @@
 
+## <span style="color:rgb(223, 109, 109)">Revision for de-bouncing implementation from software approach</span>
 
-## Revision for de-bouncing implementation from software approach.
+The thing is that the microphone doesn't count with a anti-bouncing circuit. That is why we need to work around with two approaches at the moment of implementing the snap detection.
+
+In the following code you can evidence:
+* **Blocking version:** uses a HAL_Delay
+* **Non-blocking version:** uses HAL_GetTick and allows inputs greater than threshold.*
 ```C#
 #define LED GPIOA, GPIO_PIN_5
 
@@ -17,7 +22,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_PIN){
 	if(GPIO_PIN == GPIO_PIN_8){
 		HAL_GPIO_TogglePin(LED);
 		HAL_Delay(5);//inserts 5ms to not generate any changes within this time
-		__HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN); //clears the interruption, it is over. 
+		__HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN); //clears the interruption, it is over
 	}
 
 //Non-blocking version -- Here we just consider interruptions >100ms
@@ -36,8 +41,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_PIN){
 
 ```
 ---
+***
+***
 
-## Project 2: Play note through speaker Objective of this project is to play a tone for 3 seconds using the speaker, using a PWM.
+## <span style="color:rgb(223, 109, 109)">Project 3a: Play note through speaker </span>
+
+Objective of this project is to play a tone for 3 seconds using the speaker, using a PWM.
 
 ![[Pasted image 20250929151724.png]]
 ![[Pasted image 20250929151759.png]]
