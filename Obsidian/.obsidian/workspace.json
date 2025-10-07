@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "MotorBehaviourTech/Lecture 7.md",
+                "file": "SensorSystems/Lecture 4.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Lecture 7"
+              "title": "Lecture 4"
             }
           }
         ]
@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 309.5,
-    "collapsed": true
+    "width": 309.5
   },
   "right": {
     "id": "08c62664d820768e",
@@ -282,30 +281,31 @@
   },
   "active": "55a9b1b73829b3a1",
   "lastOpenFiles": [
+    "MotorBehaviourTech/Lecture 7.md",
+    "Neuroengineering1/Images/Pasted image 20251006131252.png",
+    "Neuroengineering1/Images/Pasted image 20251006131111.png",
+    "Neuroengineering1/Images/Pasted image 20251006130909.png",
+    "Neuroengineering1/Images/Pasted image 20251006130906.png",
+    "Neuroengineering1/Images/Pasted image 20251006130324.png",
+    "Neuroengineering1/Images/Pasted image 20251006125827.png",
+    "Neuroengineering1/Images/Pasted image 20251006125721.png",
+    "Neuroengineering1/Images/Pasted image 20251006125623.png",
+    "Neuroengineering1/Images/Pasted image 20251006125207.png",
+    "Neuroengineering1/Images/Pasted image 20251006124622.png",
+    "Neuroengineering1/Class 7.md",
     "MotorBehaviourTech/Lecture 6.md",
     "MotorBehaviourTech/Practice 2.2.md",
     "MotorBehaviourTech/Practice 2.1.md",
     "MotorBehaviourTech/Lecture 5.md",
     "MotorBehaviourTech/Lecture 4.md",
-    "MotorBehaviourTech/Lecture 7.md",
     "SensorSystems/Lecture 4.md",
-    "SensorSystems/Images/Pasted image 20251006222105.png",
-    "SensorSystems/Images/Pasted image 20251006222043.png",
-    "SensorSystems/Images/Pasted image 20251006221410.png",
-    "SensorSystems/Images/Pasted image 20251006201558.png",
-    "SensorSystems/Images/Pasted image 20251006144543.png",
-    "SensorSystems/Images/Pasted image 20251006144314.png",
     "SensorSystems/Laboratory 4.md",
-    "SensorSystems/Images/Pasted image 20251006131027.png",
-    "SensorSystems/Images/Pasted image 20251006130716.png",
-    "SensorSystems/Images/Pasted image 20251006130522.png",
     "SensorSystems/Untitled 1.md",
     "SensorSystems/Laboratory 3.md",
     "SensorSystems/Laboratory 2.md",
     "SensorSystems/Lecture 3.md",
     "SensorSystems/Lecture 2.md",
     "SensorSystems/alskd;.md",
-    "SensorSystems/Images/Pasted image 20251005192229.png",
     "SensorSystems/Lecture 1.md",
     "SensorSystems/Attachments/Resistance Thermal Noise.pdf",
     "SensorSystems/Attachments",
@@ -319,8 +319,6 @@
     "Neuroengineering1/Class 4.md",
     "Neuroengineering1/Class 5.md",
     "MotorBehaviourTech/Practice 1.md",
-    "Neuroengineering1/Lecture 2.md",
-    "Neuroengineering1/Class 2..md",
     "Neuroengineering1/Gradient Descend.pdf",
     "Excalidraw",
     "SensorSystems/Images",
