@@ -1,4 +1,4 @@
-02/10/2025
+03/10/2025
 
 
 For critical situations. Do we prefer floating node or not grounding? The grounding is made such that any leakage current is independent from other. We have to take care there is no strong interdependency between the grounds. 

@@ -1,3 +1,6 @@
+
+Date: 25/09/2025
+
 ![[Pasted image 20250924101302.png]]
 This is one possible implementation of optocouplers in order to isolate two main parts of an amplifier for EMG, to avoid them to be in contact for any hazard for the patient
 

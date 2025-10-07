@@ -1,3 +1,5 @@
+02/10/2025
+
 We continue with filtering and we're gonna do an exercise of MA filter
 
 ![[Pasted image 20251001064432.png]]
