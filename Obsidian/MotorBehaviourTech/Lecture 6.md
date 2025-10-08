@@ -151,6 +151,3 @@ The baseline´s offset is also affected by the zero due to the amplifier direct 
 
 How can we remove cardiac artifacts? Filtering it at 1 Hz? But it is just the first harmonic, it doesn´t remove every spike, don´t forget about them :)
 The only way is to move the electrodes somewhere to a correct position (far away from the chest activation)
-
-![[Pasted image 20251002190154.png]]
-
