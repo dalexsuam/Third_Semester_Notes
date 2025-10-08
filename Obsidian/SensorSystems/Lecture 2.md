@@ -440,7 +440,7 @@ Now, you can see that if we include the capacitor $C_c$ and also we increase we 
 <span style="font-weight:bold; color:rgb(161, 40, 226)">Light Integration</span>: We can say that this configuration is quite similar to a **Transimpedance Amplifier (TIA)**, but instead of using a resistor, we use a **capacitor** in which the photocurrent is integrated.
 
 
-| ![[Pasted image 20250927195355.png]] | ![[WhatsApp Image 2025-09-27 at 19.53.03_915f772c 1.jpg]] |
+| ![[Pasted image 20251008150703.png]] | ![[WhatsApp Image 2025-09-27 at 19.53.03_915f772c 1.jpg]] |
 | ------------------------------------ | --------------------------------------------------------- |
 |                                      | ![[WhatsApp Image 2025-09-27 at 19.53.03_93355afe.jpg]]   |
 
