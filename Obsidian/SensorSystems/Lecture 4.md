@@ -259,11 +259,276 @@ For this reason, the Wheatstone bridge configuration is widely used when high pr
 
 Let's proceed with some calculations. Then...
 
-34:37
+![[Wheatstone bridge.pdf]]
+
+Once we write the complete expression of the output voltage $V_{out}$​ for the Wheatstone bridge, we just solve it. From this point, the equation can be further reduced by considering a very reasonable assumption: the variation in resistance, $\Delta R$, is much smaller than the nominal resistance $R_{x0}$​, as well as the other resistors in the bridge, such as $R_1$.
+
+Since $\Delta R \ll R_{x0}$​ and $R_1$​ is typically of the same order of magnitude as $R_{x0}$​ (and in many cases is chosen to be equal to it), we can neglect the small higher-order terms. This simplification allows the expression for $V_{out}$​ to become much more compact, and it now shows clearly that the output voltage is **directly proportional to** $\Delta R$.
+
+We know that the change in resistance of an RTD can be written as:
+$$
+\Delta R = \alpha \, R_{x0} \, \Delta T
+$$
+where $\alpha$ is the temperature coefficient of resistance, $R_{x0}$​ is the nominal resistance of the sensor, and $\Delta T$ is the variation in temperature with respect to the reference point.
+
+By substituting this relationship into our equation for $V_{out}$​, we can express the output voltage as:
+
+$$V_{out} = k \, \Delta T$$
+
+where $k$ is a constant that depends on the supply voltage $V_s$​, the resistors $R_1​$, $R_2$​, $R_3​$, and the sensor parameters $R_{x0}$​ and $\alpha$.
+
+This result clearly shows that the output voltage varies linearly with the change in temperature — and, importantly, **there is no offset term** (no “+ something” as in the single-ended configuration). The bridge output depends only on the temperature variation, not on the nominal resistance of the sensor.
+
+This is a major advantage of the differential approach: even though the signal we obtain (the differential voltage between $V^+$ and $V^-$) is small — because $\Delta R$ is typically just a few ohms — we can apply a relatively high gain in the instrumentation amplifier without the risk of saturating it. This amplified signal can then be easily digitized by an analog-to-digital converter (ADC) with good resolution.
+
+A final point to discuss is **how to choose the resistor values** in the bridge.  
+To ensure that the output depends only on $\Delta T$, we must satisfy the balance condition, which is achieved when:
+$$
+\frac{R_2}{R_3} = \frac{R_1}{R_{x0}}​​
+$$
+A simple way to meet this condition is to select $R_1 = R_2$ ​ and $R_3 = R_{x0}$​.
+
+However, if we want to **maximize the sensitivity** — that is, maximize the variation of $V_{out}$ with respect to temperature — we can differentiate the output expression and find that the maximum output is achieved when all resistors are equal:
+$$
+R_1 = R_2 = R_3 = R_{x0}​
+$$
+Under this condition, the expression for the output voltage simplifies to:
+$$
+V_{out} = \frac{1}{4} \, \frac{\Delta R}{R_{x0}} \, V_s​
+$$
+It’s important to remember that $\frac{\Delta R}{R_{x0}}$​ is a small ratio, meaning that the resulting voltage at the bridge output can be quite small. Therefore, the supply voltage $V_s$​ must be high enough to generate a signal that stands out above the noise level of the circuit.
+
+If the input signal to the instrumentation amplifier is too small — close to or below the noise — even applying a large gain will only amplify the noise together with the signal, worsening the signal-to-noise ratio. For this reason, a proper choice of $V_s$​ is essential to ensure that the measurement remains accurate and the amplified output remains meaningful.
+
+### <span style="color:rgb(161, 40, 226)">2- and 3-wire Wheatstone bridge</span>
+
+![[Pasted image 20251009184505.png]]
+
+Even when using the Wheatstone bridge configuration, we can still face issues related to **lead resistance**, especially when the RTD is located far from the rest of the circuit. Imagine a situation where the three reference resistors of the Wheatstone bridge (R₁, R₂, and R₃) are placed on a board, while the RTD is physically distant — for instance, attached to a machine or a process line. In this case, long wires are required to connect the RTD to the bridge, and these wires inevitably introduce **stray resistances**.
+
+If we start from the _ideal case_, assuming that the resistance of the leads is zero, the output voltage of the Wheatstone bridge, $V_{out}$​, is simply the differential voltage between the two branches:
+$$
+V_{out} = V_s \cdot \left( \frac{R+\Delta R}{R_1 + R + \Delta R} - \frac {R}{R_2+R} \right)
+$$
+
+where $R+ \Delta R$ is the total resistance of the RTD (the nominal resistance plus its temperature-dependent variation).
+ 
+![[Pasted image 20251009184452.png]]
+However, in the _real case_, we must also include the contribution of the lead resistances, which we’ll call $R_L$. Since we have two leads connecting the RTD, the total additional resistance introduced is $2R_L$​. Therefore, the actual output voltage becomes:
+![[Pasted image 20251009184606.png]]
+
+
+$$V_{out,real} = V_s \left( \frac{R + \Delta R + 2R_L}{R_1 + R + \Delta R + 2R_L} - \frac{R}{R_2 + R} \right)$$
+
+This is the voltage we would measure in practice, and it clearly includes the unwanted effect of the lead resistances.
+
+To quantify the impact of these parasitic resistances, we can define an **error term** $\varepsilon$, which represents the difference between the real output voltage (including lead effects) and the ideal output voltage (without them):
+$$
+ε=Vout,real​−Vout,ideal
+$$
+
+By performing the algebraic simplifications (finding the common denominator, expanding terms, and neglecting higher-order small quantities), we obtain an expression for $\varepsilon$ that reveals an important property:  
+when $\Delta R$ is very small compared to R — which is typically the case — many terms cancel out, and the final error expression becomes **independent of $\Delta R$**.
+![[Pasted image 20251009184821.png]]
+$$
+\varepsilon = V_s \cdot \frac{R_L}{2(R+R_L)}
+$$
+This is actually good news: if the error does not depend on the temperature variation, it means that it can be **easily compensated through calibration**. The error depends mainly on three factors:
+
+- the **supply voltage** $V_s$,
+- the **lead resistance** $R_L$​, and
+- the **nominal resistance** $R$ of the RTD (which is usually chosen to be equal to the other resistors in the bridge).
+
+Therefore, although the presence of lead resistances introduces a static offset in the output, this offset can be measured and corrected — either by adjusting the bridge balance or by compensating in software during post-processing.
+
+In summary, when the RTD is connected with long leads, the Wheatstone bridge can still be used effectively, but calibration becomes essential to remove the systematic error introduced by the parasitic resistances of the connecting wires.
+
+![[Pasted image 20251009185710.png]]
+
+
+To reduce the error introduced by the lead resistances in the two-wire configuration, we can add an additional wire and obtain a three-wire Wheatstone bridge. In this case, we measure the differential output voltage of the bridge using a third wire, labeled as wire C. This additional wire is connected to the point where the voltage $V^+$ is sensed.
+![[Pasted image 20251009185930.png]]
+In this new configuration, $V^-$ remains unchanged — it is still equal to one half of the supply voltage. However, when computing $V^+$, we now consider that only one of the lead resistances affects the measurement. This happens because the resistance of wire C does not influence the voltage reading: even though wire C has its own resistance, it is connected to the high-impedance input of the instrumentation amplifier. As a result, no current flows through this wire, and therefore, there is no voltage drop across its resistance.
+![[Pasted image 20251009190236.png]]
+Consequently, in the numerator of the voltage divider that defines $V^+$, we only need to include the resistance of one lead (the resistance of wire B) together with the RTD resistance. On the other hand, in the denominator, we still have to consider both lead resistances (the ones from wires A and B).
+
+![[Pasted image 20251009213555.png]]
+
+Now, if we calculate the error for this three-wire configuration — the one that includes the additional curved wire — we can proceed exactly as before. We compare the actual output voltage obtained with the three-wire setup to the ideal voltage calculated previously, where the lead resistances were assumed to be zero. After carrying out the algebra, such as finding a common denominator and simplifying the expression, we arrive at the formula for the new error.
+
+Again, by observing the result, we can simplify it further because the term $\Delta R$ is much smaller than $2R$. Therefore, $\Delta R$ can be neglected in both places where it appears in the expression. After simplification, we notice that the sign of this error is opposite to that in the two-wire bridge case. However, this difference in sign is not relevant, since what matters is the magnitude of the error — whether it increases or decreases the output voltage slightly is not important.
+
+
+| Error from two-wire bridge           | Error from three-wire bridge         |
+| ------------------------------------ | ------------------------------------ |
+| ![[Pasted image 20251009213710.png]] | ![[Pasted image 20251009213721.png]] |
+
+In this case, the error depends on ΔR, which makes calibration a bit more complex. But looking closely at the expression, we can see that the first part of the error is the same as the one obtained for the two-wire bridge. The difference is that now it is multiplied by a factor of $\Delta R$ divided by $2R$. Because $\Delta R$ is much smaller than $2R$, this factor is much smaller than 1, which means the resulting error is nearly zero. In practice, this error becomes so small that it is typically negligible compared to the noise level of the system.
+
+To summarize, the Wheatstone bridge configuration offers a key advantage: it provides a differential measurement, so the output depends only on $\Delta R$ — the variation in resistance — and not on the fixed lead resistance $R_L$​. This allows us to use an amplification stage with much higher gain compared to the single-ended approach, resulting in more accurate detection of the small resistance changes that correspond to temperature variations.
+
+## <span style="color:rgb(239, 179, 1)"> Self Heating</span>
+
+When we use resistive sensors to measure temperature, we have to consider an unwanted effect called **self-heating**. Self-heating occurs because, whenever a current passes through a resistor, it dissipates power and generates heat. If the current is too high, the heating caused by the current itself can be larger than the actual temperature change we want to measure — that is, the heating can dominate over the environmental or object temperature variation.
+
+As a general guideline, the current through an RTD is typically limited to a maximum of around **1 mA**. However, this value is not universal for all RTDs. Thin-film RTDs, which are made using photolithographic processes, are more sensitive to self-heating, so it is better to keep the current well below 1 mA. Wire-wound RTDs, being more robust, can typically tolerate currents up to 1 mA or slightly higher. Datasheets for specific sensors usually provide recommended current limits.
+
+It is also worth noting that self-heating can sometimes be used **advantageously**. By monitoring the change in resistance caused by self-heating, it is possible to estimate the current flowing through the resistor. This principle is exploited in certain applications, and we will see examples of this when we study **thermistors**, which are also resistive temperature sensors. Like RTDs, thermistors experience self-heating, but in some cases this effect can be deliberately used to our benefit.
+
+## <span style="color:rgb(239, 179, 1)">Pros and Cons of RTDs</span>
+
+### <span style="color:rgb(161, 40, 226)"><b>Advantages:</b></span>
+
+- **High linearity:** As we saw, platinum RTDs show an almost perfectly linear relationship between resistance and temperature over a wide range — approximately from **−200°C to +700°C**.
+- **High accuracy and repeatability:** RTDs provide very precise and consistent measurements.
+- **Good sensitivity:** They can detect small changes in temperature effectively.
+- **Moderate cost:** RTDs are relatively affordable considering their performance.
+    
+
+### <span style="color:rgb(161, 40, 226)"><b>Disadvantages:</b></span>
+
+- **Limited measuring range:** Although a range from **−200°C to +800°C** is sufficient for most applications, it may not be enough for very high-temperature environments — for example, in processes exceeding 1000°C.    
+- **Need for external power:** Unlike some other temperature sensors, RTDs require an external power source. In single-ended circuits, a current source is needed, and in differential (Wheatstone bridge) configurations, a supply voltage **Vs** is required.
+- **Slow response time:** RTDs tend to respond slowly to temperature changes because not only the resistive element but also its insulating parts (like the ceramic mandrel in wire-wound RTDs) must reach thermal equilibrium.
+- **Self-heating:** As discussed, the current passing through the resistor can cause self-heating, which introduces measurement errors — a common issue with all resistive temperature sensors.
+
+## <span style="color:rgb(239, 179, 1)">RTD Applications</span>
+
+RTDs are mainly used in situations where **precise temperature measurement** is required within a **limited temperature range**. Some of the most common applications include:
+
+- **Air conditioning and refrigeration systems:** RTDs are ideal for monitoring temperatures around room temperature, ensuring accurate climate control.
+- **Food processing:** They are used to monitor and regulate temperatures during cooking, storage, or preparation, where temperatures typically range up to 100–200°C.
+- **Household appliances:** RTDs are commonly found in **stoves, ovens, and grills**, providing precise control of heating elements.
+- **Plastic material processing:** These applications do not require extremely high temperatures, making RTDs suitable for controlling the heating phases during molding or extrusion.
+- **Microelectronics:** RTDs can be used to monitor and stabilize the **temperature of electronic circuits**, preventing overheating and ensuring performance stability.
+- **Measurement of air, gases, and liquids:** RTDs are also used to monitor environmental or process conditions in systems where accurate fluid temperature measurement is essential.
+
+# <span style="color:rgb(223, 109, 109)">Thermistors</span>
+
+![[Pasted image 20251010214555.png]]
+Let’s now move to the second type of resistive temperature sensors — the **thermistors**. Like RTDs, thermistors are **resistive temperature sensors**, but they differ mainly in the **materials used for their fabrication**.
+
+While **RTDs are made of metallic materials**, **thermistors are typically made from ceramic materials**. This difference in material composition leads to a fundamental difference in behavior: thermistors exhibit a **strongly nonlinear relationship between resistance and temperature**, unlike the nearly linear response of RTDs.
+
+Thermistors are generally classified into two main types:
+
+1. **NTC thermistors (Negative Temperature Coefficient):**  
+    These are usually made from **ceramic semiconductors composed of metal oxides**. Their resistance **decreases as temperature increases**, meaning they have a **negative temperature coefficient**.
+    
+2. **PTC thermistors (Positive Temperature Coefficient):**  
+    These are typically made from **polycrystalline ceramic materials**. In contrast to NTC thermistors, their resistance **increases as temperature increases**, giving them a **positive temperature coefficient**.
+    
+
+In both cases, thermistors exhibit **strongly nonlinear characteristics**, which is one of the main distinctions between thermistors and RTDs.
+
+## <span style="color:rgb(239, 179, 1)">NTC Thermistors</span>
+
+Let’s now take a closer look at **NTC thermistors**.
+
+As mentioned earlier, NTC thermistors are made from **metal oxides**, typically oxides of **manganese, nickel, cobalt, iron, copper, or aluminum**. These materials give the thermistor its characteristic **negative temperature coefficient**, meaning the resistance decreases as temperature increases.
+
+NTC thermistors are available in a variety of **package types**, such as **disk**, **bead**, **chip**, or **surface-mount devices (SMDs)** that can be directly soldered onto printed circuit boards (PCBs).
+![[Pasted image 20251010215150.png]]
+
+- **Large disk NTCs** are often used in applications that exploit **self-heating**, where the temperature rise due to power dissipation is intentional. In these cases, the variation in resistance is used to monitor or control the **power (or current)** flowing through the device.
+    
+- **Bead, chip, and SMD NTCs**, on the other hand, have **smaller packages** and are more sensitive to the **ambient or contact temperature**. These are commonly used for measuring the temperature of the **environment** or the **object** they are in contact with.
+
+### <span style="color:rgb(161, 40, 226)">NTC Characteristic</span>
+
+![[Pasted image 20251010215241.png]]
+As you can see, the **characteristic curve of an NTC thermistor** is **strongly nonlinear**. It can be mathematically described by an **exponential decay equation**, where the resistance decreases exponentially as the temperature increases. In this equation, the $\beta$ (beta) coefficient is a constant that depends on the specific **material composition** of the thermistor — that is, on the type of metal oxide used.
+
+Because of this nonlinear behavior, when using NTC thermistors to **measure temperature**, you need to **invert** the equation in order to calculate temperature from the measured resistance. This inversion isn’t straightforward to do analytically, so in practice it’s often handled using **microcontrollers or computational devices** capable of performing this calculation, or more simply, by using **lookup tables** that map resistance values to their corresponding temperatures.
+
+### <span style="color:rgb(161, 40, 226)">NTC Applications</span>
+
+The **main applications of NTC thermistors** are typically found in **low-cost temperature measurement systems**, since thermistors are **cheaper** than RTDs. However, because of their **nonlinear response**, they also offer **lower accuracy**, which makes them less suitable for precise temperature measurements.
+
+In many cases, NTC thermistors are used for **temperature compensation** rather than for direct temperature measurement. This means they are integrated within **feedback control loops** where the goal is to **maintain a stable temperature**, rather than to know its exact value. For example, they are commonly used together with **thermoelectric coolers** (like **Peltier cells**) to stabilize temperature in sensitive electronic circuits. Such stability is essential for components like **oscillators**, where frequency depends on temperature, or for **LCD displays**, where brightness can vary with temperature.
+
+Another application of NTC thermistors is in **fluid level detection**, where their **nonlinear resistance behavior** is exploited to act as a **switch or detector** — producing a noticeable change in resistance when the thermistor is surrounded by a fluid versus air.
+
+![[Pasted image 20251010215855.png]]
+
+Finally, NTCs are also used by taking advantage of the **self-heating effect**, particularly in **inrush current limiters**. In this application, an NTC is placed in series with the circuit (for instance, with a motor). When the circuit is first powered on, the NTC is **cold**, so its resistance is **high**, which limits the inrush current. As current starts to flow, the thermistor heats up, its resistance **decreases**, and it eventually allows **normal current flow** once the system reaches a steady state. In this way, the NTC protects the circuit during start-up without affecting normal operation later.
+
+## <span style="color:rgb(239, 179, 1)">PTC Thermistors</span>
+
+![[Pasted image 20251011135326.png]]
+ 
+ Now let’s take a closer look at **PTC thermistors**, or **Positive Temperature Coefficient thermistors**.
+
+As mentioned before, PTCs are made of **polycrystalline ceramic materials**, typically composed of **oxalates or carbonates** mixed with **doping elements** that modify their electrical behavior. These materials give PTC thermistors a **strongly nonlinear resistance–temperature characteristic**.
+
+| Before Curie Temperature             | After Curie Temperature              |
+| ------------------------------------ | ------------------------------------ |
+| ![[Pasted image 20251011135407.png]] | ![[Pasted image 20251011135448.png]] |
+If you look at the graph (on the left), you can see that over a **certain temperature range**, the **resistance changes only slightly** as temperature increases — and these variations are sometimes **non-monotonic**, meaning the resistance might first decrease and then slightly increase again. However, once the temperature reaches a specific **threshold point**, known as the **switching point**, the resistance **rises very sharply**.
+
+This rapid change happens (on the right) over a **very narrow temperature range**, where the resistance can increase by **orders of magnitude**, even with a small temperature change. The temperature at which this sudden rise begins is called the **Curie temperature (Tc)**. By definition, Tc is the temperature at which the resistance value becomes **twice the minimum resistance** observed before the sharp increase.
+
+Because of this behavior, PTC thermistors are very useful as **switch-like temperature sensors**. Below the Curie temperature, their resistance remains **low**, allowing current to flow easily. Once the temperature **exceeds Tc**, their resistance becomes **very high**, effectively **limiting the current** or acting as an **automatic cutoff**. This makes them ideal for applications where you want to detect or control whether a system has **exceeded a certain temperature threshold** — essentially working as **on/off temperature switches**.
+
+### <span style="color:rgb(161, 40, 226)">PTC Applications</span>
+
+#### <span style="color:rgb(2, 141, 192)">Overcurrent Protection (Polyfuse)</span>
+Another common application of **PTC thermistors** is in **overcurrent protection**. This function is crucial to prevent **damage to sensitive or expensive equipment** and to ensure the **safety of electronic circuits** when abnormally high currents occur.
+
+Traditionally, this protection is achieved using **fuses**. A fuse behaves as a **short circuit** under normal conditions but becomes an **open circuit** when excessive current flows through it, effectively cutting off the current. However, once a fuse blows, it must be **replaced**.
+
+
+| Normal Operation                     | Overcurrent                          |
+| ------------------------------------ | ------------------------------------ |
+| ![[Pasted image 20251011140224.png]] | ![[Pasted image 20251011140300.png]] |
+
+
+A **PTC thermistor**, on the other hand, can be used to create a **reversible fuse**, often called a **polyfuse**. Imagine placing a PTC thermistor **in series** with the circuit you want to protect.
+
+- Under **normal operation**, the current is moderate, and the PTC remains relatively cool. Its resistance stays **very low**, allowing current to pass freely to the circuit.
+- If an **overcurrent** occurs — for example, due to a fault in the power supply — the higher current causes **self-heating** in the PTC.
+- As the temperature of the PTC rises and exceeds the **Curie temperature (Tc)**, its resistance increases **drastically**, effectively becoming **almost an open circuit**.
+
+This sudden increase in resistance **limits the current** and prevents it from damaging the protected circuit. Since the voltage at the node rises as resistance increases, the **current source can no longer maintain the same current flow**, thereby reducing power dissipation in the protected components.
+
+Unlike a traditional fuse, a **PTC-based polyfuse is self-resetting**. Once the fault is cleared and the current decreases, the PTC cools down, its resistance **returns to its low value**, and the circuit resumes **normal operation** — without the need to replace any components.
+
+#### <span style="color:rgb(2, 141, 192)">Battery Management</span>
+
+![[Pasted image 20251011140832.png]]
+
+Another typical application of **PTC thermistors** is found in **battery management systems**. In these circuits, it is important to **control the charging current** according to the state of the battery — providing **high current** when the battery is nearly empty and **lower current** as it approaches full charge.
+
+Here, the PTC thermistor can act as a **self-regulating element**. When the battery is first connected for charging, the **temperature of the system is low**, and consequently, the **resistance of the PTC is also low**. ==This allows a **high charging current** to flow==, which is desirable for quickly restoring the battery’s charge in the initial phase.
+
+As charging continues, the **temperature of the circuitry increases**, partly due to self-heating and partly because of the energy conversion processes inside the battery. When this happens, the **resistance of the PTC rises**. As a result, the **current flowing into the battery automatically decreases**, preventing overheating and **protecting the battery from overcharging**.
+
+This self-regulating behavior makes PTC thermistors particularly useful in **simple and low-cost battery management designs**, where they can provide **automatic current control** without requiring complex active regulation circuits.
+
+## <span style="color:rgb(239, 179, 1)">Pros and cons of Thermistors</span>
+
+To summarize, **thermistors** present both clear advantages and limitations when used as temperature sensors.
+
+### <span style="color:rgb(161, 40, 226)">Advantages</span>
+- **High sensitivity** — particularly in **PTC thermistors**, where the sensitivity is so strong that they can operate effectively as **switching sensors**, behaving almost like on/off devices.
+- **Low cost** — thermistors are **cheaper than RTDs**, making them attractive for many practical applications.    
+- **Strong signal response** — their non-linear behavior can actually be beneficial in **control and feedback loops**, where a large change in resistance for a small temperature variation makes the system’s response more robust and easier to detect.
+
+### <span style="color:rgb(161, 40, 226)">Disadvantages</span>
+- **Narrow operating temperature range**, typically around **–100°C to 500°C** for **NTCs**, and even more limited for **PTCs**, which work best near their **Curie temperature**.
+- **Low long-term stability** and **high nonlinearity**, meaning that precise temperature measurements are more difficult compared to RTDs.
+- **Only fair accuracy and response time**, suitable for many practical but not high-precision applications.
+- **Self-heating issues**, common to all resistive sensors — although, as seen, in certain cases this effect can be **intentionally exploited** for specific applications like inrush current limiting or fluid detection.
+
+
+So, this concludes the discussion on **resistive temperature sensing methods**.  
+In the next class, we’ll explore **other approaches for temperature measurement**, focusing on **thermocouples**, **diode-based sensors**, **bandgap temperature sensors**, and **infrared thermometers**.
+
+**Thank you for your attention — see you next time!**
 
 
 
-Then we can do the common denominator here and we obtain this simplified equation. This equation can be far simplified if we consider that delta R is always much smaller than the Rx0. and also of r1 that is typically the same order of magnitude of rx0 or as we will see in a while it is chosen to be equal to rx0. So considering so that here the numerator delta r is much smaller than the denominator r1 plus rx0 we can consider that this part this contribution is almost zero. And so this equation can be simplified and become this one, in which you see that the output is directly related to the delta R. We know that delta R can be written as alpha, so the temperature coefficient, multiplied by the nominal resistance, so Rx0, and then multiplied by the variation of temperature. And so we can rewrite the equation in this way substituting instead of delta R, alpha Rx0 delta T. And so we clearly see that there is a linear dependence between Vout and delta T. And furthermore, we see that all of this part is a constant value because Vs is the supply voltage which is fixed, the resistance R1, the nominal resistance and the coefficient α are fixed coefficients, so we can say that Vout is directly proportional with a certain coefficient k. Differently from the single-ended circuits we don't have plus something. So we just have a relation between, so the devout is only related to the delta t, so to the delta r also. And this is a big advantage of the differential approach. In fact in this case having a voltage, a differential voltage at the input of the instrumentation amplifier that depends only on delta t Even if we will have very small voltages here, because the variation of delta R due to the variation of temperature are expected to be small, we can apply a gain of the ENA which is high enough to provide an output voltage from the ENA which can be quantized easily by an ADC, so can be easily measured. Ok, just a last notice: how to size R1 and then R2 and also R3? So we already said that we have to respect this equality in order to have an output which is independent from Rx0, which depends only on the delta T. So we decide, for instance, to take R1 equal to R2 and R3 equal to Rx0. But if we want to maximize the Vout in respect to the variation of temperature, we can do the derivative of this equation in order to find where is the maximum and we will discover that the maximum can be found when R1 is equal to R2 equal to R3 and equal to Rx0. So when we keep the constant resistor, R1, R2, R3 to be equal to the nominal value of the RTD. And in this case, so we can simplify our equation because R1 is equal to Rx0 and so we obtain this final equation in which Vout is equal to 1/4 delta R over Rx0 multiplied by Vx. Be careful because the ratio delta R divided by Rx0 is expected to be a small ratio, so if you want to have a Vout, so a voltage at the input of the instrumentation amplifier that is at least equal but higher than the noise that we expect from this resistance, we have to select a Vs that is high enough to have a signal strong enough at the input of the instrumentation amplifier because if the signal that you provide at the input of the instrumentation amplifier is lower than the noise or similar to the noise you can even apply a big gain at the instrumentation amplifier but you will amplify the noise together with the signal and so the signal to noise ratio must be high enough also before the instrumentation amplifier. Then also with the Wheatstone bridge you can have the issue related to the Leeds resistance in the case the RTD is far away in respect to the remaining part of the Wheatstone bridge. So imagine to have in this case, which have the free resistor of the Whiston bridge that I kept of the same value as seen in the slide before, which are far away in respect to the RTD. So you need this long wiring to connect the RTD. Okay, also in this case, we will have some stray resistance associated to the link. So ideally, if we consider the lead resistance to be equal to zero, the output voltage in this case, the output voltage, I mean the output voltage of the of the wisdom bridge will be given by the difference as we said before V plus minus V minus. So it will be equal to Vs multiplied by the voltage divider of the branch with the RTT minus the voltage divider in the branch without the RTT that provides you this minus one alpha. So this is expression of the ideal Vout considering the lead resistance to be equal to zero. If we instead also consider the contribution of RL, you see that here to R plus delta R which is equal to to the resistance of the RTD, so I consider the resistance of the RTD equal to R plus delta R, I have to add also the contribution of the two lead resistances. It appears in the equation also this contribution plus 2 RL. So this is the output voltage that we will really measure if we consider also the two lead resistances. We can compute which is the error that I call epsilon between the measurement that we do with a little resistance, so Vout to wire, in respect to the ideal Vout that I should see if the resistance of the lead, the straight resistance, is equal to zero. So I can simply do the difference between Vout to wires that I computed here minus the ideal Vout that I computed there. Okay, so doing some computation, common denominator and so on, we obtain this equation. That can be simplified if you consider that the delta R is very small in respect to 2R, to the nominal resistance, so I can consider this to be almost zero. And also in this part, since delta R is summed to 2R, delta R can be neglected. So neglecting this delta R which are summed to a much bigger resistance, we obtain this equation in which we see that the error epsilon is independent from delta R and this is good because it means that it can be compensated with a calibration and its value mainly depends on the supply voltage and on the lead resistance and also on the nominal value of your RTD which is equal to the value that we choose for the other three resistances. How can we decrease this error? So how can we proceed if we want to have an error that is smaller than this that we obtain with a simple two-wire configuration? Ok, we can do something similar to the lesson we learned for the single-ended approach. So to use an additional wire and we can obtain this Whiston bridge with three wires. So in this case you see we read the differential voltage of the Whiston bridge with a V+ that is kept with the third additional wire, wire C. So, also in this case we can compute which is the voltage that we obtain at the output of the Whiston bridge, so which is the voltage V+ minus V-. So obviously V- is unchanged, so it is still 1/2. Instead, for the voltage V+, we will have to consider at the numerator only the voltage that we have on the lead resistance and the resistance RTT, because the lead resistance of the wire C does not impact on our measurement because remember that even if we have here a lead resistance, we read out our voltage with an high impedance of the instrumentation amplifier and so we will have no current flowing in the input of the instrumentation amplifier and so no current, so this current is equal to zero in the lead resistance. So in this case instead of having 2 RL we have the contribution only of 1 RL so which is the lead resistance of the wire B. Instead, at the denominator I will have 2RL because I have to consider also the contribution of the lead resistance of the lead A. So, now if we try to compute the error in this case, so in the case in which we use this additional curved wire, We can proceed as we proceeded before, so computing the voltage difference of the output that we have in this free wire configuration in respect to the ideal voltage that we have computed here, considering the lead resistance to be equal to zero. Also in this case, doing some computation, common denominator and so on, we can arrive to this expression of the error. And also in this case we can do some simplification, so we see that delta R is negligible in respect to 2R and also here delta R is negligible in respect to 2R. So, simplifying the expression, we find this new expression. So first of all we can notice that the sign is different in respect to the two wire bridge but the sign mainly is not critical because this is an error introduced and it's not important if the error is positive so increase the output voltage or negative so you have a slightly decreased voltage. So we are mainly interested in the absolute value of this error. Ok, this time the error depends, actually depends on delta R, so calibration is more difficult, but if we look in detail we can notice that this first part of the error is exactly the same of the error that we obtained with the two bridge configuration. But then this error, the one of the 2-wire bridge configuration, is multiplied by this coefficient, delta_r over 2r, which is a coefficient which is much smaller than 1, because delta_r is much smaller than 2r. And so you see that overall this error is almost equal to 0, because this coefficient tends to 0. So in this case almost the calibration is not needed so this error is really a negligible error that is typically much lower than the noise level for instance. So, we have seen also this second important configuration which is the Whiston bridge. So please remember the main advantage of the Whiston bridge is that you have a differential approach and so your output will not depend on RL0 but it will depend just on delta R. And so we can use an amplification stage that that has a much higher gain in respect to the one that we can have in the single-ended approach. And so we can measure in a more accurate way the variation of the resistance, which depends on the variation of temperature. When we use resistive sensors in order to measure temperature, we have to consider that we have an unwanted effect, which is the self-heating. What is the self-heating? You know very well that when a resistance is crossed by a current, this current will heat the resistance itself because we dissipate power. So, if the current passing through the resistance is too high, then we could have an effect of self-heating, so heating due to the current passing through the resistor, that can be even higher than the variation of temperature that we have due to the variation of temperature of the ambient or the object that you are measuring. So typically a rule of thumb is to limit the current to a maximum value of 1 mA. But obviously this threshold is not universal and true for all the RTDs. So for instance for RTDs which are made with thin film, so the one with the photolithographic process and so on, these RTD are more susceptible to self-heating and so it's better not to exceed the 1mA but keep much lower than 1mA. Instead, the well-worn RTDs typically can dissipate more the heat and so we can also ride to 1mA or a little bit more. But typically you find this information on the datasheet of the sensor that you are buying. Ok, just a last notice, remember that sometimes instead self-heating is exploited as an advantage. So mainly we can use self-heating to have, so the variation of the resistance, to have a forced estimation of the current that is flowing inside the resistor itself. But we will see some examples of use cases in which we exploit self-heating as an advantage, especially a little bit later during this class when we will study the thermistors, which are still resistors that we use to measure temperature, and so they has RTDs they will experience the problem of self-eating. But we will see how with thermistors sometimes we exploit self-eating for some advantages in some particular application. So just to summarize which are advantages and disadvantages of RTDs. The main advantage of RTD is the high linearity. So remember the characteristics that we have seen for the platinum, that is a characteristic with a very extended range of linearity in temperature from about -200°C up to 700°C. Then for RTDs we have also very good accuracy, repeatability, so precision and we have quite high sensitivity and they can be found at a moderate price. The main disadvantage is that the measuring range is quite narrow. So measuring range from -200 to 800 is enough in many applications But it could be not enough, especially the high end, the 800 degree in some applications, so for instance inside even if you want to monitor temperature during some processes in which you need to exceed the 800 degree to thousands of degree. Then another disadvantage in respect to other temperature sensors that we will study during next class is that they require an external power supply, an external power source. So we have seen for the single-ended readout, for instance, we need to provide a current source and in the differential approach in the Whistler bridge we need the Vs, so the voltage supply. Another disadvantage in respect to other type of sensor is the quite slow response time because we have to heat the resistor, not only the resistor but only the insulating part, so for instance the ceramic mandrel for the wire wound approach. And then we have seen that the problem related to the self-heating which is a common problem to all the resistive sensors. Which are the main applications in which RTDs are used? Mainly when you want to precisely measure the temperature of an object in a limited range. So for instance for air conditioning and refrigeration service in which typical temperature across the room temperature. Also in food processing, in which you don't need to reach very very high temperature, but typically 100, 200 degree are enough. So for instance also for stoves and grills and also for the processing of plastic material, because for plastic material very high temperature are not needed. Instead if you want to process metallic materials, for instance, then you can reach high temperature. and then we use it in microelectronics, so sometimes to monitor the temperature of our circuits, and then we can use also to monitor the temperature of air, gas and liquids in general. Now let's move to the second type of resistive temperature sensor, which are the thermistors. So basically thermistors are resistive temperature sensor like RTDs but they differ from RTDs for the materials that are used to fabricate them. So if you remember RTDs were fabricated with metallic materials. Instead thermistors are mainly fabricated with ceramic materials. And the difference in the materials also then causes differences in the characteristics resistance versus temperature of RTDs in respect to the thermistors. And in particular we will see that thermistors have strongly nonlinear characteristics and this is the main difference in respect to RTDs. In particular, we can distinguish two basic types of thermistors: the NTC thermistors, so negative temperature coefficient thermistors, and the PTC thermistors, so positive temperature coefficient thermistors. These are mainly made with ceramic semiconductors that are typically metal oxides. they are characterized by the fact that they decrease in resistance as the temperature increases. So we have a negative temperature coefficient. Instead, PTC remistors are typically made with polycrystalline ceramic materials and they increase the resistance if the temperature increases. So they have a positive temperature coefficient. So typically for both NTC and PTC we have characteristics which are strongly nonlinear. So let's go a little bit more in detail about NTC thermistors. As I said before NTC are made with metal oxides, typically oxides of manganese, nickel, cobalt, iron, copper or aluminium. we can find NTC in different packages. So in particular we can have disk NTCs or bead or chip NTCs or surface mounting devices that you can directly solder on your PCB, on your printing circuit board. In particular large disk NTC are used to function to exploit the self-heating mode. So in those applications in which self-heating is the objective of your measurement. So for instance if you want to measure the variation of resistance due to the wattage, so due to the power dissipation. So, if you want to measure a value of the resistance which strongly depends on the current that is flowing in this resistance. Instead, bit cheaper SMD devices has a smaller package so they are more sensitive to the environmental temperature or to the object temperature in which they are in contact to. and so they are mainly used when you want to measure the temperature of the environment or of an object. As you see, the characteristic of the MTC is strongly nonlinear. In particular, it can be described by this equation, which is a decreasing exponential characteristic. in which this coefficient beta is a coefficient that depends on the material, so on the metal oxide that you are using. So if you want to use NTCs to measure a temperature obviously you will have to apply the reverse of this equation, so you need some devices with some computational capability to reverse this equation or you can use lookup tables in order to find the value of the temperature in respect to the measured resistance. Which are the main applications in which MTCs are used? Mainly they are used to measure temperature for low cost applications because thermistors are cheaper in respect to RTDs. But due to the non-linear characteristics also the accuracy is lower in respect to the RTDs. In many cases they are used for temperature compensation, so they are used inside the loop, in which we are not interested in the precise value of the temperature, because they are just used inside the loop as the feedback to control that the temperature is kept stable. So for instance we use NTC with thermoelectric coolers which are coolers that are used to keep a stable and cool temperature like with a Pelletier cell. Because for some circuitry, electronic circuitry, it's very important to have a very stable temperature. So for instance, it is important for oscillators to keep the oscillation frequency to be stable, or to LCD display to have intensity of the light to be stable, and so on. And sometimes we use it to monitor the level of a fluid. So we use more like a switch detector to see if the fluid exceeds a certain level or not. And so we exploit the nonlinear characteristic in order to have a huge difference in the value of the resistance in case you have the fluid or if you have a liquid or if you have a gas. Sometimes we use NTC exploiting the self-heating effect. In particular we exploit it when we want to do some inrush current limiter. So imagine to have your circuit and you want to provide a current to your circuit, can be for instance a motor, you want to provide some current to your motor, you can put in series this NDC you can provide then with your current supply a current but you don't want to have a too much high current at the inrush so when you start up for instance your motor that can require a very high quadrant but you could want to put a limitation so So at the beginning, so when your circuit is off, the temperature will be low and so your resistance NTC will have a high value of resistance because the resistance with temperature has an inverse proportionality. When you switch on your circuit, the current will start to pass to the resistance and so the resistance will heat and then the resistance value will start to decrease. And so at the steady state this resistance will be a low value resistance so it will offer any more limitation to the current. So this resistance will act only when the temperature is low, so at the start-up of your circuit, to limit the current. Okay, let's now analyze the PTC thermistors, so the positive temperature coefficient thermistors. As I said in the introduction, they are made with polycrystalline ceramic, so for instance composed of oxaliate or carbonate with some additional doping materials. PTC exhibit a very non-linear characteristic. As you see, in a certain range of temperature, like this one, we have a very reduced variation of resistance due to temperature variation and these variations are even not monotone, you see here we have decreasing in value and then increasing. But let's say these variations are very reduced, almost negligible, until we reach a switching point, so a point in which promptly and steeply the characteristics start to be very steep. So we have very huge variation in resistance of order of magnitude, so this is in a logarithmic scale, in a very reduced range of temperature. So even if you modify really a little bit the temperature, you will have a big modification in the value of the resistance. and the temperature corresponding to this switching point is called Tc, so it is called Curie temperature. And by definition the Curie temperature is the temperature at which the resistance reaches two times the minimum value of the resistance. So you see due to this very steep characteristic we can use PTC as let's say switching, so on/off sensors. So we we can use in those applications in which we want to monitor if we exceed a certain temperature, so the Curie temperature. If we don't exceed the Curie temperature, the value of the resistance is very low. If we exceed the Curie temperature, the value of the resistance will be very high. Another typical application of the PTC is to protect for overcurrents. So overcurrent protection is very important in order to avoid to damage some expensive instrumentation or in general to protect your circuit from very high currents. So sometimes in some instrumentation we put some fuse. A fuse is an element that normally is a short circuit but it becomes an open circuit when a too high current flows inside this component, inside the fuse. With a PTC we can make a reversible fuse, we call it polyfuse. So imagine to have your circuit here that you want to protect from high currents, then you can put in series a PTC. So if the current, so in the normal operation, so with a normal current, the PTC will not self-heat too much and so the value of the PTC will be very low and so your current can reach actually the circuit. If instead the current becomes too high due to some fault for instance in the supply that you are providing to your circuit the self heating will increase a lot the temperature of your PTC and if the temperature exceeds the Curie temperature the value of the PTC will become very high, so almost an open circuit. and so you prevent this current to reach your circuit. Because if this resistance becomes very high also the current source will not be able to still provide the current because this node will increase a lot in voltage. Differently from a normal fuse, in a normal fuse when a too high current crosses the fuse it becomes an open circuit and it is not reversible. Then in PTC if you reduce, so if you adjust the fault and you reduce the current, then the PTC does not have to be changed, but it naturally comes back to the low value of resistance. Another example of application is also for battery management. So inside the circuits for battery management, typically we want to provide high currents when your battery still have to be charged and low currents when the charge is almost completed. So typically when you connect your battery to be charged the temperature at the beginning is low and so we can provide this high current because we have low value of the PTC resistor and then when we reach instead a good charge the temperature of the circuitry start to increases and so the value of the PTC increase reduces the value of the current that we are injecting in our battery. So, just to summarize the advantages and disadvantages of thermistors. The main advantage is the high sensitivity, especially for the PTC is so high that we can use them as switching sensors, so either very low or very high value of resistance. Another advantage is that they have a very moderate price, so they are cheaper than RTDs. They can provide a robust signal because the sensitivity is very high. So for instance in feedback and loops for monitoring and controlling the temperature of something, having this nonlinear characteristics with a high sensitivity can be an advantage. The main disadvantage is that we can use them in a very narrow range, especially NTC can be used in a range between -100 up to 500 degrees. Instead for PTC the range is even narrower, so it's limited to stay close to the cooling temperature. Then the other disadvantage is that we have a very low stability and completely they are not linear sensors. The accuracy is fair and also the response time is fair. As RTDs they suffer from self-heating, but we have seen that in some applications we exploit the self-heating itself. So we concluded to analyze the resistive approaches during next class instead we will analyze other different approaches used to measure temperature and in particular we will focus on thermocouple, diode and bank temperature sensor and infrared thermometer. So thank you very much for your attention and see you in next class. Bye!
+
 
 
 
