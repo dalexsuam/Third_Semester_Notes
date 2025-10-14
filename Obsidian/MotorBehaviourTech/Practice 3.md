@@ -1,3 +1,5 @@
+
+10/10/2025
 ![[Pasted image 20251009163146.png]]
 There are resistive the strain gauges, transducers, also capacitive sensors, or also piezo-electric sensor, piezoelectricity to transduce this kind of signal
 

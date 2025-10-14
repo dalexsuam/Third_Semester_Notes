@@ -1,3 +1,4 @@
+23/09/2025
 # <span style="color:rgb(223, 109, 109)">Electromyography</span>
 
 Muscular structure
