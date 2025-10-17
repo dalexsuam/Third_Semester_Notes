@@ -66,5 +66,5 @@ The measurement is done with wheatstone bridge. It was at the beginning used for
 
 ![[Pasted image 20251008095057.png]]
 
-![[Pasted image 20251008095513.png]]
+
 

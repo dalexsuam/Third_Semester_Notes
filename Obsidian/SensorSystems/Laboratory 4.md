@@ -238,34 +238,67 @@ Complete the UART project with DMA, as in slide 10 of pack 06. Tip: enable the g
 
 ![[Pasted image 20251007183253.png]]
 
-4. <span style="font-weight:bold; color:rgb(161, 40, 226)">Enable USART2 Global interrupt:</span> We activate the USART2 global interrupt in the NVIC. In short: **we enable the global interrupt so the DMA (Direct Memory Access) can “talk back” to the microcontroller once it finishes sending data.**
+4. <span style="font-weight:bold; color:rgb(161, 40, 226)">Enable USART2 Global interrupt:</span> We activate the USART2 global interrupt in the NVIC. Why?
+In the description of the code says that it is used to set the last byte sending completion detection in DMA non circular mode. In short: **we enable the global interrupt so the DMA (Direct Memory Access) can “talk back” to the microcontroller once it finishes sending data.**
+
 
 ![[Pasted image 20251007182837.png]]
 
-5. <span style="font-weight:bold; color:rgb(161, 40, 226)">Write the code</span> 
-~~~ C#
-//Same procedure!!
+5. <span style="font-weight:bold; color:rgb(161, 40, 226)">Set out timer in interrupt mode:</span> Since we would like to send information every 1s, it is always a good practice to avoid the `HAL_Delay()`. We set the pre-scaler and ARR with those values since we're aiming an interrupt every 1s, thus a frequency of 1Hz.
+![[Pasted image 20251017163421.png]]
+
+And we shouldn't forget also to turn on its interrupt in the NVIC settings.
+![[Pasted image 20251017163557.png]]
+
+6.  <span style="font-weight:bold; color:rgb(161, 40, 226)">Write the code</span> 
+
+Don't forget to include the following libraries to avoid errors or warnings. Also, we define our variables as global variables
+``` c#
+#include "stdio.h"
+#include "string.h"
+
+//As global variables
 char string[100];
 char Name[] = "Diego";
 char DOB[] = "07.05.2001";
 /* USER CODE END 2 */
-int length = snprintf(string, sizeof(string), "%s, %s \r \n", Name, DOB);
-/* Infinite loop */
-/* USER CODE BEGIN WHILE */
+```
 
-while (1)
+```C#
+//We start the timer in interrupt mode in the main
+HAL_TIM_Base_Start_IT(&htim2);
+```
 
-{
+~~~ C#
 
-/* USER CODE END WHILE */
-
-HAL_UART_Transmit_DMA(&huart2, string, length); // NO TIMEOUT NEEDED
-HAL_Delay(1000);
-
-/* USER CODE BEGIN 3 */
-
+//We define our timer interruption routine 
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	if(htim==&htim2){
+		int length = snprintf(string, sizeof(string), "%s, %s \r \n", Name, DOB);
+		HAL_UART_Transmit_DMA(&huart2, string, length); // NO TIMEOUT NEEDED
+		}
 }
+
 ~~~
+
+However, the communication is slow, it takes place every 1s. For faster communications we would like to know if the message has been sent, or if it is done in order to send the following information.
+![[Pasted image 20251017165744.png]]
+
+If we delve into the IRQ of the USART2 in the it.c file we might find the collection of the UART functions. 
+
+We see in part 3 we have some with the word `Callback` in their definition as.
+
+~~~C#
+HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) //It is going to let us know when our transmission is done. 
+~~~
+
+We can take a flag and make it 0 when the communication is starting and when the interrupt `TxCpltCallback` is called, we change the flag to 1. Hence, we enable availability of the channel, and when we want to start a new communication we set the flag again to 0. 
+
+~~~C#
+HAL_UART_GetState(const UART_HandleTypeDef *huart) // It will give us the state of the UART as a HAL_State something. HAL_Error, HAL_Busy, HAL_Ok
+~~~
+
+When `HAL_Ok` it means we can send some data 
 ## <span style="color:rgb(239, 179, 1)">Homework 4b</span>
 
 Write on the LCD the name of each member of your group, one per line, in alphabetical order. Scroll every one second such as indicated below:
@@ -279,44 +312,50 @@ We need to import the **LCD driver files** into our project to use the LCD funct
     - `PMDB16_LCD.c` → in **Src**
     - `PMDB16_LCD.h` → in **Inc**
 
-2. <span style="font-weight:bold; color:rgb(161, 40, 226)">Configure the LCD pins in the IOC file</span>Make sure to enable and configure all the **LCD pins** (RS, E, D4–D7, and DL_ON) correctly in your **.ioc** configuration file, so the microcontroller can communicate properly with the display.
+2. <span style="font-weight:bold; color:rgb(161, 40, 226)">Configure the LCD pins in the IOC file</span> Make sure to enable and configure all the **LCD pins** (RS, E, D4–D7, and DL_ON) correctly in your **.ioc** configuration file, so the microcontroller can communicate properly with the display.
 ![[Pasted image 20251007222104.png]]
-3. <span style="font-weight:bold; color:rgb(161, 40, 226)">Initialize the LCD</span>
+3. <span style="font-weight:bold; color:rgb(161, 40, 226)">Set out timer in interrupt mode:</span> Since we would like to display information in the LCD every 1s, it is always a good practice to avoid the `HAL_Delay()`. We set the pre-scaler and ARR with those values since we're aiming an interrupt every 1s, thus a frequency of 1Hz.
+![[Pasted image 20251017163421.png]]
+
+And we shouldn't forget also to turn on its interrupt in the NVIC settings.
+![[Pasted image 20251017163557.png]]
+
+4. <span style="font-weight:bold; color:rgb(161, 40, 226)">Initialize the LCD</span>
 Before printing anything, we must initialize the LCD and turn on its backlight using the provided library functions:
 
 
 ``` C#
+//Declare as global variables
+int index = 0;
+char names[5][10]= {"Diego", "Luis", "Pedro", "Rodrigo", "Mohanesh"}; //5 limits the number of elements, 10 the number of characters per element.
+
+
 int main(void){
-
-char *names[]={"Diego", "Luis", "Rodrigo", "Pedro", "Mohanesh"};; // stores the group members in **alphabetical order**.
-int total_names = sizeof(names)/ sizeof(names[0]);
-
+//we initialize timer 2 as interrupt
+HAL_TIM_Base_Start_IT(&htim2);
+//we initialize the LCD
 lcd_initialize();
 lcd_backlight_ON();
 int index = 0;
 
-}
-while(1){
-/* USER CODE END WHILE */
-	lcd_clear(); // clears the display before printing the next two names.
-// Print first name on row 0
-// First step: only bottom line shows the first name
-
-	if (first_time){
-		lcd_println("", 0); // top blank
-		lcd_println(names[index], 1); // bottom current
-		first_time = 0; // set flag to 0
-		}
-	else
-	{
-	// Top: previous name
-		lcd_println(names[(index - 1 + total_names) % total_names], 0);// Bottom: current name
-		lcd_println(names[index], 1);
+	while(1){
 	}
-	HAL_Delay(1000); // wait 1 second
-	index = (index + 1) % total_names; // move to next name cyclically
-/* USER CODE BEGIN 3 */
-
 }
+
+//define IRQ of timer 2 every 1 second
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	index++;
+	if (htim==&htim2){
+		lcd_println(names[index-1],0);
+		
+		if(index%5==0){
+			index=0;
+		}
+		
+		lcd_println(names[index],1);
+	}
+}
+
 
 ```
