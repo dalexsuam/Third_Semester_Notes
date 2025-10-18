@@ -128,6 +128,20 @@ Set DMA settings and receiver and
 
 Enable its interrupt.
 
+Private variables 
+
+~~~ c#
+UART_HandleTypeDef huart2;
+DMA_HandleTypeDef hdma_usart2_rx; //this are already defined from the ioc
+
+
+#define UART_RX_BUFFER_SIZE 17
+char singlechar;
+char string[UART_RX_BUFFER_SIZE];
+int i = 0;
+~~~
+
+
 ```c#
 
 int main(void){
@@ -145,23 +159,173 @@ HAL_UART_Receive_DMA(&huart2, &singlechar, 1); //To receive just 1 element (1Byt
 And then
 
 ~~~c#
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart){
-	if(huart==&huart2){
-		string[i]= singlechar;
-		if(singlechar == '\n'){
-			lcd_println(string, 0);
-			i=0;
-			memset(&string, 0, sizeof(string));
+	void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart){
+		if(huart==&huart2){
+			string[i]= singlechar;
+			if(singlechar == '\n'){
+				lcd_println(string, 0);
+				i=0;
+				memset(&string, 0, sizeof(string));//this clears the array buffer after displaying in the LCD
+			}
+			else{
+				i++;
+			}
+			HAL_UART_Receive_DMA(&huart2, &singlechar, 1);
 		}
-		else{
-			i++;
-		}
-		HAL_UART_Receive_DMA(&huart2, &singlechar, 1);
 	}
-}
 
 ~~~
 
-Homework 5b: ADC triggered by TIM (instead of having an interrupt that causes the ADC conversion, the ADC itself must have a setting that uses this timer to trigger the conversion and then we use the complete conversion callback and send it to the UART)
+However, if instead we use 
+``` c#
+#define BUFFER_SIZE 16
+uint8_t buffer[BUFFER_SIZE+1];      // DMA receive buffer
+uint8_t lcd_buffer[BUFFER_SIZE+1];  // Display buffer
 
-Homework 5c: Instead of send it through the UART, display it in the LCD.
+int main(void)
+{
+    lcd_initialize();
+    lcd_backlight_ON();
+    
+    // Start DMA to receive UP TO 16 CHARACTERS
+    // Stops when buffer full OR UART becomes idle
+    HAL_UARTEx_ReceiveToIdle_DMA(&huart2, buffer, BUFFER_SIZE);
+}
+
+```
+
+
+```c#
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t size){
+    if(huart==&huart2){
+        memset(&lcd_buffer, 0, sizeof(lcd_buffer));  // Clear display buffer
+        memcpy(&lcd_buffer, &buffer, size);          // Copy received data
+        
+        lcd_println((char*) lcd_buffer, 0);          // Display "Hello\n"
+        
+        // Restart DMA for next message
+        HAL_UARTEx_ReceiveToIdle_DMA(&huart2, buffer, BUFFER_SIZE);
+    }
+}
+```
+**UART Idle** = When the TX line stays at logic high (1) for longer than the time needed to transmit one complete character.
+
+**At 115200 baud:**
+
+- 1 character time = ~87μs 
+- **Idle condition** = Line stays high for >87μs
+    
+### **What Creates Idle:**
+
+- You stop typing in Serial Monitor
+- You press Enter (gap after sending line endings)
+- Between words when typing slowly
+- End of message transmission
+
+## **Side-by-Side Comparison:**
+
+### **When You Type "Hello" + Enter:**
+
+**CODE 1 Behavior:**
+
+text
+Timeline: H → e → l → l → o → \r → \n
+Interrupts: █   █   █   █   █   █   █   (7 interrupts)
+CPU Work:   7 callback executions
+LCD Update:                          DISPLAY!
+Process:    Builds string character by character
+
+**CODE 2 Behavior:**
+
+text
+
+Timeline: H → e → l → l → o → \r → \n → [IDLE]
+Interrupts:                                 █   (1 interrupt)
+CPU Work:   1 callback execution  
+LCD Update:                                 DISPLAY!
+Process:    Receives everything at onc
+
+
+# <span style="color:rgb(223, 109, 109)">Homework 5b: ADC triggered by TIM </span>
+
+(instead of having an interrupt that causes the ADC conversion, the ADC itself must have a setting that uses this timer to trigger the conversion and then we use the complete conversion callback and send it to the UART)
+
+![[Pasted image 20251019001803.png]]
+ 
+ 
+![[Pasted image 20251019002008.png]]
+
+We change the trigger event selection from reset, in which simply when the ARR is achieved, it simply resets to update event in order to generate a signal to use it as a trigger to other peripherals.
+
+![[Pasted image 20251019002317.png]]
+
+Then in ADC parameters, apart from the 480 cycles of sampling time we set as source of the conversion trigger, we do it through hardware directly from the out event of our timer. The Timer 2 trigger out event. 
+
+![[Pasted image 20251019002735.png]]
+
+DONT FORGET SETTING BAUD RATE 
+
+~~~ c#
+HAL_TIM_Base_Start(&htim2); //Timer not used in interrupt mode, we simply use its output by our timer
+
+HAL_ADC_Start_IT(&hadc1);//initialized it just in the main
+
+~~~
+Since we're not using DMA, we still have to define the interruption routine for the ADC. 
+
+~~~~c#
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
+	int conversion = HAL_ADC_GetValue(&hadc1);
+	float voltage = conversion*3.3/4096.0;
+	char string[64];
+	int length = snprintf(string, sizeof(string), "VoltageTRG: %.3f V \r \n", voltage);
+	HAL_UART_Transmit(&huart2, string, length, 10);
+}
+
+~~~~
+
+
+# <span style="color:rgb(223, 109, 109)">Homework 5c: Instead of send it through the UART, display it in the LCD.</span> 
+
+
+![[Pasted image 20251019004200.png]]
+ 
+ 
+![[Pasted image 20251019002008.png]]
+
+We change the trigger event selection from reset, in which simply when the ARR is achieved, it simply resets to update event in order to generate a signal to use it as a trigger to other peripherals.
+
+![[Pasted image 20251019002317.png]]
+
+Then in ADC parameters, apart from the 480 cycles of sampling time we set as source of the conversion trigger, we do it through hardware directly from the out event of our timer. The Timer 2 trigger out event. 
+
+![[Pasted image 20251019002735.png]]
+
+DONT FORGET SETTING BAUD RATE, AND WHEN USING LCD IMPORT THE LIBRARIES
+
+
+
+~~~ c#
+/* USER CODE BEGIN 2 */
+lcd_initialize();// it needs to be initialize before the ADC, cos it takes time to initialize
+lcd_backlight_ON();
+lcd_clear();
+char string[16];
+snprintf(string, sizeof(string), "Voltage:");
+/* USER CODE END 2 */
+HAL_TIM_Base_Start(&htim2); //Timer not used in interrupt mode, we simply use its output by our timer
+HAL_ADC_Start_IT(&hadc1);//initialized it just in the main
+~~~
+Since we're not using DMA, we still have to define the interruption routine for the ADC. 
+
+~~~~c#
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
+	int conversion = HAL_ADC_GetValue(&hadc1);
+	float voltage = conversion*3.3/4096.0;
+	char string[64];
+	snprintf(string, sizeof(string), "Voltage: %.3f V \r \n", voltage);
+	lcd_println(string, 0);
+	lcd_drawBar((conversion/4096.0)*80.0);	
+}
+~~~~
+
