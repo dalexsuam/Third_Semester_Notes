@@ -141,18 +141,15 @@ char string[UART_RX_BUFFER_SIZE];
 int i = 0;
 ~~~
 
-
+	
 ```c#
 
 int main(void){
-
-lcd_initialize();
-
-lcd_backlight_ON();
+	lcd_initialize();
+	lcd_backlight_ON();
 
 /* USER CODE END 2 */
-
-HAL_UART_Receive_DMA(&huart2, &singlechar, 1); //To receive just 1 element (1Byte) and store it in singlechar
+	HAL_UART_Receive_DMA(&huart2, &singlechar, 1); //To receive just 1 element (1Byte) and store it in singlechar
 }
 ```
 
