@@ -548,36 +548,172 @@ Importantly, the _desired trajectory_ corresponds to the **desired sensory feedb
 The **inverse model** therefore converts this desired sensory outcome into **feedforward motor commands**. It works very quickly, compensates for delays, and generates anticipatory control. However, since it doesn’t rely on real-time feedback, it cannot correct the movement if something unexpected occurs during execution. Once the command is issued, it simply runs its course — much like a feedforward controller.
 
 ![[Pasted image 20251019234749.png]]
-In this scheme, the **inverse model** takes the desired state and generates a **feedforward motor command**, which activates the muscles. The resulting **sensory feedback** returns to the brain, where it can be compared with the desired outcome.
+We start from the **desired trajectory**, which represents the target or the desired sensory state. This desired trajectory is processed by the **inverse model**, which generates the **feedforward motor commands**. These commands are then sent to the **body**, where they activate the **muscles** and produce movement.
 
-If a difference is detected (a _motor error_), this information can be used in two ways:
+As the body moves, **sensory feedback** (from proprioception, vision, etc.) provides information about the **actual trajectory** achieved. This actual trajectory is then **compared to the desired one**, and any **difference or error** is detected.
+
+That **error signal** is processed by a **feedback controller**, which generates an additional corrective input to the motor commands — allowing fine-tuning of the movement during execution.
+
+Moreover, this same **error** can be used to **train or adapt the inverse model**, because there is always a learning process occurring. Over time, this learning helps the brain improve the accuracy of its feedforward predictions, making future movements more precise and efficient.
+
+Then,if a difference is detected (a _motor error_), this information can be used in two ways:
 
 - To **update the inverse model** (learning and adaptation), or
 - To **produce a feedback correction** during the movement.
     
 For example, if I realize my hand is slightly off-target, I can make an adjustment — adding a feedback correction on top of my feedforward control.
 
+In summary:
 
-
-
-
-
-Now, second model. Sorry, I have to do it right because I don't like that figure. So we have the desired trajectory, inverse model, feedforward motor commands, body, sensory feedback, which informs about the actual trajectory. The actual trajectory is compared to the desired one and the error process by a feedback controller which gives an extra input. to the motor commands the error can be used to train the inverse model because there is always a learning process, motor commands need to be actuated by the body, muscle and sensory feedback so body.
-
-
+- The **inverse model** provides the anticipatory, feedforward component.
+- The **feedback controller** refines the motion using real-time sensory information.
+- Together, they form a closed-loop system that balances **speed** and **accuracy**.
 ## <span style="color:rgb(239, 179, 1)">2. Forward Model</span>
 
+
 ![[Pasted image 20251019235707.png]]
-Now let's add another piece. the Forward model gives us the state estimation. So the forward model produces estimate of the feedback of our sensory feedback, so of our state, before the sensory feedback is made available. According to the motor commands, we are sending. I think most of you can see this bag. Move our head. Rotate your head around so to see the bag and to rotate your gaze and your head. Has the bag moved? No. Has the bag moved? But On your retina, the image of the bag has moved a lot. But your brain is not accounting that information from the sensory feedback a real movement. And actually, the bag starts moving by itself. Everybody, would be like what's going on? So it's not that your brain is not accounting for the bag being able to move. But If the movement is the consequence of the activation of your own muscles, this change in the feedback is filtered, is processed in a different way with respect to the same change in the feedback due to the bag floating around. Can our brain do this? In order to do this, it needs to have a prediction of the consequences of its own, of the motor commands that it's sending, as a prediction of the sensory feedback that it will be produced. 
+Now, let’s add another important element: the **forward model**. The forward model provides an **estimation of our sensory state** — it predicts what our sensory feedback will be **before** that feedback is actually received.
 
-So, The forward model is a state estimation. It's done by a copy if the efference, the reference, the motor commands, and a forward model. and it allows us to distinguish between action, the consequences of our own actions, and external events. The goal is to detect the consequences of our own actions, to have a perceptual stability. So it's not that because I'm moving, everything is flowing around. I have a perceptual stability. and modulate attention. It's way more important to see if If this bag starts moving by itself, we need to... something is occurring. Do these experiments and you can understand this. If you push gently the side of your eye you will see a little shift in the image. But this shift in the image is a shift in the image. Your brain is telling you that there is a shift in the image. It's not a perceptual stability. Why? Because this action is not directly produced by the muscles of your eyeballs. It still is produced by your own body. So if a person does this instead of you yourself, you will perceive even more. have you understood the reason why it's super important for our brain to have this and we cannot count it exists so our point is it exists let's give it a name and then we will see and where is it.
+In other words, based on the **motor commands** being sent to the body, the brain internally predicts the **expected sensory consequences** of those commands.
 
+For example, imagine you’re looking at a bag in front of you. Now rotate your head from side to side. Has the bag moved?  Of course not — the bag stays still.  However, on your **retina**, the image of the bag has moved dramatically. Yet your brain does **not** interpret that as the bag itself moving.
+
+Now, if the bag actually started moving on its own, you’d immediately notice something unusual — “What’s going on?”
+
+This demonstrates that the brain distinguishes between:
+
+- **Sensory changes caused by our own actions** (like turning our head), and
+- **Sensory changes caused by external events** (like the bag moving independently).
+
+To make this distinction, the brain needs to **predict** the sensory consequences of its own motor commands.  This prediction is generated by the **forward model**, which receives a copy of the motor command — called an **efference copy** — and uses it to estimate the expected sensory feedback.
+
+The **purpose** of the forward model is to provide **perceptual stability**: it ensures that when we move, the world doesn’t appear to move with us. It also helps **modulate attention**, so we can focus on relevant external events — like noticing if the bag really moves on its own.
+
+A simple demonstration of this concept is pushing gently on the side of your own eye. You’ll see the visual scene shift slightly. Your brain tells you that the image has moved because that action wasn’t produced by your eye muscles. If, instead, someone else pushed your eye, the shift would feel even stronger.
+
+This shows that our brain constantly predicts and filters the sensory consequences of our own actions — a process that is essential for coordinated movement and perceptual stability.
+
+So, our question is not _if_ this mechanism exists — we know it does.   The question is _how_ and _where_ it is implemented in the brain.
 ![[Pasted image 20251020000312.png]]
+When we want to perform an action — let’s call it a **desired behavior** — the **inverse model** in our brain transforms this desired behavior into the corresponding **motor commands**.
 
-desired behavior inverse model motor commands desired behavior then there is the inverse model which transform the desired behavior into a motor command. Of the motor command, so a copy of the motor command, so a copy efference is sent forward model. Why forward? Because it's doing the same as the body, receiving motor command and producing behavior. So forward model produce a predicted behavior. So what we expect as a consequence of this motor command. So the forward model maps the motor commands into the sensory space, while the inverse model estimates motor commands to obtain a desired sensory field. 
+A **copy of these motor commands**, known as an **efference copy**, is sent to the **forward model**.
+
+Why is it called _forward_? Because, just like the body, it takes **motor commands as input** and produces **behavior or sensory feedback as output**. In other words, the **forward model predicts the sensory consequences** of the motor commands — it tells us what we should expect to sense as a result of our movement.
+
+So:
+
+- The **inverse model** maps **desired sensory states → motor commands**, while
+- The **forward model** maps **motor commands → predicted sensory states**.
+    
+Together, they form a powerful internal loop that allows the brain to plan, predict, and adapt movements with remarkable precision.
+
+**Why Is This Important?**
+![[Pasted image 20251020075328.png]]
 
 
+A clear everyday example of how forward and inverse models operate is given by the **ketchup bottle experiment**. To prevent a ketchup bottle from slipping, a sufficient **grip force** must be exerted to counteract the **load force** that occurs when the bottle is tapped.
 
-1.29.48
-Why this is important? Because if I have the afferent copied, so this experiment is very nice, it's very daily living. You need to tap it in order for the ketchup to go down and then to squeeze it properly and have your ketchup. When you take the ketchup bottle, if you are doing it yourself, so left hand and right hand or the other way, what we can measure is that the grip, so when you tap it, you need to have a stiffened grip to assure that it doesn't slip. So if you are doing with your hands you can align perfectly the increase of the grip with the tapping. That's are the two green and red lines in the first panel, in the upper panel. This green and red superimposed. While somebody else tap it, your brain does not an internal representation and needs to what is your brain doing increase so to be ready to everything because you don't know exactly the pressure applied be increased according to the feedback received for the load so this the grip is higher by a bias and then when the load is increased the grip followed. To split apart these two conditions we need this sense copy which allows us to have a prediction of the next sensory feedback. So starting a movement which is exactly of a level of force so that gripping can exactly. While if another body someone else is doing the tapping of course I predict that the tapping is arriving so I start squeezing a little bit so having a harder grip but then depending on I will adapt the soap and this is another very interesting examples which I want to go through in details, you find it in the compendium, it's totally explained. And it's again, what is nice is that it accounts twice for a night. So observation, the empirical observation that physical conflicts tend to escalate. And they proved by a very nice experimental protocol, and I invite you to study it, the fact that since when you attenuating the perception of that pushing, because it's your own action, to mimic the same level of pressures, you increase it. So if she pressed, finger and then I have to reproduce the same pressing on my finger. Since there is this attenuation of the consequences of my own actions, a sensor in between the two fingers will measure a higher pressure for me to get the same perception. So this mechanism which is super important to guide attention because usually what is consequence of what I am doing is something that is very predictable why if something comes from an external input needs immediate attention okay so saving the reasons in our brain makes it the effort and the attention on the let's say dangerous external inputs much than the consequence of my own actions and this experiment is nice because it is a super but very well measured experiment so one sensors two fingers and people having a very pure demonstration of that that's a nice "Acquaintance to Experimental Design," which might be very interesting toward your thesis. So I invite you to read it. By the way, it's published on Science, so usually. And the same kind of confirmation was done by the, why can't you tickle yourself? Tickling is a very specific perception But, and as soon as you do it, since you have the image of what you are doing, the tickling perception is kind of cancelled out. You can't tickle yourself. And actually this was proved by using a robot tickling and moving. And what is nice is that you can see that if the robot is producing the tickling with a delay, with respect to their own inputs or with the rotation with respect to the direction input by the subjects the more this delay is larger and the more it is rotated so the less is similar to the motor commands the more the tickling experience is reappearing so This is self-produced, this is externally produced. The more the robot is delaying self-produced tickling, and the more the robot is rotating the self-produced tickling, the more it becomes similar to an external input, even if it is the consequence of the subject itself moving the joystick. And then there is another way to study motor control, which is about studying impairments in motor control. And so pathological conditions which impaired motor control. For example, schizophrenia patients can experience the self-tickling because if they have the... The passivity of experience is symptoms. Passivity of experience means somebody is moving my hands. So they move their hands, but they are experiencing them to be passive and somebody else doing inside their arm the movements. If they have these symptoms active, which is very, schizophrenia is a very large spectrum so it depends on the symptoms they can have external self tickling and external tickling absolutely the same so no differences then if they do not have symptoms they symptoms of external passivity they are similar to normal subjects question how to train the inverse model So we have already sketched this. It's the same sketch. So we have the desired trajectory which goes to the inverse model which produces the motor feedforward motor commands. The motor commands go to the body, the controlled object. Sensory feedback produces information about the actual trajectory. actual trajectories compared to the desired one and we have a trajectory error. To move, to transform a trajectory error into a change of motor commands, we still need another model because trajectory error is again this realm. Why corrective motor commands is in the muscle language. And this is the feedback controller. Inverse model can be trained by the feedback controller. Why? Neural network. Machine learning needs the error on the output. You train machine learning. Supervised learning needs the label, desired output versus actual output, error, bad propagation with whatever complex algorithm. The error on the output. And it's the same here. But now, and then we can even increase the complexity about motor control, which is not just a fixed range between the feedforward and the feedback. But feedforward and feedback can play differently according to the environment. So the famous example on this is if you are playing tennis in a foggy day, your preparation and gesture will mostly based on your prediction. So you know where the other player is, you have seen the gesture, you predict that the ball will arrive there. While if you are playing in a sunny day, your prediction is much more, your feedback is much more confident and so you can interplay between what is the predictive estimation and the sensory feedback. This interplay between the estimation and the feedback is what controllers use when they apply Kalman filters. Kalman filter changes the importance of the experience with respect to the importance of the feedback. And this is what our brain does as well. Now, let me conclude with this complex picture, which is complex, I know, but if you follow, I think we can manage. So, we are disregarding the fact that we have an She is there. Okay, they are all the same. Okay, let's understand what is on each of them. On each of them we have the desired trajectory which is converted into the inverse model. It goes to motor commands to the body and then we have a feedback which goes, which produces audio. Sorry, we have a feedback coming here. The feedback is compared with the predicted sensory feedback, which is produced by the forward model. The forward model received the reference copy, so the same motor commands here goes here, actually a copy of it. The forward model produced the predicted sensory feedback. You received the sensory feedback, and then you have a prediction error. The prediction error is used to update the forward model because it's an error associated to its output and it's then converted by the feedback motor command into a motor error. This motor error is used to train, to adapt the inverse model. So this is, let's say, designed in a different way but it is... the same that we have seen a couple of slides ago. Okay? That's it. Except for the fact that the trajectory error is also adapting the feedforward, the forward model. This. But now we have all this structure above, which if you look, it's a very transversal layer down there. which is called the responsibility estimator. The responsibility estimator is giving a weight. So, a weight to what? To the error, to the error, to the motor command. And this weight depends on what? On this input, which is the comparison between the likelihood of the model and the prime responsibility predictor. What is this? the level of importance, so responsibility, the level of responsibility that this model, so this single sheet in the execution of the task. So what we are now doing is saying the brain does not have an inverse forward, so a set of internal models that works for every task, but primitives. So multiple sheets, primitives, make a specific, let's say simple task. And then there is a responsibility estimator, so a high level system that calls into play the different primitives. So sitting, talking, I'm moving my hands, I'm keeping balance for the movement of my hands. Let's split this. There is a component, there is a hand component, there is a sitting trunk control, there is a voice component. All this goes together, are running together. Each of them has different responsibility to the overall gesture. Each of them needs to have a responsibility and being corrected by the same responsibility. So if I fall down, it's not that my grasping was not proper. It's about my trunk control. So every single module is weighted in the motor command and in the importance of the error by the same responsibility weight. And then this responsibility weight is associated to the likelihood of the model with respect to the responsibility predictor. So let's do this example. This example is a walking importance for this task? No. So the prior is there is no importance or very low importance of that module. Okay? But still, responsibility predictors need to be updated. So it's all about the managing of the production of the output and the, let's say, direction of the feedback into a system which is a modular system. So it's made by multiple modules. It's not a single unique internal model. So to simplify and to prove that this is the way our brain works, the main proof is about the fact that we are very fast in recollecting previous... So for example, if you go to the... if you in Milan you come from far away, in Milan you don't have the bike. and you go by other means. And then as soon as you go back to your place where you have your wonderful bike, you start biking without. So all what you have learned in between has not changed the module of the bike, which remains there. And to account for the persistence of capacities, A modular system is essential because if you have a unique system whatever change in your think about the neural network. If you use a unique neural networks and you give back an error you are changing the whole network and this changes eyes to the next input. If you have multiple neural networks and you select which one to use and then you train them depending on the error. The same way as the way you have done in using them, you will adapt the weights of the work only for the modules that you have used and according to the responsibility you have given to each module. Okay, I think today we are done enough. Please look at everything back with your questions Monday actually. I will try to share the recordings soon but sometimes the system takes some time to give them to me. Guys from home, come.
-.+0125
+When the load is **self-generated** — for example, when your **left hand strikes the bottle** while your **right hand holds it** — the brain can use an **efference copy** of the motor command to **predict the upcoming load**. As a result, the **grip force** increases _in parallel_ with the **load force**, showing _no temporal delay_.
+
+This precise synchronization occurs because the **forward model** anticipates the sensory consequences of the motor command, allowing the nervous system to generate a perfectly timed adjustment.
+
+However, when the load is **externally generated** — for example, when **another person** strikes the bottle — the brain has **no efference copy** to rely on, and therefore the load **cannot be predicted**. As a consequence, the **grip force lags** behind the load force and, to avoid slippage, the **baseline grip force** is **increased** as a compensatory mechanism.
+
+This experiment elegantly illustrates the functional role of the **forward model**:  it uses the efference copy to **predict the sensory consequences** of our own actions, enabling **anticipatory adjustments** and **stable control** of movement.  In contrast, in the absence of such prediction, control becomes **reactive**, slower, and energetically less efficient.
+
+![[Pasted image 20251020080213.png]]
+
+![[Pasted image 20251020080240.png]]
+Another very interesting example that highlights the importance of forward models comes from experiments investigating **sensory attenuation** — the reduced perception of sensations caused by our own actions.
+
+Empirically, it has been observed that **physical interactions tend to escalate**: for instance, when two people take turns pressing each other’s finger with the same perceived intensity, the actual force applied tends to increase at every step. This happens because, when we perform an action ourselves, our brain **predicts** its sensory consequences through the **forward model** and **attenuates** the resulting perception. Therefore, to reproduce the same _felt intensity_ of a touch applied by someone else, we unknowingly apply **a stronger force**.
+
+This mechanism is crucial for **attention modulation** — our brain saves resources by reducing sensitivity to the predictable consequences of our own actions, while remaining highly sensitive to **unexpected external stimuli**, which may signal potential danger or relevant changes in the environment.
+
+The experimental setup for this study is elegantly simple:  
+two fingers (one applying pressure, one receiving it) are connected by a **force sensor** that measures the actual applied force. Participants are first touched by an external source and then asked to reproduce the same pressure themselves. Consistently, the measured self-produced forces are higher, confirming the presence of **sensory attenuation**.
+
+![[Pasted image 20251020080400.png]]
+A similar demonstration of this principle is found in the question: **why can’t you tickle yourself?**  Tickling involves a specific sensory perception that is **strongly dependent on unpredictability**.  
+
+When we attempt to tickle ourselves, the brain already has a **prediction** — via the efference copy — of the sensory feedback that will follow our own movement.  
+Because the brain expects this stimulation, the sensation is **canceled** or **greatly reduced**.
+
+This has been verified experimentally using a **robotic interface**: participants control a small robot that produces tickling movements.
+![[Pasted image 20251020080416.png]]
+When the robot reproduces their movements **without delay** or **rotation**, the sensation is strongly attenuated. 
+
+However, when a **delay** or **rotation** is introduced between the subject’s movement and the robot’s action, the tickling sensation **reappears**. This shows that the more the feedback **deviates from the predicted sensory outcome**, the more it is perceived as **external**, and thus capable of generating the full tickling sensation.
+![[Pasted image 20251020080610.png]]
+
+These findings also provide insight into **pathological impairments of motor control**, such as those observed in **schizophrenia**. Some patients with schizophrenia experience the so-called **passivity phenomena**, in which they feel that their own movements are **controlled by someone else**.  
+
+In these cases, the **forward model** and its **efference copy** seem to be impaired, disrupting the normal ability to distinguish **self-generated** from **externally generated** sensations.
+![[Pasted image 20251020080718.png]]
+Experiments show that schizophrenia patients **with active passivity symptoms** can experience **self-tickling** in the same way as external tickling — they do not show the typical sensory attenuation. 
+
+Patients **without such symptoms**, on the other hand, behave similarly to healthy subjects, confirming the link between **motor prediction mechanisms** and **the sense of agency**.
+
+## <span style="color:rgb(239, 179, 1)">How to train the inverse model?</span>
+
+![[Pasted image 20251020080859.png]]
+As we’ve seen, the **inverse model** converts a desired trajectory (or desired sensory feedback) into the appropriate **motor commands**. However, to make this mapping accurate, the system must **learn** from experience — it must adjust its internal parameters whenever the produced trajectory doesn’t match the desired one.
+
+The **feedback controller** plays a key role in this learning process. The actual trajectory generates **sensory feedback**, which is compared to the desired trajectory to compute a **trajectory error**.  But this trajectory error exists in _kinematic_ or _sensory_ space, while corrective motor commands exist in _muscle_ (motor) space.  
+
+Therefore, the brain needs another transformation — the **feedback controller** — to translate trajectory errors into motor corrections.
+
+Over time, the corrections provided by the feedback controller are used to **train** the inverse model, just like in a **supervised learning** process.  
+
+In machine learning terms:
+- The **desired trajectory** acts as the _label_ or desired output.
+- The **actual trajectory** is the _prediction_.
+- The **error** between them is used for **backpropagation**, updating the inverse model so it can produce more accurate feedforward motor commands in the future.
+
+
+![[Pasted image 20251020081619.png]]
+
+
+Motor control is not static — the **relative importance** of feedforward and feedback control changes according to the reliability of sensory information.  
+For example:
+
+- In a **foggy tennis match**, visual feedback is unreliable, so the player must rely more heavily on **prediction** (feedforward control).
+- On a **sunny day**, when sensory feedback is precise, **feedback corrections** become more dominant.
+
+This dynamic balance is conceptually equivalent to a **Kalman filter**, where the system continuously adjusts the **weight** between prediction (the prior estimate) and feedback (the sensory evidence) according to their **respective uncertainties**. Our brain performs a similar computation — modulating trust in its internal models depending on the context and sensory reliability.
+
+![[Pasted image 20251020081707.png]]
+In the most comprehensive view, the brain doesn’t operate with a single monolithic inverse–forward model pair. Instead, it uses a **set of modular internal models** — or **primitives** — each specialized for specific motor subtasks.
+
+Each module (or “sheet” in the diagram) contains:
+- An **inverse model**, which generates motor commands.
+- A **forward model**, which predicts the sensory consequences of those commands.
+- Feedback pathways that update both models through prediction errors.
+
+| ![[Pasted image 20251020081707.png]] | ![[Pasted image 20251020080859.png]] |
+| ------------------------------------ | ------------------------------------ |
+![[Pasted image 20251020081707.png]]
+Above these modules lies a **responsibility estimator** — a higher-level mechanism that assigns **weights** (or responsibilities) to each module depending on their **relevance and reliability** for the current task. This estimator uses a Bayesian-like computation:
+
+$$\text{Responsibility} \propto \text{Likelihood (model performance)} \times \text{Prior (expected importance of the module)}$$
+
+In other words:
+- The **likelihood** measures how well a given module’s predictions match the actual feedback.
+- The **prior** encodes how relevant that module is expected to be for the current context.
+    
+
+For example:
+- When **walking**, the leg-control module has a **high prior responsibility**, while the hand-control module has a **low one**.
+- When **writing**, the inverse is true.  
+    Yet all modules remain active to some degree, maintaining readiness for potential coordination demands.
+
+A modular organization explains a fundamental feature of human motor learning:  the ability to **retain and recall specific skills** even after learning new ones.
+
+If the brain had a single, global internal model, every new learning experience would overwrite previous mappings — similar to **catastrophic forgetting** in a single neural network.  
+Instead, having **multiple internal models**, each trained independently according to their **responsibility weights**, allows for:
+
+- **Selective adaptation:** only the active modules are updated.
+- **Skill persistence:** previously learned modules remain intact.
+
+That’s why, for example, you can **resume cycling** immediately after months of not riding — the **“bike control” module** is still stored and ready to be reactivated, unaffected by learning other unrelated tasks.
