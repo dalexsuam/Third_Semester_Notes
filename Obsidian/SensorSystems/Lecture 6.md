@@ -378,8 +378,689 @@ This analysis demonstrates why **piece-by-piece simulation** is crucial: some be
 
 ## <span style="color:rgb(239, 179, 1)">Measuring Circuit Example 2</span>
 
+Let’s now consider a more complete example of a **measuring circuit**, or **readout circuit**, designed for a thermocouple.  
+
+So far, we have understood that the essential elements of a thermocouple measurement chain include the **thermocouple itself**, **filtering stages**, and an **instrumentation amplifier**. However, the next question is: _how do we convert this analog information into a digital form and send it to a microcontroller in order to compute the absolute temperature of the measured object?_
+
+![[Pasted image 20251020202540.png]]
+
+Analog Devices proposes a very elegant and compact solution that involves **three key components** working together to obtain the **absolute temperature** of the object.
+
+First, we start with the **thermocouple**, which measures the voltage corresponding to the temperature difference between the **measurement junction** and the **reference junction**. This thermocouple signal is very small and highly susceptible to electromagnetic noise, so it must first pass through a **filtering stage**. As we have already discussed, filtering is fundamental to remove high-frequency electromagnetic disturbances that could couple into the thermocouple wires and affect measurement accuracy.
+
+After filtering, the conditioned thermocouple signal is connected to the **AD7793**, a highly integrated component that includes **both an instrumentation amplifier and an analog-to-digital converter (ADC)** within the same device. The ADC used here is a **sigma-delta ADC**, an advanced architecture known for its excellent noise performance and high resolution — ideal characteristics for low-frequency, high-precision measurements such as temperature sensing.
+
+Once the thermocouple voltage is amplified and converted into a digital signal by the AD7793, the **output data can be sent to a microcontroller**. This communication is carried out using the **SPI protocol** (Serial Peripheral Interface), a synchronous serial communication protocol that we will study in more detail during one of the next laboratory sessions.
+
+However, this setup alone is not sufficient. As we discussed earlier, a thermocouple does **not provide an absolute temperature**, but rather a **relative measurement** — it measures the temperature difference between the measuring junction and the reference junction. Therefore, to determine the absolute temperature of the object, we must also know the temperature of the **reference junction**.
+
+For this purpose, a **second temperature sensor** is used — the **ADT7320**. This is an example of a **band-gap temperature sensor**, a type that we will study later in this same class. The ADT7320 is responsible for measuring the **reference junction temperature**, providing the necessary data to compute the absolute temperature of the object.
+
+The ADT7320 also communicates with the microcontroller via the **same SPI bus** used by the AD7793. This means that both the ADC (which reads the thermocouple signal) and the reference temperature sensor share the SPI communication lines. To manage this shared communication, **SPI chip select lines** are used to determine which device the microcontroller is currently communicating with.
+
+In this setup, we have two separate **SPI selectors**:
+
+- **Selector B** corresponds to the **chip select of the AD7793** (the ADC and instrumentation amplifier).
+    
+- **Selector A** corresponds to the **chip select of the ADT7320** (the temperature sensor).
+    
+
+Meanwhile, the other SPI lines — the **clock (SCLK)**, the **master output/slave input (MOSI)**, and the **master input/slave output (MISO)** — are **shared** between the two devices.
+
+This way, the microcontroller can alternately read data from either the ADC (which provides the thermocouple differential voltage) or from the temperature sensor (which gives the reference junction temperature) by simply toggling the appropriate chip select line.
+
+Even though we are not focusing today on the details of the **SPI communication protocol**, it is important to keep in mind that this protocol allows the microcontroller to efficiently manage and synchronize multiple devices on the same communication bus — a key feature in modern temperature measurement systems.
+
+## <span style="color:rgb(239, 179, 1)">Thermocouple pros and cons</span>
+
+### <span style="color:rgb(161, 40, 226)">Advantages</span>
+
+- **Very wide measuring range:**  
+    Thermocouples can operate over an extremely large temperature range, even exceeding **2000°C**, which makes them ideal for applications in high-temperature or harsh environments where other sensors cannot function.
+    
+- **Fast response time:**  
+    Particularly for **exposed thermocouples**, the response is quick because the sensing junction is directly in contact with the object, without needing to wait for a protective cap to reach thermal equilibrium.
+    
+- **Tiny measuring point:**  
+    The junction between the two wires is very small, allowing **localized measurements** and minimizing the influence of the sensor on the system being measured.
+    
+- **Moderate cost:**  
+    Thermocouples are generally affordable, which makes them practical for both industrial and laboratory use.
+    
+- **No self-heating effect:**  
+    Unlike **resistive sensors**, which heat up due to the current passing through them, thermocouples generate their signal through the **Seebeck effect** and do not require current flow, so they **do not suffer from self-heating**.
+    
+- **High mechanical robustness:**  
+    Especially the **insulated or grounded types** with protective caps, thermocouples are resistant to vibration, mechanical stress, and difficult environmental conditions.
+
+### <span style="color:rgb(161, 40, 226)">Disadvantages</span>
+
+- **Only relative temperature measurement:**  
+    A thermocouple measures the **temperature difference** between its measuring junction and its **reference junction**, not the absolute temperature.  
+    Therefore, a **second temperature sensor** is needed to measure the reference junction temperature and compute the absolute value.
+    
+- **Low sensitivity:**  
+    The output voltage is only a few **microvolts per degree Celsius**, so it must be **amplified** with great care. This small signal level also makes the measurement **more vulnerable to electromagnetic interference (EMI)**.
+    
+- **Susceptibility to noise:**  
+    Because of the very low signal amplitude, thermocouples are prone to pick up **electromagnetic disturbances**, which is why **proper filtering** at the input of the readout circuit is essential for accurate readings.
+    
+- **Low linearity:**  
+    The **Seebeck coefficient** (which determines sensitivity) is **not constant with temperature**, meaning that the **voltage–temperature relationship is nonlinear**. This nonlinearity must be **corrected through calibration or compensation**.
 
 
-Okay, let's see another example of a more complete example of a measuring circuit, a redoubt circuit for a thermocouple. So for sure we understood that it's very important to have your thermocouple, some filtering, the instrumentation amplifier. But then, how to digitalize this information and send the information, for instance, to a microcontroller to compute the absolute temperature of your object? Okay, in this case, ANO devices suggest to use these three components in order to arrive to have something that is the final temperature, the absolute temperature of your object. So here you have your thermocouple and you can connect the thermocouple to some filtering. We have already seen that the filtering is very important to filter the electromagnetic disturbances. And then you can connect it to this component, which is a component that directly includes both the instrumentation amplifier and an ADC. In particular, in this case, we have a sigma delta ADC, which is an advanced type of ADC. Then the output data can be sent to a microcontroller, for instance using this protocol, which is an SPI protocol. We will study the SPI protocol, serial peripheral interface protocol, during one of the next labs. But this is not enough because, as we already mentioned, the thermocouple provides you just a relative temperature relative to the reference junction. So we need another temperature sensor, and here is the other temperature sensor, in order to measure the temperature of the reference junction. And this is an example of a temperature sensor based on the Bang-Gap temperature sensor, so the next type of temperature sensor that we will study today during this class. Then the temperature measured by this temperature sensor can be sent to your microcontroller using the same SPI bus. So this SPI bus is connected to the SPI bus of the microcontroller. just to do an arbitration between the two SPI buses, so the bus of the ADC and the bus of the other temperature sensor, we need a selector. So you see we have just two separate SPI selector B in order to speak with the chip select of the ADC and then we have the SPI selector A to speak with the temperature sensor. But then instead the clock, the data master output slave input and the master input slave output is shared between the ADC and the temperature sensor. But I don't want to focus too much today on the SPI protocol because we will study it during the labs. So just to summarize about thermocouples, so for sure the most important advantage of thermocouples is the very extended measuring range, which includes very high limits. So we said we can exceed even the 2000 degree. Then we have a relatively fast response time, especially for the exposed thermocouples. Another advantage is that we have a very tiny measuring point because the tips of the thermocouple is very small, the price is moderate. Thermocouple does not suffer from self-heating. Do you remember during past class we mentioned many times that resistive sensors suffer from the self-heating because we have a character that is crossing the resistor? Instead Instead, in the case of thermocouple, we have no currents inside the thermocouple and so they do not suffer from self-heating. And then they are robust to mechanical stress, especially the one with the cap. Obviously we also have some disadvantages and the most important disadvantage is that we can measure only relative temperatures, so no absolute temperature, and so we need another thermometer to measure the temperature of the reference junction. Another disadvantage is that the sensitivity of the thermocouple is very low. So the output voltage of the thermocouple is in the order of a few microvolts. And so you need to amplify very well. And this is a disadvantage if you also consider that the thermocouple are prone to electromagnetic interference disturbances. So for this reason it is very important that the filtering that we put at the input of the readout circuit in order to reduce the effect of the electromagnetic interference. And also we have seen that thermocouple have a low linearity because the Siebeck coefficient is not constant in temperature. And so also the sensitivity of the thermocouple, which is given by the difference of the Siebeck coefficients of the two materials that we use for thermocouple, is dependent on temperature. Just to do a comparison between thermocouple and the other two types of temperature sensor that we have seen during last class, we can say that about sensitivity the best are the thermistors because you remember the characteristic of thermistors was very non-linear but it was very steep. About the range, for sure we will choose thermocouple because they have a very extended range, especially at high temperatures. About accuracy and linearity, RTDs are the best because they have perfect linear output. And about cost, thermistors are the cheapest. Okay, let's move to the next temperature sensor and in particular we will study now the thermal diodes and then their evolution which is the Van Gap temperature sensors. So, as you perfectly know, a diode has a characteristic which is an exponential characteristic, so it's something like that if we plot current versus the voltage that we provide across the diode. So this is the voltage V and this is the current I that we have in the diode. How can we write with an equation this characteristic? The equation is the one that I provided here. So the current is equal to a certain Is, which is the reverse saturation current, multiplied by this exponential. which depend obviously on the voltage that we have across the diode. And then it depends also on some fixed parameters. So Q, the charge of the electron, M, which is a technology parameter that is typically almost equal to one, K, the Boltzmann constant, but it also depends on T, so on the temperature. Then we have this minus 1 because you know the current at 0 volt is equal to 0. So the E to the 0 would be equal to 1 minus 1 and we obtain E to the 0. So we can reverse this equation in order to find the relation between the voltage and the current. So the voltage is equal to m by kT over Q by the logarithm of I over Is plus 1. So you see that the voltage directly depends on the temperature. And so we can provide a fixed current to our and then we can measure the voltage across the diode and we know that the voltage linearly depends on the temperature. And so we can say that the sensitivity of this sensor can be defined as the output, so the delta V out over the input, over the delta T, and it is equal to mk over Q by logarithm of I over Is plus 1. So, apparently, this term, m by k over q by log of i over is plus 1, seems to be constant. To be honest, it's not perfectly constant because the saturation current depends on temperature. So this sensor, the thermal diode, is not a perfectly linear sensor because there is in the sensitivity this dependence on IS and IS depends on temperature. how to solve this issue, so how to make a sensor similar to the thermal diode, so based on the thermal diode, but with a perfectly linear characteristic, we can move to the Banget temperature sensor. So now for simplicity, imagine not to have this tube BJT here and there, but to have just a simple diode. So imagine to be able to have there a simple diode. So this is a diode and also this one is. So you see if we use this differential approach we can measure the voltage across the first diode that we call VAB1 and the voltage across the second diode that is called the VAB2. And then, with an instrumentation amplifier, for instance, we can do the difference between these two voltages. So let's try to compute VAB1 and VAB2. We can use the general equation that we found for the thermal diodes. on which we can consider that m is almost, we can do some simplification because m is almost equal to 1, and then we can consider to bias our two diodes with the current I1 and I2, which are much bigger than the saturation current of the reverse saturation current of the of the diode and so this factor I over IS is much bigger than one and so you can we can neglect this one And so the equation is simplified and become KT over Q multiplied by the logarithm of the current for AB1, we will consider a current 1, divided by IS. If we want IS, which is the saturation current, can be written as the product of JS, which is the current density, so the current divided by the area and multiplied by the area. a1 where a1 is the area of the diode one then we can compute in the same way vab2 so it will be kt over q logarithm of I2, so the current that we use to bias the second diode, divided by the saturation current that is the same, the saturation current density which is the same for diode 1 and diode 2 because they are in the same technology, they are in very close proximity, so they also have the same temperature, and then multiplied by the area of the second diode. If we do the difference between these two voltages, so VAB1 minus VAB2, here I put a plus and here a minus, Then, exploiting the properties of the logarithm, we obtain that this difference is equal to kt over q logarithm of the ratio between I1 by A2 and I2 by A1. So you see that the Js simplify each other in this difference. Obviously, if we put I1 equal to I2 and area 2 equal to the area 1, we would obtain here 1 in the logarithm and the logarithm 1 is 0, so the difference would be equal to 0. So obviously, if we provide the same current and the same area of the diode, we will have no voltage difference. So we must create an imbalance between the two diodes. So imagine for instance that you want to provide the same current, then you should have two different areas. And we can say that for instance the ratio between area 2 and area 1 can be called R, and so the difference between the two will be kT over Q, then inside the logarithm I1 is simplified by I2 because we put them to be the same, and then and then we have the ratio a2 a1 that we call R and so we have here the logarithm of R. So in this case you see that the voltage that we measure just depend on the temperature. So we have a linear behavior between the temperature and the voltage. Okay, because we just have constant values Q, which is constant independent from temperature, and then K, the Boltzmann constant, and the logarithm of the ratio of the area. And so in this way, using this differential approach, we manage to obtain an output that is an output voltage that is perfectly linear with the temperature of the object and so we don't need calibration or reversing equation and so on. So just a last curiosity why do we put here instead of the diode this 2BJT in trans diode configuration? mainly because in standard technologies we have typically we have BJT available but we don't have diodes especially small sized diode but these two BJT in which you connect the base with the collector behaves exactly as a diode in fact a BJT and in this case they are P and P BJT means that you have the junction between the P zone, then you have the N, and then you have P again. This P part is the one that we have here, and it is called the emitter. Then the N part represents this, so the base, and finally the last P part represents this part, which is the collector. Then you see if we do a short circuit between this N and P junction, we just have the first junction, the one between the base and the emitter, that implements exactly a diode. And this is the reason why I call it VAB, so it's the voltage between the emitter and the base. It's the base-emitter voltage, the emitter-base voltage. which correspond to the voltage across our diode. In our sensor system board we have a temperature sensor which is exactly based on a bank temperature sensor. We will use it in one of the next labs during the course. Inside our integrated circuit of the banger temperature sensor, we don't have just the temperature sensor, this is a block scheme from the data sheet of our sensor, but as you see we have a lot of other electronics. In particular you see we have the analog to digital converter, which directly on the same chip of the sensor converts the output voltage of the bangap temperature sensor to a digital world. And this is very important because it's one of the main advantages of the bangap temperature sensor because they can be integrated in CMOS technology and so on the same chip I can have both the sensor but also the analog digital. digital converter or and as in this case also many register you see we have the pointer register configuration register we have a counter also we have a temperature register and so on And for instance, in this integrated circuit we can also monitor for over temperature. So we can put a threshold and when this threshold is exceeded, then a dedicated pin will alert you that the temperature has been exceeded. We can also fix some hysteresis in order not to have continuous re-triggering, but a certain interval in which you will you will mark the temperature, the over temperature if you exceed a certain voltage, sorry, a certain temperature and then you deactivate this over temperature pin only if the temperature go below another threshold which is lower than the previous threshold. Then we also have this logic control and interface that is very useful for the communication with standard protocol with, for example, our microcontroller. In particular, this sensor implements an I2C interface. We will study I2C, which is a standard serial communication protocol, in one of the next labs. Then you have these three inputs that, as we will see during the labs, are used in order to adjust the address of our sensor, because in the I2C communication protocol it's very important that each slave has his own address, because the master calls and communicates with different slaves using their address. So advantages and disadvantages of band-gap temperature sensors. The main advantage is that they can be integrated in CMOS technology. So as we have seen, it is possible to integrate together with the sensor also the ADC, some logics and also the peripheral for communication protocols. And we don't need, so consequently we don't need for any external components differently, for instance, from RTDs in which we have seen that we need to have the without circuit, so for instance the Winston Bridge and so on. They are small size because they can be integrated in a chip and also low voltage because we don't have to provide big voltages to read out the circuit. They have high linearity, we have seen because the sensitivity does not depend on the temperature itself, especially for the Banget temperature sensor, this is not true, instead for the thermal diode. And they have also good accuracy. The main limitation is the temperature range, which is limited only between -40°C and +125°C, and this is a typical limitation of CMOS circuitry. Ok, let's move to the last type of temperature sensor that we will study, which is the infrared thermometer. As you see even from this picture, the big difference of the infrared thermometer in respect to the other temperature sensor that we have studied is that it is possible to do thermal images. In fact, in this image the colors does not represent the intensity of the light, but they represent the temperature of the object. The other main difference is that they are non-contact sensors so you can measure the temperature of an object even without putting anything in contact with your object. So let's start from some theoretical basics about temperature and the working principle of the infrared thermometers. So every object that has a certain temperature will emit some radiation and the radiation which is emitted depends on the temperature of the object itself and the emission is typically in the infrared range. So we can, we could measure this radiation emitted by the object with a detector and in this way if we are able to measure the this emitted power, we will be able to associate the emitted power to the temperature of the object. So just to review the infrared radiation is the radiation at wavelengths which are longer than the visible range. And in particular for this temperature sensor we are interested in the wavelength around 1 micron, 2 micron, 5 microns. So this is about the order of the range of wavelengths in which we are interested in. So, if we go a little bit more in detail, we can start to study the emission of an ideal kind of body, which is the black body. So in a black body is an ideal body in which we don't have transmissivity and reflection. So it means that if you illuminate your black object with a certain radiation, then this radiation is fully absorbed by the black body and we have no radiation that is reflected, so backscattered by the object, or transmitted, so that can pass through the object. If your object is at a steady state for the temperature, so is at a stable temperature, it means that the radiation that is absorbed is equal to the radiation that is emitted. Otherwise, if the absorption is higher than emission, it means that the temperature of your object is increasing, or vice versa, if emission is higher than absorption, it means that the temperature is decreasing. But if we consider an object at a steady state for the temperature, then we can always say that absorption is equal to the emission. This equality is not because we are considering a black body, it's true for every kind of body at the temperature equilibrium. But then, in a black body, since reflection and transmission is equal to zero, it means that absorption and emissivity is equal to one. because it means that all the radiation incoming is absorbed and not transmitted or repaired. In this graph we can study the specific radiation. So this is the power emitted by a body normalized for the area, so over a centimeter square, and represented for each wavelength. In fact, here on the x-axis we represent the wavelength. What we can notice is that the radiation emitted by a body strongly depends on its temperature, you see at 6000K the emission is much higher than for instance at 300K, 800K, 300K or 77K. So both we have a variation in the overall, so in the integral of the emitted power. And also we can notice a shift in the maximum wavelength of emission and in particular the hotter is the object, the shorter is the wavelength. If we consider temperature around close to the room temperature, so around 300 Kelvin, we see that the peak emission is about 10 micrometers. So there are some physical equations that can describe this behavior of the emission of a black body. In particular, the Stefan-Boltzmann law provides us the overall power density emitted by a body. Overall power density means that is the integral of this curve. and it is equal to the emissivity, that for a blackboard is equal to one, and then multiply by sigma, so the Stefan-Boltzmann constant, and multiply by T to the fourth. So we see that there is, in the emitted power, there is this dependence of temperature, which is not a linear dependence, but it is a dependence with T to the fourth. And so the Stefan-Boltzmann is used to know the integral of this curve. Instead, in order to find the peak of this characteristic, we can use the Vn displacement law. that in particular say that the lambda max, so the lambda corresponding to the peak of the emission, multiplied by the temperature is a constant value equal to 2,898 micrometer by Kelvin. And so we can notice that if temperature is increasing, the lambda max is decreasing exactly as we see here in a linear way. But normally the body that we want to measure are not black bodies, but they have a behavior that can be better described with a gray body. So what is a gray body? A gray body is a body in which if we try to provide the radiation to eat, a portion of this radiation is absorbed, a portion is transmitted, and another portion is reflected. So in particular, we know that for a generic body, we have reflectivity, transmission, and absorption, and there's some all of them are different from zero and their sum obviously must be equal to one because they must provide the overall incoming radiation. But since R and T are different from zero, it means that A is smaller than one and at the steady state for the temperature, A is equal to epsilon. So epsilon will be smaller than one and so you understand that if we want to apply the Stefan-Moltzmann law to reconstruct the temperature from the radiation, so if you can measure the power, the emitted power, and you want to obtain the temperature, you should have to reverse the Stefan-Boltzmann law, but you need to know epsilon, okay? And for for a gray body, the epsilon is smaller than one and different for each body. So we start to understand that it is very important for the infrared thermometer to know the value of epsilon in order to be able to reconstruct and to obtain the temperature of the object. Because our sensor will measure the emitted power, but then we need epsilon to obtain the temperature. A particular type of gray body is the solid gray body and it's the body that we most commonly have to measure. So the solid body. In the solid body we have the transmission that is completely negligible and we just have the reflection and absorption. So transmission is zero, reflection is different from zero. So again, the absorption is still not equal to one, and so also the emissivity is smaller than one. For solid debris body, we can mainly distinguish non-metallic materials and metals instead. In non-metallic materials like wood, plastic, rubber, organic materials and so on, we have a low reflectivity. so reflectivity is close to zero and so the absorption consequently also the emissivity is close to one so we can have in the order of 0.8 0.95 instead for the metallic object especially if they have polished their shiny surfaces the reflectivity is very big It's very important the effect of the reflectivity and so we have absorption and emissivity which are very small in the order even of 0.1. So you see that for different objects you can have very different epsilon and so you need a calibration to estimate the epsilon before using the infrared thermometers. And the problem is even worse with a non-gray body because if a gray body has a constant emissivity, so it means that in respect to the emission spectrum of the black body, they have the same shape, the gray body has the same shape of the black body, but with a smaller intensity because epsilon is smaller. Then non-grey body have a spectrum that is completely unpredictable. So they can be sometimes, they have an epsilon that changes with the wavelength because the epsilon can be seen as the ratio between the absorption, between the power that you emit for a body divide by the equivalent of the black body at the same temperature. And so you see this ratio for the blue line, the one that represents the grey body, is always constant. Instead, for the orange line, it completely changes because we have a different shape of the emission in respect to the wavelength. and typically in a gray body there are no oxidized metals or glasses or plastic films. So for this reason in general it is better not to have a broadband sensor, so a sensor which quite measures the radiation in the entire spectrum, but it's better to use sensor at a single wavelength, at a specific wavelength. And so imagine to have a sensor which can sense the radiation only at, let's say, this specific wavelength, then we will know that the epsilon of my body, even if it's a non-grey body, has a specific value, okay? So the ratio between this and this. Okay, but how to determine the emissivity of a body? Mainly we can use two methods. The first one is to do a preliminary calibration with a contact sensor, so imagine to use a thermocouple or an RTT and so on. and to measure the temperature of your object with the contact and then measure the temperature also with your infrared temperature sensor. Then you can adjust the emissivity in your temperature sensor until you see the same temperature on the two instruments. After this preliminary calibration, then you can measure the temperature of that object in non-contact conditions just with the infrared thermometer. And so you can monitor during time the variation of the temperature of that object just doing a first calibration at the beginning with the contact sensor. Another way, if it's possible, you can stick, you can attach to your object a plastic sticker with a well-known emissivity. So the plastic sticker will go at the thermal equilibrium with your object, so we reach the same temperature of the object, and then with your infrared thermometer you can measure the temperature of the sticker with the well-known emissivity, but the temperature of the sticker will be the same temperature of the object. Sometimes you don't perform a real calibration like these two that I presented, but you just have an a priori know-how about the material. So imagine that you want to measure the temperature of your silicon chip, then you know from literature which is the emissivity of silicon. Okay, just some notice: with infrared temperature sensor we can have either single spot sensors, so for instance for thermometer for the fever when you measure in one spot the temperature of your forehead, or you can have cameras like the one that I showed you at the beginning with the picture of the dog. When you use a single spot sensor, you must be careful that the field of view of your sensor is smaller than the object that you want to measure. So imagine to want to measure the temperature of a very tiny object and then the field of view of your sensor is much bigger than your tiny object, then you will have an estimation of the temperature which does not depend only on your object but also on the surrounding as in this example in which the object that you want to measure the temperature is this square but then your field of view is much bigger and so you will be influenced also by the temperature of the surrounding object. Sometimes in some single spot sensor, in order to help you to identify exactly which is the object that you are looking at with your field of view, you also have a laser pointer. This is the reason why, for instance, with the thermometer for the fever, you see the red spot. The red spot is not used to measure the temperature. So for measuring the temperature you measure the radiation emitted by your skin. The laser pointer just is useful for the person that is doing the measurement to know that you are looking at this particular point. Typically the laser spot that is emitted is the one here represented with this dotted line is a little bit larger than the field of view. So this way you are sure that if the laser spot is in the correct position, so within the object, also the field of view is within your object. Be careful because typically you suffer from parallax error, so it means that if you are at very short distances, the the point that is indicated by the laser pointer is not perfectly coincident with the field of view. So you see at long distances our field of view is internal to the laser spot and it is true also at medium distances, for instance at 1 meter. If instead you stay very close, so for instance at about 30 cm, then your field of view is not perfectly included inside the laser spot. There exist also some very precise infrared temperature sensor with coaxial pointers. Coaxial pointers means that you don't have this parallax error. Okay, but how to implement the infrared sensors, infrared detectors? Mainly we have two types of sensors: the so-called thermal detectors and the quantum detectors. In the thermal detectors mainly you have a double stage conversion. So first of all you have a material which is called absorber, which absorbs the light, so the infrared radiation that arrives on the sensor and it is emitted by your body and then with a second sensor you measure the temperature of the absorber. And then this sensor provides you a current or air voltage which is proportional to the temperature of the absorber and obviously the temperature of the absorber depends on the light, on the radiation emitted by your body. And we will analyze briefly different types of thermal detectors, in particular thermopile, volumeters and pyroelectric detectors. Then the second way to implement an infrared detector is to use quantum detectors. Quantum detectors mainly are very similar to photodiodes, so diodes used to detect the light, but they are done with materials with lower energy gap in respect to silicon in order to be able to detect wave-frames which are longer than 1 micrometer. So let's go a little bit more in detail about thermal detectors. So as I mentioned, the first type of thermal detector that we can have is the thermopile detector. So in the thermopile you see we have an infrared absorption film, which is our absorber. So a material capable to absorb the infrared radiation. And then we use many thermocouples put in series to measure the temperature of the infrared absorber. So the radiation, the incoming radiation will be absorbed here in this infrared absorber. The infrared absorber will increase its temperature depending on the absorbed radiation and then with the thermocouple you measure the temperature of the infrared absorption film. We have seen today that thermocouple have a very low sensitivity, so the output of the thermocouple is very small, in the order of microvolts. For this reason, in this kind of sensor, we don't use just one thermocouple, but we use a thermopile. So many thermocouples in series. So imagine that this is your absorber, and that you have here your reference junction instead, so at a fixed temperature you can put your thermocouples with the two different materials of the thermocouple all in series. Okay, so like this, let me draw just another one. And so, if you measure the overall voltage, in this case it will be three times the voltage measured by just one thermocouple. And this helps you to increase the sensitivity of the thermocouple. Typically with ThermoPile, since we have many thermocouples in series, we can do just single element, so single spot infrared detectors, or we can do arrays but with a limited number of elements. So we cannot do a beautiful image like the one that we have seen for the dog. If you want to do an imager, then you have to use another type of thermal detector which is the bolometer. So also in the monometer obviously you have your absorber, the infrared absorber that absorbs the infrared light radiation and then you use a resistance which is called the bolometer resistance here to measure the temperature of the infrared absorber. Typically the volumetric resistance is made with a metallic object, so it's similar to an RTD, or semiconductor with positive temperature coefficient. The BOLOMETER RESISTANCE can be easily integrated in CMOS technologies and this structure can be replicated many times in CMOS technologies and we can easily do array of this in order to have thermal pictures. In fact, you can integrate on the same chip also the readout circuitry. So you can have a redoubt integrated circuit which measures the variation of the resistance. It is very important to have a good thermal isolation between the bolometer and the silicon readout circuit because otherwise you run the risk to measure the temperature of the readout circuit instead of the temperature of the infrared absorber which is proportional to the temperature of your object. So this is the one pixel of a standard thermal camera. Finally, for the thermal detectors we have the pyroelectric detectors. So in pyroelectric detectors we have, as for the other thermal detectors, an absorber. And then the temperature of the sorbet is measured using a pyrolytic material. So a pyrolytic material is a material that provides a voltage difference across it when you apply a temperature step, a temperature variation. In particular, pyrolytic materials are made by dipoles and at the steady state these dipoles distributes in a way that you don't see any voltage difference across the pyroelectric material across these two electrodes. But then if you apply a step of temperature or in general a temperature variation, then this depose polarizes and provides a voltage across the two electrodes. So you see a voltage increase at the two electrodes. Then if you keep the temperature constant, the depots reorganize in the original states and so we see that the voltage decreases and comes back to be zero. So in this way we can use pyrolytic material just to measure variation of temperature. If you want to measure a fixed temperature, then you need to put an optical shutter in order to prevent the radiation to arrive to the absorber. and then when you open it the radiation will hit the absorber and so you will register a variation. Then you stop again and measure many times. Then we can move to the second type of infrared sensor which are the quantum detectors. As I already mentioned quantum detectors are very similar to photodiode. So also in this case we have a junction and we have the electron per generation so we can measure a current when the radiation is absorbed. Obviously infrared radiation has less energy than visible radiation and so we cannot use silicon because the energy gap of the silicon is higher than the energy of the infrared photons. But we can use other materials with lower energy gap. So for instance we can use materials from the second and sixth group like mercury, cadmium, telluride, which have a very low energy gap in the order of 0.1-0.4 eV. Or we can use materials of the third fifth group like indium arsenide, gallium antimonyde, And in particular in this case of heterojunctions, so junction of two different materials, we can get at the heterojunction a very low energy gap in the order of 0.15 eV. What about the responsivity of the infrared sensors? So, first of all, the responsivity is the sensitivity of the sensor, so it's defined as the variation of the output divided by the variation of the input. For the thermal detectors, so thermopiles, volumeters and pyroelectric, the responsivity is independent from the wavelength. because the absorber film typically is a material made to absorb a wide range of wavelengths. So instead it is different from the quantum detectors. So in quantum detectors we can define the responsivity as the output current divided by the incoming power of the of the radiation. And in this case the responsivity depends on lambda. In fact, if we try to write this equation, we can say that the sensitivity is the output current divided by the input power. The output current can be seen as the rate of the generated photoelectrons multiplied by the charge of the electron. while the input power can be seen as the rate of the incoming photons multiplied by the energy of the photon that you can write as h/ν or h/c divided by λ. And in the second case we put in evidence the dependence on λ. Then we can define the ratio between the generated photoelectrons divided by the ratio of the incoming photons with the terms which is the detector efficiency. So the detector efficiency by definition is the ratio between the generated electrons and the ratio between the incoming photons. And so you see that we can find the relation between the responsivity and the lambda. So we have this linear dependence of responsivity with lambda because we explicitly have lambda in the energy of the photon. But then the resource another dependence because the photodetector detection efficiency depends on lambda. So we have seen this for photodiodes, but obviously it is the same also for diodes in other materials that is not silicon. Okay, here we see some other problem that we can have with the infrared thermometers. First of all, is the possibility that the medium in which your radiation propagates can absorb a part of your radiation. And so it is very important to know the transmissivity of the air, that I represented here, in order to make your sensor to work at a wavelength in which the transmissivity of the air is very high. So for instance we can work at around 4 micrometer in order to have an high transmissivity or we can work even around 10 micrometer and so on. So when you select the the working bandwidth of your infrared thermometer, it's important to select a wavelength in which the transmissivity of air is high enough. Then we have to be careful also to the ambient radiations, because the ambient radiation can be reflected by your object and then detected by the sensor itself. So, especially in an environment in which the ambient radiation is very strong, imagine this case inside an oven, the radiation of the oven itself is very high, but then you see the radiation. of the oven can be reflected by the target and then can reach your sensor. And so you can confuse the radiation of the target itself with the radiation just reflected of the surrounding. So it's very important to try to do some compensation, some calibration for the radiation of the ambient or do some shielding to protect your target from the environmental radiation. And then another typical problem that we have is the presence of dust or particles on the lenses of your sensor and to mitigate this problem many sensors have an auto polishing of the lenses. So the main application of infrared temperature sensors are for surveillance, so just to monitor if people are moving in some environment because people obviously can be detected by from the object because they have higher temperature. They can be used in industrial applications to monitor the temperature of big environments or machinery, or they can be used for integrated circuits or circuits in general to measure the temperature of the circuit. And also sometimes they are used to detect, to localize defective cables because if you have defective cables you will have some hot spots inside the cable. Okay, so we have concluded our overview about temperature sensors and so let's see in the next class. Bye!
+# <span style="color:rgb(223, 109, 109)">RTD, Thermistor, Thermocouple comparison</span>
 
-Transcribed by https://www.uniscribe.co
+![[Pasted image 20251020223758.png]]
+ 
+To make a brief comparison between thermocouples and the other two types of temperature sensors we studied in the previous class — **RTDs** and **thermistors** — we can highlight the following points:
+
+- **Sensitivity:**  
+    The most sensitive sensors are the **thermistors**. Although their response is highly **nonlinear**, their characteristic curve is **very steep**, which means that even small changes in temperature produce noticeable changes in resistance.
+    
+- **Measuring range:**  
+    For applications requiring a **very wide temperature range**, especially at **high temperatures**, the **thermocouple** is the preferred choice. It can measure temperatures far beyond the range supported by RTDs or thermistors.
+    
+- **Accuracy and linearity:**  
+    The **RTDs (Resistance Temperature Detectors)** offer the **highest accuracy** and an almost **perfectly linear output** across their working range, making them ideal for precise laboratory and industrial measurements.
+    
+- **Cost:**  
+    In terms of price, **thermistors** are the **cheapest** option, which makes them a practical choice when cost is a priority and extremely high accuracy or temperature range is not required.
+
+# <span style="color:rgb(223, 109, 109)">Thermal Diode</span>
+
+![[Pasted image 20251021094154.png]]
+
+
+Let’s move on to the next type of temperature sensor: **thermal diodes**, and later, their improved version — the **bandgap temperature sensors**.
+
+As you already know, a **diode** has an **exponential current–voltage characteristic**. If we plot the current (I) against the voltage (V) applied across the diode, we get a curve that rises exponentially.
+
+Mathematically, the diode current can be described by this equation:
+![[Pasted image 20251020224042.png]]
+
+$$I = I_s \left(e^{\frac{qV}{m k T}} - 1\right)$$
+
+Here:
+
+- $I_s$​ is the **reverse saturation current**,
+- $q$ is the **charge of an electron**,
+- $m$ is a **technology-dependent constant** (usually close to 1),
+- $k$ is the **Boltzmann constant**, and
+- $T$ is the **absolute temperature**.
+
+The term “–1” at the end ensures that the current is zero when the voltage is zero (since $e^0 = 1$).
+
+Now, we can rearrange this equation to express the **voltage** as a function of the **current**:
+
+$$V = \frac{m k T}{q} \ln\left(\frac{I}{I_s} + 1\right)$$
+
+From this expression, we can see that the **voltage across the diode** depends directly on the **temperature**.
+
+So, if we apply a **fixed current** to the diode and then **measure the voltage**, that voltage will vary almost **linearly with temperature**. The **sensitivity** of the diode (how much the voltage changes for a given change in temperature) can be defined as:
+
+$$S = \frac{\Delta V}{\Delta T} = \frac{m k}{q} \ln\left(\frac{I}{I_s} + 1\right)$$
+
+At first glance, this term looks constant. However, it’s not perfectly constant because the **saturation current $I_s$​ itself changes with temperature.
+
+That means the **thermal diode is not perfectly linear**, as its sensitivity slightly varies with temperature.
+
+To overcome this limitation and obtain a **more linear response**, engineers developed an improved version called the **Bandgap Temperature Sensor** — a device based on the same diode principle but designed to achieve **perfect linearity** between voltage and temperature.
+
+# <span style="color:rgb(223, 109, 109)">Bandgap Temperature Sensor</span>
+
+
+To understand how the **bandgap temperature sensor** works, let’s simplify the structure.  
+Instead of using two BJTs (as it happens in real circuits), let’s imagine we just have **two simple diodes**.
+![[Pasted image 20251021095509.png]]
+
+### <span style="color:rgb(161, 40, 226)">1. Differential measurement setup</span>
+
+We have:
+
+- **Two identical diodes**, for **A₁** and **A₂**.
+- Each diode has a current flowing through it: **I₁** for A₁ and **I₂** for A₂.
+- We measure the voltages across them:
+    - $V_{EB1}$​ across the first diode
+    - $V_{EB2}$ across the second diode
+        
+Then, using an **instrumentation amplifier**, we take the **difference** between these two voltages:
+
+$$V_{\text{out}} = V_{EB1} - V_{EB2}$$
+
+
+### <span style="color:rgb(161, 40, 226)">2. Voltage across a diode</span>
+
+From the diode equation (simplified, assuming $m \approx 1$ and $I \gg I_s$​):
+
+$$V = \frac{kT}{q} \ln\left(\frac{I}{I_s}\right)$$
+The **saturation current $I_s$** can be expressed as:
+$$I_s = J_s \cdot A$$
+where:
+- $J_s$​ is the **saturation current density** (same for both diodes since they are built with the same technology),
+- $A$ is the **junction area** of the diode.
+
+### <span style="color:rgb(161, 40, 226)">3. Apply to both diodes</span>
+
+For **diode 1**:
+$$V_{EB1} = \frac{kT}{q} \ln\left(\frac{I_1}{J_s A_1}\right)$$
+
+For **diode 2**:
+$$V_{EB2} = \frac{kT}{q} \ln\left(\frac{I_2}{J_s A_2}\right)$$
+### <span style="color:rgb(161, 40, 226)">4. Compute the voltage difference</span>
+
+Subtract the two voltages:
+$$V_{\text{out}} = V_{EB1} - V_{EB2} = \frac{kT}{q} \ln\left(\frac{I_1 A_2}{I_2 A_1}\right)$$
+The term $J_s$ cancels out since it’s the same for both diodes.
+
+
+### <span style="color:rgb(161, 40, 226)">5. Achieving a linear temperature dependence</span>
+
+To get a **non-zero voltage difference**, we must create an **imbalance** between the two diodes — either by:
+
+- Using **different currents** $(I_1 \neq I_2)$, or    
+- Using **different areas** $(A_1 \neq A_2)$.
+
+If we choose to keep the **currents equal** $(I_1 = I_2)$, then:
+
+$$V_{\text{out}} = \frac{kT}{q} \ln\left(\frac{A_2}{A_1}\right)$$
+Let’s call the **area ratio** 
+$$r = \frac{A_2}{A_1}$$
+Then the output becomes:
+
+$$V_{\text{out}} = \frac{kT}{q} \ln(r)$$
+This equation shows a **perfectly linear relationship** between the **output voltage** and the **temperature**.  
+All the other quantities ($k, q, r$) are constants — so $V_{\text{out}} \propto T$.
+
+That’s why the **bandgap temperature sensor** can provide a **highly linear and accurate temperature reading**, without needing calibration.
+
+### <span style="color:rgb(161, 40, 226)">6. Why we use BJTs instead of simple diodes</span>
+
+In **integrated circuits**, we typically don’t have discrete diodes available — but we **do have BJTs**.  
+Fortunately, a **BJT can behave exactly like a diode** if we **short-circuit its base and collector**.
+
+![[Pasted image 20251021100152.png]]
+- In a **P–N–P transistor**:
+    
+    - The **emitter (P)** and **base (N)** form one junction — the same as a diode.
+    - The **collector (P)** is connected to the **base (N)**, so only the **emitter–base junction** remains active.
+    - The resulting voltage between **emitter and base (VEB)** acts just like the **voltage across a diode**.
+
+Hence, the bandgap sensor uses **two BJTs in diode connection** to reproduce the behavior of **two matched diodes** with different emitter areas.
+
+## <span style="color:rgb(239, 179, 1)">Digital Temperature Sensor</span>
+
+
+![[Pasted image 20251021102704.png]]
+
+On our sensor system board, we have a **temperature sensor based on the bandgap principle**. We’ll actually use this sensor in one of the upcoming lab sessions.
+
+Inside this **bandgap temperature sensor’s integrated circuit**, there’s much more than just the sensing element itself. The block diagram from its datasheet shows that several additional electronic components are built into the same chip.
+### <span style="color:rgb(161, 40, 226)">Main internal components</span>
+
+- **Bandgap Temperature Sensor**  
+    The core element that generates a voltage proportional to temperature.
+- **Analog-to-Digital Converter (ADC)**  
+    This converts the sensor’s analog output voltage directly into a **digital signal** on the same chip.  
+    This is one of the major advantages of bandgap sensors — since they can be **fully integrated in CMOS technology**, the sensor, ADC, and control circuitry can all fit on the same chip.
+- **Registers**  
+    Several internal registers are used for configuration and data handling:
+    
+    - _Pointer register_
+    - _Configuration register_
+    - _Temperature register_
+    - _Counter register_, and others.
+### <span style="color:rgb(161, 40, 226)">Overtemperature monitoring</span>
+
+This sensor can also **detect and signal when the temperature exceeds a set limit**.  
+You can:
+
+- Define a **temperature threshold**.    
+- When this threshold is crossed, a **dedicated pin** activates to alert you.
+- To prevent the signal from continuously turning on and off near the limit, a **hysteresis** can be configured.
+
+    - For example, the alarm pin activates when the temperature rises above a certain value,        
+    - and deactivates only after it drops below a slightly lower temperature.
+        
+### <span style="color:rgb(161, 40, 226)">Communication interface</span>
+
+The sensor also includes an internal **logic control and communication interface**, allowing it to connect easily to a **microcontroller**.
+
+It uses the **I²C (Inter-Integrated Circuit)** protocol — a common **serial communication standard** in electronics.  
+We’ll study the I²C protocol in detail in one of the next labs.
+
+Finally, the sensor has **three address pins**.  
+These are used to configure its **I²C address**, which is essential because, in an I²C network, the **master device** communicates with different **slaves** using their unique addresses.
+
+
+## <span style="color:rgb(239, 179, 1)">Advantages and Disadvantages</span>
+
+### <span style="color:rgb(161, 40, 226)">Advantages</span>
+
+- **Full CMOS Integration:**  
+    They can be entirely integrated using CMOS technology. This allows combining the **sensor**, **ADC**, **digital logic**, and **communication interfaces** (like I²C or SPI) on the same chip.
+- **No External Components Needed:**  
+    Unlike RTDs or thermistors, which require external circuits such as Wheatstone bridges or amplifiers, bandgap sensors can operate independently with minimal external hardware.
+- **Compact Size:**  
+    Since the whole system is integrated on a single chip, these sensors occupy very little space — ideal for embedded and portable applications.
+- **Low Voltage Operation:**  
+    The required supply voltage is small, making them compatible with low-power electronic systems.
+- **High Linearity:**  
+    The **output voltage changes linearly with temperature**, as the sensitivity does not depend on temperature (unlike in thermal diodes).
+- **Good Accuracy:**  
+    They provide reliable and stable temperature readings without requiring extensive calibration.
+    
+### <span style="color:rgb(161, 40, 226)">Disadvantages</span>
+
+- **Limited Temperature Range:**  
+    Their operating range typically goes from **–40 °C to +125 °C**, which is sufficient for most electronic applications but not suitable for **very high-temperature** environments. This limitation comes from the characteristics of **CMOS technology**, which constrains operation at extreme temperatures.
+
+# <span style="color:rgb(223, 109, 109)">Infrared thermometer</span>
+![[Pasted image 20251021103806.png]]
+
+The **infrared thermometer** represents the last type of temperature sensor we will study.
+
+- The **main difference** compared to the other temperature sensors (thermocouples, RTDs, thermistors, and bandgap sensors) is that it allows **non-contact temperature measurement**.
+    - This means it can **measure the temperature of an object without physical contact**, simply by detecting the **infrared radiation** emitted by the object.
+        
+- Another important feature is that infrared thermometers can be used to **create thermal images**.
+    - In a **thermal image**, the **colors** do not indicate light intensity but rather the **temperature distribution** across the observed scene or object.
+
+## <span style="color:rgb(239, 179, 1)">Introduction to Infrared systems</span>
+
+![[Pasted image 20251021103915.png]]
+Let’s begin with some theoretical basics about **temperature and infrared radiation**.
+
+Every object with a certain temperature naturally emits **electromagnetic radiation**, and the **amount and characteristics** of this radiation depend directly on the object’s temperature. Most of this emission occurs in the **infrared region** of the spectrum.
+
+If we can **detect and measure the intensity** of this emitted radiation, we can then **relate the detected power to the object’s temperature**. This is the fundamental working principle of infrared thermometers.
+
+To recall, **infrared radiation** corresponds to **wavelengths longer than visible light**, meaning it lies beyond the red part of the visible spectrum. For temperature measurement applications, we are particularly interested in wavelengths in the range of approximately **1 to 5 micrometers (µm)**. This range is especially relevant because it corresponds to the typical emission of objects at temperatures found in everyday and industrial contexts.
+![[Pasted image 20251021104201.png]]
+To understand how infrared thermometers work, we first need to study the emission of an **ideal body**, known as the **blackbody**.
+
+A **blackbody** is an _idealized object_ that **absorbs all incident radiation**—it does not reflect or transmit any of it.
+
+- This means that if you illuminate a blackbody with radiation, **100% of that radiation is absorbed**, with **no reflection** (backscattered light) and **no transmission** (radiation passing through).
+    
+
+When the object is at a **steady-state temperature** (thermal equilibrium), the **absorbed power equals the emitted power**.
+
+- If absorption > emission → the object’s temperature increases.
+- If emission > absorption → the object’s temperature decreases.
+- At steady state → absorption = emission.
+    
+This equality holds for **any object** in thermal equilibrium. However, for a **blackbody**, since reflection and transmission are both zero, we have:
+
+$$\text{Absorptivity} = \text{Emissivity} = 1$$
+
+That means the blackbody is the **perfect emitter**.
+
+### <span style="color:rgb(161, 40, 226)">Spectral Distribution of Emission</span>
+
+![[Pasted image 20251021104201.png]]
+The **emitted radiation** from a body depends strongly on its **temperature**.
+
+If we plot the **emitted power per unit area** (W/cm²) as a function of **wavelength**, we observe that:
+
+- The **total emitted power** increases with temperature (the area under the curve grows).
+- The **wavelength of maximum emission** shifts toward **shorter wavelengths** as temperature increases.    
+
+For example:
+
+- At **6000 K** (like the Sun’s surface), most radiation is in the **visible range**.
+- At **300 K** (room temperature), the **peak emission** occurs around **10 µm**, which is in the **infrared region**.
+
+### <span style="color:rgb(161, 40, 226)">Stefan–Boltzmann Law</span>
+
+The **total emitted power density** (integral under the emission curve) is described by the **Stefan–Boltzmann law**:
+
+$$P = \varepsilon \sigma T^4$$
+
+where:
+- $P$ = total emitted power per unit area (W/m²)
+- $\varepsilon$ = emissivity (for a blackbody, $\varepsilon = 1$)
+- $\sigma = 5.67 \times 10^{-8}\ \text{W/m}^2\text{K}^4 \space \text{Stefan–Boltzmann constant}$ 
+- $T$ = absolute temperature (K)
+
+This shows that emitted power increases **non-linearly** with the **fourth power** of temperature.
+### <span style="color:rgb(161, 40, 226)">Wien’s Displacement Law</span>
+
+The **peak wavelength** of the emitted radiation is given by **Wien’s displacement law**:
+
+$$\lambda_{\text{max}} \cdot T = 2898\ \mu\text{m·K}$$
+
+This means that as the **temperature increases**, the **peak wavelength** shifts to **shorter values** — exactly as seen in the emission spectra.
+## <span style="color:rgb(239, 179, 1)">Gray Bodies and Emissivity<br></span>
+In real life, **most objects are not black bodies**. Instead, they behave as **gray bodies**, which means they do not absorb all the incoming radiation.
+
+![[Pasted image 20251021105110.png]]
+When radiation reaches a gray body, it is divided into three components:
+
+- **Reflectivity (R):** the portion of radiation reflected by the surface
+- **Transmissivity (T):** the portion transmitted through the material
+- **Absorptivity (A):** the portion absorbed by the material
+
+These three components satisfy the **energy conservation relation**:
+
+$$R + T + A = 1$$
+
+Since both **R** and **T** are different from zero in a gray body, the **absorptivity (A)** is **less than one**.  
+
+At **thermal equilibrium**, the **absorptivity (A)** equals the **emissivity (ε)**:
+$$A = \varepsilon < 1$$
+This means that a gray body emits **less radiation** than a black body at the same temperature.
+### <span style="color:rgb(161, 40, 226)">Applying the Stefan–Boltzmann Law to Real Bodies</span>
+
+When we measure temperature using an infrared thermometer, the sensor measures the **emitted power**.  
+To convert that power into a temperature value, we use the **Stefan–Boltzmann law**:
+
+$$P = \varepsilon \sigma T^4$$
+
+However, because $\varepsilon$ depends on the material, we must **know the emissivity** of the object to calculate its true temperature correctly.  If we assume a wrong emissivity, the temperature reading will be inaccurate.  
+
+That’s why **calibration** or **emissivity adjustment** is a key step when using infrared thermometers.
+### <span style="color:rgb(161, 40, 226)">Solid Gray Bodies</span>
+
+A particular and very common case is the **solid gray body**, where the **transmission (T)** is negligible:
+
+$$T = 0 \quad \Rightarrow \quad R + A = 1$$
+
+So, the emitted power depends only on reflection and absorption.
+We can classify solid gray bodies into two main categories:
+
+#### 1. Non-metallic materials
+
+- Examples: wood, plastic, rubber, organic materials, ceramics, etc.
+- **Low reflectivity (R ≈ 0)** → **High absorptivity/emissivity (ε ≈ 0.8–0.95)**
+- These materials are generally good emitters of infrared radiation.
+#### 2. Metallic materials
+
+- Especially those with **polished or shiny surfaces**
+- **High reflectivity (R large)** → **Low absorptivity/emissivity (ε ≈ 0.1 or even lower)**
+- They are poor infrared emitters, and their measurement requires careful emissivity compensation.
+### <span style="color:rgb(161, 40, 226)">Conclusion</span>
+
+Because different materials have very different **emissivity values**, it is essential to:
+
+- **Know or estimate ε** before measurement    
+- **Calibrate** the infrared thermometer accordingly
+
+Otherwise, the measured radiation could correspond to a very different temperature than the real one.
+
+## <span style="color:rgb(239, 179, 1)">Non-Gray Bodies and Their Implications<br></span>
+The situation becomes **even more complex** when the object we want to measure is **not a gray body**.
+
+### <span style="color:rgb(161, 40, 226)">Gray body vs. Non-gray body</span>
+
+![[Pasted image 20251021105912.png]]
+
+- In a **gray body**, the **emissivity (ε)** is **constant** across all wavelengths.  
+    This means its **emission spectrum** has the **same shape** as that of a black body, but with a **lower intensity**, because $\varepsilon < 1$.  
+    In other words:
+    $$P_{\text{gray}}(\lambda) = \varepsilon \cdot P_{\text{black}}(\lambda)$$
+    The two curves are similar in shape, differing only by a scaling factor.
+    
+- In a **non-gray body**, instead, the **emissivity varies with wavelength**:
+    $$\varepsilon = \varepsilon(\lambda)$$
+    
+    As a consequence, its **emission spectrum has a different shape**, not just a scaled version of the black-body curve.  
+    This behavior makes the emitted power **unpredictable** across the wavelength range.
+    
+### <span style="color:rgb(161, 40, 226)">Typical examples of non-gray bodies</span>
+
+Non-gray bodies include materials such as:
+
+- **Non-oxidized metals**    
+- **Glasses**
+- **Plastic films**
+    
+
+These materials exhibit emissivity that changes significantly with wavelength, making their radiative behavior difficult to model precisely.
+
+### <span style="color:rgb(161, 40, 226)">Consequences for infrared thermometry</span>
+
+Since in non-gray bodies $\varepsilon$ depends on $\lambda$, using a **broadband infrared sensor** (i.e., one that measures radiation over a wide spectral range) can lead to **large measurement errors**, because the sensor integrates radiation with **varying emissivity**.
+
+![[Pasted image 20251021110230.png]]
+To reduce this uncertainty, it is **preferable to use a narrowband or single-wavelength sensor**.
+
+- If the sensor detects radiation only at a **specific wavelength**, then the emissivity $\varepsilon(\lambda)$ can be considered **constant** at that wavelength.
+- This allows a more accurate conversion between **measured radiation** and **temperature**.
+
+## <span style="color:rgb(239, 179, 1)">Determining the Emissivity of a Body</span>
+
+Knowing the **emissivity (ε)** of an object is crucial for accurate temperature measurement using **infrared thermometers**, since the sensor measures **emitted radiation** and not temperature directly.  There are **three main approaches** to determine ε:
+
+### <span style="color:rgb(161, 40, 226)">1. Calibration with a Contact Sensor</span>
+
+![[Pasted image 20251021110937.png]]
+- Use a **contact temperature sensor** (e.g., **thermocouple** or **RTD**) to measure the **true temperature** of the object.
+- Simultaneously, measure the **temperature with the infrared thermometer**.
+- Adjust the **emissivity setting** in the infrared thermometer **until both readings match**.
+- Once calibrated, the **infrared thermometer** can then be used **alone** to measure the same object’s temperature in **non-contact conditions** over time.
+    
+ _Advantage:_ High accuracy after calibration  
+ _Limitation:_ Calibration must be done in contact once before measurement
+
+
+### <span style="color:rgb(161, 40, 226)">2. Using a Reference Sticker with Known Emissivity</span>
+![[Pasted image 20251021110953.png]]
+- Attach a **plastic or adhesive sticker** with a **well-known emissivity value** onto the object’s surface.
+- Wait until **thermal equilibrium** is reached (the sticker and the object reach the same temperature).
+- Measure the **temperature of the sticker** with the infrared thermometer, using its **known emissivity value**.
+- The measured temperature corresponds to the **object’s temperature**.
+    
+
+ _Advantage:_ No need for contact temperature sensors  
+ _Limitation:_ Requires physical access to place the sticker
+
+
+### <span style="color:rgb(161, 40, 226)">3. Using Known Emissivity from Material Data</span>
+
+- For **common materials**, emissivity values can be found in **literature or datasheets**.
+- Example: If you measure the temperature of a **silicon chip**, you can directly use the **known emissivity of silicon** from reference tables.
+    
+
+ _Advantage:_ Quick and convenient  
+ _Limitation:_ Less accurate, since surface finish, oxidation, and contamination can change emissivity
+
+## <span style="color:rgb(239, 179, 1)">Measurement Spot</span>
+
+| Single Spot sensor                   | Single spot Sensor + Laser spot      |
+| ------------------------------------ | ------------------------------------ |
+| ![[Pasted image 20251021140953.png]] | ![[Pasted image 20251021141003.png]] |
+When using **infrared temperature sensors**, it’s important to distinguish between **single-spot sensors** and **infrared cameras**.
+
+- **Single-spot sensors** are like the thermometers used for measuring **forehead temperature**. They focus on one small point at a time.
+
+- **Infrared cameras** capture an entire thermal image, like the example of the dog you saw earlier, giving a **full thermal map** of the scene.
+    
+For **single-spot sensors**, the **field of view (FOV)** is critical. The FOV is the area from which the sensor collects infrared radiation to measure temperature. If the FOV is **larger than the object** whose temperature you want to measure, the sensor will capture not only the object’s radiation but also the surrounding environment. This leads to an **inaccurate temperature reading**, because the measured temperature will be influenced by both the object and its surroundings.
+
+To help the operator **aim at the correct spot**, some single-spot sensors include a **laser pointer**. Importantly:
+
+- The **laser spot is only for visual guidance** and is **not used for temperature measurement**.
+- The radiation measured by the sensor comes only from the object’s surface.
+- Typically, the **laser spot is slightly larger than the actual FOV**. This ensures that when the laser spot is positioned over the object, the FOV is fully contained within the object, providing a correct reading.
+
+However, **parallax error** can occur:
+
+- At **long distances**, the FOV usually lies well within the laser spot, so the measurement is accurate.
+- At **short distances** (e.g., 30 cm), the FOV may no longer fully align with the laser spot, and the temperature reading can be affected.
+    
+Some high-precision infrared sensors use **coaxial laser pointers**, which means the laser beam and the sensor’s FOV are perfectly aligned. This **eliminates parallax errors**, ensuring that the FOV always coincides exactly with the point indicated by the laser, regardless of distance.
+
+## <span style="color:rgb(239, 179, 1)">How to implement Infrared sensors?</span>
+
+Infrared sensors, also called **infrared detectors**, can be implemented mainly in two ways: **thermal detectors** and **quantum detectors**.
+
+![[Pasted image 20251021141934.png]]
+**Thermal detectors** work through a **two-stage conversion**:
+
+   - First, an **absorber material** captures the infrared radiation emitted by the object.
+   - Second, a sensor measures the **temperature of the absorber**. This temperature depends on the incoming radiation, and the sensor converts it into a **voltage or current proportional to the temperature**.
+   - There are several types of thermal detectors, including **thermopiles, bolometers, and pyroelectric detectors**.
+
+![[Pasted image 20251021142005.png]]
+
+**Quantum detectors** operate similarly to **photodiodes** but are made from **materials with a smaller energy gap than silicon**, which allows them to detect infrared wavelengths longer than 1 micrometer.
+
+### <span style="color:rgb(161, 40, 226)">Thermal Detectors</span>
+
+#### Thermopile Detectors
+![[Pasted image 20251021142059.png]]
+
+- In a **thermopile**, the infrared radiation is absorbed by an **infrared absorption film**, which heats up depending on the intensity of the radiation.
+
+![[Pasted image 20251021142153.png]]
+- The temperature of the absorber is measured using **multiple thermocouples connected in series**. This arrangement is necessary because a single thermocouple has **very low sensitivity**, generating only a few microvolts per degree of temperature change.
+- By connecting many thermocouples in series, the total output voltage increases, improving sensitivity.
+- Thermopiles can be used for **single-spot measurements** or **small arrays**, but the array size is limited, so they are not suitable for detailed thermal imaging like infrared cameras.
+    
+
+#### Bolometers
+
+![[Pasted image 20251021142335.png]]
+- **Bolometers** are used for thermal imaging. They also have an **absorber** to capture infrared radiation.
+- The temperature of the absorber is measured using a **resistive element**, which can be metallic or semiconductor-based. The resistance changes with temperature, similar to an RTD.
+- Bolometers can be **easily integrated in CMOS technology**, allowing the creation of large arrays for **thermal imaging**.
+- The **readout circuitry** can also be integrated on the same chip.
+- It is critical to **thermally isolate the bolometer from the readout circuitry** to ensure the sensor measures the absorber’s temperature, not the temperature of the electronics.
+- Each pixel in a standard thermal camera corresponds to one bolometer element.
+    
+
+#### Pyroelectric Detectors
+
+![[Pasted image 20251021142528.png]]
+
+- Pyroelectric detectors also have an **absorber**, but the temperature of the absorber is measured using a **pyroelectric material**.
+![[Pasted image 20251021142651.png]]
+- Pyroelectric materials generate a **voltage difference across electrodes when subjected to a temperature change**.
+- At steady state (constant temperature), the dipoles inside the material are balanced, and no voltage is observed.
+- When the temperature **varies**, the dipoles polarize, creating a measurable voltage.
+- Pyroelectric detectors are mainly used to **measure temperature variations** rather than absolute temperatures.
+- To measure a fixed temperature, an **optical shutter** can be used to block the radiation periodically, allowing the detector to register changes each time the shutter opens.
+### <span style="color:rgb(161, 40, 226)">Quantum Detectors</span>
+
+Now we can move on to the **second type of infrared sensors**, which are the **quantum detectors**.
+
+As already mentioned, **quantum detectors** operate in a way that is **very similar to photodiodes**. They are based on a **p–n junction**, where the absorption of radiation leads to the **generation of electron–hole pairs**, producing a measurable **current**.
+
+However, there is a fundamental difference between quantum detectors for visible light and those for infrared radiation:
+
+- **Infrared photons** have **less energy** than visible photons.
+- The **energy gap (bandgap)** of **silicon**—commonly used in visible light photodiodes—is **too large** to be excited by infrared photons.
+    
+To detect infrared radiation effectively, we need **semiconductors with smaller energy gaps**, allowing the lower-energy infrared photons to excite electrons across the bandgap and generate current.
+
+Some commonly used materials include:
+
+- **Group II–VI compounds**, such as **mercury cadmium telluride (HgCdTe)**, which have very small bandgaps (around **0.1–0.4 eV**).
+- **Group III–V compounds**, such as **indium arsenide (InAs)** and **gallium antimonide (GaSb)**.
+    
+In particular, **heterojunctions**—junctions made by combining two different semiconductor materials—can be engineered to achieve **even smaller effective bandgaps**, often around **0.15 eV**.
+
+These materials enable the detection of **longer wavelengths**, extending well beyond 1 µm, making quantum detectors highly sensitive and suitable for **high-speed, high-precision infrared applications**.
+
+## <span style="color:rgb(239, 179, 1)">Responsivity of Infrared Sensors<br></span>
+Now that we have seen the main types of infrared detectors, we can discuss an important performance parameter — **responsivity**.
+
+The **responsivity** represents the **sensitivity of a sensor**, that is, how much the sensor’s output changes in response to a change in the input. Mathematically, it is defined as the **variation of the output** divided by the **variation of the input**.
+$$
+\text{Spectral Responsivity: } S=\frac{\Delta out}{\Delta in}
+$$
+Let’s distinguish how responsivity behaves for the two families of infrared detectors:
+
+- **Thermal detectors** (such as thermopiles, bolometers, and pyroelectric sensors):  
+    In this case, the responsivity is **independent of the wavelength**.  
+    This happens because the **absorber film** used in thermal detectors is typically designed to **absorb radiation over a wide spectral range**, so the output does not vary with the wavelength of the incoming radiation.
+    
+- **Quantum detectors:**  
+    For quantum detectors, the situation is different. Here, the responsivity **depends on the wavelength (λ)** of the incoming radiation.
+    
+    The responsivity $R$ can be expressed as:
+    $$R = \frac{I_{\text{out}}}{P_{\text{in}}}$$
+    
+    where $I_{\text{out}}$​ is the output current and $P_{\text{in}}$​ is the input optical power.
+    
+    The output current can be written as the **rate of generated photoelectrons** multiplied by the **electron charge (q)**.  
+	$$
+	I_{out}= n_e \cdot q
+	$$
+    The input power, on the other hand, can be seen as the **rate of incoming photons** multiplied by the **energy of each photon**, given by:
+    $$n_p\cdot E_{\text{photon}} = n_p \cdot\frac{hc}{\lambda}$$
+    where $h$ is Planck’s constant, $c$ is the speed of light, and $\lambda$ is the wavelength.
+    
+    We can also define the **detector efficiency** (or quantum efficiency, $\eta$) as the **ratio between the number of generated electrons and the number of incident photons**.
+    
+    Combining these relations gives:
+    $$S=\frac{I_{out}}{P_{in}}=\frac{n_e\cdot q}{n_p\cdot \frac{hc}{\lambda}} =\eta \cdot \frac{q \lambda}{hc}​ = \eta \cdot \frac{\lambda}{1.24}$$
+    
+    From this expression, we can see two main factors influencing the responsivity:
+    
+    1. There is an **explicit linear dependence on λ**, because longer wavelengths correspond to lower photon energy.
+    2. There is an **implicit dependence through the quantum efficiency (η)**, which itself varies with wavelength, depending on the material and structure of the detector.
+        
+Thus, while **thermal detectors** provide a nearly constant response over a wide spectral range, **quantum detectors** exhibit a **wavelength-dependent responsivity**, determined by both the photon energy and the efficiency of photoelectron generation.
+
+
+
+
+
+![[Pasted image 20251021143715.png]]
+
+Okay, here we see some other problem that we can have with the infrared thermometers. First of all, is the possibility that the medium in which your radiation propagates can absorb a part of your radiation. And so it is very important to know the transmissivity of the air, that I represented here, in order to make your sensor to work at a wavelength in which the transmissivity of the air is very high. So for instance we can work at around 4 micrometer in order to have an high transmissivity or we can work even around 10 micrometer and so on. So when you select the the working bandwidth of your infrared thermometer, it's important to select a wavelength in which the transmissivity of air is high enough. 
+
+![[Pasted image 20251021143658.png]]
+
+Then we have to be careful also to the ambient radiations, because the ambient radiation can be reflected by your object and then detected by the sensor itself. So, especially in an environment in which the ambient radiation is very strong, imagine this case inside an oven, the radiation of the oven itself is very high, but then you see the radiation. of the oven can be reflected by the target and then can reach your sensor. And so you can confuse the radiation of the target itself with the radiation just reflected of the surrounding. So it's very important to try to do some compensation, some calibration for the radiation of the ambient or do some shielding to protect your target from the environmental radiation. And then another typical problem that we have is the presence of dust or particles on the lenses of your sensor and to mitigate this problem many sensors have an auto polishing of the lenses. 
+
+![[Pasted image 20251021143843.png]]
+So the main application of infrared temperature sensors are for surveillance, so just to monitor if people are moving in some environment because people obviously can be detected by from the object because they have higher temperature. They can be used in industrial applications to monitor the temperature of big environments or machinery, or they can be used for integrated circuits or circuits in general to measure the temperature of the circuit. And also sometimes they are used to detect, to localize defective cables because if you have defective cables you will have some hot spots inside the cable.
+
+## <span style="color:rgb(239, 179, 1)"> Practical Considerations and Applications of Infrared Thermometers<br></span>
+
+
+
+When using infrared thermometers, there are several practical issues that must be taken into account to ensure accurate temperature measurement.
+
+### <span style="color:rgb(161, 40, 226)">1. Absorption by the medium (air transmissivity)</span>
+![[Pasted image 20251021143715.png]]
+One of the first problems is that the **medium through which the radiation propagates**, such as air, **can absorb part of the emitted infrared radiation** before it reaches the sensor.  
+To minimize this effect, it is very important to know the **transmissivity of air** as a function of wavelength.
+
+As shown in the figure, there are specific wavelength ranges where air transmissivity is higher. Therefore, the **working wavelength of the infrared thermometer** should be chosen in one of these “transmission windows” to reduce signal attenuation.  
+Typically, **wavelengths around 4 μm or 10 μm** are selected, because in these regions the air transmissivity is particularly high.
+
+
+### <span style="color:rgb(161, 40, 226)">2. Influence of ambient radiation</span>
+
+![[Pasted image 20251021143658.png]]
+Another important factor to consider is the **effect of ambient radiation**.  Infrared thermometers can detect not only the radiation emitted by the object itself but also radiation that is **reflected from surrounding sources**.
+
+For example, in environments where ambient radiation is very strong—such as inside an oven—the hot surroundings emit intense infrared radiation. This radiation can be reflected by the surface of the target and then reach the sensor.  
+As a result, the thermometer may detect a temperature that does not correspond to the actual temperature of the target but rather to a combination of the **object’s emission** and the **reflected ambient radiation**.
+
+To reduce this problem, one can:
+- Perform **compensation or calibration** for ambient radiation,
+- Use **optical shielding** to protect the target from unwanted reflections,
+- Or design the system so that reflections are minimized through proper positioning and surface treatment.
+
+### <span style="color:rgb(161, 40, 226)">3. Dust and contamination on the sensor lens</span>  
+A further source of measurement error can be **dust or small particles deposited on the sensor lens**.  
+These particles can scatter or absorb part of the incoming radiation, leading to a lower detected signal.  To mitigate this effect, many modern infrared sensors are equipped with **self-cleaning or lens-polishing mechanisms** that periodically remove dust and maintain optimal optical transmission.
+
+## <span style="color:rgb(239, 179, 1)">Applications of Infrared Temperature Sensors</span>
+
+Infrared thermometers and cameras are widely used in many practical contexts, such as:
+
+
+![[Pasted image 20251021150156.png|200]]
+
+- **Surveillance systems:** detecting human presence or movement by sensing the higher body temperature compared to the surroundings.
+![[Pasted image 20251021150209.png|200]]
+
+- **Industrial monitoring:** measuring the temperature of machinery, furnaces, or large equipment in a non-contact way.
+- **Electronics:** analyzing the thermal behavior of integrated circuits or components to prevent overheating.
+- **Fault detection:** locating **hot spots** in electrical cables or connections, which can indicate defects or excessive current flow.

@@ -136,6 +136,10 @@ Very small bias current. and other characteristic is that we have a part on the 
 
 
 ![[Pasted image 20251016184933.png]]
+
+![[Pasted image 20251021124828.png]]
+
+
 ![[Pasted image 20251016184921.png]]
 
 History
@@ -147,4 +151,11 @@ History
 ![[Pasted image 20251016185412.png]]
 
 ![[Pasted image 20251016185916.png]]
+
+![[Pasted image 20251021125023.png]]
+plate that contains sensor. Usually sensors are placed in the four corners
+
+![[Pasted image 20251021125703.png]]
+
+![[Pasted image 20251021130543.png]]
 
