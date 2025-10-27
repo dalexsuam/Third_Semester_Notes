@@ -17,6 +17,20 @@
         "type": "FILES_AND_DIRECTORIES",
         "pattern": "",
         "patternType": "WILDCARD"
+      },
+      {
+        "name": "",
+        "active": true,
+        "type": "DIRECTORIES",
+        "pattern": "Neuroengineering2",
+        "patternType": "STRICT"
+      },
+      {
+        "name": "",
+        "active": true,
+        "type": "DIRECTORIES",
+        "pattern": "SensorSystems",
+        "patternType": "STRICT"
       }
     ],
     "frontMatter": [
