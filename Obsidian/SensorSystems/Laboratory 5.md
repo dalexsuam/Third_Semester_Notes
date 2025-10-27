@@ -1,4 +1,4 @@
-
+ 
 13/10/2025
 ***
 
@@ -162,7 +162,7 @@ And then
 			if(singlechar == '\n'){
 				lcd_println(string, 0);
 				i=0;
-				memset(&string, 0, sizeof(string));//this clears the array buffer after displaying in the LCD
+				memset(&string, 0, sizeof(string));//this clears the array buffer after displaying in the LCD and set it to 0
 			}
 			else{
 				i++;
@@ -191,17 +191,24 @@ int main(void)
 
 ```
 
+what does this function? It triggers an interrupt when few things happen: When the state of the UART goes to IDLE, that means, I get some data and after a while I stop getting data, it gets silent, or when the buffer is filled, or half of the buffer is filled. 
 
 ```c#
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t size){
     if(huart==&huart2){
-        memset(&lcd_buffer, 0, sizeof(lcd_buffer));  // Clear display buffer
-        memcpy(&lcd_buffer, &buffer, size);          // Copy received data
         
-        lcd_println((char*) lcd_buffer, 0);          // Display "Hello\n"
-        
-        // Restart DMA for next message
-        HAL_UARTEx_ReceiveToIdle_DMA(&huart2, buffer, BUFFER_SIZE);
+        //We check idle mode or full buffer
+        if((huart->RxEventType == HAL_UART_RXEVENT_IDLE) ||
+	        huart->RxEventType == HAL_UART_RXEVENT_TC){
+	        
+	        memset(&lcd_buffer, 0, sizeof(lcd_buffer));  // Clear display buffer
+	        memcpy(&lcd_buffer, &buffer, size);          // Copy received data
+	        
+	        lcd_println((char*) lcd_buffer, 0);          // Display "Hello\n"
+	        
+	        // Restart DMA for next message
+	        HAL_UARTEx_ReceiveToIdle_DMA(&huart2, buffer, BUFFER_SIZE);
+	        }
     }
 }
 ```
@@ -264,12 +271,10 @@ DONT FORGET SETTING BAUD RATE
 
 ~~~ c#
 HAL_TIM_Base_Start(&htim2); //Timer not used in interrupt mode, we simply use its output by our timer
-
 HAL_ADC_Start_IT(&hadc1);//initialized it just in the main
 
 ~~~
 Since we're not using DMA, we still have to define the interruption routine for the ADC. 
-
 ~~~~c#
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
 	int conversion = HAL_ADC_GetValue(&hadc1);
@@ -299,8 +304,6 @@ Then in ADC parameters, apart from the 480 cycles of sampling time we set as sou
 ![[Pasted image 20251019002735.png]]
 
 DONT FORGET SETTING BAUD RATE, AND WHEN USING LCD IMPORT THE LIBRARIES
-
-
 
 ~~~ c#
 /* USER CODE BEGIN 2 */

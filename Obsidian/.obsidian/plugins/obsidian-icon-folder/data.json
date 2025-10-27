@@ -36,8 +36,8 @@
   },
   "MotorBehaviourTech": "👨‍🦼",
   "Neuroengineering1": "LiBrainCircuit",
-  "Neuroengineering2": "🧠",
   "SensorSystems": "LiCircuitBoard",
   "VirtualModelling": "LiComputer",
-  "SummaryFormat": "☝"
+  "SummaryFormat": "☝",
+  "Neuroengineering2": "🧠"
 }

@@ -1,18 +1,362 @@
 
 23/10/2025
 ***
+Hello everyone,  
+today’s topic is **magnetic field sensors**, and in particular, we will study **two main types**: **Hall sensors** and **magnetoresistive sensors**.
 
 
-Hello everybody, the topic of today is magnetic field sensors and in particular we will study two different types of sensors: Hall sensors and magnetoresistive sensors. Let's start with the Hall sensors. 
+# <span style="color:rgb(223, 109, 109)">Hall Sensors</span>
 
+Let’s begin with the **Hall sensors**
 ![[Pasted image 20251021233314.png]]
-
-
-So, Hall sensors are very simple and cheap sensors for magnetic fields. They just have three terminals and their working principle is based on the Hall effect.
+Hall sensors are **simple and inexpensive** magnetic field sensors that typically have **three terminals**. Their operation is based on the **Hall effect**.
+.
 ![[Pasted image 20251021233339.png]]
 
+They consist of a **thin sheet of conductive or semiconductor material**. Inside this sheet, we **force a current** to flow in one direction, while we **measure a voltage** in the perpendicular direction. This voltage is **proportional to the strength of the magnetic field** applied.
 
-They are made with a thin sheet of conductive or semiconductor material and inside this material we force a current flow in one direction and we read out a voltage in the opposite direction which is proportional to the strength of the magnetic field. The output voltage is very small, in the order of a few microvolts, and for this reason in most of the cases a differential amplifier is integrated directly together with the thin sheet. In some cases together with the amplifier, it is integrated also a comparatory trigger because in many cases we want to use the old sensor as a digital sensor, so all on or off detector. So if the external field exceeds a certain threshold, we want to see a 1 at the output. If instead the external field is below the threshold, we want to see just a 0 at the output. But let's go a little bit more in detail to understand the working principle of the Hall sensors. 
+However, the output voltage is usually **very small** — typically in the **microvolt range**. For this reason, most Hall sensors include an **integrated differential amplifier** directly on the same chip as the sensing element.
 
+In some cases, a **comparator or trigger circuit** is also integrated. This allows the Hall sensor to be used as a **digital sensor** — working as an **on/off detector**. In that case:
+
+- When the magnetic field exceeds a certain threshold, the output switches to **1**.
+- When the field is below the threshold, the output stays at **0**.
+## <span style="color:rgb(239, 179, 1)">Working Principle</span>
+
+Now, let’s take a closer look at the **working principle** behind Hall sensors to better understand how they function.
+ 
 ![[Pasted image 20251021233418.png]]
- So here it is represented, our thin sheet, and we apply an external voltage, so Vx, between two terminals of our material in order to induce a current flow in the material and this current flow is in our example in the x direction. Then, if you have an external field B, then on the three carriers that are moving inside our thin sheet will be applied the Lorentz force. The equation of the Lorentz force is here. here is here written so the lawrence force is a force that happens every time that you have a charge which is moving with a certain velocity inside the magnetic field and in particular this force will deflect the direction of the velocity of your particle so So in this example we have the velocity that is in the x direction, the magnetic field which is perpendicular in the z direction, and so we will generate a force that will deflect the flux of our charges, if the charges are positive, towards right, like this. So, we will have a higher density of positive charges in the right side, and so it will cause a voltage in the direction that is opposite to the current flow, which is more positive on the right in respect to the left. Obviously, at a certain point, this force will be balanced by the Coulomb force, so the force induced by the separation of charge. If the free carriers on the other hand are instead electrons, then we will show that the output voltage will have the opposite direction in respect of the case where the carriers were holes, even applying exactly the same magnetic field. In fact, also in this case, we can use the right hand alone to see which is the direction of the Lorentz force. So, in this case, the current flow is exactly the same of the other example, but since the electrons have negative charges, their velocity is opposite to the current flow. So in this case the velocity has this direction, the magnetic field is still positive towards the half direction, and so with the right hand law we will find a force that seems to be opposite to the previous one. But be careful because in the Lorentz force we multiply this vectorial product by q. and for electrons the Q is negative, so the overall force is in the same direction that we had for the positive charges. So the deflection is towards right also in this case, but the charges in this case are negative. And so at the end of the story we have a a voltage in the opposite direction in respect to the current flow, which is more negative on the right in respect to the left. So be careful because when you use a null element, the sign of your output voltage will depend on the free carriers, which are used inside your semiconductor material that can be either wall or electrons. But now let's go a little bit more in detail about which is the relation between the voltage that we read out, so this VH, and the magnetic field that we want to measure. At the steady state, the two forces, the Coulomb force and the Lorentz force, will have the same intensity. So we can say that the overall force on the y-direction must be equal to zero. And so if we consider the modules of the two forces, we can write that the modules of the two forces are the same. We can simplify the Q, which is present in both the expressions of the forces, and we find that this equation, for which d the electric field that we have in the y direction, the one that causes our VH, so the output voltage, must be equal to the vector product between the velocity of your particle and the external field that you want to measure. If we consider an external field which is orthogonal to the current flow, as in our example, we consider a B in the Z direction and a current flow in the X direction, then we can simplify this expression and say that the electric field that we want to, that we measure, is equal to the product, the simple product between the velocity of the particles and the external field that we measure. we don't measure directly the external field but we know that the external field is sorry we don't measure directly the electric field but we know that the electric field is related to the output voltage that we measure in particular the electric field is equal to the voltage divided by the distance between the two terminals so that here is called W Then, the second thing we know that the velocity of a carrier moving inside a material is related to the current density. In particular, the velocity is equal to the current density divided by Q, the charge of the carrier, and N, which is the concentration of the free carrier in that material. J is the current density, so is the current divided by the cross-section in which this current is flowing. So in this case, W by T. Now if we put in the first equation, so E_y equal to V_x multiplied by V_z, the two expressions of E_y and V, we find out the last equation, in which you see we can relate V_h to the external field B. And in particular we can notice that in this equation we have a first part, 1 over Q_n, which is a constant value which depends just on the material, so on the doped semiconductor that you use because it depends on Q, which is a constant value, and on n, so the concentration of the dopants in your material. and this constant value then is summarized in RH, the whole constant of the material Then we have J, which obviously is related to your external electric field that you applied, so the external voltage that you applied to the material, and if we know the equivalent resistance of our old sensor, we can simply compute then the current, and then dividing by the area, so T by W, we can obtain this current density. And then also W is a quantity which is specific of your sensor and it is stated in the datasheet of your sensor. And so you see that in this way, if you measure the voltage of E, H and N, you can obtain the value of B. Just a last notice, we already have observed in the previous slide that the sign of VH changes if the free carriers are electrons over all. This part is taken into account in the RH, so in the all constant. In fact, if the free carriers are electrons, the all constant is negative because Q is In fact, instead for p-doped semiconductors where the free carriers are also, then the Q is positive and so also the whole constant is positive. This means that in order to consider the correct sign of the external output, we have to consider to be positive The sign that we have for the holes, because for the holes the hole constant is a positive value. Hole sensors mainly are used when you don't know, you don't need to precisely measure an magnetic field, but you just have to see if a magnetic field is present or not. So, for instance, they can be used for proximity measurement, just to see if you have a magnetic object in proximity to your sensor, or also for displacement sensors, like in this example where you have a magnetic slide which is moving due to this hydraulic actuator and you monitor which is the level of the magnetic slide if it is in proximity to one of these sensors. And then it can be used in magnetic switches to activate or deactivate a switch, so open or close a switch in case a magnet is in proximity. They can be used in doors interlock. So, for instance, to activate or deactivate some circuitry or dangerous instrumentation when you use your key to open a door. So inside the door you have this magnet that rotates with your key and so with a hole sensor you can sense if the magnet has been rotated, and so if you are opening the door, and so you can switch off your dangerous instrumentation. And then they can be used for instance to measure currents. In fact, if the current goes into a coil, it generates magnetic field that can be measured, and the presence of this current can be measured with an old sensor. And then we will see in one of the next classes that all sensors can be used also for the magnetic encoders, so to see the movement of some object. And finally they can be used in compass. Ok, so let's move to the next sensor which are the magnetoresistors. So mainly in this case we have some resistances that change their value depending on the external field. We will not go in detail about the redoubt circuits of this kind of sensors because the typical redoubt circuit is the same that we have already studied, for instance, for RGDs, for resistive temperature detectors, so we can inject a current and redoubt the voltage, or we can use, as in this example, a wisdom. So what is a magneto-resistance? A magneto-resistance is a material which has the property to change its resistance when it is exposed to a magnetic field. This kind of sensor is a solid state sensor, so they can be integrated in silicon. And so they can be very small in size and they are more sensitive than the old sensors, so they can provide a more accurate value estimation of the external magnetic field. The most important figure of merit for the magnetoresistances is the magnetoresistance ratio, that is called MR, which is defined as the difference between the maximum resistance that we can handle and the minimum resistance normalized by the minimum resistance. And in practice the magnetoresistance ratio indicates which is the maximal signal that we can obtain from that sensor. All the materials, all the conductors exhibit a weak magneto-resistance effect, but it's too feeble to be used as a sensor, and in this case we say that the material has an ordinary magneto-resistance, so that it's too low to be used for a sensor. Instead, materials that can be used as magnetic sensors can be divided in anisotropic magnetoresistances, which have a magnetoresistance ratio in the order of 1 or 2%, giant magnetoresistances, which have a magnetoresistance ratio in the order of 20-50%, and tunneling magnetoresistances which have a magnetoresistence relation in the order of 50-60%. Now we will go more in detail about these three classes of magnetoresistances sensors. So let's start with anisotropic magneto-resistance. They are called anisotropic because they are made with materials which properties depends on the angle between the electrical current and the direction of the magnetization. In particular, you have to have a magnetization in your material and to have a current flowing inside the material. If the magnetization is parallel, like in this case, to the average current flow, then we have the maximum of the resistivity of the material. because the probability of scattering, the probability of electrons to scatter inside the material is higher because the cross-section of the atomic orbital is not a perfect circle, but it is distorted, and in this case the probability for the free carrier to interact with the orbitals of the electrons in their valence band is higher, so we have this higher probability of scattering. So more scatters means that we disperse more energy, and so it means that the resistance is higher. On the opposite case, when we have a magnetization which is perpendicular to the current flow, so like this, we have this magnetization that is perpendicular to the average current flow, then the probability of interaction between the carriers and the valence electrons is minimized, and so we have the minimum resistance. If we study a little bit more in detail the relation between the resistance of the material and the angle between the current and the overall magnetization, we discover that the relation is expressed by this equation. So the overall resistance is given by the R0, so the certain resistance of the material, plus the delta r, so the maximum difference in resistance, multiplied by the cosine square of theta, where theta, you see here, is the angle between the current flow and the overall magnetic flux that we have in the material. And in particular, if we look and represent this equation, we see that we have the maximum resistance when the cosine squared is equal to 1, so for 0° and 180°, or minus 180°. Then we have the minimum resistance equal to r0 when the cosine square is equal to 0, so for an angle equal to 90° or 270° or -90° and -2070°. And we have an intermediate value of resistance equal to r0 plus delta r divided by 2, r0 plus delta r divided by 2, when we are at 45°, because the cosine of 45° is square root of 2 over 2, but it is square, and so it becomes 1/2 of delta r. And you see that the best working point is exactly here at minus 45 degrees because the characteristics is more linear and here we have also the maximum of the sensitivity because we have the maximum of the derivative of this characteristic. For this reason, in the anisotropic magnetoresistances we have some conductive shunts, which are very high conductive materials for the electric field, that have an angle of 45 degrees in respect to the force magnetization that we provide to the magnetic materials. So the one in brown here is the magnetic material that has a very high resistivity for the current flow. Instead the one in yellow are these conductive shunts which present a very low resistivity for the current flow. So if we apply a voltage across our material, like this, our current will follow the path with the minimum resistance and in particular the path of the minimum resistance is the one that minimizes the path within the brown, so the material, the magnetic material with high resistivity. And so for this reason the current will go orthogonal to the conductive chance, so we follow this path which is orthogonal to the direction of the conductive chance in order to cross the minimum distance inside the magnetic material, which is highly resistive. In this way you see that without an external field, so imagine to have h initially equal to zero, the angle between the current and the magnetization is exactly equal to minus 45 degrees. And so we put in this working point with the angle theta equal to minus 45 degrees. Now, what happens if we apply an external field h the overall magnetic flux that we have on the material will depend on the vectorial sum of the initial magnetization of the material and the external field that we are applying. Now let's start to try to find out which is the relation between the overall resistance R and the external field that we apply. But let's explain it step by step. So, starting from the initial condition, we have, if we have H to zero, so if we don't have any external field, we have B that is equal to our initial magnetization and we have the current that has an angle of 45 degrees. in respect to the 2B. This is -45 because we define theta, the angle between the current and B. So in this case it's -45°. So theta is equal to -45°. And so the resistance is equal to R0 + del R divided by 2. because remember that we can write here, just to remember, that the resistance R is equal to R0 plus delta R cosine squared. Then, let's imagine now to apply an external field H, which is orthogonal to the first magnetization M, and it has exactly the same intensity. It means that the result in magnetic field B will have a 45 degree angle in respect to M and so it is perfectly parallel to the current I because obviously the direction of the current does not depend on the external field but it is constant and due to the conductive chance that has a 45 degree angle in respect to the material. So in this case, theta, which is the angle between B and the current, is equal to zero. And if theta is equal to zero, we have the cosine square of zero that is equal to one. And so the resistance will be equal to R0 plus delta. Then we can analyze the case in which H is dominant in respect to M, so an H that tends to infinite in respect to M, and so in this case the magnetic, the overall flux of B will be almost vertical, so our angle theta will tend to 90 degrees. So if the angle theta tends to be 45 degrees, the current is still the same, so this is the current, and so the angle theta tends to 45 degrees. So if theta tends to 45 degrees, it means that the resistance, r, tends to be equal to r0 plus cosine squared of 45 degrees is 1 alpha, so plus delta r divided by 2. Now, if we analyze the opposite direction of the external field H, we can say that when H is perpendicular to M with the same intensity but in the opposite direction respect the one that we analyzed before, then we will have a bay with an angle of 45° in respect to the horizontal direction, but in respect to our current flow, I, the angle of theta will be equal to 90°. And so if theta is equal to 90°, the resistance R will be equal only to R0 because the cosine of 90° is equal to 0. Then we can consider a case in which H is much bigger than M, so H tends to infinite, in the bottom direction. Also in this case, B will be almost vertical, angle in respect to the current will be 45° plus 90°. So, θ will tend to 135°. And, 133°, if we consider cos^2 of this angle, it is equal to 1/2. And so, R is equal to R0 plus delta R divided by 2. So if we try to put everything together and to represent the dependence of the resistance R versus the external field H, we can notice that when the external field H is equal to zero, we are in the first case, and the resistance is R0 plus delta R. divided by 2. This value is also the same value that we will reach for h that tends to infinity in both directions. So here we can put this asymptote that will be reached for infinity h in both directions. But then, if we have a positive h, so we are in this case with positive h, and in particular when H reaches a value equal to m, the resistance will reach the maximum value because the cosine square of theta will be equal to 1. And so we will have the characteristics that find its maximum here and then tends to go to the asymptote equal to r0 plus delta r divided by 2. So it will decrease until this asymptote. Instead, if we consider negative h, so our second case with negative h, then also in this case when we reach minus m, we have the minimum of our characteristic because the resistance is equal just to r0. And then, if we try to increase h, then we will reach our asymptote, so r_0 plus delta_r divided by h. So this is r_0 plus delta_r. And so you see that for an external field between -m and +m, our characteristic is quite linear, and is monotone. And so we find out exactly the same characteristics that you had here in the previous slide. And so remember that we can use anisotropic magnetic resistances only for magnetic fields limited in this range between minus n and plus n. But what is very important is that in this range, the characteristic is monotone and quite linear and so we can easily distinguish not only the intensity of the field but also its sign. I left you as a challenge to discover how does this characteristic changes if the external field H is not orthogonal to the magnetization, but it is. For instance, you can try if it is parallel or if it has any other angle alpha between the external H and M. And now let's move to the giant magnetoresistances. So they are called giant magnetoresistances first of all because their magnetoresistance ratio far exceeds the one of the anisotropic magnetoresistances. Giant magnetoresistances are made by two or more layers of ferromagnetic metals, which are separated by ultra-thin non-magnetic metal spacer layers. So in particular, in this drawing, the layers in brown are the ferromagnetic metals, And then instead of the thin orange layers are the spacer layers. So the spacer layers allow for the magnetic field in two adjacent thermonetic metals to have a different direction, even to be opposite. But at the same time these spacer layers are conductive for electricity, so they can conduct the current and so they allow the passage of electrons or general free carriers from one magnetic layer to the other. In particular, if the magnetic layers are in opposite directions, like in this first case, in which we have magnetic layers in opposite directions, the electrons will be blocked from passing from one layer to another one because the electrons in one layer will have a spin which is different from the spin of the electrons in the other layers. And so the scattering probability is increased and so is the resistance is increased. On the other hand, if you have all the magnetic layers aligned in the same direction, like in this second example, then the electrons have the same spin in all the magnetic layers and so they can pass from one layer to another without difficulties. And so it means that the resistance of the material will decrease. In particular, when we do not apply an external field, since the spacers are very thin, few atoms typically, we have a strong exchange coupling which favors the anti-parallel alignment of the magnetic field of adjacent magnetic layers. This in particular because the north pole of one layer will attack the south pole of the opposite layer, of the adjacent layer. And so, without an external field, we will have a high resistance. That is represented here in the graph, in the characteristic which represents the resistance versus the external field, and you see that we have a maximum resistance when the output field is equal to zero. If instead we apply an external magnetic field which overcomes the interlayer coupling, then we can reach a condition in which the layers all align in order to have parallel magnetic field like in the second case. And in this case we have seen that the resistance is the minimum And so the characteristic will be monotone for positive or for negative fields and in particular increasing the intensity of the external field we will notice a decrease in the resistance. But this characteristic is a neval function. In fact both in the case the magnetic fields are aligned in one direction or if they are aligned in the opposite direction, the resistance of the material will be exactly the same. So with giant magnetoresistances, differently from the anisotropic magnetoresistance, we cannot distinguish the sign of the magnetic field, but we can just distinguish the intensity of the magnetic field. Giant magnetoresistances can be read out with two possible configurations: current in plane or current perpendicular to plane. In current in plane, we apply a voltage along the longitudinal sides of your material. So you apply an external voltage. the input voltage, for instance in this direction, and so you force a current flow which is parallel to the magnetic layers, so the current flow will be like this. In this case the sensitivity of the sensor is reduced because the current will tend to flow in the same layer, so we have a shunting effect which reduces the probability for an electron to tends to go to another layer and so our sensitivity becomes very low because we have a very low probability for an electron to try to go to the adjacent layer. So minimizing the differences that we have between the case with anti-parallel alignment or parallel alignment. The other possibility is to use a current perpendicular to plane configuration, so in which the voltage is applied perpendicularly in respect to the magnetic layers. So in this case we force the carriers to travel across the material, so to cross different layers, and this current will experience a much higher difference in resistance in case the magnetic are in anti-parallel or parallel magnetization. So in this case the sensitivity is increased, but be careful because the overall resistance of this material will be very low because these materials are very thin So R0 is very low and even if the percentage variation is higher, so the magneto-resistance ratio is higher if you use a current parallel to plane configuration in respect to current in plane configuration, the variation could be very small because the R0 is very small. So you have a percentage variation which is big, but an absolute value which is very small. And so typically the current in plane is the preferred solution because we have an R0 which is bigger and can more easily measure the resistance of the material. Finally we have the tunneling magnetoresistances which are sensors which exploit two different magnetic layers. One which is called the PINAD layer. which is a layer deposited on top of an anti-ferromagnetic pinning layer. So a pinning layer is a layer that does not have an intrinsic magnetization, but it is made to hold the magnetization fixed, well fixed in the adjacent ferromagnetic layer. And so the direction of this magnetization will depend only on the properties of the pinning layer and will not depend on the external field. So an external field cannot change the orientation of the magnetization of the pinning layer because the pinning layer has the property to maintain, while fixed, the orientation of the magnetization in the pinning layer. Instead, the free layer is a ferromagnetic layer in which the orientation of the magnetization can change and it will depend on the external field. In its rest position, the free layer is made in order to have a magnetization which is perpendicular to the pinned layer. Now, if we apply an external field, we can modify the orientation of the free, the magnetization of the free layer. But now, the material that we put in between the PINED layer and the free layer is an insulator. Not an insulator for the magnetic field, so that allows different orientation of the magnetic field between the two layers, but it is an insulator also for the carriers, so also for the current flow. So it means that the probability to have a free carrier moving from one layer to another one is very very low. For the classical physics it is impossible to have a carrier to go inside the insulator, but if we consider the law of the quantum physics we can have the tunneling effect. So the tunneling effect is the possibility for a carrier to go inside an insulator, obviously with a very low probability. And so this is the reason why we call it tunneling magnetoresistance, because we exploit the tunneling effect. In particular, if the magnetization of the pinned layer and the free layer is parallel, like in this first example, then we have a probability for an electron with a certain spin to move to the other layer, which is quite an important probability, okay? So, which is a quite high probability, because we have many states in the top layer which is available to to host electrons which are coming from the bottom layer. And so in this case the resistance is reduced. If instead we have a magnetization in the free layer which is opposite in direction in respect to the one of the pinned layer, then in the top layer we don't have free states that can be occupied by the electrons of the bottom layer, and so we have a very low tunneling probability, and so the resistance increases deeply. So, summarizing, in the rest conditions, so without an external field, we have perpendicular magnetization of the big layer and the free layer. And so we will have a certain resistance that we can call R0. Then, if we apply an external field which make the free layer to rotate its magnetization and have an orientation that is the same of the pinhead layer, then the resistance value will decrease until reaching a minimum when the extra-barbed feed completely overcomes the perpendicular magnetization that we have in the rest condition. If instead apply an external field, which orientates the magnetization of the free layer to be antiparallel to the pinnate layer, and then the resistance will increase. And so we see that in this case we have a characteristic that is monotone, different from the giant magneto-resistance, and so we will be able to measure the density of the field, but also the direction of the external field. Typically, tunneling magnetoresistances, not typically, always, the tunneling magnetoresistances are used in a current perpendicular to plane configuration. So we apply an external voltage that is perpendicular to the layers because we want to force the current to flow from one layer to the other layer because remember we said that in In this case we have an insulator between the pinner layer and the free layer. So if we use a current in plane configuration, we will have for sure no electrons to go from one layer to the other one. We need to try to force the current to go through the insulator in order to have the tunneling effect. In this case, since we will have the problem of having a small signal across our material because we can apply voltages in the order of a few millivolts not to damage the insulator, we can put a manual resistor in series. in order to have an overall resistance that limits the voltage to the tunnel. Some applications of magnetoresistances mainly. They are used in applications which require high sensitivity and especially the capability to measure the actual value of the magnetic field. For instance, they are used to sensing eddy currents. Eddy currents are currents that can occur in metallic materials when this material is exposed to variable magnetic fields. Since they are circular currents, they produce a secondary magnetic field that can be measured with these magnetoresistances. Or they can be used to measure the stress of prosthetic magnetic fields, which are typically very low in intensity, so they require very high sensitivity to be measured. But they can be very useful, for instance, to detect the defects or non-uniformity inside the magnetic materials. Then they can be used for instance to monitor stress in metallic reinforcement or fasteners measuring the magnetic field that is inside these materials. Or finally they can be used for displacement encoders and we will study it during one of the next classes. Ok, so it is all for today about magnetic field sensor and so bye bye, let's see during next class.
+
+Here we can see our **thin conductive sheet**.  We apply an **external voltage** $V_x$​ between two terminals of the material to **induce a current flow**. In this example, the current flows along the **x-direction**.
+
+Now, if an **external magnetic field** $\mathbf{B}$ is applied **perpendicular** to the sheet, the **moving charge carriers** inside will experience a **Lorentz force**.  
+
+	$$F_L=q\cdot v_x \times B_z $$
+
+The Lorentz force acts on any moving charge in a magnetic field and changes the **direction of its motion**.
+
+In this example:
+![[Pasted image 20251026084355.png]]
+- The **velocity** of the charge carriers is along the **x-axis**    
+- The **magnetic field** is applied along the **z-axis**,
+- So the **Lorentz force** will deflect the carriers sideways — towards the **right-hand side** if the carriers are **positive charges (holes)**.
+
+As a result, **positive charges accumulate on one side** of the material.  This **charge separation** creates a **transverse voltage** — a voltage that develops **perpendicular** to the current flow. The right side becomes **more positive** compared to the left.
+
+Eventually, the Lorentz force is **balanced** by the **Coulomb force** due to this charge separation, and the system reaches equilibrium.
+$$
+F_c = q\cdot E_y 
+$$
+
+![[Pasted image 20251026084527.png]]
+Now, if the **charge carriers are electrons** instead of holes, the situation looks a bit different.  
+Even though the **current direction** remains the same, the **velocity of electrons** is **opposite** to the direction of the current because electrons have **negative charge**.
+
+So, in this case:
+
+- The **velocity** points in the opposite direction,
+- The **magnetic field** still points upward (z-direction),
+- According to the **right-hand rule**, the force on the moving electrons points in the opposite direction.
+    
+
+However, because the **charge q** of electrons is **negative**, the Lorentz force ends up being **in the same direction** as for the positive charges.
+
+That means the **deflection** is still **toward the right**, but now the **accumulated charges are negative**.  
+Therefore, the **Hall voltage** has the **opposite polarity** compared to the case with positive carriers — the **right side becomes more negative**.
+
+So, when using a **Hall element**, always keep in mind that the **sign of the output voltage** depends on the **type of charge carriers** in the material — holes or electrons.
+
+Now, let’s go a bit further and look at the **mathematical relationship** between the **measured Hall voltage $V_H$​ and the **magnetic field $B$** that we want to determine.
+
+# <span style="color:rgb(239, 179, 1)">Magnetic Field Computation</span> 
+
+![[Pasted image 20251026205724.png]]
+At the **steady state**, the two forces acting on the charge carriers — the **Coulomb force** and the **Lorentz force** — will have **equal magnitudes**.  This means that the **net force** along the **y-direction** must be **zero**.
+
+If we consider only the magnitudes of these two forces, we can equate them.  Since the charge $q$ appears in both expressions, it cancels out. From this, we obtain a relationship showing that the **electric field in the y-direction** (the one responsible for the Hall voltage $V_H$​) must be equal to the **vector product** of the **carrier velocity** and the **magnetic field**:
+$$|E_y| = |v_x \times B_z|$$
+In our case, the **magnetic field** is **orthogonal** to the **current flow** — that is, $\mathbf{B}$ is along the **z-axis**, and the current flows along the **x-axis**.  So the vector product simplifies to a simple multiplication, and we can write:
+$$E_y=v_x \cdot B_z $$
+We don’t measure the **electric field** directly, but we know it is **related to the Hall voltage** through the geometry of the sensor.  In particular:
+
+$$E_y = \frac{V_H}{W}$$
+
+where $W$ is the **distance** between the two terminals along which we measure the Hall voltage.
+
+Next, we can relate the **velocity of the carriers** to the **current density** $J$.  The drift velocity of the carriers is given by:
+
+$$v = \frac{J}{q \, n}$$
+
+where
+
+- $q$ is the charge of each carrier,
+- $n$ is the **concentration** of free carriers in the material, and
+- $J$ is the **current density**, defined as the current III divided by the **cross-sectional area** through which it flows:
+
+$$J = \frac{I}{W \, T}$$
+
+with $T$ being the **thickness** of the material.
+
+Now, if we substitute these relationships into our earlier equation $E_y = v \cdot B$, we obtain:
+
+$$\frac{V_H}{W} = \frac{J}{q n} BW$$
+
+Rearranging gives the final expression for the **Hall voltage**:
+$$V_H = \frac{1}{q n} \, \frac{I B}{T}$$
+The term $$\frac{1}{q n}$$$1/qn$​ depends only on the material properties and is defined as the **Hall constant** $R_H$:
+$$R_H = \frac{1}{q n}$$
+Thus, we can write the Hall voltage in a compact form:
+$$V_H = R_H \, \frac{I B}{T}$$
+This equation shows that the Hall voltage is **directly proportional** to the applied magnetic field $B$, to the **current** $I$, and **inversely proportional** to the thickness $T$ of the conductive layer.
+
+Now, remember that the **sign of the Hall voltage** depends on the **type of charge carriers**:
+
+- For **n-type semiconductors** (electrons as majority carriers), the Hall constant $R_H$​ is **negative**, because $q$ is negative.
+    
+- For **p-type semiconductors** (holes as majority carriers), $R_H$​ is **positive**.
+    
+Therefore, when interpreting the measured Hall voltage, it is important to consider this sign — by convention, a **positive Hall voltage** corresponds to **hole conduction**.
+
+## <span style="color:rgb(239, 179, 1)">Applications</span>
+
+![[Pasted image 20251026211750.png]]
+**Hall sensors** are mainly used in applications where you do **not need to measure the magnetic field precisely**, but simply need to **detect whether a magnetic field is present or not**.
+
+For example, they are commonly used for **proximity detection**, to sense whether a magnetic object is near the sensor. They can also be used as **displacement sensors**, as shown in this example where a **magnetic slide** moves under the action of a **hydraulic actuator**. By placing Hall sensors along the path, you can detect the position of the magnetic slide depending on which sensor is activated.
+
+![[Pasted image 20251026212726.png]]
+
+Another common use is in **magnetic switches**, which open or close a circuit when a magnet comes near the sensor. This principle is also applied in **door interlock systems** — for instance, to automatically disable hazardous equipment when a door is opened. In such systems, a small magnet rotates with the key, and the Hall sensor detects the magnet’s position, allowing the system to know when the door is being opened or closed.
+
+![[Pasted image 20251026212625.png]]
+
+Hall sensors can also be used for **current measurement**. When a current flows through a wire or coil, it generates a magnetic field proportional to the current. A Hall sensor can detect this field, allowing indirect measurement of the current’s presence or magnitude.
+
+In addition, Hall sensors are used in **magnetic encoders**, which are devices that track the **movement or rotation** of mechanical components using magnetic fields.
+
+Finally, they can also be found in **electronic compasses**, where they detect the **Earth’s magnetic field** to determine orientation.
+
+# <span style="color:rgb(223, 109, 109)">Magnetoresistors</span>
+
+![[Pasted image 20251026213534.png]]
+## <span style="color:rgb(239, 179, 1)">Magnetoresistance</span>
+
+Now let’s move to the next type of magnetic field sensors — the **magnetoresistive sensors**.
+
+In this case, the principle of operation is based on **resistances that change their value depending on the external magnetic field**. We won’t go into detail about the **readout circuits** used for these sensors, since they are quite similar to those already studied for **resistive temperature detectors (RTDs)**. In practice, the measurement can be done either by **injecting a current and reading the output voltage**, or by using a **Wheatstone bridge configuration**, as shown in this example.
+
+So, what exactly is **magnetoresistance**?  
+
+It refers to a **material property** where the **electrical resistance changes** when the material is exposed to a magnetic field. These sensors are **solid-state devices**, meaning they can be **integrated directly into silicon**, allowing them to be **very small** in size. Moreover, they are **more sensitive than Hall sensors**, making them suitable for applications where a **more accurate estimation of the magnetic field** is needed.
+
+The key performance indicator for magnetoresistive sensors is the **magnetoresistance ratio (MR)**. This ratio is defined as the **difference between the maximum and minimum resistance values**, divided by the **minimum resistance**.  
+
+$$MR=\frac{R_{max}-R_{min}}{R_{min}} $$
+
+Mathematically, it represents how much the resistance changes with respect to its baseline value — essentially indicating the **maximum signal variation** that the sensor can produce in response to a magnetic field.
+
+## <span style="color:rgb(239, 179, 1)">Magneto-resistive materials</span>
+
+All conductive materials exhibit some level of **magnetoresistance**, meaning their resistance changes slightly when exposed to a magnetic field. However, in most common conductors this effect is **very weak**, making it unsuitable for sensing applications. This weak response is referred to as **ordinary magnetoresistance**.
+
+In contrast, **materials specifically designed for magnetic sensing** show a much stronger magnetoresistive effect and can be classified into three main categories:
+
+1. **Anisotropic Magnetoresistance (AMR):** These materials have a magnetoresistance ratio of about **1–2%**.
+2. **Giant Magnetoresistance (GMR):** These exhibit a much larger ratio, typically in the range of **20–50%**.
+3. **Tunneling Magnetoresistance (TMR):** These can reach even higher values, around **50–60%**.
+    
+
+Now, let’s take a closer look at each of these three types of magnetoresistive sensors.
+
+### <span style="color:rgb(161, 40, 226)">Anisotropic Magnetoresistance (AMR)</span>
+![[Pasted image 20251026215126.png]]
+	 
+Anisotropic magnetoresistances are called _anisotropic_ because their properties depend on the **angle between the electrical current and the direction of magnetization** within the material.
+
+To observe this effect, the material must be **magnetized** and a **current must flow** through it.
+
+- When the **magnetization is parallel** to the current flow (left image), the material shows its **maximum resistivity**. This happens because the **atomic orbitals** are slightly **distorted**, increasing the **probability of electron scattering** inside the material. More scattering means higher energy dissipation, and therefore a **higher resistance**.
+    
+- Conversely, when the **magnetization is perpendicular** to the current flow (right image), the **interaction between the moving carriers and the valence electrons** is minimized. This reduces scattering events and results in the **minimum resistance**.
+
+![[Pasted image 20251026221717.png]]
+If we study in more detail the relationship between the **resistance** of the material and the **angle (θ)** between the current and the magnetization, we find that it follows this equation:
+
+$$R = R_0 + \Delta R \cdot \cos^2(\theta)$$
+
+where:
+
+- $R_0$​ is the base resistance of the material,
+- $\Delta R$ is the maximum variation of resistance, and
+- $\theta$ is the angle between the current and the magnetic field direction.
+
+From this relation:
+
+- The **maximum resistance** occurs when $\cos^2(\theta) = 1$ → at 0°, 180°, or -180°.
+- The **minimum resistance** equals $R_0$​ when $\cos^2(\theta) = 0$ → at 90°, 270°, or their negative equivalents.
+- An **intermediate resistance**, $R_0 + \frac{\Delta R}{2}$​, occurs at 45°, where $\cos^2(45°) = 0.5$.
+
+![[Pasted image 20251026222157.png]]
+
+The **best operating point** is around **-45°**, because at this angle the resistance curve is most **linear** and the **sensitivity** (the derivative of the curve) is highest.
+
+For this reason, AMR sensors include **conductive shunts**—highly conductive paths oriented at **45°** with respect to the magnetization direction.
+
+- The **brown** regions in the figure represent the **magnetic material** (high resistivity).
+- The **yellow** regions are the **conductive shunts** (low resistivity).
+
+![[Pasted image 20251026222225.png]]
+
+When a voltage is applied, the current follows the **path of least resistance**, which means it travels **orthogonally to the conductive shunts**, minimizing its path through the resistive magnetic material.
+
+In this configuration, with no external magnetic field (H = 0), the **angle between current and magnetization** is **−45°**, setting the device exactly at its **optimal working point** for sensitivity.
+
+![[Pasted image 20251026223003.png]]
+ 
+ Now, when we apply an **external magnetic field (H)**, the **overall magnetic flux** in the material becomes the **vector sum** of two components: the **initial magnetization** of the material and the **applied external field**.
+
+As a result, the **direction of the total magnetization** changes depending on the **strength and orientation** of this external field. This change in direction also modifies the **angle (θ)** between the magnetization and the current flow.
+
+Since the resistance of the material depends on this angle, as we saw before, the application of an external magnetic field leads to a **variation in the overall resistance (R)**.
+
+Let’s now analyze in more detail the **relationship between the resistance R** and the **external field H**.
+
+![[Pasted image 20251026225057.png]]
+
+Start from the initial condition (no external field). With $(H=0)$ the total flux $(B)$ equals the material’s initial magnetization (M). The device is biased so the current $(I)$ makes an angle $(\theta=-45^\circ)$ with $(B)$. Using  
+$$  
+R(\theta)=R_0+\Delta R\cos^2\theta    
+$$we get the starting resistance  
+$$R = R_0 + \tfrac{1}{2}\Delta R.  
+$$
+Now apply an external field (H) **perpendicular** to the initial magnetization (M). Consider these cases:
+
+![[Pasted image 20251026225246.png]]
+1. **(H = M) (same magnitude, perpendicular direction):**  
+    The vector sum $(B=M+H)$ points at $(+45^\circ)$ relative to (M). Because the shunt/current geometry fixes the current direction, the angle between $(B)$ and $(I)$ becomes $(\theta=0^\circ)$. Then $(\cos^2\theta=1)$ and  
+    $$R = R_0 + \Delta R  $$
+    — the **maximum** resistance.
+
+![[Pasted image 20251026225514.png]]
+1. **$(H \gg M)$** (very large perpendicular $(H)$):  
+    $(B)$ aligns with $(H)$; the angle between $(B)$ and $(I)$ tends to $(\theta=45^\circ)$. Thus $(\cos^2 45^\circ=1/2)$ and  
+    $$
+    R \to R_0 + \tfrac{1}{2}\Delta R,  $$
+     
+    which is the same value as the $(H=0)$ starting point (an asymptote for large positive $(H)$).
+
+![[Pasted image 20251026225552.png]]
+1. **(H) perpendicular but in the opposite direction (i.e. (-H), same magnitude):**  
+    Now $(B)$ points to $(-45^\circ)$ relative to (M), which makes the angle between (B) and the fixed current (I) equal to $(\theta=90^\circ)$. Because $(\cos^2 90^\circ=0)$,  
+$$    R = R_0  $$
+    — the **minimum** resistance.
+
+![[Pasted image 20251026225840.png]]
+1. **$(H \ll -M)$** (very large negative perpendicular $(H)$):  
+    $(B)$ is dominated by $(H)$ and the angle between $(B)$ and $(I)$ tends to $(\theta=135^\circ)$. Again $(\cos^2 135^\circ=1/2)$, so  
+    
+    $$R \to R_0 + \tfrac{1}{2}\Delta R$$
+    the same asymptote as for large positive (H).
+
+![[Pasted image 20251026230112.png]]
+If you plot $(R)$ versus $(H)$ for $(H)$ ranging from large negative to large positive values, you get this shape:
+
+- At very large $(|H|)$ (either sign) the curve approaches the same asymptote $(R_0 + \tfrac{1}{2}\Delta R)$.
+    
+- For positive $(H)$, the resistance **increases** from the asymptote, reaches a **maximum** at $(H=+M)$ $((R_0+\Delta R))$, then falls back to the asymptote as $(H\to+\infty)$.
+    
+- For negative $(H)$, the resistance **decreases** from the asymptote, reaches a **minimum** at $(H=-M) ((R_0))$, then rises back to the same asymptote as $(H\to-\infty)$.
+    
+
+In the interval $(H\in[-M,+M])$ the $(R(H))$ curve is **monotone and approximately linear**, which is precisely the range where AMR sensors are used for measurement. In that range you can both **measure the magnitude** and **determine the sign** of the applied field.
+
+### <span style="color:rgb(161, 40, 226)">Giant Magnetoresistance (GMR)</span>
+
+![[Pasted image 20251026230400.png]]
+
+Giant magnetoresistances are called _“giant”_ because their magnetoresistance ratio is much higher than that of anisotropic magnetoresistances.
+
+A GMR device is made of **two or more layers of ferromagnetic metals** (shown in brown) separated by **very thin non-magnetic metal spacers** (shown in orange). These spacer layers are crucial:
+
+- They **allow the magnetic orientation** of adjacent ferromagnetic layers to be different — even opposite.
+- At the same time, they **conduct electric current**, so electrons can move from one magnetic layer to another.
+    
+
+Now, what happens depends on how the magnetic layers are aligned:
+
+- **Opposite alignment (antiparallel, left image):**  
+    The spins of the electrons in one magnetic layer are opposite to those in the next. Because of this, electrons experience more scattering when moving between layers, so the **resistance increases**.
+- **Same alignment (parallel, right image):**  
+    The spins of the electrons are all oriented in the same direction, allowing them to move easily from one layer to another. As a result, the **resistance decreases**.
+![[Pasted image 20251027081424.png]]
+
+When no external magnetic field is applied, the **spacer layers**—which are only a few atoms thick—create a **strong exchange coupling** between adjacent ferromagnetic layers. This coupling naturally favors an **antiparallel alignment** of their magnetic fields: the north pole of one layer attracts the south pole of the next.
+
+![[Pasted image 20251027081452.png]]
+
+Because of this antiparallel configuration, the **resistance of the material is high**. In the graph showing resistance versus external magnetic field, this corresponds to a **maximum resistance at zero external field**.
+
+![[Pasted image 20251027081504.png]]
+
+When an **external magnetic field** is applied and becomes strong enough to **overcome the interlayer coupling**, all magnetic layers align in the same direction, producing a **parallel configuration**. In this case, the resistance reaches its **minimum value**.
+
+![[Pasted image 20251027081522.png]]
+As the external field increases (either positively or negatively), the resistance decreases until it reaches this minimum. The characteristic curve is **even**, meaning it is symmetric with respect to the origin. Therefore, with **giant magnetoresistances (GMRs)**, unlike with anisotropic magnetoresistances (AMRs), we can only determine the **magnitude** of the magnetic field — not its **direction** or sign.
+	 
+Giant magnetoresistances can be read out using **two configurations**: **current-in-plane (CIP)** or **current-perpendicular-to-plane (CPP)**.
+
+![[Pasted image 20251027082127.png]]
+In the **current-in-plane configuration**, the voltage is applied along the longitudinal sides of the material, forcing the current to flow **parallel** to the magnetic layers. In this case, the **sensitivity is lower** because the current mainly remains within each layer — a phenomenon known as the **shunting effect**. This reduces the likelihood of electrons moving between layers, which in turn minimizes the difference in resistance between the parallel and antiparallel magnetization states.
+
+![[Pasted image 20251027082146.png]]
+In the **current-perpendicular-to-plane configuration**, the voltage is applied **perpendicular** to the layers, forcing the current to travel **through** the stacked layers. Here, electrons must cross different magnetic and non-magnetic layers, so the **difference in resistance** between the parallel and antiparallel configurations is much more pronounced, leading to **higher sensitivity**.
+
+However, because these layers are extremely thin, the **overall resistance (R₀)** of the structure is very low. As a result, even though the **percentage variation** in resistance (the magnetoresistance ratio) is larger in the CPP configuration, the **absolute change in resistance** can still be very small and difficult to measure.
+
+For this reason, the **current-in-plane configuration** is usually preferred, since it provides a **higher base resistance (R₀)**, making it easier to detect and measure the resistance changes in practice.
+
+### <span style="color:rgb(161, 40, 226)">Tunneling Magnetoresistance (TMR)</span>
+   
+![[Pasted image 20251027082412.png]]
+Finally, we have the **tunneling magnetoresistances (TMRs)**, which are sensors that use **two different magnetic layers**. One is called the **pinned layer**, which is deposited on top of an **antiferromagnetic pinning layer**.
+
+The **pinning layer** itself does not have intrinsic magnetization, but its purpose is to **lock the magnetization direction** of the adjacent ferromagnetic layer (the pinned layer). This means that the orientation of the pinned layer’s magnetization depends only on the properties of the pinning layer and **does not change** when an external magnetic field is applied.
+
+The second layer, called the **free layer**, is also ferromagnetic, but unlike the pinned layer, its magnetization **can rotate** in response to an external magnetic field. In the initial state, the free layer is typically designed so that its magnetization is **perpendicular** to that of the pinned layer.
+
+![[Pasted image 20251027082934.png]]
+
+Now, if we apply an external magnetic field, we can modify the orientation of the magnetization in the **free layer**. Between the pinned layer and the free layer, however, there is an **insulating layer**. This layer does not block the magnetic field — so the two magnetic layers can still have different orientations — but it **does block the flow of electrical current**.
+
+In classical physics, an electron cannot cross this insulating barrier. However, according to **quantum mechanics**, there is a small probability that an electron can pass through the insulator — a phenomenon known as the **tunneling effect**. This is why this type of sensor is called a **tunneling magnetoresistance (TMR)** sensor: it relies on the quantum tunneling of electrons.
+
+In particular, when the magnetizations of the pinned layer and the free layer are **parallel** (as in the plot on the left), the probability that an electron with a given spin will tunnel through the barrier is relatively **high**, because there are many available electronic states in the upper layer that match the spin of the tunneling electrons. As a result, the **resistance is low**.
+
+Conversely, when the magnetizations of the two layers are **antiparallel** (as in the plot on the right), the available spin states in the upper layer do not correspond to those in the lower layer. Therefore, the **tunneling probability decreases drastically**, leading to a **much higher resistance**.
+
+![[Pasted image 20251027083011.png]]
+
+So, **to summarize**, in the **rest condition**, that is, without any external magnetic field, the magnetizations of the pinned layer and the free layer are **perpendicular** to each other. In this state, the sensor exhibits a certain resistance, which we can call **R₀**.
+
+When an **external magnetic field** is applied and causes the magnetization of the free layer to **rotate** toward the **same direction** as the pinned layer, the overall resistance **decreases**, reaching a **minimum value** once the external field fully overcomes the perpendicular rest magnetization.
+
+On the other hand, if the external field is applied in the **opposite direction**, aligning the magnetization of the free layer **antiparallel** to that of the pinned layer, the **resistance increases**.
+
+Therefore, in this case, the resistance–magnetic field characteristic is **monotonic**, unlike in giant magnetoresistance sensors. This means that tunneling magnetoresistance (TMR) sensors allow us to measure not only the **magnitude** but also the **direction** of the external magnetic field.
+
+![[Pasted image 20251027083255.png]]
+
+Tunneling magnetoresistance (TMR) sensors are **always used in a current-perpendicular-to-plane configuration**. This means that the external voltage is applied **perpendicular to the layers**, forcing the current to flow **from one magnetic layer to the other**. This configuration is necessary because, as mentioned earlier, there is an **insulating layer** between the pinned layer and the free layer. If we used a current-in-plane configuration, **no electrons would be able to tunnel** through the insulator, and the tunneling effect would not occur.
+
+In the perpendicular configuration, we must be careful with the **applied voltage**, which is typically limited to a few **millivolts** to avoid damaging the thin insulating barrier. For this reason, a **manual resistor** is often added **in series** with the sensor to control the overall resistance and **limit the voltage drop** across the tunneling barrier.
+
+<span style="color:rgb(2, 141, 192)"><b>Applications of Magnetoresistive Sensors</b></span>
+
+Magnetoresistive sensors are mainly used in applications that require **high sensitivity** and the ability to **measure the actual magnitude of the magnetic field**. For example, they are used for **eddy current sensing**. Eddy currents are circular currents that appear in metallic materials when these materials are exposed to varying magnetic fields. These currents generate **secondary magnetic fields**, which can be detected using magnetoresistive sensors.
+
+They can also be employed to measure **very weak magnetic fields**, such as those produced by stressed ferromagnetic materials. This property makes them useful for **detecting defects or non-uniformities** within magnetic structures. In addition, magnetoresistive sensors are used to **monitor stress** in metallic reinforcements or fasteners by measuring the magnetic field inside these materials.
+
+Finally, they are commonly used in **displacement encoders**, a topic that will be explored in one of the next classes.
+
+
+
