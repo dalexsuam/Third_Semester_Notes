@@ -5,7 +5,7 @@
     "pageSize": "Legal",
     "landscape": false,
     "margin": "0",
-    "downscalePercent": 76
+    "downscalePercent": 65
   },
   "promptDelete": false,
   "newFileLocation": "current",

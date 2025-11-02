@@ -67,34 +67,3 @@
 ![[Pasted image 20251021143936.png]]
 
 
-
-![[Pasted image 20251021144505.png]]
-
-![[Pasted image 20251021144518.png]]
-
-
-
-![[Pasted image 20251021144809.png]]
-![[Pasted image 20251021144828.png]]
-
-![[Pasted image 20251021145851.png]]
-
-![[Pasted image 20251021150139.png]]
-
-![[Pasted image 20251021150354.png]]
-
-![[Pasted image 20251021150420.png]]
-
-![[Pasted image 20251021150713.png]]
-
-![[Pasted image 20251021150941.png]]
-
-![[Pasted image 20251021151011.png]]
-![[Pasted image 20251021151135.png]]
-
-
-![[Pasted image 20251021151239.png]]
-![[Pasted image 20251021151303.png]]
-
-![[Pasted image 20251021151346.png]]
-
