@@ -2,631 +2,318 @@
 03/11/2025
 ***
 
-So the use of electrical stimulation as a means to interact with the neural structures in the body.  
-  
+# <span style="color:rgb(223, 109, 109)">Electrical Stimulation and Neurorehabilitation</span>
 
-So to modulate their functioning.  
-  
+<span style="color:rgb(161, 40, 226)"><b>General Concept:</b>  </span>
+Electrical stimulation refers to the use of **controlled electrical currents** to interact with and modulate the function of **neural structures** in the body — both in the **central** and **peripheral nervous system**.  
+The goal is to **influence neuronal activity** in order to **improve recovery** or **restore lost functions**, a concept increasingly explored in the so-called **“electroceutical age”** — therapies based on electrical, rather than pharmacological, interventions.  
+This whole field is often grouped under the term **neuromodulation**.
 
-To perform.  
-  
 
-To achieve a better outcome in terms of recovery, is one of the hot topics in the literature. It's also in a...  
-  
+## <span style="color:rgb(239, 179, 1)">Basic Principles</span>
 
-Uh called mentioned as electroceutical age so therapy based on electrical means or also and also it goes under the umbrella term of neural modulation and i i want to go through all these uh all these uh.  
-  
+![[Pasted image 20251105150607.png]]
 
-Examples, we will see some of them, but more than that we will see the principles.  
-  
+When we talk about electrical stimulation, we are dealing with **electrodes** — typically arranged in **pairs** (bipolar configuration):
 
-Which are the enabling factors for all of them.  
-  
+- **Anode (+):**  
+  Sends positive charge into the tissue, causing **hyperpolarization** of the membranes beneath it (making them less likely to fire).
 
-So when we talk about electrical stimulation, we are always considering electrodes, usually coupled of electrodes. so bipolar configurations with an anode that sends a positive charge to the membrane.  
-  
+- **Cathode (–):**  
+  Receives the returning current; under it, the membranes become **depolarized**, which can **trigger action potentials** if a threshold is reached.
 
-Which is then hyperpolarized underneath the anode.  
-  
+In essence:
+- The **stimulator device** controls the **voltage** and **current** applied to the electrodes.  
+- These electrical signals travel through the **wires** as **electrons**, but within the **biological tissue**, the conduction happens via **ions** (Na⁺, K⁺, Cl⁻, etc.).  
+- The **interface** between these two domains — electronic and ionic — is what enables the stimulation to affect biological activity.
 
-And then we have a cathode.  
-  
+### <span style="color:rgb(161, 40, 226)">Mechanism of Action</span>
 
-Which receives.  
-  
+Electrical stimulation **modulates neural excitability** by generating **artificial depolarizations** in targeted regions:
+- When a membrane under the cathode is depolarized beyond its threshold, an **action potential** is generated.
+- These artificially induced action potentials then **propagate naturally** along neural pathways, just as in normal physiological signaling.
 
-The positive charge exits from the cathodes and the membranes underneath the cathodes are depolarized.  
-  
+This means that electrical stimulation does not replace natural neural activity — it **triggers or modulates** it.  
+The term **modulation** refers to the ability to **adjust the extent and strength** of this activation:
+- **Local stimulation:** Affects a small number of neurons (precise, focal activation).  
+- **Wider stimulation:** Affects a larger neural population (broader activation).  
 
-The depolarization is producing a change across in the voltage membranes, Which if a cheese a certain thresholds produce the spikes so activates the the the neurons under the so okay let's put two points electrodes are commanded by voltage and.  
-  
+The **intensity, frequency, and duration** of the stimulation pulses define how many neurons are activated and how they respond over time.
 
-Currents, okay, they are artificial components of an electronic circuit the electrons that are input or exiting.  
-  
+### <span style="color:rgb(161, 40, 226)">Takeaway</span>
 
-Determined by the electric electronic circuits inside the simulator.  
-  
+Electrical stimulation serves as a bridge between **engineering and physiology** — translating controlled **electronic signals** into **biological responses**.  
+By precisely controlling stimulation parameters, it becomes possible to:
+- **Restore lost motor or sensory functions.**
+- **Facilitate neuroplasticity and recovery** after injury.
+- Or **modulate neural circuits** for therapeutic purposes (pain, spasticity, motor control, etc.).
 
-Okay?  
-  
+## <span style="color:rgb(239, 179, 1)">Stimulation Parameters</span>
 
-Underneath in the area, in the body area which is closer to the anode and the cathode is all about ionic plastics.  
-  
+Electrical stimulation is **always delivered as a train (sequence) of pulses**, not as a continuous current.  Each pulse — the basic unit of stimulation — can be described by a few **key parameters** that define how the nervous tissue will respond.
 
-So no charge, no electrons.  
-  
+![[Pasted image 20251105151318.png]]
+### 1. <span style="color:rgb(161, 40, 226)">Current Amplitude [A]</span>
 
-So there is a coupling between the movements of the electrons in the wires and.  
-  
+- This defines **how strong the electrical pulse is** — the intensity of current delivered to the tissue.
+- The **amplitude determines whether the nerve will be excited or not**: there is always a **current threshold** that must be reached to trigger an action potential.
+- Increasing amplitude recruits **more nerve fibers** and produces a **stronger physiological response** (e.g., greater muscle contraction in FES).
+    
+### <span style="color:rgb(161, 40, 226)">2. Pulse Width (PW) [μs]</span>
 
-The movements of the ionic flows in the nearby areas.  
-  
+- Also called **pulse duration**, it represents **how long each pulse lasts**.
+- It is another way to control the **total charge delivered** (Charge = Current × Pulse Width).
+- By adjusting pulse width, we can fine-tune stimulation **without changing amplitude**, which helps make it more comfortable or specific to certain fiber types (e.g., sensory vs. motor).
 
-So if here there is a current that goes out from the cathodes.  
-  
+### <span style="color:rgb(161, 40, 226)">3. Voltage (Tension) [V]</span>
 
-There will be a depolarization of the membranes of the neurons in the nearby areas.  
-  
+- Voltage provides the **driving force** that allows the current to flow through the tissues, which have their own impedance.
+- The stimulator regulates voltage to **maintain the desired current** — particularly important when electrode-skin contact or tissue resistance changes.
 
-Okay.  
-  
+### <span style="color:rgb(161, 40, 226)">4. Stimulation Frequency (1/T) [Hz]</span>
 
-What is important is that the control of the stimulator parameters from the outside.  
-  
+- Frequency indicates **how often pulses are delivered**, i.e., the time interval between successive pulses.
+- It strongly influences the **type of physiological response**:
+    
+    - Low frequency (1–10 Hz): single muscle twitches or mild sensory activation.
+    - Medium frequency (20–50 Hz): smooth, sustained muscle contractions (tetanic).
+    - High frequency (>80 Hz): often used for pain modulation or sensory effects.
+- So, frequency mainly **regulates the strength and quality of the mechanical or neural effect**.
 
-From the machine produces at the end action potentials. So activate the neural structures.  
-  
+### <span style="color:rgb(161, 40, 226)">5. <b>Stimulus Shape</b></span>
 
-Nearby the position of the left.  
-  
+- The **waveform** of each pulse can vary — commonly **square**, but also **sinusoidal**, **triangular**, or **exponential** shapes exist.
+- **Square waves** are most used because they provide a clear, controlled stimulation with efficient charge transfer.
+- The **shape** also helps to **limit possible tissue damage** and ensure safe interaction with biological tissues.
+    
+###  <span style="color:rgb(161, 40, 226)">Balanced Pulses (Charge-Balanced Stimulation)</span>
 
-Why it's important to see that it's action potential? Because at the end you are triggering and modulating a natural process, a natural sequence of signals.  
-  
+- In most systems, **each positive pulse** is followed by an **equal and opposite negative pulse** (same area under the curve).    
+- This is called **charge balancing**, and it’s essential to:
+    - Prevent **ion accumulation under the skin**.
+    - Avoid **tissue irritation or damage**.
+    - Maintain **long-term safety** in repeated or chronic stimulation.
+- The negative pulse doesn’t excite neurons — it just neutralizes the ionic displacement caused by the first pulse.
+### <span style="color:rgb(161, 40, 226)">Summary Table</span>
+![[Pasted image 20251105151523.png]]
 
-Which are action potentials.  
-  
+| **Parameter**     | **Symbol / Unit** | **Role**                                    |
+| ----------------- | ----------------- | ------------------------------------------- |
+| Current Amplitude | A                 | Controls nerve excitation strength          |
+| Pulse Width       | μs                | Adjusts total charge per pulse              |
+| Voltage (Tension) | V                 | Ensures current delivery through tissue     |
+| Frequency         | Hz                | Regulates overall physiological response    |
+| Shape             | —                 | Determines safety and comfort               |
+| Balance           | —                 | Prevents ion accumulation and tissue damage |
 
-Triggering and modulating because depending on the.  
-  
+# <span style="color:rgb(223, 109, 109)">Physiological Responses to Electrical Stimulation<br></span>
+Electrical stimulation does not only activate nerves and muscles — it produces **a cascade of physiological effects** at multiple levels of the body, from the **cellular** to the **systemic** level.  
+These effects explain why electrostimulation is such a powerful tool for **rehabilitation**, **pain control**, and **functional recovery**.
 
-Slots of neurons.  
-  
+## <span style="color:rgb(239, 179, 1)">1. Cellular Level</span>
 
-Of ions.  
-  
+At the cellular scale, electrical stimulation directly affects the **neurons and nearby tissues**:
+- **Excitation of neurons:** the current depolarizes membranes, generating **action potentials** that activate neural pathways.  
+- **Changes in membrane permeability:** repeated activation causes adjustments in ion channel behavior — a process linked to **neural plasticity**.  
+- **Activation of fibroblasts and osteoblasts:** stimulation promotes **cellular activity for tissue and bone regeneration**.  
+- **Improved microcirculation:** active neurons demand more oxygen and nutrients, which increases **local blood flow** — similar to the principle used in functional MRI (BOLD effect).
+## <span style="color:rgb(239, 179, 1)">2. Tissue Level</span>
 
-The effect of the stimulation can be very local or larger.  
-  
+At the tissue level, stimulation has **direct mechanical and regenerative effects**:
+- **Skeletal muscle contraction:** activating motor neurons induces visible muscle movement, which helps preserve or restore muscle mass and strength.  
+- **Smooth muscle contraction:** stimulation can also influence smooth muscles in vessel walls, contributing to **vascular tone regulation**.  
+- **Tissue regeneration:** improved blood flow and cellular activation support **healing and repair** processes.
 
-The larger it is, the higher will be the number of neurons which are triggered, which are firing. Okay?  
-  
+## <span style="color:rgb(239, 179, 1)">3. Segmental Level</span>
 
-So that's the concept of modulation.  
-  
+When stimulation targets specific body segments (e.g., a limb), it creates **functional and circulatory benefits**:
+- **Improved joint mobility:** through repeated muscle activation and joint movement.  
+- **Muscle pumping effect:** muscle contractions act like a **pump**, enhancing **blood and lymph circulation**.  
+- **Changes in microvascular systems:** stimulation influences the small vessels and capillary networks beyond just the muscles.  
+- **Protein exchange and lymphatic activation:** stimulation increases the **movement of charged proteins** into lymphatic channels, improving tissue drainage and detoxification.
 
-So what are the parameters that we can use to control the simulation?  
-  
+## <span style="color:rgb(239, 179, 1)">4. Systemic Effects</span>
 
-Actually, first, the simulation is always given by a sequence of pulses.  
-  
+At the whole-body level, electrical stimulation contributes to several **therapeutic and neuroplastic benefits**:
+- **Analgesic (pain-reducing) effects:**  
+  - Activation of **endogenous pain-suppressing systems** (like endorphins).  
+  - Modulation of **neurotransmitters** that control pain signal transmission.  
+- **Muscle tone recovery:** helps restore normal tone in weak or spastic muscles.  
+- **Bone mineralization:** reactivating muscle contractions increases **mechanical loading on bones**, promoting bone density maintenance.  
+- **Prevention of thrombosis:** the muscle-pumping effect keeps **blood flowing in veins**, reducing the risk of **venous clots** — a key concern in immobilized patients.  
+- **Reduction of chronic pain and spasticity:** by modulating peripheral and central nervous system activity.  
+- **Improvement of peripheral vascularization:** supports tissue health and prevents ulcers or sores, especially in spinal cord–injured patients.  
+- **Facilitation of brain plasticity:**  
+  - When muscle contractions are induced during a task, the sensory feedback (proprioceptive + visual) is sent back to the brain.  
+  - This feedback **enhances cortical reorganization and relearning** — essential for motor recovery after stroke or injury.  
+  - Unlike passive robotic movement, **electrically induced contractions** make the patient’s brain perceive real muscle participation, reinforcing the **sensorimotor loop**.
+## <span style="color:rgb(239, 179, 1)">Conceptual Summary</span>
 
-So each pulse is characterized by two main parameters.  
-  
+| **Level** | **Main Effects** |
+|------------|------------------|
+| **Cellular** | Neuronal excitation, membrane permeability changes, fibroblast/osteoblast activation, improved microcirculation |
+| **Tissue** | Skeletal and smooth muscle contraction, tissue regeneration |
+| **Segmental** | Joint mobility, circulation and lymphatic flow, microvascular changes |
+| **Systemic** | Pain control, muscle tone recovery, bone mineralization, thrombosis prevention, vascular improvement, and brain plasticity |
 
-The amplitude and the duration of the single pulse.  
-  
+In summary, **electrical stimulation acts locally but produces global effects**:  
+it activates cells, improves blood flow, promotes tissue regeneration, restores muscle and bone function, prevents complications like thrombosis, and most importantly — **enhances brain plasticity**, accelerating rehabilitation outcomes.
 
-Of the single pulse which is the pulse width.  
-  
 
-Then we have the distances in time, the distance in time from between subsequent pulses and this is the inverse of the frequency and then we have.  
-  
+# <span style="color:rgb(223, 109, 109)">Peripheral Electrical Stimulation (PES)</span>
 
-We always aim at having.  
-  
+### <span style="color:rgb(161, 40, 226)">Definition</span>
 
-Balance pulses.  
-  
+Peripheral electrical stimulation refers to the application of electrical currents **directly on peripheral nerves or muscles**, using **surface electrodes** placed on the skin. The goal is to **activate motor or sensory fibers** to restore or support muscle function, relieve pain, or promote rehabilitation.
+### <span style="color:rgb(161, 40, 226)">Electrode Configuration</span>
 
-Balance pulses means that to each pulse, follow him pulse. There is always a negative pulse of the same area.  
-  
+- Usually a **bipolar configuration** is used — one **cathode (−)** and one **anode (+)**.
+- The **cathode** causes **depolarization** and activates nearby nerve fibers, while the **anode** completes the circuit.
+    
+### <span style="color:rgb(161, 40, 226)">Positioning and Stimulation Area</span>
 
-Which allows to balance the movement of the ions underneath the skin. So, to avoid any accumulation of ions under the skin. the negative parts do not produce any electrical activity in the neurons.  
-  
+![[Pasted image 20251105154513.png]]
 
-Just avoid to have unbalanced lines.  
-  
+- **Placement:**  
+    Electrodes are placed **close to the motor point** (the spot where a minimal current elicits maximum muscle contraction).  
+    For example, to stimulate the **rectus femoris**, you would place two electrodes along the length of the muscle on the thigh.
+    
+- **Distance between electrodes:**
+    
+    - **Greater distance →** the current **penetrates deeper**, activating a **larger volume** of tissue.
+    - **Smaller distance →** the stimulation is **more localized and specific**.
+        
+- **Electrode size:**
+    - **Larger electrodes →** the **current density decreases**, leading to **broader but less intense stimulation**.
+    - **Smaller electrodes →** the **current density increases**, producing **stronger, more focused activation** in a limited area.
+    
+### <span style="color:rgb(161, 40, 226)">Possible Stimulation Points</span>
 
-Okay, so the shape of the stimuli can be, is one of the parameters that can be decided on the stimulator.  
-  
+1. **Motor points** – to activate muscles efficiently (commonly used for functional or therapeutic stimulation).
+2. **Trigger points** – for treating **muscle spasms** or **referred pain** (used in pain management).
+3. **Acupuncture points** – used in **electroacupuncture** for neuromodulation and analgesia.
+4. **Traumatized areas** – to promote **healing and circulation** after injury.
+    
+### <span style="color:rgb(161, 40, 226)">Summary Table</span>
 
-Most of the time we use square waves.  
-  
+|**Parameter**|**Effect / Description**|
+|---|---|
+|**Configuration**|Bipolar (anode + cathode)|
+|**Electrode distance**|Greater distance → deeper, broader activation|
+|**Electrode size**|Larger → lower current density, smaller → higher density|
+|**Target points**|Motor, trigger, acupuncture, or traumatized zones|
+|**Purpose**|Localized stimulation for muscle activation, pain reduction, or tissue recovery|
 
-Squares.  
-  
+**In short:**  Peripheral electrical stimulation works by placing pairs of electrodes close to nerves or muscles. Adjusting **electrode size, spacing, and placement** allows clinicians to control the **depth, intensity, and selectivity** of the stimulation — whether the goal is **rehabilitation, pain therapy, or tissue healing**.
 
-So the amplitude and the pulse width is the whole information required to characterize the stimulus.  
-  
+# <span style="color:rgb(223, 109, 109)">Types of Electrical Stimulation</span>
 
-This is the VL tower. Now we can...  
-  
+Electrical stimulation techniques differ mainly in **their purpose**, **target structures**, and **stimulation parameters**.  They all use surface electrodes, but their **intensity, frequency, and placement** determine whether they act on **nerves**, **muscles**, or **functional movements**.
 
-So, what happens in the cells when we produce an activation by using electrical stimulation?  
-  
+### <span style="color:rgb(161, 40, 226)">1. TENS – Transcutaneous Electrical Nerve Stimulation</span>
 
-At cellular levels, we have the excitations of the neurons.  
-  
+**Purpose:**  
+Pain management and relaxation.
 
-We have changes in the membrane permeability.  
-  
+**How it works:**
 
-We have fibroblast and osteoblast productions, activation of the production.  
-  
+- Uses **low-voltage electrical impulses** delivered through electrodes placed on the skin.
+- These impulses **modulate nerve activity**, **block pain signals** from reaching the brain (via the spinal cord), and **stimulate endorphin release**, the body’s natural painkillers.
+- It also improves **local blood circulation**, which can help healing.
 
-We have microcirculations because...  
-  
+**Applications:**
 
+- Chronic or acute pain relief (e.g., after injury, surgery, or in neuropathic pain).
+- Non-invasive and low-cost — but evidence of long-term effectiveness is **debated**.
+    
+**Summary:**
+
+|Parameter|Typical Range|
+|---|---|
+|Frequency|1–150 Hz (usually low)|
+|Intensity|Low, sensory level|
+|Target|Sensory nerves|
+|Main Effect|Pain control, relaxation|
+
+### <span style="color:rgb(161, 40, 226)">2. NMES – Neuromuscular Electrical Stimulation</span>
+
+**Purpose:**  
+Muscle re-education and strengthening.
+
+**How it works:**
+
+- Stimulates **motor and sensory neurons**, causing **visible muscle contractions**.
+- The stimulation targets **peripheral nerves**, which have a lower activation threshold than muscle fibers.
+- Helps to **rebuild muscle tone**, **prevent atrophy**, and **reduce spasms**.
+- Also enhances **local circulation** by rhythmic contraction and relaxation.
+    
+
+**Applications:**
+
+- Rehabilitation after immobilization or neurological damage.
+- Used also in sports and fitness for **muscle toning** or **fat burning** (though this is secondary).
+    
+
+**Summary:**
+
+| Parameter   | Typical Range                                |
+| ----------- | -------------------------------------------- |
+| Frequency   | 20–80 Hz                                     |
+| Intensity   | Moderate–high (to elicit contraction)        |
+| Target      | Motor nerves / muscle fibers                 |
+| Main Effect | Muscle strengthening, tone, and re-education |
+
+### <span style="color:rgb(161, 40, 226)">3. FES – Functional Electrical Stimulation</span>
+
+**Purpose:**  
+Restore **functional movements** in individuals with **paralysis or neurological disorders**.
+
+**How it works:**
+
+- Similar mechanism to NMES (activating nerves that innervate muscles),  
+    but the stimulation is **coordinated in time and across multiple muscles** to produce a **meaningful, goal-oriented movement** (e.g., grasping, walking, standing).
+- Often used in combination with **sensors or motion tracking systems**.
+- Supports **motor relearning and brain plasticity** by engaging functional tasks.
+    
+
+**Applications:**
+
+- Stroke, spinal cord injury, multiple sclerosis, and other neurological conditions.
+- Rehabilitation or even **assistive function** in daily life (e.g., helping patients walk).
+    
+
+**Summary:**
+
+| Parameter   | Typical Range                                                     |
+| ----------- | ----------------------------------------------------------------- |
+| Frequency   | 12–100 Hz                                                         |
+| Intensity   | Functional (strong enough to perform task)                        |
+| Target      | Motor nerves (multi-channel coordinated)                          |
+| Main Effect | Restore movement, improve ROM, reduce spasticity, prevent atrophy |
+
+---
+
+### <span style="color:rgb(161, 40, 226)">Comparison Overview</span>
+
+|Feature|**TENS**|**NMES**|**FES**|
+|---|---|---|---|
+|**Main Goal**|Pain relief|Muscle strengthening & re-education|Restore functional movement|
+|**Target**|Sensory nerves|Motor nerves|Motor nerves (coordinated)|
+|**Contraction**|No visible contraction|Local muscle contraction|Task-specific, coordinated contraction|
+|**Typical Use**|Pain management|Rehab, spasm reduction|Neurological rehab (e.g., stroke, SCI)|
+|**Frequency Range**|1–150 Hz|20–80 Hz|12–100 Hz|
+|**Level of complexity**|Simple|Moderate|High (multi-channel, synchronized)|
+
+**In short:**
+
+- **TENS** relieves pain through sensory stimulation.    
+- **NMES** strengthens and re-educates muscles through local contractions.
+- **FES** restores functional, coordinated movements in impaired limbs.
+
+
+33.26
 So.  
-  
-
-If a neuron is activated...  
-  
-
-You have a whole process that follows okay and the process is changing the membrane permeability why we have talked about plasticity so plasticity changes in the permeability of the membrane is driven by the activity.  
-  
-
-Okay? So then the micro... microcirculation. I already mentioned to you that functional magnetic resonance image holds its main assumption on the fact that when neurons work, they ask for energy. And asking for energy means calling for blood in the body.  
-  
-
-Okay?  
-  
-
-And so when you activate neurons, You are.  
-  
-
-Activating as a consequence the circulation, the microcirculation here.  
-  
-
-Then you have a scalar muscle contraction and smooth muscle contraction.  
-  
-
-So if you are activating neurons which are closer to.  
-  
-
-To the nerve muscle junction.  
-  
-
-You are producing the activation of the fibers associated to that.  
-  
-
-Then tissue regeneration is strongly mainly linked with circulation.  
-  
-
-Healing is always dealing with the good blood circulations in the area.  
-  
-
-And then at segmental level.  
-  
-
-What happens? If I start contracting a muscle and so moving a joint.  
-  
-
-I immediately have an effect on the joint mobility.  
-  
-
-Then there is a... Again, the contraction of the muscles is producing a mechanical effect on all the vessels running in the district, nearby the muscles.  
-  
-
-Because the contraction of the muscles is kind of pumping the blood of the vessels.  
-  
-
-Near by the muscles so there is a muscle mounting action that change and that that will affect both the circle the vascularization of the circulation of the blood but also the lymphatic circulation.  
-  
-
-Then the alteration in the microvascular systems which.  
-  
-
-Are not immediately associated with the muscle function, but more on the epithelial response of the vessel themselves.  
-  
-
-And finally, we have also a kind of effect in the protein exchanges.  
-  
-
-So somehow you are revitalizing the area.  
-  
-
-The district, the segmental area.  
-  
-
-And finally, on the systemic level, so whole body level.  
-  
-
-There is an effect on pain, so an analgesic effect.  
-  
-
-Which allows a better control of pain.  
-  
-
-And then because of a gain effect, so a cancelling, a reduction of the running signals on nociceptor fibers.  
-  
-
-And also because of the neural control in presence of pain stimuli.  
-  
-
-And finally, what we are mostly interested in your hub.  
-  
-
-There is...  
-  
-
-A feedback loop that is activated in the sensory motor loop and so the use of electrical stimulation can contribute to the brain plasticity.  
-  
-
-Can you repeat this about brain plasticity? Yes.  
-  
-
-So let's now think at the.  
-  
-
-Neuromuscular electrical stimulation. It applies also to other, but let's stay on this to explain.  
-  
-
-We are using external stimuli and we are producing the contraction of the muscle.  
-  
-
-If.  
-  
-
-I'm doing a rehab at Circus to help...  
-  
-
-The patients and the patient in relearning this control of the arm okay we have always mentioned that it's very important to reactivate the relearning to give the.  
-  
-
-To produce the task to give feedback about the task and to reward so elicit the full loop and this full loop is what needs to be remapped and facilitated by repetitions.  
-  
-
-And finally produce a relearning are you with me so far okay everybody okay now.  
-  
-
-The fact that when I'm doing this.  
-  
-
-Maybe helped by a therapist or a robot.  
-  
-
-My arm muscles may contribute in a very reduced way.  
-  
-
-I'm weak or I do not have a good control or my muscle is flaccid.  
-  
-
-Okay.  
-  
-
-If I give an electrical stimulation, which is associated to the task.  
-  
-
-To the right muscle.  
-  
-
-This activation of the muscle, which is produced... artificially is included inside the whole loop and therefore it contributes to brain plasticity because it is given what is the main difference if.  
-  
-
-The robot is moving the information about the muscle feedback is all about.  
-  
-
-The possibility for the patient to participate otherwise the robot is moving and my arm is my muscles are zero activated okay if i put electrical stimulation on this task i'm.  
-  
-
-Giving back to the bad brain not just the joint feedback the visual feedback the stretching feedback which works also with the robot but also an information about when and which muscles are activated associated with the task so i am to find the information set back to the brain so to enlarge facilitate further the brain of the city.  
-  
-
-So, overall, we can look at all these aspects from a more, let's say.  
-  
-
-Conceptual point of view.  
-  
-
-We have seen some aspects which deals with the macro-form.  
-  
-
-So.  
-  
-
-Functional electrical stimulation produce...  
-  
-
-A positive effect against muscle assholes.  
-  
-
-Then.  
-  
-
-If you are...  
-  
-
-Biomechanics.  
-  
-
-Oh yeah, a lot of BBD.  
-  
-
-Right?  
-  
-
-So.  
-  
-
-Bones are active structures which respond to the loading.  
-  
-
-Correct?  
-  
-
-So.  
-  
-
-If we end the loading on the bones, it's given by the muscles during the movement.  
-  
-
-Of course, it's also given by gravity.  
-  
-
-But then it's given by the muscles during the movement. So to reactivate muscles is also to reload the bone.  
-  
-
-And that's the effect on bone mineralization.  
-  
-
-The stimulation of the heart and the muscles.  
-  
-
-Then we have prevention of thrombosis.  
-  
-
-Thrombosis are a lot inside the veins mainly.  
-  
-
-Which are due to the hmmm to the um.  
-  
-
-So.  
-  
-
-To block venous remaining still in the distript.  
-  
-
-Okay, so if there is not a good circulation.  
-  
-
-The venous might produce clot, not clot, but blood clot. And those blood clot might be super risky in case of... migration to brain or heart. Okay.  
-  
-
-Venous thrombosis is one of the major risks of immobilization.  
-  
-
-It's a reason why also you who are super healthy, super young, super fit, if you are operated by a four ACL anterior cruciate ligaments on your knee.  
-  
-
-They ask you to do heparin every single day.  
-  
-
-Heparin is the 3D finant of the blood to avoid venous clot.  
-  
-
-So.  
-  
-
-This effect of the stimulation for the panting and the microcirculation is reducing the risk of convulsion. Then it reduces the chronic... pain and it improves very good so it has also a huge benefit for example on the skin components for healing or actually more than for healing because usually when you have a sore you you do not want to stimulate because there is a mechanical effect which doesn't have but.  
-  
-
-If a subject is prone to sores.  
-  
-
-The use of electroplastic stimulation helps in preventing the sores. This is typically a huge issue in spinal cord interadjustation.  
-  
-
-And then there is the facilitation of redifficility.  
-  
-
-So we usually consider... these aspects by saying that there are some peripheral effects on the muscle, on the vascularization.  
-  
-
-On the bones, some systemic effects on the cardiac components and brain plasticity. Okay? So peripheral and systemic.  
-  
-
-So we are now.  
-  
-
-Moving to peripheral electrical stimulation. So in this case, the electrode is close by.  
-  
-
-It puts closer to the motor point over the burner.  
-  
-
-A bi-polar configuration is used, and the size and the distance between the electrodes...  
-  
-
-About the previous slide...  
-  
-
-Because I use some devices in terms of...  
-  
-
-EMS technology that use for example by stimulating some nerves try to affect on the other type of I don't know organization for example by stimulating the nerve that passes alongside the ear they try to relieve the stresses or help women to reduce the pain of the periodic cycle for such a time.  
-  
-
-How do we study that nerve stimulation? Okay, this is Vagos nerve stimulation.  
-  
-
-Vagos nerve stimulation is Vagos as we love it. I mean, it has a huge...  
-  
-
-It's a super open point.  
-  
-
-It's very studied. We will not go into that topic specifically.  
-  
-
-It is...  
-  
-
-And.  
-  
-
-The Vagos nurse deals with the... Which level of the study we see this kind of effect?  
-  
-
-Oh, no, actually there you are just using the neuromodulation. It's about brain fat difference.  
-  
-
-So it's a segment level or systemic effect? No.  
-  
-
-It's a very systemic effect because you talk with the Vagos where it is, let's say, superficial.  
-  
-
-But then you are not curing the disc.  
-  
-
-You don't mind at all about the neck, it's just where it is more...  
-  
-
-And then you stimulate the vagus to enter into the sympathetic-antisympathetic realms.  
-  
-
-And it can have a very.  
-  
-
-Let's say.  
-  
-
-Systemic large effect.  
-  
-
-And it's still a lot under debate and but there are some nice studies that... I myself sell the devices about the single digit. Ah, you sold it? Yeah.  
-  
-
-For ETH? No. Yeah, for releasing the sources or reducing the pain of the site. That's... Period. Okay.  
-  
-
-So I was mentioning about the electrodes. The larger are the electrodes and the more distant they are in bipolar configuration.  
-  
-
-The larger is the area which is affected by the stimulation. So if you want to stimulate very precisely, you need to go for a small electrode close by.  
-  
-
-If you want to stimulate the rectus femoris, you will use two square electrodes on that side, one here and one here, so you try to activate the whole muscle.  
-  
-
-Depending on the parameters of stimulation, we can move from electrical nerves.  
-  
-
-Stimulation tends to neuromuscular electrical stimulation and functional electrical stimulation. Transglutinous electrical neurostimulation is the more or let's say soft.  
-  
-
-And it deals with the management of pain by modulating the nerve activity and promoting endorphin releases.  
-  
-
-I would say it uses electrodes placed on the skin to deliver low voltage electrical pulses. It blocks pain signals from reaching the brain.  
-  
-
-Via the spinal cord.  
-  
-
-It stimulates endorphin production.  
-  
-
-Which naturally reduces the pain perception.  
-  
-
-And it enhances the local blood circulation.  
-  
-
-It is more discussed.  
-  
-
-I wouldn't say, I mean, on some applications it is. recognized but there is a lot of debate around that because it's really a low cost increase.  
-  
-
-Why? And then yes, it stimulates sensory and motor neurons.  
-  
-
-It helps in relaxing in case of spasm.  
-  
-
-It works against atrophy.  
-  
-
-So the muscle tone.  
-  
-
-It improves the local circulations and it re-educates muscles.  
-  
-
-So when we talk about neuromuscular electrical stimulation, we are contracting, we are stimulating a muscle to produce a contraction.  
-  
-
-So we usually are stimulating the nerve in the muscles because nerves have superficial and they have lower thresholds so they are responsive earlier.  
-  
-
-When do we say that we go for FES, functional electrical stimulation?  
-  
-
-We are still activating nerves that innervate muscles.  
-  
-
-But the main difference between an MES and an FES is that in the case of FES, the goal is to produce a target movement.  
-  
-
-So.  
-  
-
-In...  
-  
-
-FES activates nerves in the rating extremity affected by paralysis or and neurological disability to restore functions. So it does the same things as an FES because it's stronger and synchronized.  
-  
-
-So it prevents atrophy, it improves the range of motion because you are training mobility.  
-  
-
-It reduces plasticity it really okay functions and it can supplement or totals so when we talk about healthy and subject in doing the task we are talking about function.  
-  
-
-Enhancing the speed of fat burning.  
-  
-
-Speed of?  
-  
-
-Fat burning. Burning fat. Ah, I see. Who want to do bodybuilding or... In sports, let's say.  
-  
-
-In sports and aesthetic issues.  
-  
-
-I mean, you are increasing the muscle tone. So muscle tone at the end. And you are...  
-  
-
-Producing macrocontraction which burn calories at the end. This is a build.  
-  
-
-So.  
-  
-
-If we start.  
-  
-
-Let's think of increasing the stimulation.  
-  
-
-We are increasing the stimulation and the stimulation is...  
-  
-
-And the simulation is applied on the nerves which is inserted, which is connected to a muscle.  
+If we start.  Let's think of increasing the stimulation.  We are increasing the stimulation and the stimulation is...  And the simulation is applied on the nerves which is inserted, which is connected to a muscle.  
   
 
 Okay?  
