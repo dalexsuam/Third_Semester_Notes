@@ -31,6 +31,13 @@
         "type": "DIRECTORIES",
         "pattern": "SensorSystems",
         "patternType": "STRICT"
+      },
+      {
+        "name": "",
+        "active": true,
+        "type": "DIRECTORIES",
+        "pattern": "VirtualModelling",
+        "patternType": "STRICT"
       }
     ],
     "frontMatter": [

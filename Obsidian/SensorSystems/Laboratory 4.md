@@ -26,7 +26,7 @@ Each frame starts with an **idle line**, followed by a **start bit**, then the *
 You can configure the **number of data bits** per frame and, optionally, include a **parity bit** for **error detection**.
 
 - In **even parity**, the parity bit is set to 1 if the number of 1s in the data is even.
-- In **odd parity**, it’s set to 1 if the number of 1s is odd.
+- In **odd parity**, it’s set to 0 if the number of 1s is odd.
     
 This simple check helps detect transmission errors — though it’s not perfect, it provides basic protection against corrupted data.
 
