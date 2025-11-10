@@ -311,753 +311,292 @@ Restore **functional movements** in individuals with **paralysis or neurological
 - **FES** restores functional, coordinated movements in impaired limbs.
 
 
-33.26
-So.  
-If we start.  Let's think of increasing the stimulation.  We are increasing the stimulation and the stimulation is...  And the simulation is applied on the nerves which is inserted, which is connected to a muscle.  
-  
-
-Okay?  
-  
-
-Actually.  
-  
-
-Nerves bundles are always mixed nerves.  
-  
-
-Which means that they do have inside the bundle both...  
-  
-
-Motor fibers, so efferent fibers.  
-  
-
-And aspirant fibers, so sensory fibers.  
-  
-
-And when we are activating a nerve, we are activating the mixed bundle.  
-  
-
-Who is activated depends on the pressure.  
-  
-
-...freshers, your sensory fibers is lower.  
-  
-
-And so we first have the activation of sensory aspirin.  
-  
-
-And this occurs as soon as we meet the sensory pressure.  
-  
-
-Then if we increase the level of... stimulation would have the neuromuscular electrical stimulation where.  
-  
-
-Both sensory and motor fibers are activated.  
-  
-
-And if we increase further the stimulation, we will have that the resulting muscular contraction can be functional, so can produce movement.  
-  
-
-Okay, this is just... the explanation of it. So let's just comment a little bit. So the sensory-afferent direction of simulation is the activation of sensory axons that convey signals from the point of simulation to the TN in an orthodontic-afferent direction. So sensory- afferent going to the brain.  
-  
-
-What is the H-reflux? We see the sensory after stimulation can be recognized by the appearance of the H-reflux.  
-  
-
-The H-reflux is measured by the EMG on the target muscle.  
-  
-
-And the H-reflux is...  
-  
-
-Produced by the arc reflected at the spine.  
-  
-
-So.  
-  
-
-If I activate the afferent fibers.  
-  
-
-The afferent fibers are connected by the arc reflected at the spinal level with the corresponding motor parts.  
-  
-
-And therefore, I can bring on the EMG a reflector and a... to activate a pulse of activation which is associated to the sensory-adherent electrical stimulation.  
-  
-
-This wave on the EMG is called H-wave or H-wave.  
-  
-
-The sensory-adherent electrical stimulation increases sensory input to the brain sensory motor sensors.  
-  
-
-Thereby facilitates improvements in sensory motor function. So.  
-  
-
-Even if it is not activating the muscles producing the movement.  
-  
-
-Sensory-acquired electrical assimilation can be used for giving proprioceptive and augmentation of the proprioceptive input.  
-  
-
-If it is a associated to the task it makes sense okay so just to give you an idea of the history bringing here the first part about electrical stimulation or patented in Ljubljana, which used to be Yugoslavia, I guess. Do we have anybody from the team?  
-  
-
-By the group of Othner and Lieberson.  
-  
-
-And it was applied to the drop group correction.  
-  
-
-So they were using two electrodes to activate the gibialis anterior. during the swing phase of the patient.  
-  
-
-And actually.  
-  
-
-In the.  
-  
-
-70s and 80s.  
-  
-
-There was a large, let's say, enthusiasm about the possibility of using functional electrical stimulation the video is not moving, I see.  
-  
-
-The functional electrical stimulation on patients with spinal cord injury.  
-  
-
-With the idea of having.  
-  
-
-If I can have a controlled solution of sequential stimulation of the multiple muscles.  
-  
-
-So to produce the sequence of muscular activation of the gait, I can have a patient having a spinal cord injury, so having a deficit in the control. of the limbs of the lower limbs in redoing.  
-  
-
-The gates, the walk.  
-  
-
-This was a, there was a large enthusiasm which did not end up in a real clinical translation.  
-  
-
-You don't see people going, I mean, you see the wheelchair people.  
-  
-
-Actually.  
-  
-
-Not because it's inefficient, but it's too complicated.  
-  
-
-With respect to the wheelchair use, which is super effective.  
-  
-
-Robust and usable.  
-  
-
-So.  
-  
-
-After those attempts, most of the focus on functional electrical stimulation was moved from the.  
-  
-
-Restoration point of view, so from the just the activation of the secret of muscles to the brain, so to the relearning process. So, when we use FES, we are using electrical stimulation of a mixed nerve in order to produce a goal-oriented function of the brain.  
-  
-
-And the purpose is to restore or improve a motor function in an individual having neurological impairments.  
-  
-
-Let's see, okay. When we activate, we have one that runs through the sensory fiber and... Sorry.  
-  
-
-The animation, okay.  
-  
-
-Okay this is the age record.  
-  
-
-I've explained you before okay sorry there is no the animation of the envoy so we are making both the sensory and motor fibers okay and so we have the stimulus on the nixle nerve.  
-  
-
-Activation of the sensory produce this loop and of course from the spine goes also upward to the the activation of the motor fibers produce this direct activation through the muscles and this is read as the M wave.  
-  
-
-The M wave is faster than the H-wave that needs to pass through the spine. Okay, so this is, let's say, the EMG.  
-  
-
-On the EMG of these muscles, of the target muscles, we will see first the M-wave and after the H-wave.  
-  
-
-These are things that I've already mentioned to you.  
-  
-
-So if we want to compare FES with NMES.  
-  
-
-The main difference is that the NMES is producing an involuntary muscle contraction.  
-  
-
-While FES goes for a goal-oriented. Involuntary is not the correct term in the sense that devolution is another story.  
-  
-
-But it's a muscle contraction that does not produce a task.  
-  
-
-It's important.  
-  
-
-The neuromuscular... simulation is improving the muscle form therefore in patients that want to create with the function of electrical stimulation you need to start with neural muscular electrical simulation to.  
-  
-
-Train the muscles to be able to.  
-  
-
-To properly respond to higher stimulation. Otherwise, what happens is, if you have a very atrophied muscles.  
-  
-
-What happens is that, of course, you can.  
-  
-
-Let's say, increase the stimulation and have contraction, but after a very short period, they are just not in, and their muscles do not answer. That's why at training periods, might be necessary and the training period is done by your muscle without tasks associated.  
-  
-
-Okay.  
-  
-
-What we need to talk now is about what happens in the muscle.  
-  
-
-So we are using this.  
-  
-
-Let's say, artificial means to activate, to.  
-  
-
-Bring the the nerve fibers to activation okay let's see what happens in the mouth.  
-  
-
-Okay.  
-  
-
-So what we will see if we read the EMG of a muscle when we are stimulated.  
-  
-
-We'll see a huge article of the stimulation.  
-  
-
-Then we'll see the.  
-  
-
-M wave and then the H wave that is open Inside is, let's say.  
-  
-
-Masked.  
-  
-
-And then, before the next pulse, we might see some volitional contribution of the target.  
-  
-
-Where the M wave, the artifact and the M wave are super repeatable because you are giving pulses.  
-  
-
-While the volitional contribution is a less repeatable component.  
-  
-
-So depending on the level of charge of the stimulus, which we summarize here, the stimulus intensity.  
-  
-
-Which is usually measured by the charge of the pulses.  
-  
-
-Which is amplitude multiplied by pulses.  
-  
-
-So the area under the pulses. Okay.  
-  
-
-So.  
-  
-
-The higher the stimulus intensity.  
-  
-
-So if we are increasing the stimulus intensity, there will be a point when we start to see some contractions.  
-  
-
-So when the number of fibers activated is enough to see.  
-  
-
-Then we will have that if we increase the intensity the contraction will be larger until the point when we have recruited the whole fibers reachable from those electrodes and Therefore.  
-  
-
-Whatever you increase in this... stimulus you are achieving the same force by that muscle.  
-  
-
-So there is a stronger saturation problem.  
-  
-
-But so far this applies also to the natural muscle contraction. So also for our natural control of the muscles.  
-  
-
-At a certain point we do not produce higher force because we are recruiting all the fibers of our muscles.  
-  
-
-But what happens in our natural contraction?  
-  
-
-If.  
-  
-
-I mean.  
-  
-
-Think about your writing skills.  
-  
-
-On your right or when you do a very fine.  
-  
-
-Fine arts.  
-  
-
-Painting...  
-  
-
-We are really able to modulate the force of our muscles in a very fine way.  
-  
-
-How the brain is achieving this? Because we have different branches of the nerves connected to different parts.  
-  
-
-Of the different subsets of muscular fibers.  
-  
-
-And therefore the different spike training running on those different points on the muscles can produce a very modulated activation of the ensemble of the fibers.  
-  
-
-But more than that, what our brain is normally using is...  
-  
-
-I can't see anything.  
-  
-
-Three people. Stop!  
-  
-
-Three people down here. Don't give me anything in my hand.  
-  
-
-Don't move.  
-  
-
-So, the point is the turnover of the fibers.  
-  
-
-So, to keep the same force.  
-  
-
-Our brain is continuously switching between different fibers.  
-  
-
-The output effect is a stable condition.  
-  
-
-But each single fiber is continuously switching on and off.  
-  
-
-Possibility for our brain is essential for reducing fatigue because fatigue deals with the single fiber being fatigue and so if the single fiber is not always kept on but is alternated the overall fatigue is reduced.  
-  
-
-And this is a super.  
-  
-
-Let's say, smart resource of our brain.  
-  
-
-Again, the laziness of our brain.  
-  
-
-And then.  
-  
-
-If we do this kind of alternation, so turnover of fiber activations, by having asynchronous activations.  
-  
-
-Which means that one fiber can be on, and the other is off, and then this is on and the other is off, so they are switching each other.  
-  
-
-We can have a continuous force by having the single fibers being activated every now and then.  
-  
-
-So we can keep a force with a single fiber frequency of activations around.  
-  
-
-10 hertz and again we are talking about natural muscle contraction the selection of the fibers by our brain is not random follows a specific sequence so first our brain starts activating resistance fatigue fibers which are.  
-  
-
-Type.  
-  
-
-1 fibers. So the small diameter is the aerobic fibers.  
-  
-
-So aerobic fibers, so oxidative metabolism. Then, and they have very short recovery period.  
-  
-
-Then if it needs stronger activations.  
-  
-
-The natural...  
-  
-
-Progressive activation recruits the type IIa fibers, which are a kind of average condition.  
-  
-
-Only when a very strong activation is required.  
-  
-
-The type IIb fibers are pulled into the plate.  
-  
-
-And those fibers are Arabic. one producing higher forces, fast contraction, and they typically have a glycolytic metabolism, so anaerobic metabolism.  
-  
-
-So they produce high forces, but they need a long recovery period, so they are fast fatigued.  
-  
-
-So our brain starts saying, okay, let's start cautious.  
-  
-
-Let's use a fiber that... can keep longer if they are enough and only when the request is higher is using the let's say stronger but more fatiguing fibers what are the characteristics of these different fibers small diameters relatively large diameter.  
-  
-
-Very large diameters.  
-  
-
-So what happens when we start moving from the natural contraction to the artificial contraction?  
-  
-
-The first fact that we need to consider is that the generation of the action potential depends on the threshold.  
-  
-
-The action potential of fiber is generated when the externally produced change in the membrane voltage achieves the threshold.  
-  
-
-And the larger the fiber diameter.  
-  
-
-The lower the threshold.  
-  
-
-So.  
-  
-
-And second point.  
-  
-
-The stimulation depends on the relative position between the electrodes and the fibers.  
-  
-
-But this relative position, once you put the electrodes, is fixed.  
-  
-
-So.  
-  
-
-This...  
-  
-
-No, that was not a list.  
-  
-
-Okay. The situation means that it's here or not?  
-  
-
-Wait.  
-  
+## <span style="color:rgb(239, 179, 1)">Sensory Afferent Electrical Stimulation (SAES) and the H-Reflex</span>
 
-So, no. It's here.  
-  
-
-So, this is the electrode. And this is the bundle of nerve fibers.  
-  
-
-Okay?  
-  
-
-This section.  
-  
-
-So.  
-  
-
-Initially, I start increasing the quantity of charge over time.  
-  
-
-And I will see first the closer fibers with lower thresholds and therefore with larger parameters are the first.  
-  
-
-Who start firing and so i will start seeing some force produced then if i keep going in improving the charge also the very close lower smaller diameters will achieve the thresholds.  
-  
-
-And deeper larger time diameters will achieve the threshold as well and so i will see some increase over time increasing the charge until when i got to the whole fibers activation and this is the saturation effect okay now if we consider this brass From the point of view of digging.  
-  
-
-We will have that those three larger diameter fibers will be always activated by the pulse until here but they are short highly fatigue because they are large.  
-  
-
-And therefore they will be the first one starting to decrease their effect. because of fatigue.  
-  
+When we apply electrical stimulation to a **nerve connected to a muscle**, we are actually stimulating a **mixed nerve** — meaning it contains both:
 
-So what is super important is that by the external pulses.  
-  
+![[Pasted image 20251108150059.png]]
 
-We do not modulate the type of powers.  
-  
+- **Motor (efferent) fibers**, which carry commands **from the central nervous system to the muscle**, and
+- **Sensory (afferent) fibers**, which carry information **from the periphery to the brain**.
+    
+![[Pasted image 20251108150223.png]]
+### <span style="color:rgb(161, 40, 226)">Stepwise Activation Depending on Stimulation Intensity</span>
 
-Everything will depend on the threshold versus relative position.  
-  
+As we gradually **increase the stimulation intensity**, different types of fibers are recruited in sequence:
 
-And this...  
-  
+1. **At low stimulation levels**, only the **sensory afferent fibers** are activated, because they have a **lower activation threshold** (they are more excitable).
+2. **At moderate levels**, both **sensory and motor fibers** are stimulated, leading to **neuromuscular electrical stimulation (NMES)** — visible muscle contractions begin to appear.
+3. **At higher levels**, the stimulation can generate a **coordinated, functional muscle contraction**, resulting in **functional electrical stimulation (FES)** — the muscle performs a meaningful movement.
 
-Means that we are totally losing the possibility of turnover and of exploiting the different fibers.  
-  
+### <span style="color:rgb(161, 40, 226)">Sensory Afferent Stimulation and the H-Reflex</span>
 
-That's why.  
-  
+When the **sensory afferent fibers** are stimulated, they conduct impulses **toward the spinal cord** in the **orthodromic (normal) direction**.  
+At the spinal level, these afferent fibers **synapse directly with motor neurons** through a **reflex arc**.  
+This causes the **motor neurons** to fire, sending signals back to the muscle — even though the stimulation was originally sensory.
 
-For example, bodybuilding, the repetition of workouts is usually recommended in order to reach this saturation.  
-  
+This **reflex response** can be detected on an **EMG (electromyogram)** as a **distinct wave**, called the **H-wave** or **H-reflex**.
 
-So.  
-  
+- The **H-reflex** is essentially an **electrically evoked spinal reflex**, similar to the natural stretch reflex.
+- It reflects the integrity and excitability of the **sensory-motor pathway**.
 
-I'm not teaching bodybuilding.  
-  
+### <span style="color:rgb(161, 40, 226)">Functional Meaning</span>
 
-Okay. So, now.  
-  
+Although **sensory afferent stimulation** doesn’t directly cause voluntary movement, it can still have **therapeutic benefits**:
 
-Let's consider one goal. We need to keep a form.  
-  
+- It **increases sensory input** to the **sensorimotor areas of the brain**, enhancing proprioceptive feedback.
+- This **facilitates neuroplastic changes** and helps to **improve sensorimotor functions**, especially when it is **combined with a functional task** (e.g., during movement training or rehabilitation).
+    
 
-Okay?  
-  
+So, even without muscle activation, **sensory stimulation** can **support motor recovery** by strengthening the communication between sensory input and motor output systems.
 
-Natural contraction was used in the turnover and depending on the level of force will recruit the different fibers.  
-  
+ **In summary:**
 
-How can we achieve a stable force with the approach of using artificial pulses?  
-  
+- **Low stimulation → sensory afferent activation → H-reflex observed in EMG**.
+- **Moderate stimulation → neuromuscular activation (NMES)**.
+- **High stimulation → functional contractions (FES)**.
+- **Sensory afferent stimulation** enhances proprioceptive input and promotes **sensorimotor recovery** through **spinal and cortical mechanisms**.
 
-At the end we need to go faster to avoid twitches. in between the pulses because the frequency of stimulation so the the inverse of the distance between pulses because in time between pulses will tell about the time for the cleaning in between the pulses if you need to keep a force You need the pulses to be close enough to not see the twitches.  
-  
 
-And therefore you can see that not to see the twitches we need to go at 30 Hz.  
-  
+## <span style="color:rgb(239, 179, 1)">Historical Background of Functional Electrical Stimulation (FES)</span>
 
-50 Hz.  
-  
+![[Pasted image 20251108150555.png]]
 
-Which means that we are giving more pulses to always the same fiber except starting from large diameter fibers.  
-  
+The **early development of electrical stimulation for motor rehabilitation** dates back to the first patent registered in **Ljubljana (formerly Yugoslavia)** by the **group of Othner and Lieberson**.  
+Their pioneering work applied **functional electrical stimulation (FES)** to correct **foot drop** — a common gait deficit caused by weakness or paralysis of the **tibialis anterior** muscle.
 
-Correct.  
-  
+In this setup, **two electrodes** were placed over the tibialis anterior to **activate the muscle during the swing phase** of walking, allowing the foot to lift properly and avoid dragging.
 
-And so what will be the consequence?  
-  
+### <span style="color:rgb(161, 40, 226)">The Enthusiastic Years (1970s–1980s)</span>
 
-We are giving more. Let's keep a force for one minute.  
-  
+During the **1970s and 1980s**, there was **great optimism** about the potential of FES to **restore motor function** in patients with **spinal cord injury (SCI)**.  
+Researchers believed that by **sequentially stimulating multiple muscles** in a **controlled pattern**, it would be possible to reproduce the **natural sequence of muscle activations** required for **walking (gait)**.
 
-Instead of giving.  
-  
+The vision was that FES could enable **paralyzed patients** to regain **independent mobility**, even in severe cases of spinal lesions.
 
-100 pulses, we are giving.  
-  
+### <span style="color:rgb(161, 40, 226)">Why It Did Not Fully Translate Clinically</span>
 
-400 pulses.  
-  
+However, despite encouraging laboratory results, this approach **did not lead to widespread clinical use**.  
+The main reason was **not inefficacy**, but rather **complexity**:
 
-Okay? And we are giving those pulses to the same fibers. because you cannot select and actually those same fibers are also the more fatiguing one.  
-  
+- Coordinating the precise **timing and intensity** of stimulation across several muscles proved **technically demanding**.
+- The systems required **extensive calibration** and **constant supervision**.
+- In comparison, **wheelchairs** offered a much more **robust, practical, and efficient** solution for daily mobility.
+    
+### <span style="color:rgb(161, 40, 226)">Shift in Focus</span>
 
-What will be the consequence of this stimulation?  
-  
+After these early attempts, the focus of FES research **shifted** —  
+from **pure functional restoration** (i.e., directly reproducing lost movements)  
+to **therapeutic and rehabilitative applications**, where electrical stimulation is used to **facilitate motor relearning** and **neuroplastic recovery** rather than to mechanically replace function.
 
-I reach the un-complicative.  
-  
+## <span style="color:rgb(239, 179, 1)">Functional Electrical Stimulation (FES) — Mechanism of Action</span>
 
-And this would be a positive consequence but there is something negative.  
-  
+![[Pasted image 20251108151141.png]]
+When we use **Functional Electrical Stimulation (FES)**, we are applying **electrical stimulation to a mixed peripheral nerve** — that is, a nerve containing **both sensory (afferent)** and **motor (efferent)** fibers.
 
-You reach fatigue much more. You reach the time, you can reach, I mean, depending on the level of stimulation, you can reach the time of contraction. But the problem is that keeping the contraction is less possible because of fatigue. Also muscle lose its maximum force capability. Which is fatigue.  
-  
+The **goal** of FES is to **restore or enhance a motor function** in individuals with **neurological impairments**, by producing **goal-directed muscle activation** that contributes to a functional movement (for example, grasping or walking).
 
-It's a consequence of fatigue.  
-  
+![[Pasted image 20251108151155.png]]
+### <span style="color:rgb(161, 40, 226)">Dual Activation of Sensory and Motor Fibers</span>
 
-Now the other point which is the consequence of these considerations about the comparison of natural and exhibition induced construction one is we will have a faster appearance of fatigue the other is that we will have less ...ability of modulating the movement.  
-  
+When an electrical stimulus is applied to a **mixed nerve**, two main effects occur:
 
-Why? Because we cannot call for specific single fibers.  
-  
+1. **Activation of sensory (afferent) fibers:**
+    - These fibers send signals **toward the spinal cord and the brain**.
+    - The sensory input activates **reflex pathways** at the **spinal level** (through the so-called _reflex arc_).
+    - This reflex activation can trigger the **H-reflex**, which represents an **indirect muscle response** mediated by the spinal cord.
+        
+2. **Activation of motor (efferent) fibers:**
+    
+    - These fibers directly carry the stimulus **from the spinal cord to the muscle**.
+    - This produces a **direct muscle contraction**, detectable as the **M-wave** on the electromyogram (EMG).
 
-Once we have positioned the electrodes.  
-  
+###  <span style="color:rgb(161, 40, 226)">The M-wave and H-wave</span>
+
+When the electrical stimulation is recorded with an EMG placed on the target muscle, **two distinct responses** can be observed:
+
+- **M-wave (motor wave):**    
+    - Caused by the **direct activation** of motor fibers.
+    - Appears **first** on the EMG because it travels **directly** from the nerve to the muscle.
+        
+- **H-wave (H-reflex):**
+    - Caused by **indirect activation** through the **sensory fibers**, which send impulses to the spinal cord, where they synapse with motor neurons and elicit a delayed response.
+    - Appears **after** the M-wave because the signal must **travel through the spinal loop** before reaching the muscle again.
+  
+## <span style="color:rgb(239, 179, 1)">Comparison Between NMES and FES</span>
+
+Although **Neuromuscular Electrical Stimulation (NMES)** and **Functional Electrical Stimulation (FES)** both use electrical currents to activate muscles, their **goals, applications, and control strategies** are quite different.
+### <span style="color:rgb(161, 40, 226)">Neuromuscular Electrical Stimulation (NMES)</span>
+
+- **Purpose:**  
+    The main goal is **muscle strengthening** and **rehabilitation**.  
+    It is used to **prevent or reduce muscle atrophy**, **improve circulation**, and **maintain muscle tone**, especially after injury or immobilization.
+    
+- **Type of Activation:**  
+    The muscle contraction produced by NMES is **not linked to a specific functional task**.  
+    It is often described as _involuntary_ because it does not result from a voluntary motor command from the brain, but rather from direct electrical activation of motor nerves.
+    
+- **Use in Therapy:**  
+    NMES is often used as a **preparatory stage** before applying FES.  
+    This helps to _train weakened muscles_ so they can later respond effectively to functional stimulation.  
+    Without this preliminary training, severely atrophied muscles may fatigue quickly and fail to respond properly.
+    
+- **Typical Applications:**
+    
+    - Physical therapy and sports recovery
+    - Pain management
+    - Prevention of disuse atrophy
+        
+### <span style="color:rgb(161, 40, 226)">Functional Electrical Stimulation (FES)</span>
 
-Which fibers will be activated is kind of fixed according to the level of simulation. So, we will be able to modulate, but we will... lose a very fine modulation.  
-  
+- **Purpose:**  
+    FES aims to **restore or enhance functional movement** in patients with neurological impairments.  
+    The stimulation is **task-specific**, meaning it is designed to produce a **goal-oriented movement** such as walking, grasping, or standing.
+    
+- **Type of Activation:**  
+    The stimulation still induces muscle contraction electrically, but it is **coordinated and timed** to perform a **useful motor function**.  
+    In this way, FES contributes not only to muscle activation but also to **motor relearning and brain plasticity**.
+    
+- **Use in Therapy:**  
+    FES is used in **neurological rehabilitation**, such as in patients with **stroke**, **spinal cord injury**, or **multiple sclerosis**, to re-educate the nervous system and promote recovery of voluntary control.
+    
+- **Typical Applications:**
+    
+    - Assisting or restoring movements (e.g., walking, grasping)
+    - Long-term rehabilitation for neurological patients
+    - Integration with robotic or wearable assistive systems
+### <span style="color:rgb(161, 40, 226)"> Summary Table</span>
 
-So.  
-  
+|**Feature**|**NMES**|**FES**|
+|---|---|---|
+|**Purpose**|Muscle strengthening and rehabilitation|Functional movement restoration|
+|**Control**|Non-task-specific contractions|Controlled, task-specific stimulation|
+|**Application**|Physical therapy, sports recovery, pain relief|Assisting functional tasks (walking, grasping)|
+|**Target Users**|Athletes, rehab patients, pain management|Neurological patients with motor impairments|
+|**Device Type**|Standalone muscle stimulator|Wearable or integrated motion-based systems|
+ **In summary:**
 
-In artificial construction we have a synchronous synchronicity of fiber activation.  
-  
+- **NMES** focuses on **muscle conditioning**, without linking the contraction to a specific task.
+- **FES**, on the other hand, aims to **restore meaningful movement**, coordinating electrical stimulation with a **functional goal** — contributing directly to **motor recovery and brain plasticity**.
+    
 
-There is no turnover of motor units and the recruitment is.  
-  
+## <span style="color:rgb(239, 179, 1)">EMG Signal During hybrid muscle contractions</span>
 
-The equipment order of fibers is partially fixed.  
-  
+When we use electrical stimulation — such as FES or NMES — we are artificially activating the nerve fibers that innervate a muscle. This causes the muscle to contract even without natural commands from the brain. To understand what happens inside the muscle during this process, it’s useful to look at what the EMG signal shows.
 
-From larger to smaller diameter.  
-  
+![[Pasted image 20251108152553.png]]
 
-This.  
-  
+If we record the EMG of a muscle under electrical stimulation, we first see a large **stimulation artifact**, which is just the electrical noise produced by the current itself. Then, we observe the **M-wave**, which represents the direct activation of the motor fibers by the stimulation. After that, there may appear an **H-wave**, which results from the reflex pathway: the stimulation travels along the sensory fibers to the spinal cord and then back through the motor fibers. The M-wave appears first because it’s a direct response, while the H-wave is slower since it involves this reflex loop. Finally, we might also see some **volitional EMG activity** — that is, small, natural muscle activations coming from the person’s own effort — which are less regular and less intense than the stimulation-induced waves.
 
-Let's say.  
-  
+![[Pasted image 20251108152618.png]]
+![[Pasted image 20251108152642.png|200]]
 
-Oppose to the capability of our physiological natural construction of being asynchronous.  
-  
+Now, if we increase the intensity of the stimulation — meaning the total charge of the pulse (amplitude × pulse duration) — we start to recruit more and more muscle fibers. At low intensities, only a few fibers are activated, so the contraction is weak. As the intensity grows, the contraction becomes stronger until it reaches a plateau, when all recruitable fibers under those electrodes are already activated. Beyond that point, increasing the current won’t increase the force anymore — this is known as **saturation**. The same phenomenon happens in natural muscle contractions: once all fibers are active, the muscle can’t generate more force.
 
-Of exploiting turnover, and of using proper recruitment orders by our brain.  
-  
+However, **there is a key difference** between natural and electrically induced contractions. In a **natural contraction**, our brain can finely control the muscle force. It does this by selectively activating small groups of fibers and continuously alternating between them — a process called **fiber turnover** or **asynchronous activation**. While some fibers are active, others rest and recover, then they switch roles. This allows the muscle to maintain a steady force with minimal fatigue. Each individual fiber might only be activated around **10 Hz**, but because they are not firing all at once, the total effect is a smooth and stable contraction.
 
-As a consequence, the artificial activation limits are muscle fatigue and the fine modulation of the contractions.  
-  
+In contrast, during **electrical stimulation**, the activation is **synchronous** — all the fibers under the electrodes fire at the same time with each pulse. This generates a less natural contraction and leads to **faster muscle fatigue**, since the same fibers are repeatedly activated without rest.
 
-Furthermore, if we are dealing with the palliative muscles.  
-  
+![[Pasted image 20251108152735.png]]
 
-We have also that a muscle after a long period of atrophy.  
-  
+Another important difference concerns the **order of recruitment of muscle fibers**.
 
-Immobilizations is reducing its cross-section, so it's a product.  
-  
+- In natural contractions, the brain follows a **progressive recruitment**: it starts with **Type I fibers**, which are small, deep, slow-contracting, and highly fatigue-resistant (aerobic metabolism).
+- When more force is needed, it recruits **Type IIa fibers**, which are larger, faster, and moderately fatigue-resistant, using both aerobic and anaerobic metabolism.
+- Finally, for very strong contractions, the **Type IIb fibers** are activated. These are large, close to the surface, and produce high force quickly — but they rely on anaerobic (glycolytic) metabolism, meaning they fatigue fast and require long recovery periods.
+    
+This natural progression — from slow, fatigue-resistant fibers to fast, powerful ones — allows for smooth, efficient muscle control. Unfortunately, **electrical stimulation reverses this order**, because larger fibers (Type II) have lower electrical resistance and are activated first. As a result, electrically induced contractions tend to fatigue much more quickly than natural ones.
 
-And there is also a conversion of the fibers.  
-  
+## <span style="color:rgb(239, 179, 1)">Artificial Muscular Contraction</span>
 
-Which goes from type 1 to type 2, so we will have more fatiguing fibers.  
-  
+![[Pasted image 20251108215923.png]]
+When we move from a **natural contraction** to an **artificial (electrically induced) contraction**, several key changes occur in how muscle fibers are recruited and activated.
 
-This is why often.  
-  
 
-I mentioned you already, we use some preparatory training of the muscles before attempting to use it in functional electrical stimulation.  
-  
 
-Okay, I think we can have a break now.  
-  
+The first thing to understand is that the generation of an **action potential** in a muscle fiber depends on reaching a **threshold voltage** across the membrane. An action potential is triggered only when the externally applied electrical field causes a sufficient change in the membrane potential to reach that threshold.
 
-Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. Okay. We need...  
-  
+Now, the **threshold value depends on the fiber diameter**:
 
-So, just to answer a couple of questions that I received during the break.  
-  
+- **Larger-diameter fibers** have **lower activation thresholds**, meaning they are **activated first** when an external current is applied.
+- **Smaller-diameter fibers** require **stronger stimulation** to reach threshold and are therefore **recruited later** as the stimulation intensity increases.
+    
+The second important factor is the **relative position of the electrodes** with respect to the nerve fibers. Once the electrodes are placed on the skin, this position is fixed — you cannot dynamically change which fibers are closer or farther from the electric field. Therefore, the recruitment order during artificial stimulation depends only on two things:
 
-On Friday in Villa Verretta.  
-  
+1. The **threshold of each fiber**, and
+2. The **distance** between that fiber and the electrodes.
 
-I will try to use as much time as possible. as we can so.  
-  
+![[Pasted image 20251108215904.png]]
 
-11 15 to 15. then you are totally free to arrive when you arrive you just ask where we are and if you need to go home earlier you just leave when you want to go Okay.  
-  
+If we start increasing the **stimulus intensity**, which corresponds to the **charge of the pulse (current × pulse width)**, the first fibers to be activated will be those **closest to the electrodes** and with **lower thresholds** — typically the **large, fast, and easily fatigable fibers**.  
 
-And the lecture that will be done inside by the police is part of the content of the course.  
-  
+As we keep increasing the stimulation charge, more and more fibers (including smaller or deeper ones) reach their activation threshold, and the total **muscle force** increases. Eventually, we reach a point where all accessible fibers have been recruited, and the **force saturates** — this is the **saturation effect**. Beyond that point, increasing the current further doesn’t produce more force, since all available fibers are already firing.
 
-But we will do our best to record it on site.  
-  
+However, this mechanism introduces a major limitation.  
+Because **the same set of fibers** (mostly the large, easily fatigable ones) are **always activated together** with each electrical pulse, the muscle rapidly experiences **fatigue**. These fibers — which in natural conditions would be used only occasionally — are repeatedly activated with no opportunity to rest.
 
-Right.  
-  
+In other words, **artificial stimulation is non-selective and spatially fixed**. It cannot alternate between fibers or modulate their activation dynamically, as the brain does during natural movement. All fibers under the electrodes fire **synchronously**, losing the natural **asynchronous turnover** that normally helps prevent fatigue.
 
-But.  
-  
+So, although the electrical stimulation activates the **motor neurons** in a physiologically healthy way — producing action potentials that are indistinguishable from natural ones — the **pattern of recruitment** is completely different:
 
-I'm not sure that we will be able to arrange this.  
-  
+- It is **non-selective**,
+- **Fixed in space**, and
+- **Synchronous** rather than asynchronous.
+    
 
-But worst case scenario, I have the same lecture done last year in class.  
-  
+This is why **artificial contractions** can generate the same type of force as natural ones, but they do so in a **less efficient and more fatiguing** manner.
 
-So in case I will upload the registration of the recordings of last year's class.  
-  
+## <span style="color:rgb(239, 179, 1)">Force as a function of frequency</span>
 
-Done by the same two doctors. Okay, neural basis of FPS for brain toxicity. So since we are, I mean, we are...  
-  
+![[Pasted image 20251108222250.png]]
 
-Of this being our course. I would like to include a little bit of deeper dig on this point. Actually, because there was a first observation that soon started when they.  
-  
+In a **natural muscle contraction**, this stability is achieved through **turnover** — the brain continuously switches between different fibers, activating them asynchronously. Depending on the required force level, it recruits more or fewer fibers, following the order from small fatigue-resistant ones to large fast-fatigable ones.
 
-Yeah. when they first tested the fes with the post-stroke people that some people some patients were experiencing a therapeutic effect of fs so initially fs was conceived as as for its orthotic goals, so its assistive restoration.  
-  
+But when we use **artificial electrical stimulation**, things work differently. We’re sending **repeated electrical pulses** to the same fibers. To maintain a constant force, these pulses must be delivered at a certain **frequency**, because if the time between two pulses is too long, the muscle will relax slightly between activations, producing visible **twitches**.
 
-Having the production of the muscle contraction for doing the task.  
-  
+To avoid these twitches and obtain a **smooth, continuous contraction**, we need to increase the **stimulation frequency** — typically around **30 to 50 Hz**. At those frequencies, the next pulse arrives before the muscle has time to fully relax, and the separate twitches fuse into a sustained contraction.
 
-Okay?  
-  
+However, this approach comes with a major downside.  
+When we stimulate at 30–50 Hz, we’re delivering **many more pulses per unit time** to **exactly the same fibers**, because the recruitment pattern is fixed by the electrode position and fiber thresholds. For example, if we want to maintain a contraction for one minute, instead of sending 100 pulses (as the brain would do by distributing them among different fibers), we may need to send 400 or more — and always to the same subset of fibers.
 
-And the re-learning component was totally neglected.  
-  
+And remember — those fibers that are most easily activated by electrical stimulation are typically the **large, fast, and fatigue-prone** ones. So, by repeatedly stimulating them at high frequency, they **fatigue quickly**.
 
-The focus was having the task done.  
-  
+The result is that even though we can **achieve the desired force** initially, the muscle soon becomes **unable to maintain it**. The contraction weakens as fatigue sets in, and the **maximum force capability** of the muscle drops.
 
-But then the orthotic effect was indeed shown.  
-  
+So, compared to natural contraction:
 
-Measured.  
-  
+- Artificial stimulation leads to a **much faster onset of fatigue**, because the same fibers are continuously activated without rest.
+- It also results in **less precise control**, because the activation of fibers is fixed — once the electrodes are in place, we cannot choose which fibers to recruit.
+    
+In summary, while **natural contraction** achieves a stable force through **asynchronous, distributed, and finely modulated activation** of fibers (each firing at about 10 Hz), **artificial contraction** must rely on **higher frequencies (30–50 Hz)** to maintain force, which quickly **induces fatigue** and reduces the muscle’s ability to sustain or finely modulate movement.
 
-On most of the subjects.  
-  
+### <span style="color:rgb(161, 40, 226)">Comparison: Artificial / Psychological </span>
 
-While on a few, so on one third, about one third of subjects.  
-  
+So, in **artificial muscle contraction**, all the muscle fibers are activated **synchronously** — meaning they contract at the same time in response to each pulse. There is **no turnover of motor units**, and the **recruitment order** of the fibers is **partially fixed**, depending on the electrode placement and the fiber diameter. Usually, the **larger fibers**, which have a **lower activation threshold**, are recruited first, followed by smaller ones.
 
-There was also a therapeutic effect. What is a therapeutic effect?  
-  
+This is completely different from what happens in a **natural, physiological contraction**. In the natural case, activation is **asynchronous** — fibers are not all active at once. Instead, the nervous system alternates their activity (turnover), ensuring that some fibers work while others rest. Moreover, the **recruitment order** is physiologically optimized, starting from **Type I fibers** (slow, fatigue-resistant) and then, only when necessary, activating **Type IIa** and **Type IIb fibers** (fast and more powerful but easily fatigued).
 
-Means that when you stop stimulation, so stimulation is off.  
-  
+These differences have important consequences.  
+In artificial contraction, because all fibers are stimulated **simultaneously and repetitively**, the muscle experiences **much faster fatigue**. There’s also a **loss of fine control**, since the contraction cannot be smoothly modulated — once the stimulation pattern is set, the same fibers keep firing with each pulse.
 
-There is a relearning effect. So there is a recovery. There is a support. carry over effect.  
-  
+### <span style="color:rgb(161, 40, 226)">Changes for paretic muscles</span>
 
-So an effect that is prolonged after the stimulation, which means a relearning mechanism underneath.  
-  
+Furthermore, if we are working with **paretic or atrophied muscles**, the situation becomes even more challenging. After a long period of **immobilization or disuse**, the muscle fibers **decrease in cross-sectional area** (this is atrophy), and many **Type I fibers** tend to **convert into Type II fibers**. This means the muscle now contains a higher proportion of **fast, fatiguing fibers**, which makes it even more susceptible to early fatigue under electrical stimulation.
 
-But this carry over effect was observed only on subset of patients and there were no.  
-  
+For this reason, before applying **Functional Electrical Stimulation (FES)** for movement restoration, it is often necessary to go through a **muscular training phase**. This preparatory phase — sometimes using **Neuromuscular Electrical Stimulation (NMES)** — helps:
 
-Clinical scores or diagnosis feature which could explain for the one having the carryover and the one not having the carryover.  
-  
+- **Increase muscle strength and volume**, and
+- **Improve resistance to fatigue**,  
+    so that the muscle becomes more capable of responding effectively to the functional, task-oriented stimulation that FES requires.
+    
 
-That's why the carryover effect of FIAS was soon associated with the concept of carryover enigma.  
-  
 
-Enigma because it was not predictable. who will benefit of this career and actually in 2003 uh rushton which is a professor from i think ucl london proposed one possible explanations for the career which is super important.  
+1.10.47
+Okay, neural basis of FPS for brain plasticity. So since we are, I mean, we are...  
+Of this being our course. I would like to include a little bit of deeper dig on this point. Actually, because there was a first observation that soon started when they. 
+Yeah. when they first tested the fes with the post-stroke people that some people some patients were experiencing a therapeutic effect of fs so initially fs was conceived as as for its orthotic goals, so its assistive restoration.  Having the production of the muscle contraction for doing the task.  Okay?  And the re-learning component was totally neglected.  The focus was having the task done.  
+But then the orthotic effect was indeed shown.  Measured.  On most of the subjects.  While on a few, so on one third, about one third of subjects.  There was also a therapeutic effect. What is a therapeutic effect?Means that when you stop stimulation, so stimulation is off.  There is a relearning effect. So there is a recovery. There is a support. carry over effect.  So an effect that is prolonged after the stimulation, which means a relearning mechanism underneath.  But this carry over effect was observed only on subset of patients and there were no.  
+Clinical scores or diagnosis feature which could explain for the one having the carryover and the one not having the carryover.  That's why the carryover effect of FIAS was soon associated with the concept of carryover enigma.  Enigma because it was not predictable. who will benefit of this carryover and actually in 2003 uh rushton which is a professor from i think ucl london proposed one possible explanations for the carryover which is super important.  
   
 
 And actually so This is one of the paper that.  
@@ -1069,35 +608,21 @@ I would suggest you to Read them not just to see the opinion, but it's a suggest
 That's a spinal cord.  
   
 
-FES is applied on the mixed nerves innervating the muscle, so let's say between the spinal cord and the muscle.  
-  
+FES is applied on the mixed nerves innervating the muscle, so let's say between the spinal cord and the muscle.  And we said that FES is eliciting firing of potentials on all fibers above the threshold.  
 
-And we said that FES is eliciting firing of potentials on all fibers above the threshold.  
-  
-
-And so we mentioned that on after five years.  
+And so we mentioned that on after fired fibers.  
   
 
 We see this activation that is.  
-  
-
-Let's say.  
-  
-
-Visible by the pH reflex.  
-  
-
+Let's say.  Visible by the H reflex.  
 While on motor fibers we see this activation by the EMOE.  
-  
-
-Okay?  
-  
-
+Okay? 
 Are you with me so far?  
   
 
 What was now this carryover effect?  
-  
+
+1.15.26
 
 Deals with some effects that goes upwards to the brain spine circuits for controlling the movement. What was the hypothesis of? And this.  
   

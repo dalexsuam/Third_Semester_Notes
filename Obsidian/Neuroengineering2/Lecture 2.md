@@ -74,11 +74,9 @@ From a computational standpoint, this **repetition of structure across the corte
 ## <span style="color:rgb(239, 179, 1)">Primary Motor Cortex </span>
 
 ![[Pasted image 20251022203817.png]]
-Now, let’s try to understand how **motor cortex activation** relates to what we have discussed so far about **motor control** and **the production of motor commands**.  
-
-To do this, we move to **psychophysical experiments** performed on **primates**, such as the one illustrated here. In these studies, small **microelectrode arrays** are implanted into specific areas of the **primary motor cortex (M1)** to record the activity of individual neurons while the animal performs controlled motor tasks.
 
 Now, let’s try to understand how **motor cortex activation** relates to what we have discussed so far about **motor control** and **the production of motor commands**.  
+
 To do this, we move to **psychophysical experiments** performed on **primates**, such as the one illustrated here. In these studies, small **microelectrode arrays** are implanted into specific areas of the **primary motor cortex (M1)** to record the activity of individual neurons while the animal performs controlled motor tasks.
 
 It is essential to clarify a key point:

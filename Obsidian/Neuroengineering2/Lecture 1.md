@@ -497,7 +497,7 @@ So this finding shows that we can’t simply extrapolate animal data to humans b
 # <span style="color:rgb(223, 109, 109)">Feedback Control / FeedForward Control</span>
 
 
-| Feedback                                                                 | Feedforward                                                                                                                               |
+| Feedforward                                                              | Feedback                                                                                                                                  |
 | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | - Anticipatory control <br>- Sensorial information + previous experience | - Actual control<br>- Dependent on the actual sensory information  <br>- Comparison with a reference signal <br>- Characterized by a gain |
 
