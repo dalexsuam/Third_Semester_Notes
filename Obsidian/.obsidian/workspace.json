@@ -8,31 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "167db663866e0c73",
+            "id": "072686fe453738b1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Neuroengineering2/Lecture 2.md",
+                "file": "Neuroengineering2/Lecture 8.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Lecture 2"
-            }
-          },
-          {
-            "id": "5cf722d1a3e13f9c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Neuroengineering2/Lecture 10.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Lecture 10"
+              "title": "Lecture 8"
             }
           },
           {
@@ -61,6 +47,20 @@
               },
               "icon": "lucide-file",
               "title": "Lecture 10"
+            }
+          },
+          {
+            "id": "cceb9d4caa14e0f2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "VirtualModelling/Lecture 4.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Lecture 4"
             }
           }
         ],
@@ -121,7 +121,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "08c62664d820768e",
@@ -322,29 +323,32 @@
       "oz-clear-unused-images:Clear Unused Images": false
     }
   },
-  "active": "5cf722d1a3e13f9c",
+  "active": "d94bc5dbd9aee550",
   "lastOpenFiles": [
-    "Neuroengineering2/Lecture 9.md",
-    "Neuroengineering2/Lecture 8.md",
-    "Neuroengineering2/Lecture 7.md",
+    "Neuroengineering2/Images/Pasted image 20251114152030.png",
+    "Neuroengineering2/Images/Pasted image 20251114150837.png",
+    "Neuroengineering2/Images/Pasted image 20251114150245.png",
+    "Neuroengineering2/Images/Pasted image 20251114150204.png",
+    "Neuroengineering2/Images/Pasted image 20251114145546.png",
+    "Neuroengineering2/Images/Pasted image 20251114145503.png",
+    "Neuroengineering2/Images/Pasted image 20251114145035.png",
+    "Neuroengineering2/Images/Pasted image 20251114145008.png",
+    "Neuroengineering2/Images/Pasted image 20251114144945.png",
+    "Neuroengineering2/Images/Pasted image 20251114144919.png",
+    "Neuroengineering2/Images/Pasted image 20251114144858.png",
     "Neuroengineering2/Lecture 10.md",
+    "VirtualModelling/Lecture 4.md",
+    "VirtualModelling/Lecture 3.md",
+    "Neuroengineering2/Lecture 8.md",
+    "Neuroengineering2/Lecture 9.md",
+    "VirtualModelling/Lecture 2.md",
+    "VirtualModelling/Lecture 1.md",
+    "Neuroengineering2/Lecture 7.md",
+    "Untitled",
     "Neuroengineering2/Lecture 2.md",
     "Neuroengineering2/Lecture 1.md",
-    "Neuroengineering2/Images/Pasted image 20251108222250.png",
-    "Neuroengineering2/Images/Pasted image 20251108215923.png",
-    "Neuroengineering2/Images/Pasted image 20251108215904.png",
-    "Neuroengineering2/Images/Pasted image 20251108215753.png",
-    "Neuroengineering2/Images/Pasted image 20251108152735.png",
-    "Neuroengineering2/Images/Pasted image 20251108152642.png",
-    "Neuroengineering2/Images/Pasted image 20251108152618.png",
-    "Neuroengineering2/Images/Pasted image 20251108152553.png",
-    "Neuroengineering2/Images/Pasted image 20251108151155.png",
-    "Neuroengineering2/Images/Pasted image 20251108151141.png",
-    "VirtualModelling/Lecture 2.md",
     "VirtualModelling/Images",
-    "VirtualModelling/Lecture 1.md",
     "Untitled.canvas",
-    "Untitled",
     "SensorSystems/Laboratory 4.md",
     "SensorSystems/Lecture 4.md",
     "SensorSystems/Laboratory 3.md",
@@ -361,9 +365,6 @@
     "MotorBehaviourTech/Lecture 3.md",
     "MotorBehaviourTech/Practice 5..md",
     "MotorBehaviourTech/Practice 4..md",
-    "MotorBehaviourTech/Practice 6..md",
-    "MotorBehaviourTech/Lecture 11..md",
-    "MotorBehaviourTech/Lecture 10.md",
     "Neuroengineering2/Images/Recording 20251017113338.m4a",
     "Neuroengineering2/Images",
     "SensorSystems/Images/Wheatstone bridge.pdf",

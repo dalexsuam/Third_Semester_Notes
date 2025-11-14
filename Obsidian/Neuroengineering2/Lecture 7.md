@@ -591,961 +591,406 @@ For this reason, before applying **Functional Electrical Stimulation (FES)** for
     
 
 
-1.10.47
-Okay, neural basis of FPS for brain plasticity. So since we are, I mean, we are...  
-Of this being our course. I would like to include a little bit of deeper dig on this point. Actually, because there was a first observation that soon started when they. 
-Yeah. when they first tested the fes with the post-stroke people that some people some patients were experiencing a therapeutic effect of fs so initially fs was conceived as as for its orthotic goals, so its assistive restoration.  Having the production of the muscle contraction for doing the task.  Okay?  And the re-learning component was totally neglected.  The focus was having the task done.  
-But then the orthotic effect was indeed shown.  Measured.  On most of the subjects.  While on a few, so on one third, about one third of subjects.  There was also a therapeutic effect. What is a therapeutic effect?Means that when you stop stimulation, so stimulation is off.  There is a relearning effect. So there is a recovery. There is a support. carry over effect.  So an effect that is prolonged after the stimulation, which means a relearning mechanism underneath.  But this carry over effect was observed only on subset of patients and there were no.  
-Clinical scores or diagnosis feature which could explain for the one having the carryover and the one not having the carryover.  That's why the carryover effect of FIAS was soon associated with the concept of carryover enigma.  Enigma because it was not predictable. who will benefit of this carryover and actually in 2003 uh rushton which is a professor from i think ucl london proposed one possible explanations for the carryover which is super important.  
-  
 
-And actually so This is one of the paper that.  
-  
 
-I would suggest you to Read them not just to see the opinion, but it's a suggestion. So that's a muscle.  
-  
+# <span style="color:rgb(223, 109, 109)">Neural Basis of FES for Brain Plasticity</span>
 
-That's a spinal cord.  
-  
+![[Pasted image 20251111212520.png]]
+When we talk about the **neural basis of Functional Electrical Stimulation (FES)**, it’s important to understand that the initial motivation behind FES was purely **orthotic** — that is, **assistive restoration**. The main goal was to use electrical stimulation to **produce muscle contractions** that would allow the patient to perform a desired task (for example, grasping an object or walking). In this early vision, the **relearning or therapeutic component** of FES was not considered relevant. The purpose was simply to make the movement happen.
 
-FES is applied on the mixed nerves innervating the muscle, so let's say between the spinal cord and the muscle.  And we said that FES is eliciting firing of potentials on all fibers above the threshold.  
+However, when FES started to be applied to **post-stroke patients**, researchers noticed something unexpected. While most subjects benefited only from the **orthotic effect** — meaning that the stimulation allowed them to perform the task during the stimulation period — a subset of patients showed an additional **therapeutic effect**.
 
-And so we mentioned that on after fired fibers.  
-  
+This **therapeutic effect** meant that after the stimulation was turned off, these patients retained **some of the recovered function**. In other words, FES not only helped them move during stimulation but also seemed to **promote a degree of motor relearning** that persisted afterward. This lasting improvement was called the **carryover effect**.
 
-We see this activation that is.  
-Let's say.  Visible by the H reflex.  
-While on motor fibers we see this activation by the EMOE.  
-Okay? 
-Are you with me so far?  
-  
+However, this carryover effect was **not consistent across patients**. Only about **one third** of subjects experienced it, while others showed no long-term benefit. Moreover, there were **no clear clinical indicators** — such as age, lesion site, or severity of stroke — that could explain why some patients benefited and others did not.
 
-What was now this carryover effect?  
+Because of this unpredictability, the phenomenon became known as the **“carryover enigma.”** It highlighted the fact that FES might be doing more than just activating muscles — it could also be engaging **neural plasticity mechanisms** in the brain and spinal cord, but in a way that depended on factors not yet fully understood.
 
-1.15.26
+![[Pasted image 20251111212951.png]]
 
-Deals with some effects that goes upwards to the brain spine circuits for controlling the movement. What was the hypothesis of? And this.  
-  
 
-What is super important is that this carryover effect was observed.  
-  
+A major step toward understanding the **therapeutic effects of Functional Electrical Stimulation (FES)** came from a theoretical work proposed in **2003 by David N. Rushton**, a professor at University College London (UCL). Rushton introduced a hypothesis to explain the so-called **“carryover effect”** — the observation that some patients continue to show motor improvement even after FES is turned off.
 
-In patients with in the chronic phase of POSCO, which means that they have already have all the physiotherapies and all the rehab training possible.  
-  
+Initially, FES was conceived purely for its **orthotic purpose**: to activate muscles and restore movement through external stimulation. However, in clinical practice, researchers observed that about **one third of post-stroke patients** also experienced long-term improvements that could not be explained by the immediate assistive effect of stimulation. These patients were already in the **chronic stage** of stroke recovery, having completed all conventional physiotherapy and rehabilitation programs without further progress. Thus, the new improvements appeared to be **specifically linked to FES itself**.
 
-And they couldn't, they did not show this Cariola effect with the standard approach and that appeared after using EPS of course in intensive treatment while.  
-  
+Rushton asked a crucial question: _What mechanism is unique to FES — something that could not be reproduced by any active or passive training method?_
 
-It was not appeared in the other cases so it's associated to the pure effect of EPS.  
-  
+His answer was the concept of **antidromic activation**.
 
-Ed Ashton was asking himself what is something that is only associated to FPS and that cannot be at all produced by any active or passive training in conventional or other.  
-  
+### <span style="color:rgb(239, 179, 1)">Antidromic Activation</span>
 
-And he suggested that the anti-dromic.  
-  
+In normal physiology, nerve impulses travel in a single direction — known as the **orthodromic direction**.
 
-Activation could be something that occurs only in the case of a chest. What is the antidromic activation?  
-  
+- **Motor fibers** carry signals from the **spinal cord to the muscles**, while
+- **Sensory fibers** carry signals from the **periphery to the spinal cord**.
+    
+This one-way transmission is guaranteed by the **refractory period** of the axon membrane, which prevents the action potential from traveling backward.
 
-You know nerves carry signals and if they are are active and active fibers is carrying signals from the spine. to the muscles and after fibers is carrying signal from the periphery to the spine the direction of signals is called orthodromic directions and is assured by the refractory periods in the in the.  
-  
+However, when we apply **electrical stimulation directly to a mixed peripheral nerve** (as in FES), the situation changes. The artificial stimulus depolarizes the axon **in the middle of its length**, rather than at one end. As a result, action potentials can propagate **in both directions** — not only orthodromically (toward the muscle) but also **antidromically** (back toward the spinal cord).
 
-Conduction of the stimulus of the action potential through the fibers because the nearby segments of the axons this is activated it produces a change in the membrane voltage close by but if this.  
-  
+This **antidromic activation** of motor fibers is a phenomenon that **cannot occur naturally**; it is a **unique feature of electrical stimulation**.
 
-Portion has been just activated just before.  
-  
+## <span style="color:rgb(239, 179, 1)">Rushton’s Hypothesis</span>
 
-It is in a refractory period. Therefore, it would need a higher stimulation to be activated.  
-  
+Rushton proposed that the **antidromic volleys** traveling back to the spinal cord could play a crucial role in **neuroplasticity**.
 
-While the following portion is not in the refractory period and so starts firing.  
-  
+When FES is applied, the **muscle contracts** and **antidromic signals** simultaneously reach the spinal cord, perfectly **synchronized with the task being performed**. Meanwhile, the **brain of a stroke patient** is still trying to send voluntary (though often weak or disorganized) motor commands through descending pathways.
 
-This ensures that the action potential runs.  
-  
+At the spinal level, these two signals meet:
 
-Into one direction from the soma to the branches of the axons.  
-  
+- **Volitional descending signals** from the brain, and
+- **Antidromic motor volleys** produced by FES.
+    
 
-But if we are sending an artificial stimulus.  
-  
+According to **Hebbian theory** (“cells that fire together, wire together”), the **synchronous activation** of these two pathways can **strengthen synaptic connections** between them. Over time, this mechanism may help the nervous system **filter out irrelevant or maladaptive connections** and **reinforce the correct motor pathways** related to the intended task.
 
-Which is changing the voltage of the...  
-  
+In other words, the antidromic activation may serve as a **teaching signal** for the spinal cord — guiding plastic changes that support motor relearning.
 
-Across the membrane. Somewhere in the nerve.  
-  
+## <span style="color:rgb(239, 179, 1)">Theoretical Nature of the Hypothesis</span>
 
-Let's say the left and right portion of that nerve are electrically in the same condition.  
-  
+Rushton’s paper, titled _“Functional Electrical Stimulation, Rehabilitation and Neural Plasticity: An Hypothesis”_ (2003), was purely **theoretical**. It proposed a **logical and biologically plausible mechanism** to explain the therapeutic (carryover) effects of FES, but it was **not experimentally proven** at the time.
 
-Therefore, the signal can run in one direction and in the other direction without anything.  
-  
+Nevertheless, this hypothesis provided an essential **conceptual framework** for later studies investigating **FES-induced neuroplasticity** and **brain–spinal–muscle interactions** during motor rehabilitation.
 
-Let's say, selecting the direction.  
-  
+## <span style="color:rgb(239, 179, 1)">Spinal Plasticity and the Evidence for Hebbian Mechanisms</span>
 
-This means that we will have the orthodromic direction, so the same direction as the one used naturally by that power.  
-  
+![[Pasted image 20251111214710.png]]
 
-But we will have volleys of pulses.  
-  
+Following Rushton’s 2003 theoretical proposal, several studies in the **last decade** have provided **experimental support** for the idea that **FES and NMES** can modulate **spinal plasticity** through **Hebbian mechanisms**.
 
-Of action potentials.  
-  
+One particularly relevant line of research comes from **Miloš Ković and colleagues**, who investigated how **repetitive electrical stimulation** affects **spinal reflex pathways**. Their findings showed that **inhibition of spinal reflexes** can occur as a result of repeated NMES or FES, especially when stimulation is applied in synchrony with voluntary motor activity.
 
-Running also in the antidromic direction.  
-  
+This suggests that electrical stimulation does not merely activate muscles peripherally — it also **modulates excitability within the spinal circuits**, shaping how sensory and motor information interact. In other words, NMES and FES are capable of **inducing plastic changes in the spinal cord itself**.
 
-And this activation in the antithronic direction cannot be produced in any other way.  
-  
+![[Pasted image 20251111214732.png]]
 
-It is somehow the direct consequence of an electrical stimulation in the middle of the wake. This means that it is a pure effect of the body.  
-  
+The mechanism behind this phenomenon is consistent with the **Hebbian theory of learning (Hebb, 1949)**:
 
-So.  
-  
+> “Cells that fire together, wire together.”
 
-Rathom was proposing that the antidromic activation on the motor fibers is reaching the spine.  
-  
+When **afferent inputs** (signals from peripheral sensory feedback) and **efferent inputs** (descending motor commands or antidromic motor volleys) **arrive simultaneously** at the spinal cord, their repeated coincidence leads to **synaptic strengthening**. Over time, this can reorganize the connectivity of spinal interneurons — a process known as **Hebbian plasticity in the spinal circuits**.
 
-Antidromic on motor fibers goes back to the spine.  
-  
+As summarized by Lagerquist et al. (2006) and later confirmed by Ković’s group,
 
-And it is totally synchronized with the muscle contraction.  
-  
+> “Repetitive activation, accompanied by the coincidence of afferent and efferent input in the spinal cord during NMES or motor tasks, may induce Hebbian plasticity, resulting in short-term effects after stimulation.”
 
-Because it's produced by the same source and so he was he he has proposed that this anti-dramic signals on the water fibers which is the spine and in the spine we have a situation let's say of confusion so the brain of the subject who has stroke is now sending a lot of signals to the spine.  
-  
+This provides an important **experimental bridge** between the early theoretical ideas of Rushton and modern **neurophysiological evidence**. It demonstrates that **FES/NMES are not only tools for muscle activation**, but also **neuromodulatory interventions** capable of reshaping spinal and supraspinal circuits involved in movement control.
 
-Some of them might be a received good signal.  
-  
+## <span style="color:rgb(239, 179, 1)">Volitional Contribution as a Key Ingredient for FES-Induced Brain Plasticity<br></span>
 
-But they are immersed in a confused or not really relevant signals for the past.  
-  
+![[Pasted image 20251111215347.png]]
+According to **Rushton’s hypothesis (2003)**, _relearning through FES_ can only occur if there is **some residual voluntary command** reaching the spinal cord. The mechanism depends on the **coincidence** between:
 
-But this anti-dromic activation reaches the spine synchronously to the task, to the activation of the muscles.  
-  
+1. The **antidromic activation** produced by FES on the motor fibers (returning to the spinal cord), and
+2. The **orthodromic voluntary effort** descending from the brain.
+    
+When these two signals coincide in time and in task relevance, **Hebbian synapses** can be strengthened within the spinal circuitry — leading to the restoration of conduction and long-term motor relearning.
 
-And therefore it can be used by the head and the sinuses inside the spine to strengthen.  
-  
+Rushton summarized this process in four conceptual steps (as shown in the left figure):
 
-Those signals reach in the spine which are synchronous to the task.  
-  
+1. **Motor axon fires both forward and backward** (orthodromically toward the muscle and antidromically toward the spinal cord).
+2. **Voluntary effort must coincide** with the stimulation.
+3. **Hebbian synapse conductivity increases**, reinforcing the functional connection.
+4. **Conduction is restored and maintained even without FES**, indicating neural plasticity.
+    
+However, this process critically depends on **active patient participation**.  
+As emphasized in later clinical protocols (right excerpt), **patients must attempt the movement** while being stimulated. The therapist’s role is to ensure that:
 
-Therefore, this Antidromic Bolly can be a kind of teaching signal to filter out unrelevant signals in the spine and to strengthen.  
-  
+- The **intended movement** is clear and goal-oriented (for example, grasping and transferring an object).
+- The **patient exerts voluntary effort** to perform the task before and during stimulation.
+    
+Only when **volitional intention** and **FES-induced muscle activation** occur synchronously can Hebbian learning take place.
 
-Those signals were carrying the good, past-related hormones.  
-  
+This is why **Functional Electrical Stimulation (FES)**—not merely Neuromuscular Electrical Stimulation (NMES)—is associated with **task-oriented rehabilitation** and **brain plasticity**. FES requires **intention**, **goal direction**, and **sensorimotor integration**, whereas NMES is typically used for passive muscle activation without cognitive engagement.
 
-So.  
-  
+To implement this concept technologically, modern systems employ **myocontrolled stimulation**, in which the **residual EMG activity** of the patient is used to:
 
-These are the irrelevant signals. And this is the good volitional effort.  
-  
+1. **Trigger** the stimulation sequence once voluntary effort is detected (_EMG-triggered NMES_), or
+2. **Continuously modulate** the stimulation intensity according to voluntary effort (_EMG-controlled NMES_).
+    
 
-If this good volitional effort coincides with the antidromic motor.  
-  
+These approaches aim to synchronize FES with the patient’s **intentional effort**, thereby optimizing **Hebbian reinforcement** and promoting **functional reorganization** in both spinal and cortical circuits.
 
-The antidromic signals.  
-  
 
-Associated to MPS. These volitional signals associated to the LASK can be friend.  
-  
+## <span style="color:rgb(239, 179, 1)">Myocontrolled Neuroprostheses</span>
 
-They wire together, they wire together. Hedion finances.  
-  
+To ensure that **FES** effectively promotes neural plasticity, the stimulation must be **synchronized** with the subject’s **voluntary effort**. Two main technological approaches exist for achieving this synchronization:
 
-Is this just the spine level or there is also an hypothesis of what is happening on high level in Sardinia? This was proposed for spinal in the surgery.  
-  
+1. **EMG-Triggered NMES**  
+    In this approach, the **residual EMG activity** is monitored to **trigger** a pre-defined stimulation sequence once the system detects a voluntary attempt.
+    
+    - **Advantages:** It is **technically simple** to implement since the EMG is only measured _before_ the stimulation begins.
+    - **Limitations:** It does **not guarantee precise synchronization** between the stimulation and the ongoing voluntary effort, because once stimulation starts, EMG recording is interrupted (blanked).
+        
+2. **Myocontrolled Continuous NMES**  
+    This method continuously monitors the **residual EMG signal** during stimulation and **modulates** the stimulation intensity in real time according to the detected voluntary effort.
+    
+    - **Advantages:** It provides **stronger synchronization** between voluntary activity and the FES-induced contraction, improving the potential for Hebbian plasticity.
+    - **Limitations:** It requires **more complex hardware and signal processing**, since the EMG must be read simultaneously with the stimulation and cleaned from artifacts.
 
-Why? Because the anterior horn cells at the spine, but we haven't seen something in the brain, don't worry.  
-  
 
-Something in the spine was activated.  
-  
+# <span style="color:rgb(223, 109, 109)">Devices for EMG Recording During FES</span>
 
-Sorry, because anterior horn cells were proved to be heavy, to have heavy effects.  
-  
+When using **Functional Electrical Stimulation (FES)**, standard EMG recording equipment cannot be used as-is. The reason is that the **stimulation artifact** generated by the FES pulses is extremely large—**one to three orders of magnitude greater than the physiological EMG signal (M-wave)**.
 
-And they are the most direct connections.  
-  
+![[Pasted image 20251111220318.png]]
 
-So, but this paper... is a theoretical.  
-  
+This artifact results from the **potential difference** created by the stimulation current between the EMG electrodes. Because of its high amplitude, the **differential amplifier** of a standard EMG device cannot reject it. As a consequence, the amplifier may **saturate**, and in some cases, it can even be **damaged**. Once saturation occurs, the circuit requires a recovery time before functioning again, meaning that standard EMG systems cannot record during FES at all.
 
-You can read the title, function, electrical simulation, rehabilitation and hypothesis.  
-  
+To overcome this problem, several **hardware solutions** have been developed:
 
-So.  
-  
+![[Pasted image 20251111220331.png]]
 
-This was a hypothesis. So, Ashton wrote in a very super logical sequence this analysis and drew this hypothesis, which was not proved experimentally.  
-  
+1. **Blanking Circuits (Switching Front-End):**  
+    In this approach, the EMG recording channels are **temporarily disconnected** at the exact moment when stimulation pulses are delivered. This prevents the large artifact from reaching and saturating the amplifiers. Once the pulse ends, the channels are reconnected, allowing EMG acquisition to resume.
 
-Indeed, there have been multiple studies after that.  
-  
+![[Pasted image 20251111220511.png]]
 
-And let's say.  
-  
+2. **Low-Gain, High-Resolution Amplifiers:**  
+    Another strategy is to use **very low-gain amplifiers** combined with **high-resolution analog-to-digital converters (ADCs)**. This allows the system to record both small EMG signals and large artifacts without saturation. Such designs are more robust, though technically more complex, especially when high-frequency stimulation is used.
+    
 
-Yes, in the last decade, I would say, that have been studying how FES carryover mechanism occurs in the brain, in the spine, modulating plasticity.  
-  
+## <span style="color:rgb(239, 179, 1)">Recording and Extracting Volitional EMG During FES</span>
 
-And this study is from Miloš Kupović.  
-  
+When recording **EMG signals** during **Functional Electrical Stimulation (FES)**, several challenges arise due to the strong stimulation artifacts and the presence of **M-waves**, which are the synchronized electrical responses of the muscle fibers to each stimulation pulse.
 
-And they were measuring and seeing that actually the inhibition of spinal rectus is of course with the interspinal stimulation which means that they are proving that MES is working in modulating the plasticity of the interspinal serotonin.  
-  
+### <span style="color:rgb(161, 40, 226)">Electrode Placement<br></span>
+![[Pasted image 20251111221000.png]]
 
-And then there have been...  
-  
+Different electrode configurations can help minimize artifacts. A common approach is to place the **recording electrodes between the stimulation electrodes**, allowing the recorded signals to share a higher **common-mode component** of the artifact. This configuration improves the differential amplifier’s ability to cancel out common interference. The relative position of stimulation and recording electrodes is thus crucial for artifact suppression.
 
-Okay, no, wait.  
-  
+### <span style="color:rgb(161, 40, 226)">Artifact and M-Wave Suppression</span>
 
-And all these Raston hypotheses, maybe still like to be...  
-  
+After using **blanking windows** to remove the high-amplitude artifact immediately following each stimulation pulse (typically the first 20–25 ms), the next challenge is to separate the **volitional EMG component** (originating from the patient’s active effort) from the **electrically-induced M-wave**.
 
-It is essential to highlight one point.  
-  
+The **M-wave** is characterized by:
 
-This relearning can occur under these hypotheses.  
-  
+- A synchronized and repeatable waveform.
+- Higher amplitude and lower frequency compared to volitional EMG.
+- A consistent shape across stimulation pulses.
+    
 
-For only if the subject has a subversive volitional signal which means that despite seeing despite seeing any activation efficiency or whatever on the subject the signal control.  
-  
+To isolate the **volitional EMG**, two main strategies are typically employed:
 
-What I always need...  
-  
+1. **High-Pass Filtering Approach** ([Muraoka, 2002; Schauer, 2004]):
+    
+    - Assumption: after 20–30 ms from the stimulation pulse, the remaining low-frequency components are mainly due to the M-wave, while the volitional EMG occupies higher frequencies.
+    - Solution: apply a **high-pass filter** with a cutoff frequency between **200 and 330 Hz**, removing most of the M-wave and leaving the higher-frequency volitional EMG components.
 
-To ask the contestant if he intends to contribute to the contest.  
-  
+![[Pasted image 20251111221058.png]]
 
-And this is a paper which was a new paper and they always say that during all the sessions physiotherapists guided the women and provided assistance appropriate to carry out the test. the intended moment as close to the logical manner as possible.  
-  
+2. **Adaptive Subtraction or Linear Prediction Approach** ([Langzam, 2006]; [Sennels, 1997]):
+    
+    - Assumption: the M-wave is **highly repeatable** across pulses, whereas the volitional EMG is **variable and unpredictable**.
+    - Method: use a **prediction algorithm** that estimates the current EMG signal based on previous inter-pulse recordings.
+    - By **subtracting the predictable (repetitive) part**, which corresponds to the M-wave, the remaining residual represents an **estimate of the volitional EMG**.
+    - Mathematically, this involves calculating coefficients ( b_j ) through a **least-squares algorithm**, updated at the stimulation frequency, to minimize the residual energy of each inter-pulse period.
+        
 
-In fact, the patient has to make an an active attempt to perform intended movements.  
-  
+Although these methods cannot guarantee a perfectly clean extraction, they allow a **reasonable estimation of volitional EMG activity** even during ongoing FES, which is essential for implementing **myocontrolled neuroprosthetic systems**.
 
-And so there are two critical points here. One is that The patient needs to try.  
-  
+# <span style="color:rgb(223, 109, 109)">Linear Prediction Adaptive Filtering and Quantification of Volitional Effort</span>
 
-The second is that the intended moment.  
-  
+![[Pasted image 20251111221230.png]]
+The **Linear Prediction Adaptive Filter (LPAF)** is a key technique for extracting the **volitional EMG component** from hybrid muscle contractions during FES.
 
-Intended moment means that there is a goal, there is an intention and a goal. And this intention and goal needs to be shared with the patient.  
-  
+In this approach, the EMG signal is first **sampled at high frequency** (e.g., 2048 Hz), while stimulation occurs at a much lower frequency (e.g., 25 Hz). After each stimulation pulse, a **blanking window** of about **10 ms** is applied to remove the immediate artifact.
 
-That's why we are talking of SES. here and not an nes it's up okay because there is an intention of doing the task so fs is associated to the task and this is why a lot of technical efforts in the field has been devoted to try to read the minimum residual EMG activity by the subjects and to associate as much as possible.  
-  
+Then, during each inter-pulse period, the EMG signal ( EMG_w ) (after windowing) is processed through a **linear predictive model**, which estimates and subtracts the predictable part of the signal corresponding to the **M-wave**:
 
-The electrical stimulation with the residual activity by the subject.  
-  
+The resulting signal ( $EMG_v$ ) represents an **estimate of the volitional EMG**, i.e., the patient’s active contribution that is not explained by the stimulation-induced M-wave.
 
-These are called myocontrolled or EMG controlled electrical stimulation.  
-  
+To obtain a **quantitative measure of the voluntary effort**, the **envelope** of ( $EMG_v$ ) is computed across time, providing a smooth estimate of the **volitional activation level** during the stimulation session. This envelope reflects how much the patient is actually trying to perform the intended movement — an essential parameter for implementing **myocontrolled FES** and assessing **motor relearning** during rehabilitation.
 
-However.  
-  
+![[Pasted image 20251111221437.png]]
 
-This approach needs a lot of technical.  
-  
 
-Development because of the art i mean if you just want to energy trigger the fdl you can just blend the energy as soon as you start selling passes so you read the energy as soon as you reach the triggering level you stop reading the engine and and switching.  
-  
+In theory, the estimation of the **volitional EMG component** can be directly used to **control the stimulation intensity or timing** during FES. The idea is straightforward: if the subject contributes voluntarily to the movement, the system continues stimulating proportionally; if the subject stops, stimulation is reduced or stopped.
 
-By a blanking circuit the cables of the EMG with the.  
-  
+However, in practice, **surface EMG is an inherently noisy and fluctuating signal**. It does not behave like a clean on–off indicator of activation but rather shows continuous amplitude variations due to motor unit recruitment, skin–electrode impedance, and movement artifacts. Therefore, to extract meaningful information, it is necessary to compute the **envelope** of the EMG signal—essentially a smoothed profile that represents the overall activation level of the muscle over time.
 
-EMG acquisition board and use as soon as you start.  
-  
+The need for heavy smoothing introduces a **delay** and **loss of temporal precision**. As a result, when using the EMG envelope to drive stimulation in real time, small random fluctuations may cause **unstable behavior**:
 
-But if you want to have a double check of the presence of the volition and contribution during your simulation.  
-  
+- If the activation threshold is set too low, the stimulator remains continuously active (“always on”).
+- If it is set too high, stimulation rarely occurs (“always off”).
+- In the intermediate case, the system may oscillate rapidly between on and off, producing a very uncomfortable “twitching” effect for the subject.
+    
 
-Which might also guide the stopping of the simulation.  
-  
+During early experiments, it became evident that this continuous on–off switching was **distracting and fatiguing**, preventing the patient from focusing on the intended motor task.
 
-You need something. You need a specific processing of the EMG to get rid of the artifacts and to be able to read the devolutional artifacts.  
-  
+For this reason, most researchers and clinicians moved from a **continuous EMG-controlled stimulation** to a **triggered approach**. In **EMG-triggered FES**, the stimulation starts when a sufficient voluntary effort is detected—indicating that the subject is actively trying to perform the movement—and then continues with a predefined stimulation pattern. After the task, the EMG signal can still be analyzed to provide **feedback** on the participant’s contribution, without attempting to dynamically modulate the stimulation in real time.
 
-And these are called EMG controlled FES or mass-series simulation.  
-  
+Depending on the rehabilitation setting, additional variations can be implemented:
 
-Of course, EMG Trigger has the advantage of being simple from a technical point of view, because you just need a blank in circuits.  
-  
+- **Threshold-based stop conditions**, where stimulation ceases once voluntary effort drops below a certain level.
+- **Task-based stop conditions**, where stimulation ends when a specific movement goal is reached.
+    
 
-While it does not guarantee the full synchronization between a care and the voluntary export.  
-  
+This balance between **volitional detection** and **stimulation stability** is essential for maintaining patient comfort, engagement, and effective motor relearning during therapy.
 
-Myocontrol, the other way around, is more strong to assure the synchronization.  
-  
+![[Pasted image 20251111222118.png]]
 
-Keeping an eye on the voluntary effort, but it's much more complex. So.  
-  
-
-Let's have a look on how devices of ENG recording can be adapted to work also during FES.  
-  
-
-And actually, what is the main point is that if you start from a standard EMG machine, EMG instrument.  
-  
-
-You cannot use at all because it will saturate immediately and possibly it will burn as soon as you start the application. Not working because it has protection but it's not working at all.  
-  
-
-Because the stimulation artifact is super high.  
-  
-
-And actually is the result of the potential difference produced by the two hydrogen currents across the EMG electrodes.  
-  
-
-And therefore, differential amplifiers are not properly defending you from the artificial.  
-  
-
-And more than that, its amplitude is way larger than any EMG electrode.  
-  
-
-Therefore.  
-  
-
-Standard integrated circuits for the amplifiers of the ENG go to saturation.  
-  
-
-And when they go to saturation, you might have also a time for returning in functioning.  
-  
-
-Which means that you are not just.  
-  
-
-Let's say.  
-  
-
-Switching them off.  
-  
-
-But you are really not able to use them from the whole opposition.  
-  
-
-So different solutions can be proposed to solve these issues and they are basically made by a switching front end which blends the artifacts.  
-  
-
-So, it's a matching signal, so as soon as the stimulation is triggered.  
-  
-
-The.  
-  
-
-EMG recording units are disconnected at the same time. So the huge artifact is not reaching the EMG acquisition.  
-  
-
-Another solution is to use very low gain higher solution. no gain amplifiers with high resolution analog-to-digital converters. So you have the full scale with the low gain where you are able to read the tiny signals and the full scale where the output is not saturated but it's still inside the scale.  
-  
-
-These are much better because...  
-  
-
-Because of the frequency of the switches.  
-  
-
-Then different solutions for the position of the electrodes can be adopted.  
-  
-
-Usually we can have two electrodes of D&G in between the electrodes of stimulation.  
-  
-
-So to try to have the actual as much as possible as a common movement signal.  
-  
-
-And finally.  
-  
-
-After a blocking window.  
-  
-
-We can move on anyway. Let's suppose that we do not have more as the huge artifact, but still we have the M-wave.  
-  
-
-The M-wave is the.  
-  
-
-Activation in the response of the activation of the muscular fibers and the consequence of the pulse as we mentioned before this activation is very synchronized and therefore it's higher than but it has and it is a kind of low.  
-  
-
-Low frequency signals. So it has a shape which is always the same and very smooth with respect to.  
-  
-
-ENG natural signals.  
-  
-
-So there are two main approaches.  
-  
-
-On the one side, we can have heights which filters out, let's say.  
-  
-
-The low components of the ENG. wave.  
-  
-
-So.  
-  
-
-We are assuming that after the stimulation, the low-frequency electrical induced components are due to the end wave, and underneath there is a positional EMG, which is which runs at higher frequency.  
-  
-
-So.  
-  
-
-Using a blocking window. So, anyway, I'm cancelling out the huge article.  
-  
-
-And a high-pass filter with a frequency between.  
-  
-
-200 and 300 Hz.  
-  
-
-I can remove most of the air wave and what remains is associated to the demolition area.  
-  
-
-The alternative is to.  
-  
-
-To consider the repeatability of the end wave with respect to the evolution component.  
-  
-
-So, pulse after pulse.  
-  
-
-The end wave is very similar.  
-  
-
-To its previous.  
-  
-
-So.  
-  
-
-The EMG volition can be estimated by taking the raw EMG and subtracting the average.  
-  
-
-EMG signal of the previous.  
-  
-
-EMG.  
-  
-
-Palsy.  
-  
-
-So, pals after pals.  
-  
-
-Okay.  
-  
-
-Do you know palsy? We are giving runs of pulses with the information. Let's consider as an event each single pulse.  
-  
-
-After that pulse we have a reading of the EMT. And we can say that the predictable part is the.  
-  
-
-EM wave associated part.  
-  
-
-Component is the unpredictable part.  
-  
-
-So if we are averaging those branches in the last five pulses.  
-  
-
-The random component is cancelled out by the energy.  
-  
-
-While the M wave is the part that remains. And so if we are subtracting this volitional part this and wave us the part that we are keeping the volitional components it's an estimate it's not.  
-  
-
-100 sure so you see this here again so you have the blocking windows you can have an adaptive filter The erupting filter extracts the volitional components by subtracting the previous inter-pass periods used for prediction.  
-  
-
-M periods, M positive, previous policies.  
-  
-
-And then when you have the ENG for internal.  
-  
-
-For each pulse, you can make the envelope over time of this volitional estimate of the energy to know.  
-  
-
-To estimate the volitional contribution of the subject.  
-  
-
-Actually what happens is that you could use this estimation of the original contribution to control the stimulation. So if I am a contribution by the target, I keep going in this way.  
-  
-
-But unfortunately what happens is that.  
-  
-
-Have you ever seen an EMG acquisition?  
-  
-
-Because EMG is a noisy signal indeed. It's a very noisy signal. It's not a wow, it activates, it stops, it's a super noisy signal and what you do is you take the envelope, so the profile.  
-  
-
-By smoothing it super roughly.  
-  
-
-And then from that envelope you can estimate the activation of the muscles, the deactivation of the muscles and also the level of activation.  
-  
-
-But being a very noisy signal, you need to smooth it out like...  
-  
-
-A lot to have an information and therefore if you try to follow an EMG signal in a very short sequence of timing what happens is that you will see a lot of fluctuations and therefore if you want to read the EMG and pilot the FL by reading the EMG.  
-  
-
-And you set a threshold.  
-  
-
-There is a huge risk of having a continuous on-off, on-off conditions because of those equations. Because if or if you set a super low threshold and it's always on.  
-  
-
-Or you set a super high threshold, always off.  
-  
-
-Or if you are in the good, let's say.  
-  
-
-Zone.  
-  
-
-Your risk of being continuously switching on-off.  
-  
-
-And this is super annoying for the hub. I mean, initially when we were working on that, technically, point of view.  
-  
-
-We set the perfect threshold and that was the threshold. And then you are doing the task and feeling continuously the simulation going on, on, on, on, on, on.  
-  
-
-Super annoying for the subject, super distracting.  
-  
-
-Losing the focus on the target and being disturbed by the simulation.  
-  
-
-That's why at the end we decided not to use an on-off stimulation but to use a triggering.  
-  
-
-So start stimulation when the subject starts contributing to the task.  
-  
-
-And then keep reading the ENG and giving a feedback, oh is it right, is it bad.  
-  
-
-After the task.  
-  
-
-According to its participation during the task.  
-  
-
-Without really switching on off the simulation, piloting the simulation accordingly. No one has to stop. No one has to stop. Okay, you can play around that. You can have an off threshold, so if the subject stops, it stops. Variational. Variational.  
-  
-
-Or...  
-  
-
-If you have a sequence of tasks.  
-  
-
-When the task is reached.  
-  
-
-The simulation stops. It depends on the setting of the whole exercise.  
-  
 
 So this is the on-off controller.  
-  
 
-And this is the answer question, you know, the video one.  
-  
+## <span style="color:rgb(239, 179, 1)">Observations from Video Demonstration – FES and Robotic Gait Training</span>
 
-So, this is the trainer, you can see there is a skeleton. There is there are electrical stimulation.  
-  
+In this demonstration, the setup includes a **trainer system** consisting of a passive **exoskeleton**—meaning it only assists in the **anti-gravity phase** of movement—and **functional electrical stimulation (FES)** applied through surface electrodes.  
+The **targets** that the participant must reach are displayed as dots, and the **electrical stimulations** are synchronized with the intended movements. When a target is successfully reached, the system detects it and automatically **locks the exoskeleton** in place to allow the participant to **rest briefly** before moving to the next trial. This helps avoid continuous stimulation and prevents muscular fatigue.
 
-That you will see here. Okay. Those are the.  
-  
+![[Pasted image 20251112062043.png]]
 
-And the.  
-  
+This video is particularly important because it visually demonstrates concepts that are difficult to explain theoretically.  
 
-Squared 1 on the.  
-  
 
-The targets are the dots on the.  
-  
+![[Pasted image 20251112062100.png]]
+On the left side of the recording, we observe a **post-stroke patient** performing gait training with the assistance of two therapists. For safety reasons, the patient uses a **cane**, and each therapist supports one side to help maintain balance.
 
-This the ex.  
-  
+Although the patient manages to move, this walking pattern is **discontinuous and highly assisted**, losing the **rhythmic nature of normal gait**. From a neurophysiological perspective, walking is not merely a sequence of isolated steps—it is a **cyclic and rhythmically controlled motor pattern**. When gait becomes fragmented into discrete, externally assisted steps, it no longer engages the brain’s natural walking control circuits.  
+The patient’s attention is focused entirely on the **position of the feet**, and two therapists are required to sustain each movement.
 
-The exoskeleton was a passive exoskeleton, so only anti-gravity faces.  
-  
+In contrast, the right side of the video shows the **same patient, on the same day**, now supported by an **exoskeleton**. The difference is evident:
 
-But you cannot hear it, but when the subject... Okay, I'm sorry, I'm loading.  
-  
+- The **upright posture** is preserved.
+- The **cyclic pattern of walking** is maintained.
+- The **therapists** provide only minimal cognitive or safety support rather than physical assistance.
 
-Okay, when the subject reaches...  
-  
+In this setup, however, the **robot controls the motion trajectory**. The device assumes that the patient is not contributing actively and thus **moves the limbs passively** according to a predefined gait pattern.
 
-A target.  
-  
+![[Pasted image 20251112062114.png]]
+To verify this, EMG recordings were taken from both legs: the **right (less affected)** leg is represented by **blue traces**, and the **left (more affected)** leg by **red traces**.  
+The EMG signals reveal that, during manually assisted walking, there is some residual and irregular muscular activity—especially in the less affected limb. In contrast, when walking is performed with the robotic exoskeleton, **the rhythmic activation patterns are smoother and more regular**, but the **overall muscular activity is markedly reduced**, indicating that the robot is performing most of the movement rather than the patient.
 
-The system informed that the target was switched and the exoskeleton was blocked by grades.  
-  
+This highlights a key limitation of robotic gait training:  
+the **robot prioritizes precise position control for safety**, especially during walking tasks where **accuracy and fall prevention are critical**.  
+If the patient attempts to move voluntarily, the robot’s control loop may interpret this as an external disturbance and **counteract the patient’s effort** to maintain the programmed trajectory.
 
-So to let the subject rest in between one test and the next one, to avoid a continuous stimulation.  
-  
+In upper-limb rehabilitation, small inaccuracies (within a few centimeters) may be acceptable; however, **during walking, even a deviation of one centimeter can be unsafe**. Thus, **safety control dominates over patient contribution**, which may limit the **activation of neural circuits** responsible for voluntary gait control and plasticity.
 
-And give it some rest across the tested functions.  
-  
 
-And finally I would like you to have a look on this which is how this video is super important because I tried to show you this part to explain you this a couple of times but if you see it, it's immediately. Okay.  
-  
+# <span style="color:rgb(223, 109, 109)">Hybrid Gait Training – Combining Robotics and FES<br></span>
+![[Pasted image 20251112063027.png]]
 
-On the left.  
-  
+The key challenge in modern neurorehabilitation is to **combine safety, intensity, and duration of training**—which are ensured by robotic exoskeletons—with the **enhancement of brain plasticity and muscle conditioning** provided by **Functional Electrical Stimulation (FES)**.
 
-This is the left.  
-  
+This topic is currently one of the **hottest research areas** in neurorehabilitation. In fact, if you look at recent conferences such as _NeuroRehab Week_, you’ll find entire sessions dedicated to hybrid systems combining **robotic assistance** and **electrical stimulation**.  
 
-So on the left there are two tells.  
-  
+Despite the growing interest, there is still **no single standardized solution**, and three main hybrid strategies are being explored:
 
-And being a patient, which is an postural patient.  
-  
+![[Pasted image 20251112063143.png]]
 
-Walking.  
-  
+### <span style="color:rgb(161, 40, 226)">1. <b>Side-by-Side Modality</b></span>
 
-For safety reasons, he has the cane, then the two therapists hold him.  
-  
+In this configuration, **robotic assistance and FES** are applied to **different joints** of the same limb but operate under **synchronized timing**.  
+For example:
 
-And then the super smooth walking is done by him.  
-  
+- The **robot** may assist movements of the **shoulder and elbow**, while
+- The **FES** activates the muscles for **hand grasp and release**.
+    
 
-Okay, so we are in touch. totally losing the rhythmic component of the walking. A rhythmic component is all about the control of walking.  
-  
+Because they act on different muscle groups, they don’t need complex real-time communication—only a **shared temporal coordination** so that, for instance, the hand closes (via FES) at the right moment as the arm reaches the target (via robotic assistance).
 
-So if you are cutting walking in a sequence of steps, it's no more walking from the brain function.  
-  
+This is the **simplest hybrid configuration**, technically easy to implement and effective for coordinated multi-joint movements.
 
-And the subject is only looking.  
-  
+### <span style="color:rgb(161, 40, 226)">2. <b>Overlapped Modality</b></span>
 
-At his feet and two therapists are required.  
-  
+In this approach, both the **robotic motor** and the **FES** act on the **same joint**, sharing timing but maintaining **independent control loops**.
 
-This is the same subject, same day, so nothing changed from the subject point of view. Using an exoskeleton probe.  
-  
+For example, during shoulder flexion:
 
-So you can see that the recognition of the walking is preserved. The walking is done upright.  
-  
+- The **robot** moves the exoskeleton arm forward,
+- While the **FES** activates the **anterior and medial deltoid muscles** to assist the motion.
+    
+However, because their control systems are independent, each component can “see” the other as an external disturbance:  
+if the muscle contracts more strongly, the robot compensates by applying more torque to maintain its predefined trajectory.  
+Thus, this setup can create **mechanical competition** between the robot and the muscle stimulation, rather than true cooperation.
 
-The therapists are doing a nice helping to the cognitive. components of the patients the second therapy is there just for safety legislation so it's actually not with anything and this is but here the patient is moved by the robot okay the patient is moved.  
-  
+### <span style="color:rgb(161, 40, 226)">3. <b>Cooperative Modality</b></span>
 
-Is the patient contributing to the woman? Who knows?  
-  
+This is the **most advanced** and promising configuration.  
+Here, both the **robot** and the **FES** act on the **same joint**, with **shared timing and shared control**.
 
-The robot assumes no.  
-  
+The system continuously monitors the **volitional and FES-induced contributions** of the patient and adjusts the **robotic torque** accordingly.  
+In practice, the **FES provides most of the muscle activation**, while the **robot ensures accuracy, safety, and trajectory stability**.
 
-Those are the EMG signals measured on the legs of the patient that day in the two conditions.  
-  
+This allows the patient to remain the **main source of effort**, engaging neural circuits and promoting plasticity, while still benefiting from the **precision and protection** provided by the robot.
+### <span style="color:rgb(161, 40, 226)">Summary</span>
 
-Of course, you can get that the.  
-  
+By merging these two technologies, **hybrid gait training systems** can achieve:
 
-Good leg is... I don't get it.  
-  
+- Safe and prolonged high-intensity sessions,
+- Improved **muscle conditioning** and **cardiovascular stimulation**,
+- Enhanced **brain plasticity** through volitional participation,
+- And reduced muscle fatigue and robotic energy consumption.
 
-So, let me...  
-  
+This synergy represents one of the most promising directions for the **next generation of neurorehabilitation devices**.
 
-Okay. The blue leg, the blue traces are about the right leg, so the left affected one.  
-  
+## <span style="color:rgb(239, 179, 1)">Case Study – Cooperative Control for Hybrid Gait Training<br></span>
+![[Pasted image 20251112063738.png]]
+This is quite a recent case, involving a patient at **Villa Beretta Rehabilitation Center**.  
+In this setup, two **electrical stimulators** were used to activate **both legs**, while an **exoskeleton** provided **motorized assistance at the hip and knee joints**.
 
-The left legs are the red ones.  
-  
+### <span style="color:rgb(161, 40, 226)">Cooperative Control for the Knee</span>
 
-And we can see that.  
-  
+![[Pasted image 20251112063755.png]]
+In this experiment, a **cooperative control strategy** was implemented for the **knee joint**, combining:
 
-The activation of the lesser factor is super impaired in this case and the activation of the other leg is very not written.  
-  
+- **FES** applied to the **quadriceps and hamstrings**, and
+- **Motorized assistance** from the exoskeleton.
+    
+The goal was to create **synergy** between these two systems, so that the **FES contributed most of the effort**, while the **motors ensured safety, transparency, and accuracy**.
 
-As soon as he is doing with the exoskeleton, nothing is asked to the patient.  
-  
+To achieve this, the **motors continuously generated an inverse dynamics torque** to compensate for the **weight and inertia** of the exoskeleton itself.  
+This ensured **transparency**, meaning that the patient didn’t feel the resistance of the device.
 
-Formally, here the patient was needed to do something, okay?  
-  
+Once transparency was achieved, the motors acted **only to correct trajectory errors**.  
+Interestingly, the **same trajectory error** was also used as a **feedback signal** to control the level of FES:
 
-Could do nothing.  
-  
+- When the error **increased**, the **FES intensity** was **increased**
+- When the error **decreased**, the **FES intensity** was **reduced**.
+    
 
-But we can see that the rhythmicity and the activation are way more controlled.  
-  
+This forms a **closed-loop hybrid control**, where both the robot and the stimulation act cooperatively to achieve the desired motion.  
+The main objective here was to **minimize motor effort** and **maximize the use of FES**, enhancing muscle activation and rehabilitation outcomes.
 
-It knows if the patient is doing something, the robot is against it. The control loop of the robot is all about having a certain position.  
-  
 
-And if the patient is pushing, the robot is pushing against the patient.  
-  
+![[Pasted image 20251112063809.png]]
 
-And actually for safety reasons, this is essential.  
-  
+### <span style="color:rgb(161, 40, 226)">Challenges at the Hip Joint</span>
 
-Especially walking.  
-  
+If we try to extend this cooperative approach to the **hip joint**, we face two main issues:
 
-Walking is all about safety.  
-  
+1. **The rectus femoris is a biarticular muscle** — it crosses both the hip and the knee.  
+    So, if we stimulate it for **hip flexion**, we lose control over its role in **knee extension**.  
+    Unlike the human brain, our FES systems cannot yet coordinate both roles simultaneously.
+    
+2. **The target muscles (rectus femoris, gluteus, and hamstrings)** are **deep and large**, making effective stimulation difficult.  
+    FES in these muscles may produce **sensory activation** but not a **functionally strong contraction**.
+    
 
-And actually walking is all about safety because of the risk of injury.  
-  
+Because of these challenges, FES at the hip is **less effective** for producing real movement, though it can still provide **sensory input** to enhance brain plasticity.
 
-So the control of watching while on the arm you can go wrong and maybe i mean maybe you can but you you just need to be super sure about the range but then the accuracy in doing tasks can be a centimeter.  
-  
+### <span style="color:rgb(161, 40, 226)">Control During the Stance Phase</span>
 
-For walking you cannot have centimeter of tears.  
-  
+During the **stance phase** of walking, FES was **not used** for safety reasons.  
+Any uncontrolled muscle contraction during stance could **destabilize** the patient.  
+Therefore, **the exoskeleton motors alone maintained support** and stability during stance, while **FES remained active only during swing**.
+### <span style="color:rgb(161, 40, 226)">Combined Hybrid Strategy</span>
 
-So.  
-  
+In summary, this setup actually combines **all three hybrid modalities**:
 
-The point is try to combine the safety.  
-  
+- **Cooperative control** at the **knee joint**,    
+- **Overlapped or partial control** at the **hip joint**,
+- And **side-by-side operation** between the two legs and between stance and swing phases.
+    
+So, this experiment represents a **real hybrid integration**, mixing the advantages of each approach to ensure both **safety and effectiveness** in gait training.
 
-Intense training and prolonged training, which can be achieved thanks to the exoskeleton.  
-  
 
-With the brain positivity enhancement, training and the kind of conditioning we can achieve by using function because simulation and that was a long story but to make the long story short i will just show you so there are super this is a super hot topic so there are many you can see.  
-  
 
-Many papers around the current scientific literature, if you go to a newer rehab, they have a week-long session on this topic, okay? It's a super point also of discussion on how to achieve this, because there is not a single solution.  
-  
 
-And so.  
-  
 
-Three main approaches are currently ongoing. one is side by side so.  
-  
 
-For example, you have the electrical stimulation for the hand grasping and release.  
-  
 
-And you use the robot for the arm movement.  
-  
 
-And so in that case, the electrical stimulation and the motor assistance are acting on different joints.  
-  
 
-So shoulder and elbow goes with the motors and grasp. spin goes with the electrical stimulation.  
-  
 
-They share the timing so that as soon as the project is approaching by the end, so the electrical stimulation is controlled and then, okay.  
-  
-
-This is the simplest because at the end you are not.  
-  
-
-They do not really need to talk to each other because they are acting on different channels.  
-  
-
-The other solution is when an overlap.  
-  
-
-So the electron stimulation and the motor of the skeleton are on the same joint, they share the timing, but they have independent control.  
-  
-
-Which means that.  
-  
-
-For example, I use the digitalis muscles and the motor for the shoulders.  
-  
-
-So when I want to move an arterial between the motor is moving the skeleton. to the anterior reaching until getting here and the FES is activating the anterior deltoids and the medial deltoids until getting here. Each of them is seeing the other as an enemy so they have an independent control so they are kind of one compensating for the other.  
-  
-
-So if the head is pushing, the motor needs to put more power to stay on the track that it wants to follow.  
-  
-
-Finally.  
-  
-
-There is a cooperative modality when they act on the train joins, they have a shared timing and they share control, which means that.  
-  
-
-The robot is reading the contribution of FES and compensating for what is lacking.  
-  
-
-What is missing.  
-  
-
-Or the end, the FES is reading...  
-  
-
-Actually, usually what you want to do is to have the FES doing the most of the job.  
-  
-
-And the robot is for sure the accuracy and safety.  
-  
-
-Okay?  
-  
-
-This is quite a recent story.  
-  
-
-This is the patient again, Mila Gretta, two stimulators, simulating both legs.  
-  
-
-And actually adding an exoskeleton on the hip and on the knee. With motors, the hip and the knee.  
-  
-
-In this case.  
-  
-
-The cooperative control was implemented for the knee joints and the hamstrings and quadriceps electrical stimulation during swing with.  
-  
-
-The motors giving an inverse dynamic on the exoskeleton. Remember always first The exoskeleton motors are always on also if they are the exoskeleton is transferred because of for compensating for the exo weight for the exo movement okay so.  
-  
-
-We need.  
-  
-
-We need this inverse dynamic of the exoskeletons, so a torque by the motors.  
-  
-
-Which assure the, let's say, transparency.  
-  
-
-Then the motors are only correcting for the error.  
-  
-
-So the error in the trajectory. But the same error in the trajectory is also commanding the APS. And so if the APS.  
-  
-
-If the error is increased, if it is higher.  
-  
-
-The APS is increased.  
-  
-
-If the error is reduced, the APS is reduced.  
-  
-
-Comes into play only as a closed loop controller so to compensate for enough person so in this case the goal is to reduce the motor support to amplify the use of the fs i just mentioned it in the case of the.  
-  
-
-Hip joint.  
-  
-
-The activations of the muscles were only a sensory afferent electrical stimulation.  
-  
-
-Why?  
-  
-
-Because a small inaccuracy on the hip joint. No, actually, why?  
-  
-
-Here, sorry.  
-  
-
-I'm wrong.  
-  
-
-So.  
-  
-
-If you want to use... The rectus femoris and the gluteus. To control the hip joint.  
-  
-
-There are two main issues.  
-  
-
-One is that the rectus femoris is biotic.  
-  
-
-So.  
-  
-
-If you decide to control it for the hip, you are not controlling it for the knee.  
-  
-
-And therefore, you need...  
-  
-
-And our brain is amazing and can do both our stimulators needs to focus either on one side or the other and actually having a stimulation of the actual sphagnum capable to activate to move the hip is super difficult because first you have higher weight of course with the respect and a movement of the knee.  
-  
-
-The muscles are more deep.  
-  
-
-Same for the gluteus and the biarticular hamstrings, because at the end they are deeper and not easy to control. So.  
-  
-
-FPS on those muscles is not very effective.  
-  
-
-It's activating the muscles, so it can be used as sensory and electrical stimulation, but not producing a.  
-  
-
-An effective operation.  
-  
-
-And on the stance phase, you can see the stance phase.  
-  
-
-We actually decided not to use any SES because whatever change in the contraction of the muscle during stance would have resulted in a cold.  
-  
-
-So for safety reasons, the stand was on the motor.  
-  
-
-So the stand was still there.  
-  
-
-Was fixed there by the motor. And finally, on the end, where the motors are not active, there is no motor on the ES2.  
-  
-
-So we are mixing up the cooperative building. the overlap and side by side of course.  
-  
-
-Okay.  
-  
-
-Okay. I'm done. See you on Thursday. On Thursday we will speak about spinal cord stimulation.  
-  
-
-I'll talk to Daniele as a representative of the students but talk in between you.  
-  
-
-My proposal would be that.  
-  
-
-Thursday I do spinal cord stimulation. Monday.  
-  
-
-I do the neuroengineering for biology, last chapter.  
-  
-
-Then Thursday, there is Professor Micera coming on purpose just for you to Milano, two hours, 3.30, 10. Google with Professor Micera, I think it's super worth it.  
-  
-
-And we will keep Friday for questions.
