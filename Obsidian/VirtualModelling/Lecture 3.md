@@ -52,12 +52,6 @@ the last problem
 
 
 ***
-VIRTUAL MODELLING CLASS 3
-
-**Participants**   
-
-**Date**    2025-11-12
-
 We now start again with our learning on the on the eticholoma geometry for the calibration of a stereo camera system with a configuration of unknown control points. Okay?  
   
 

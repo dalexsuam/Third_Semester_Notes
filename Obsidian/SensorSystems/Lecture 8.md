@@ -1,1258 +1,986 @@
 30/10/2025
 ***
 
-Hello everybody! The topic of today is strain and force sensors. 
+# <span style="color:rgb(223, 109, 109)">Strain and Force Sensors</span>
 
-In particular, we will study two types of force and strain forces, the strain ages and the piezoelectric force sensors. 
+Hello everybody!  Today’s topic is **strain and force sensors**.
 
-Let's start with strain gauges. 
+In particular, we will study two main types: **strain gauges** and **piezoelectric force sensors**.Let’s begin with **strain gauges**, which are resistive sensors used to measure strain.  They can be spelled either _strain gauges_ or _strain gages_—both forms are correct. Before going into the details, let’s quickly review some basic concepts from mechanics.
 
-Strain gauges are resistive sensors that are used to measure strain. 
+---
+# <span style="color:rgb(223, 109, 109)">Strain Gauges</span>
 
-Strain gauges can be written either strain gauges as you see here or strain gauges as you see there. So both the spelling are accepted as correct. 
+![[Pasted image 20251118104533.png|400]]
 
-Let's start with an introduction about the basics of mechanics, just to review some important definitions and topics. 
+## <span style="color:rgb(239, 179, 1)">Basic Principles - Mechanics</span>
+### <span style="color:rgb(161, 40, 226)">Stress</span>
 
-So, first of all, we can define stress as the ratio between the force applied to a material and the cross-section. 
+![[Pasted image 20251118104559.png]]
+Stress is defined as the ratio between the force applied to a material and its cross-sectional area.  If the cross-section is ($W \times H$), then:
+$$\sigma = \frac{F}{WH}, \space [Pa=N/m^2]  
+$$
+Stress is measured in **Pascals (Pa)**.
 
-In this case W by H, of the material itself. 
+### <span style="color:rgb(161, 40, 226)">Strain</span>
 
-Stress is measured in Pascal. 
+![[Pasted image 20251118104912.png]]
+Strain represents the **normalized elongation** of a material.  If a material of length $(L)$ is stretched by a force in the direction of its length, it will elongate by $(\Delta L)$.
+$$\varepsilon = \frac{\Delta L}{L}  $$
+Strain is dimensionless, but because the values are usually very small, it is often expressed in **microstrain** $(\mu\varepsilon = 10^{-6})$.
 
-And then we have the strain. 
+### <span style="color:rgb(161, 40, 226)">Young’s Modulus</span>
 
-Which is defined as the normalized elongation of the material. So if you have a material with a certain length L and you apply a force in the same direction on the main... 
+The relationship between stress and strain is given by **Young’s modulus**, defined as:
+$$
+E = \frac{\sigma}{\varepsilon}  
+$$
+Young’s modulus is also measured in **Pascals**.
 
-Sides L, then you will experience an elongation of the material. 
+### <span style="color:rgb(161, 40, 226)">Necking</span>
 
-The normalized elongation, delta L over L, is called strain and obviously it is an adimensional conjugating, but in many cases it is defined in microstrain because typically this number is very small, so we multiply it to 10 to the minus 5. 
+![[Pasted image 20251118105030.png]]
+When a material is subjected to tension, it elongates in the direction of the applied force, but it becomes thinner in the perpendicular directions.  
+This thinning effect is known as **necking**.
 
-Then. 
+### <span style="color:rgb(161, 40, 226)">Poisson’s Ratio</span>
 
-The relation between two these important parameters, the stress and the strain, is provided by the Young Modules. In fact, in particular, the Young Modules is the ratio between the stress and the strain, and it is measured in Pascal. 
+Poisson’s ratio quantifies this phenomenon (Necking). It is defined as the (negative) ratio between the relative change in width or height and the relative change in length:
 
-In all the material. 
+$$  
+\nu = -\frac{\Delta W/W}{\Delta L/L} = -\frac{\Delta H/H}{\Delta L/L}  
+$$
+The negative sign ensures that Poisson’s ratio is positive, since elongation ($\Delta L>0$) is accompanied by a reduction in width or height ($\Delta W<0$).
 
-When the material is subjected to stress. 
 
-We have a phenomena that we call the necking. The necking is a phenomenon for which we apply for instance tension, your material elongates in one direction but it experiences a thinning in the other two directions. in the other two directions. So for instance in this case if you have an elongation of the L, you will have a thinning in W and H. 
+## <span style="color:rgb(239, 179, 1)">Stress- Strain Curve</span>
 
-The Poisson ratio is the ratio between the variation of the width or of height of your material over the variation of the length when the material is exposed to a tension or a compression. This time... And minus that we see here in the formula is in order to have a Poisson ratio, nu. 
+![[Pasted image 20251118122827.png]]
 
-Which is higher than zero, so which is a positive number. In fact, if you have an elongation, so a delta L over L, which is a positive number, the variation on W, or the variation of H, will be a negative value. So overall this ratio is negative and with a minus in front of it, make... the Poisson ratio to be a positive number. 
+Normally, for most materials we can distinguish two regions in the stress–strain curve. This curve shows how much stress must be applied to produce a given strain. As you can see, the curve is divided into two main regions: the **elastic region** and the **plastic region**.
 
-Normally for all the materials we can distinguish two regions in the stress-strain curve. 
+In the **elastic region**, the relationship between stress and strain is linear. This means that the Young’s modulus remains constant, since it corresponds to the slope of this linear portion of the curve.
 
-So the stress-strain curve is this characteristic. 
+In the **plastic region**, the relationship is no longer linear. Instead, the curve starts to saturate until it reaches the **failure point**, which is the moment when the material breaks.
 
-For different strain which is the stress that we have to apply to the material. As you see we have two distinct regions, the elastic region and the elastic region. and the plastic region. 
+## <span style="color:rgb(239, 179, 1)">Strain Gauge - Working Principle</span>
 
-In the elastic region, the characteristic between stress and strain is linear. 
+![[Pasted image 20251118123606.png]]
 
-And this means that the Poisson, that the. 
+Now let’s better understand the working principle of strain gauges. A strain gauge is simply a resistor whose resistance changes when the material is strained. You know that the resistance $(R)$ of a conductor is:
+$$R = \rho \frac{L}{A} = \rho \frac{L}{W \cdot H}  $$
+If we apply tension to the material:
 
-Young modules is a constant value. In fact, the Young modules is the slope of the characteristic in the elastic region. 
+- its length $(L)$ increases,
+- its cross-section $(A)$ decreases due to necking (both $(W)$ and $(H)$ shrink),
 
-Instead in the plastic region, We don't have a linear characteristic. between stress and strain. 
+and both effects cause the resistance to **increase**.
 
-But we have this saturating curve, until we reach the failure point. The failure point is the point at which your material will be broken. 
+If instead we apply compression:
 
-Now let's start to better understand the working principle of the strain gauges. 
+- the length decreases,
+- the cross-section increases,
 
-Which is very simple. Strain gauge, we said, is a resistor with a resistance that changes when a strain is applied to the material. 
+and the resistance **decreases**.
 
-In particular, you know that there is... resistance is defined as the product between the resistivity of the material, rho. 
+For some materials, resistivity $(\rho)$ also changes with stress. This is the **piezoresistive effect**, where the normalized change in resistivity is proportional to the stress applied:
 
-The length of your semiconductor, divided by the area which is the cross-section of your material. 
+$$\frac{\Delta \rho}{\rho} = \beta \cdot \sigma = \beta \cdot E \cdot \varepsilon = \beta \cdot E \cdot \frac{\Delta L}{L}$$
+and this can also be written using strain $(\Delta L / L)$ by including the Young’s modulus.
+### <span style="color:rgb(161, 40, 226)">Sensitivity to strain direction</span>
 
-So the area can be also written as the product between W and H. 
+The material is sensitive to strain **only when it is applied along the main length** of the resistor. If the stress is applied in the orthogonal direction, the resistance change is negligible.
 
-If you apply a tension to your material, then for sure your material will have an increased length and because of the necking you will have a decrease in the cross-section. 
+This remains true for **bonded strain gauges**, which are the most common type.  
+In these devices, the resistor is folded many times (zig-zag pattern) to increase the effective length. The sensor still responds mainly to tension or compression along its principal axis and remains almost insensitive to lateral forces applied perpendicular to that axis.
 
-And so both increasing in L and decreasing in A makes the resistance to increase. So when we apply a tension it will result in an increase. 
+### <span style="color:rgb(161, 40, 226)">Gauge Factor (Sensitivity of a Strain Gauge)</span>
 
-In the resistance. On the other hand, if I apply a compression it means that we will reduce the length of the material and obviously we will instead increase the area of the cross-section. 
+The **gauge factor (G)** represents the sensitivity of a strain gauge.  
+It is defined as:
+  
+$$G = \frac{dR/R}{\varepsilon} =\frac{dR / R}{dL / L}  $$
+where:
+- ($dR / R$) = relative change in resistance
+- ($dL / L$) = axial strain
+    
+**Deriving the Gauge Factor**
+
+The resistance of a conductor is:
+$$R = \rho \frac{L}{W H}$$
+Let's do some variations and apply $ln$ in both sides
+$$ ln(R)=ln(\rho)+ln(L)-ln(W)-ln(H)$$
+And if we make the derivative of all these we would get
+$$ d(ln(R))=d(ln(\rho))+d(ln(L))-d(ln(W))-d(ln(H))$$
+We finally obtain the relative variation of this expression gives:
+$$\frac{dR}{R}  
+= \frac{dL}{L}-\frac{d\rho}{\rho}-\frac{dW}{W}-\frac{dH}{H}$$
+(The width (W) and height (H) terms have negative signs because they are in the denominator)
+
+**Using Poisson’s Ratio**
+Poisson’s ratio is defined as:
+$$\nu = -\frac{dW/W}{dL/L} = -\frac{dH/H}{dL/L}$$
+Therefore:
+$$  -\frac{dW}{W} = \nu \frac{dL}{L}$$
+$$-\frac{dH}{H} = \nu \frac{dL}{L}  $$
+
+Substituting these into the expression for ($dR/R$):
+
+$$  
+\frac{dR}{dR}  
+= \frac{dL}{dL} + \frac{d\rho}{\rho}+2\nu \frac{dL}{L}  
+$$
+**Including the Piezoresistive Effect**
+
+For piezoresistive materials:
+$$\frac{d\rho}{\rho} = \beta E \frac{dL}{L}  $$
+Substitute this:
+$$\frac{dR}{R}  = \left(1 + 2\nu + \beta E\right)\frac{dL}{L} $$
+Finally:
+$$\boxed{ G= 1 + 2\nu + \beta E  }$$
+> [!info] **Special Cases** Non-piezoresistive materials (most metals)
+$$\beta = 0 \quad \Rightarrow \quad G \approx 1 + 2\nu  $$
+Typical values:  
+ $$G ≈ 2$$
+
+> [!error] Piezoresistive materials (e.g., silicon)  
+$$G = 1 + 2\nu + \beta E $$
+The term ($\beta E$) is large → G can be 50–150 or higher
+
+
+![[Pasted image 20251118210501.png]]
 
-And so for the compression we will experience a decrease of the resistance. 
+In this table, you can see the gauge factor values for different materials.  
+One important thing to notice is that the gauge factor is **not always constant** over the full strain range.
 
-For some materials we also have the resistivity that depends on the stress and so on the strain applied to the material. 
+To make this clearer, the table provides values for _low strain_ (typically below about 1%) and _high strain_.
 
-In fact. 
+![[Pasted image 20251118210145.png]]
 
-For piezoelectric material, piezoresistive material. 
+For some materials—an example is **constantan alloy**—the relationship between ΔR/R and strain is almost perfectly linear.  
+Because of this, the gauge factor remains nearly constant for both low and high strain.
 
-We have the piezoresistive effect which say that we will have a variation of the resistivity of the material which is directly proportional to the stress applied on the material and the constant which depends on the material is called beta. 
+However, other materials behave very differently.  
+For example, **nickel** shows a strong nonlinearity:
 
-And so obviously this equation can also be written in respect to the elongation delta L over L. So we can say that the normalized variation of the resistivity is equal to beta multiplied by the Young modules and multiplied by the normalized elongation of the material. 
+- at low strain, the ΔR/R–strain curve has a **negative** slope
+- at higher strain, the slope becomes **positive** and more linear
+    
+This change of slope explains why the gauge factor for nickel is negative at low strain but becomes positive when the strain increases.
 
-So. 
+## <span style="color:rgb(239, 179, 1)">Strain Gauge Fabrication</span>
 
-As we can clearly understand. 
+Now, regarding the structure and fabrication of strain gauges, there isn’t much new to say, because the process is essentially the same as the one used for thin-film, patterned RTDs. The fabrication is based on **photolithography**, which typically includes four main steps:
 
-Our material is sensitive to the strain only when the strain is applied in the same direction of the material. main dimension of your material. So if this is length. Obviously if we apply instead a stress in the orthogonal direction so for instance apply a stress in this direction. 
+![[Pasted image 20251118211247.png]]
+1. **Photoresist deposition** – A layer of photoresist is applied on top of the material.  
+    The photoresist can be _positive_ or _negative_, depending on whether it becomes stronger or weaker when exposed to light.
+2. **Exposure to light** – Ultraviolet light is used to define the desired pattern on the photoresist.
+3. **Etching** – The unprotected areas of the underlying material are removed.
+4. **Photoresist removal** – The remaining photoresist is stripped away, leaving the final patterned structure.
+    
+The main difference compared to thin-film RTDs lies in the **carrier material**.  
+For strain gauges, the carrier must be **flexible**, because the entire strain gauge is glued onto the specimen or structure being measured.  
+If the specimen undergoes elongation or compression, the carrier—and therefore the gauge itself—must deform in exactly the same way.  
+This ensures that the electrical resistance truly reflects the strain experienced by the specimen.
 
-We will not experience any significant variation of the resistance. 
 
-This is true also when we employ the bonded strain gauge structure, which is the most commonly used. In a balled strain gauge structure, mainly we have a resistor which is folded many times. 
+## <span style="color:rgb(239, 179, 1)">Strain Gauge - Readout circuit<br></span>
+![[Pasted image 20251118211640.png]]
+When using strain gauges, we need a circuit to read their resistance changes, and the most common approach is to use a **Wheatstone bridge**, similar to what we do with RTDs.
 
-In your sensors, like in this case. 
+A key issue with strain gauges is **temperature sensitivity**. Since strain gauges are resistors, their resistance naturally changes with temperature. If we want the output of our measurement to reflect only the **strain applied to the material**, we need a way to cancel out any voltage changes caused by temperature.
 
-Obviously in this case the overall L is not only the length of the sensor itself, but it is the L multiplied by the number of windings that you have inside your sensor. 
+![[Pasted image 20251118211754.png|400]]
+One effective method is to use **two strain gauges placed orthogonally** (at right angles) to each other:
 
-Also in this case, obviously. 
+- **Strain gauge 1:** Aligned with the main length of the material, so it is parallel to the applied force.
+- **Strain gauge 2:** Placed perpendicular (orthogonal) to the applied force, so it does not experience strain from the force.
+    
+Here’s why this works:
 
-The sensor is sensible to... 
+- When **temperature changes**, both gauges’ resistances increase by the same amount. If we place them in the same branch of the Wheatstone bridge, the voltage at the intermediate point stays roughly at half the supply voltage. This means **temperature effects are canceled out**.
+    
+- When a **mechanical strain** is applied:
+    
+    - Gauge 1, which is aligned with the force, changes its resistance.
+    - Gauge 2, which is perpendicular, does **not** change.
+        
 
-Tension or compression along the main sides of the sensor itself, instead it is insensitive to lateral forces when they are applied in the orthogonal direction. 
+This creates an **imbalance in the Wheatstone bridge**, which produces a voltage difference that we can measure. This voltage depends **only on the strain**, not on the temperature.
 
-The sensitivity of a strain gauge is defined as the gauge factor. 
+In short, this orthogonal strain gauge configuration allows us to measure strain accurately while compensating for temperature variations.
 
-So let's try to obtain the value of the gain factor. 
+## <span style="color:rgb(239, 179, 1)">Strain Gauge - Bending measure</span>
 
-So. 
+![[Pasted image 20251118212425.png]]
+Another important application is **measuring the bending of beams**. When a beam bends, one side experiences **tension** while the opposite side experiences **compression**:
 
-Being the gain factor. 
+- In the example here, the **top side** of the beam is under tension.
+- The **bottom side** is under compression.
+    
+To measure this bending, we can place **two strain gauges**: one on the top and one on the bottom of the beam, and connect them in the **same branch of a Wheatstone bridge**.
 
-The gauge factor, the sensitivity of the material, we can define the gauge factor as the ratio. 
+Here’s what happens:
 
-Between the variation of the resistance delta R over R divided by the strain. 
+- The **top strain gauge** (under tension) increases its resistance.
+- The **bottom strain gauge** (under compression) decreases its resistance.
+- This difference creates an **imbalance in the Wheatstone bridge**, causing a measurable voltage difference at the intermediate node. This voltage tells us that bending is happening.
+    
+![[Pasted image 20251118212514.png|400]]
+An important feature of this setup is that it is **insensitive to uniform tension or compression**:
 
-So delta L over L. 
+- If the whole beam is just stretched (tension) or squeezed (compression), both top and bottom gauges change in the **same direction**.
+- This causes **little to no change** in the voltage at the intermediate node, so the bridge output does not respond to overall tension or compression—only to bending.
+    
+![[Pasted image 20251118212610.png]]
+If you want **higher sensitivity**, you can use a **full Wheatstone bridge with four resistances**:
 
-We can remember that the resistance is equal to the resistivity multiplied by L and divided by W by H and so we can do the partial derivative of the resistance. 
+- Place two resistors corresponding to the **top side** in opposite positions of the bridge.
+- Place the other two resistors corresponding to the **bottom side** in the remaining opposite positions.
+    
 
-Delta r by r and we will obtain that it depends on delta l by l plus delta r by rho because they are at the numerator and then minus delta w over w and delta h over h with the minus because they are at the denominator in the expression of the resistance. 
+In this configuration:
 
-Now if we remember the definition of the Poisson ratio, the Poisson ratio is equal to minus ww and L over L, which is. 
+- The two resistors on the **tension side** increase in resistance.
+- The two resistors on the **compression side** decrease in resistance.
+- This creates a **larger voltage difference** between the two branches of the bridge, giving a stronger signal and higher sensitivity to bending.
 
-Is equal to minus dh over h and dl over l. 
+## <span style="color:rgb(239, 179, 1)">Strain Gauge - Possible Configurations</span>
 
-We can rewrite the two terms minus wo over W and minus the HO. h using the definition of the Poisson ratio. 
 
-And so we will see the dependence on the L over L also of these two terms. 
 
-Then for piezo-resistive materials we can write the rho over Rho as we have seen in the previous slide as As we can multiply by the number of the same number of times we multiply by the N over L. 
+second configuration
 
-In this last expression, you see that we can collect the L over L. 
 
-Because it is present in all the four steps. 
 
-Collecting the L over L. 
+third 
 
-We find the final expression of the sensitivity of a strain gauge, so the so-called gauge factor, which is equal to one plus two times the sensitivity times the post-sorration plus. 
 
-Only in case of piezo-resisting material. 
 
-Beta for the Young modulus. 
 
-In case you are using a material which is not piezo-resisting material, the last term will be equal to zero because the beta will be equal to zero. 
 
-In this table I present the value of the gauge factor for different materials. 
 
-You see that the gauge factor is not perfectly constant for all the strain that you can apply to your model. materials and so in this table for instance I provided the value in case of low strain or high strain where I define a low strain if it is about below one one percent. 
+![[Pasted image 20251118213729.png]]
 
-You see that for some materials, for instance if you look for constant time alloy. 
+Here we show **different Wheatstone bridge configurations**, ranging from the simplest (one strain gauge) to the most complete (four strain gauges). Here, we focus on **measuring tension or compression while being insensitive to bending**—the opposite of the bending-sensitive setup we discussed previously.
 
-The characteristics of delta R over R with a strain is quite linear, in fact you see that the gauge factor is approximately constant. 
+### <span style="color:rgb(161, 40, 226)">1. Single strain gauge</span>
+![[Pasted image 20251118213749.png]]
+- Simple setup with **one strain gauge**.
+- Measures tension (resistance increases) and compression (resistance decreases).
+- **Drawbacks:** Sensitive to **temperature** and also to **bending**, which can cause unwanted voltage changes.
+    
 
-For the Adamantibus process for nickel, you see huge variation in these in this factor. 
+### <span style="color:rgb(161, 40, 226)">2. Two strain gauges on opposite sides</span>
 
-In fact you see that here the characteristic is even negative and then start to be quite linear and you see in fact in the kh factor we have a kh factor which is negative. 
 
-For low strain and it becomes to be positive for high strain. 
+| Configuration                        | Readout Circuit                      |
+| ------------------------------------ | ------------------------------------ |
+| ![[Pasted image 20251118213816.png]] | ![[Pasted image 20251118213123.png]] |
 
-About the structure and the fabrication of the string H. 
+- Place two strain gauges on opposite sides of the beam in **opposite positions on the Wheatstone bridge**.
+- **Effect under tension:** Both resistors increase → voltage imbalance is measurable → output shows tension.
+- **Effect under bending:** One resistor increases (tension side), the other decreases (compression side) → the changes **balance each other**, so output is nearly zero → insensitive to bending.
+- **Temperature sensitivity:** Both resistors increase with temperature → output is still affected → **temperature is not compensated**.
 
-We don't have to say too much, because the fabrication is exactly the same that we have for field pattern. 
+### <span style="color:rgb(161, 40, 226)">3. Two gauges with one orthogonal for temperature compensation</span>
 
-So the fabrication is based on photolithography. 
+| Configuration                        | Readout Circuit                      |
+| ------------------------------------ | ------------------------------------ |
+| ![[Pasted image 20251118213935.png]] | ![[Pasted image 20251118213220.png]] |
 
-In the photolithography we have mainly four important steps. The first one is the the position of the photoresist that can be either positive or negative photoresist depending on the behavior with exposure to light if it becomes stronger or depredates with exposure to light. 
+- Add a second gauge **orthogonal to the first** (insensitive to tension/compression).
+- **Temperature effect:** Both gauges on the same branch increase equally → intermediate node voltage remains constant → **temperature compensated**.
+- **Bending effect:** The first gauge still changes with bending → output voltage changes → **sensitive to bending**.
+    
+### <span style="color:rgb(161, 40, 226)">4. Four-gauge configuration (optimal)</span>
 
-Then we have the second phase which is obviously the exposure to light. And then we have the etching of the residual materials. 
+| Configuration                        | Readout Circuit                      |
+| ------------------------------------ | ------------------------------------ |
+| ![[Pasted image 20251118214027.png]] | ![[Pasted image 20251118213433.png]] |
 
-And finally the removal of the photoresistor. 
+- Combines **temperature compensation** and **bending insensitivity**.
+- Arrangement:
+    
+    - **Top side:** two gauges in orthogonal positions.
+    - **Bottom side:** two gauges in orthogonal positions.
+        
+- **Temperature effect:** All four gauges change equally → bridge remains balanced → output = 0.
+![[Pasted image 20251118213609.png]]
 
-The main difference in respect to the thin film RTDs is in the carrier. In fact, the carrier of a strain gauge must be flexible. Why? Because the carrier is then glued to your specimen under test, and if the specimen is subjected to an elongation or compression, then also the carrier of your Our strain gauge should elongate or be compressed together with the specimen. 
+- **Tension effect:** Only the gauges aligned with the force change → creates imbalance → output shows tension/compression.
+- **Bending effect:** Top gauge under tension, bottom gauge under compression → intermediate node changes **cancel each other** → output remains near zero.
+    
 
-Okay, what about the redoubt circuit of semi-hages being resistive sensor that can be redoubted using whiston bleach as we have seen for the. 
+**Conclusion:**
 
-RTDs. 
+- By carefully choosing **gauge positions** and **bridge configuration**, you can design a system that is:
+    
+    - Sensitive **only to tension/compression**,
+    - Insensitive to **bending**,
+    - And/or **temperature variations**, depending on the configuration.
+        
+- The specific choice depends on the measurement objective for your application.
+    
 
-In particular. 
+## <span style="color:rgb(239, 179, 1)">Strain Gauges - Applications</span>
 
-If we want to compensate for temperature variation, we can use two strain gauges in orthogonal. 
+Strain gauges are used to measure small deformations or changes in length in various structures and devices. Their main applications include:
 
-Orthogonal position. 
+![[Pasted image 20251118214809.png|400]]
+1. **Railroad Maintenance:** Strain gauges can be installed along railway tracks to monitor changes in the length of the rails. This helps track how the rails expand or contract with temperature changes and ensures timely maintenance.
+    
+2. **Structural Monitoring:** They are used in “smart” infrastructure, like bridges, to monitor stress and detect potential problems. Strain gauges can also be applied to structures such as wind turbine panels to measure stress on their walls.
+    
+3. **High-Precision Robotics:** In medical or delicate robotic applications, strain gauges provide feedback on the stress experienced in different parts of the robot. This helps control the force applied with high accuracy.
+![[Pasted image 20251118214829.png]]
 
-So first of all it's very important to compensate for temperature variation because strain gauges are resistors and as we know resistance change their value with temperature. So if we want to have an output which is dependent only on the strain that we applied on material, you don't want to um voltage if the temperature changes. So if you use these two orthogonal strain gauges. 
+4. **Bathroom Scales:** Strain gauges are commonly used in scales to measure weight. The scale has a fixed base and a free end where the load is applied. The connecting beam bends depending on the load, and the strain gauge measures this bending. From this measurement, the scale can calculate the weight applied.
 
-You will have one strain gauge which direction is parallel to the main length of your material and so it's parallel to the force that is applied to the material instead the other one which is orthogonal will be insensitive to. 
+# <span style="color:rgb(223, 109, 109)">Piezoelectric Force Sensor</span>
 
-To the strain applied to the material. 
+![[Pasted image 20251118215300.png|300]]
 
-In this way, imagine that you have a variation of temperature, imagine that the temperature is increasing and the increase of temperature makes your resistance to increase. 
+The second type of sensor we will study today is the **piezoelectric force sensor**. Like strain gauges, it is used to measure force. However, unlike strain gauges, piezoelectric sensors measure force **more directly**. Remember that strain gauges measure strain, and we calculate stress from strain using the material’s Young’s modulus. Piezoelectric sensors, instead, generate an electrical signal directly from the applied force.
 
-You will see that both the two resistors are increasing because of the temperature variation. 
+## <span style="color:rgb(239, 179, 1)">Piezoeletric Effect</span>
+![[Pasted image 20251118215315.png]]
 
-If we put the two resistances, which are the two orthogonal resistances, on the same branch of the. 
+	In piezoelectric materials, we find a very useful property: **when an external force is applied, the material generates a voltage difference across its terminals**.
 
-Winston bridge. 
+Materials that show this piezoelectric behaviour include **quartz, many types of crystals, ceramics, and even some biological materials**.
 
-The intermediate point will remain equal to about one half the bias in the voltage of the Winston bridge. 
+When **no force** is applied, the internal arrangement of charges inside the material is perfectly balanced. But if we apply a **force**, either tension or compression, the internal structure deforms, and this deformation causes the charges to become **unbalanced**.  
+As a result, there is a **separation of charges**, and we can measure a voltage across the two terminals of the material.
 
-Because the two resistors will increase of the same amount. 
+- A **tensile force** produces a voltage with one sign.
+- A **compressive force** produces a voltage with the opposite sign.
+    
 
-If instead you try to apply. 
+The interesting part is that the **reverse effect** is also true: if you apply a voltage to a piezoelectric material, you can cause a small deformation in it.
 
-For instance, a tension. 
+- Applying voltage in one direction makes the material **elongate**.
+- Applying voltage in the opposite direction makes it **compress**.
+    
 
-Then you will see that the strain gauge number 1, that is this one, the one that is stressed. 
+>[!important] This deformation only responds to **changes** in the applied force.  
+If you apply a constant force, the material will generate a voltage at the moment when the force changes, but then it will gradually **relax** and return toward its original configuration. As a result, the voltage disappears even if the force remains applied.
 
-Will increase due to the tension. 
 
-Instead, the same reagent number 2. 
+## <span style="color:rgb(239, 179, 1)">Piezoelectric Sensor - Electric Model</span>
 
-The one that is unstressed because it's orthogonal to the direction of your stress, then will stay constant so will not experience any violation due to the tension that you are applying. 
+![[Pasted image 20251118222721.png]]
+For this reason, we can model a piezoelectric material using a **capacitor in parallel with a resistor and a current source**.
 
-Will create an imbalance on the Wilson bridge and that will make the intermediate point to increase and so you will measure a certain voltage difference between the two branches. of the Wheatstone bridge. So this configuration is very important because this configuration allows you to measure the variation of the resistance due to strain. 
+- The **current source** represents the charge generated inside the material when it is stressed.
+- This current “injects” charge into the **capacitor**, and the voltage across the capacitor represents the **voltage generated by the piezoelectric material**.
+- The **resistor** models the fact that the material slowly **relaxes** and returns to its original, unstressed state. This relaxation causes the capacitor to discharge over time.
 
-But it allows you to avoid to measure instead any output voltage due to temperature variation. 
+We also know that the current needed to represent how the charge changes is related to the **derivative of the charge**.  
+In the Laplace domain, this becomes:
+$$I(t) = \frac{dQ(t)}{dt}$$
+$$I(s) = s \cdot Q(s)$$
 
-Another important use case that we need to reach in many applications is to be able to measure the bending of beams. 
+Please keep this relation in mind, because we will use it later when studying the **readout circuit** for this sensor.
 
-So in the bending we have one side of the beam which experiences tension. 
+This model corresponds to the **Norton equivalent** of the sensor.  
 
-In this case it is the upper part of the beam which is experiencing tension. 
+![[Pasted image 20251118222915.png]]
 
-While the other side experiences the compression. 
+Of course, we can also build the **Thevenin equivalent**, but its equations are more complicated. For this reason, we usually prefer to work with the Norton model.
 
-And in this example it is the one on the bottom. 
+![[Pasted image 20251118223355.png|300]]
+As mentioned before, piezoelectric sensors are very sensitive to **changes** in the applied force.  This means that when the force varies, the sensor generates an **equivalent current**, which can be expressed as:
 
-So if we put two different strain gauge, one on the top and the other on the bottom, as we see here in this example, so one on the top and the second on the bottom and we put the two strain gauges on the same branch of the voltage divider. 
+$$I = \frac{\Delta Q}{\Delta t}  $$
 
-On the same branch of the whistle bridge. 
+The typical amount of charge generated by these sensors is around **10–20 picocoulombs per newton**.
 
-You will see that when a band is happening. 
+This charge (Q) accumulates on the **equivalent capacitance** of the material, and the voltage you measure across the sensor is:
+$$V = \frac{Q}{C}  $$
 
-The strain gauge on the upper part which experiences the tension will increase in its value, while the strain gauge on the bottom part which experiences compression will decrease in value, and this would create an unbalance in the intermediate node, and in particular it will cause a decrease of the voltage of the intermediate node. So you can experience. a voltage difference at the output that can be measured and this will mark the presence of the bending. 
+However, as we said earlier, if the force stays constant over time, the material will slowly **relax** back to its original state.  Because of this relaxation, the voltage across the piezoelectric material will also decrease and eventually return to zero. In our electrical model, this relaxation is represented by the **time constant** of the circuit, which is:
+$$\tau = C_p \cdot R_p  $$
 
-Instead, please notice that this configuration is completely insensitive to a normal tension or compression. So imagine you have your beam that is just experiencing a tension. 
+In theory, if we can measure the **peak voltage** generated by the sensor, we can determine the charge (Q), and from that, the value of the applied force.
 
-So, it's stressed in this direction. 
+### <span style="color:rgb(161, 40, 226)">The practical problem: stray capacitances</span>
 
-Then. 
+The difficulty is that we do not only have the well-defined capacitance of the piezoelectric material. There are also **stray (parasitic) capacitances** in the system—coming from cables, connectors, or the environment.
 
-Both the upper strain gauge and the lower strain gauge will experience an increase in their resistivity. 
+These stray capacitances appear **in parallel** with the piezoelectric capacitance, so the voltage we measure depends not only on the charge and the sensor’s own capacitance, but also on these unwanted extra capacitances.
+$$V = \frac{Q}{C_p+C_{stray}}$$
 
-So. 
+Since stray capacitances are not perfectly controlled or predictable, they introduce **uncertainty** in the estimation of charge, and therefore in the estimation of force.
 
-If you have an increase. 
 
-Let's call it R2, the one on the bottom. 
+## <span style="color:rgb(239, 179, 1)">Readout Circuits</span>
 
-And R1. 
+As mentioned, we will examine two readout circuits:
 
-The resistance on top. 
+1. **The first circuit** gives an output directly proportional to the piezoelectric voltage ($V_p$).  
+    This circuit is affected by stray capacitances.
+2. **The second circuit** provides an output that does **not** depend on stray capacitances, making it the preferred solution.
 
-If both of them increases. 
+### <span style="color:rgb(161, 40, 226)">First Readout Circuit (Voltage Mode Readout)</span>
 
-Because we have a tension on both of them, the intermediate node. 
+Let’s begin with the first circuit. In this configuration, the piezoelectric material is modeled using its **Norton equivalent**, which includes:
 
-Will be pretty constant because it would still be about equal to 1-alpha because the two resistances R1 and R2 remain the same. 
+- a current source (representing the generated charge),
+- a capacitance ($C_p$),
+- and a resistance ($R_p$) (representing relaxation).
+![[Pasted image 20251118224152.png]]
 
-With this configuration that I show you. 
+This sensor is followed by an **operational amplifier** in a **non-inverting configuration**.
 
-You can measure bending and be immune instead to tension or obviously also compression, because in the case of decompression both the resistor R1 and R2 will reduce their value and the intermediate note will be pretty constant. 
+#### <span style="color:rgb(2, 141, 192)">1. Gain of the amplifier</span>
+In a non-inverting amplifier, the **low-frequency gain** is:
+$$G_{LF} = 1 + \frac{R_f}{R_g}  $$
+This matches what we see in the circuit. A capacitor ($C_f$) is connected in parallel with ($R_f$) to provide **high-frequency filtering**.
 
-If you want to increase the sensitivity of your wisdom bridge, you can even use four resistances. And in this case. 
+#### <span style="color:rgb(2, 141, 192)">2. Cable capacitance</span>
 
-You have to put the two resistances. which are on top. 
+![[Pasted image 20251118224242.png]]
+The capacitance of the cable, ($C_c$), appears **in parallel** with the sensor capacitance ($C_p$).  
+This is the stray capacitance we discussed before, and it affects the final output because it changes the effective capacitance seen by the sensor.
 
-So the one that experience in case of bending the tension, on opposite side in the whorestone bridge. So, for instance, the top resistor can be this one and this one. And you should put a second resistor there. 
+#### <span style="color:rgb(2, 141, 192)">3. Biasing the circuit<br></span>
+![[Pasted image 20251118224242.png]]
+The op-amp is powered with a **single supply** (0 V to $V_{cc}$).  
+However, we want to measure both:
 
-Then you can put also a second resistor on the bottom and you put them in the opposite position. 
+- tension → positive ($V_p$)
+- compression → negative ($V_p$)
 
-In this case, you see that in case of bending, you will see an increase of the two resistors exposed to the tension and a reduction in the two resistors exposed to the compression. 
+To allow this with a single supply, we **bias the entire circuit at half the supply**, ($V_{cc}/2$).  This makes ($V_{cc}/2$) the “resting point” when the sensor is not stressed.
 
-In this way you can notice that one node will increase in portage. 
+Here’s what happens when ($V_p = 0$):
 
-And the other node would decrease in voltage because of the voltage divider. And so you create an imbalance between the two branches which has a higher sensitivity to the bending that you want to measure. 
+- There is no voltage difference across the sensor.
+- Both sensor terminals sit at the bias level ($V_{cc}/2$).
+- By negative feedback, the op-amp forces the **inverting input** to also be at ($V_{cc}/2$).
+- No current flows through ($R_g$) or ($R_f$).
+- Therefore, the output ($V_o$) is also equal to ($V_{cc}/2$).
+    
+When a force is applied, a voltage contribution is added on top of this ($V_{cc}/2$), and the output can move up or down depending on the direction of the force.
 
-Here, in this slide. 
+Here is your full text rewritten in **clear, smooth, easy English**, keeping all the technical content but making the explanation much clearer and better organized. I did _not_ change the meaning—only the readability.
 
-We see some possible configurations from the easiest one, with just one master gauge, to the more complete one, to the most complete one, with the and force engages. In particular, in this case. 
 
-We would like to show an example when we are interested in measuring tension or compression of a beam and being insensitive to the bending. So exactly the opposite of what we wanted to do in the previous slide. So this line we want to do. 
+#### <span style="color:rgb(2, 141, 192)">4. Transfer Function: From Input Charge to Output Voltage</span>
 
-System which can measure bending and is insensitive to tension, to a normal tension or normal compression. 
+To analyze how this circuit processes the signal from the piezoelectric sensor, we first consider the sensor’s behavior in terms of **input current**, and then we convert the result to a function of **input charge**.
 
-Instead, in this second slide, we want to make a system which is insensitive to temperature variation. 
+Normally, in circuit analysis we look at the transfer function between **voltage and current**, but piezoelectric sensors naturally generate **charge**, so the transfer function we ultimately want is:
+$$\frac{V_o}{Q}  $$
 
-But also insensitive to bending, so sensitive only to tension or compression. I don't know, they're supposed to be on figures. In this situation, just use one string gauge. 
+To get there, we follow these steps:
 
-That obviously will increase with tension or will decrease in value with compression and obviously so in this case we create an imbalance in the voltage of the output voltage but this this configuration is sensitive also to temperature variation and also to bending. 
+1. **First**, compute the relation between the output voltage ($V_o$) and the input current (I).
+2. **Then**, since in the Laplace domain  
+    $I(s) = sQ(s)$ 
+    we convert the result by simply multiplying by (s), which gives us  
+    $\frac{V_o}{Q} = s \cdot \frac{V_o}{I}$. 
+    
+Also, because the bias voltage ($V_{cc}/2$) does not affect the circuit’s frequency behavior, we set it to zero during the AC analysis.
 
-A second possibility is to use two strain gauges on the opposite side of your beam and put them in opposite position in the beam. In this case, imagine to have a normal tension, so both the resistors will increase. 
+#### <span style="color:rgb(2, 141, 192)">5. Circuit for AC Analysis</span>
 
-And what happens is that the voltage on one side will increase. 
+When we draw the simplified AC model:
+![[Pasted image 20251118230014.png]]
+- The sensor is represented by:
+    
+    - a current source (I),
+    - a capacitance ($C_p$),
+    - a resistance ($R_p$).
+        
+- In parallel with this, we have the cable capacitance ($C_c$) and the bias resistor ($R_b$).
+- The amplifier is a standard non-inverting configuration with gain:  
+    $1 + \frac{R_f}{R_g}$    
+- The feedback includes a capacitor ($C_f$), providing high-frequency filtering.
+#### <span style="color:rgb(2, 141, 192)">5. Poles and Zero of the Circuit</span>
 
-The voltage on the opposite side of the Whiston bridge will decrease. 
+**Pole 1 — due to ($C_p + C_c$)**
+The first pole is created by the **total capacitance at the input**, which is:
+$$C_p + C_c  $$
+The equivalent resistance seen by this capacitance is:
+$$R_p \parallel R_b  $$
+So the first pole frequency is:
+$$f_{p1} = \frac{1}{2\pi (C_p + C_c)(R_p \parallel R_b)}  $$
 
-And so it will create an imbalance in the output voltage that we can measure. 
+**Pole 2 — due to ($C_f$)**
 
-If instead the beam experiences a compression, sorry. 
+The second pole comes from the feedback capacitor ($C_f$).  To find its frequency, we “turn off” all input sources.  This sets the op-amp inputs to 0 V, so no current flows through ($R_g$).  Thus, ($C_f$) only sees ($R_f$).
 
-A bending. 
+So:
+$$f_{p2} = \frac{1}{2\pi C_f R_f}  $$
+**Zero — due to ($C_f$)**
 
-In this case. 
+A zero appears when a capacitor becomes a **short circuit** but does _not_ force the output to zero.
 
-One resistor will increase, for instance resistor 1. 
+- When ($C_p$) and ($C_c$) are shorted at high frequencies → the input node is forced to 0 V → **no zero** from them.
+- When ($C_f$) is shorted → the output is _not_ forced to zero → this introduces a **zero**.
 
-And the other resist because it experiences the tension. Instead, the other resistance on the opposite side side will experience the compression and so it will reduce its value. 
+To find the zero’s frequency, we set the output node to 0 V and find the equivalent resistance seen by ($C_f$):
+$$
+R_f \parallel R_g  
+$$
+So the zero is at:
 
-In this case you see that this branch for sure will increase its value because of the voltage divider in which R1 is in. 
+$$f_z = \frac{1}{2\pi C_f (R_f \parallel R_g)}$$
 
-Increasing. But also the other intermediate point of the Winston bridge will increase because the upper resistor is decreasing in value. 
+**Typical ordering of singularities**
 
-And so in this case the two variations balance themselves and we will not measure a voltage at the output. 
+- ($C_p + C_c$) is usually quite large → **low-frequency pole**.   
+- ($C_f$) is small → **high-frequency pole**.
+- The zero comes at an even higher frequency because ($R_f \parallel R_g < R_f$).
 
-So it means that the second configuration is robust towards bending, so bending will not provide an output So we will see an apple. variation only if we have a simple tension or a simple compression. 
+Thus, the order is:
+$$f_{p1} < f_{p2} < f_z  $$
+#### <span style="color:rgb(2, 141, 192)">6. Transfer Function in Different Frequency Regions</span>
 
-We will have almost zero at the output if we have a bending. 
+**1. Low Frequency (before the first pole)**
 
-And what about in this second configuration, what about the temperature? 
+At low frequency, all capacitors behave as open circuits.
+$$V_p = I \cdot (R_p \parallel R_b)  $$
+The output voltage is simply the input voltage multiplied by the non-inverting gain:
+$$V_o = V_p \left(1 + \frac{R_f}{R_g}\right)  $$
+So the low-frequency gain is:
+$$\frac{V_o}{I} =  
+(R_p \parallel R_b)\left(1 + \frac{R_f}{R_g}\right)  $$
+ **2. Medium Frequency (after pole 1, before pole 2)**
 
-So imagine that the temperature is increasing and the increase of temperature makes the resistor to increase the value. 
+After the first pole, ($C_p + C_c$) behave like short circuits.  This forces the input node to **0 V**, so:
+$$V_p = 0 \quad\Rightarrow\quad V_o = 0  $$
+Thus:
+$$\frac{V_o}{I} = 0  $$
+**3. High Frequency (after the second pole and after the zero)**
 
-We can assume that the temperature is the same on the two sides of the beam and so that both the resistors will increase. 
+At high frequency, both:
 
-If both the resistors will increase it means that. 
+- ($C_p + C_c$) are shorted → input = 0 V    
+- ($C_f$) is shorted → feedback forces output = 0 V
 
-One side of the wisdom bridge will increase in voltage and the other will decrease. So temperature still creates an imbalance. So it means that the second configuration is still dependent on temperature. So it does not compensate for temperature. 
+Therefore:
+$$\frac{V_o}{I} = 0  $$
+#### <span style="color:rgb(2, 141, 192)">7.  Sketch of the Bode Plot</span>
 
-If we want to compensate for temperature. 
+The magnitude of $\dfrac{V_o}{I}$ looks like this:
 
-We have to use the third configuration. So in the third configuration we put a second string gauge which is orthogonal to the first one and the second one is insensitive to tension and compression, so it is insensitive to the stress. 
+![[Pasted image 20251119081433.png]]
+- A constant gain at low frequency.
+- A first roll-off of **−20 dB/dec** after the first pole.
+- Then a second roll-off of **−40 dB/dec** after the second pole.
+- Then, after the zero, the slope returns to **−20 dB/dec**.
+#### <span style="color:rgb(2, 141, 192)">8. Compact transfer-function expression</span>
 
-In this case since they are on the same branch. 
+Start from the current-to-voltage form (useful for circuit algebra). The current-to-voltage transfer function of the voltage-mode readout is:
+ $$ \boxed{\,\frac{V_o}{I}(s) = (R_p\!\parallel\!R_b)\left(1+\frac{R_f}{R_g}\right)\cdot \frac{1 + s\tau_z}{(1 + s\tau_{p1})(1 + s\tau_{p2})}\,}$$
+where the time constants are:
 
-If we have a variation of temperature, for instance an increase of temperature, both the resistors will increase and so the intermediate node will not be influenced by this variation of temperature. 
+![[Pasted image 20251119194909.png]]
+- low-frequency pole (sensor + cable):
+$$\tau_{p1} = (C_p + C_c)\,(R_p\!\parallel\!R_b)$$
+- high-frequency pole (feedback $C_f$ with $R_f$​):    
+$$\tau_{p2} = C_f\,R_f$$
+- zero (feedback $C_f$​ sees $R_f\parallel R_g$​ when $V_o=0$):
+$$\tau_z = C_f\,(R_f\!\parallel\!R_g)$$
+#### <span style="color:rgb(2, 141, 192)">9. Convert to charge-to-voltage</span>
 
-So in this third case we made a configuration which is obviously sensitive to tension and compression and it is insensitive to temperature variation. 
+Because in the Laplace domain $I(s)=s\cdot Q(s)$, the desired transfer function is simply
+  $$\boxed{\,\frac{V_o}{Q}(s) = s\cdot\frac{V_o}{I}(s)\,}$$
+So explicitly:
 
-But still we didn't get our aim to have something that is insensitive to both bending and temperature because this configuration, the number 3. 
+$$\frac{V_o}{Q}(s) = s\,(R_p\!\parallel\!R_b)\left(1+\frac{R_f}{R_g}\right) \frac{1 + s\tau_z}{(1 + s\tau_{p1})(1 + s\tau_{p2})}$$
 
-Instead, it is sensitive to bending because bending will cause a variation only on the string H1, and so it will create an imbalance in the output voltage. 
+#### <span style="color:rgb(2, 141, 192)">10. Useful frequency-region approximations</span>
 
-So, how can we have a circuit which is insensitive to both temperature variation and also bending? We have to put together what we discover in configuration 2 and 3. 
+Take $s=j\omega$. 
+***Low frequency ( $\omega \ll 1/\tau_{p1}$​ )***
 
-And we obtain the configuration number 4, in which we have four strain gauges. 
+![[Pasted image 20251119194629.png]]
+All $1+s\tau\approx1$. 
+Then
+$$\frac{V_o}{Q}(s)\approx s\,(R_p\!\parallel\!R_b)\left(1+\frac{R_f}{R_g}\right)$$
+Since $s\to0$, the transfer tends to **0** (zero at origin). Physically: piezo responds to changes, so DC/very low frequencies give no steady output.
 
-Two on the top side in orthogonal position, one in respect to the other, and two. 
+***Mid frequencies (after $f_{p1}$​, before $f_{p2}$​: $1/\tau_{p1}\ll\omega\ll 1/\tau_{p2}$​)
 
-On the bottom side. 
+![[Pasted image 20251119194648.png]]
 
-Side and again in orthogonal position. 
+Here $1+s\tau_{p1}\approx s\tau_{p1}$, but $1+s\tau_{p2}\approx1$ and $1+s\tau_z\approx1$ (zero not yet reached). Substitute and simplify:
+$$\frac{V_o}{Q}(s)\approx \frac{(R_p\!\parallel\!R_b)\left(1+\dfrac{R_f}{R_g}\right)}{(C_p+C_c)(R_p\!\parallel\!R_b)} = \frac{1+\dfrac{R_f}{R_g}}{C_p + C_c}$$
 
-Imagine to have a temperature variation. 
+So the mid-band response is **flat** (frequency independent) and equal to:
+$$\boxed{\ \frac{V_o}{Q}\ \Bigr|_{\text{mid}} = \frac{1 + R_f/R_g}{C_p + C_c}\ }$$ 
+Interpretation: amplifier gain multiplies the charge→voltage conversion set by the total input capacitance.
 
-All the strain cages will experience the same temperature variation and so they will experience the same increase or decrease of resistance. And so. 
+***High frequency ( $\omega \gg 1/\tau_{z}$  and $\omega\gg 1/\tau_{p2}$ )***
 
-Mainly both the two central nodes of the wisdom bridge will remain at the biasing water. 
+![[Pasted image 20251119194703.png]]
+All $1+s\tau$ dominated by the $s\tau$ terms. After cancellation (work shown below), the limit is:
+ $$\boxed{\ \frac{V_o}{Q}\ \Bigr|_{\infty} = \frac{1}{C_p + C_c}\ }$$
+So at very high frequency the gain given by the amplifier cancels out and the response tends to $1/(C_p+C_c)$.
+$$(1+R_f/R_g)\cdot\frac{(R_f\parallel R_g)/R_f}{C_p+C_c}$$ But $(R_f\parallel R_g)/R_f = 1/(1+R_f/R_g)$, so the amplifier gain cancels.
 
-Divided by 2. And so the output voltage will be equal to zero. 
+#### <span style="color:rgb(2, 141, 192)">11. Bode-shape summary</span>
 
-If instead we have a tension. 
+![[Pasted image 20251119194754.png]]
+- At very low freq: starts at **0** (zero at origin, slope +20 dB/dec from origin if plotted vs. freq because of the multiplying sss).
+- Midband: **flat** plateau at $(1+R_f/R_g)/(C_p+C_c)$.
+- Above $f_{p2}$​ and after the zero $f_z$​: slope changes and the final high-freq plateau equals $1/(C_p+C_c)$.
 
-If we have a tension then only the resistor number 1 and the resistor number. 
+(Equivalent verbal description: zero at origin → midband flat → second pole rolls off → zero restores slope → high-freq limit.)
 
-3 will increase and this will create an imbalance because the node intermediate between one and two volume freezing voltage while the intermediate node between 3 and 4 will decrease in voltage, creating an imbalance at the differential output. 
+![[Pasted image 20251119194935.png]]
+#### <span style="color:rgb(2, 141, 192)">12. Additional Physical Insight</span>
 
-On the other hand, if instead we have a bending. 
+In this voltage-mode readout circuit, we can only use the sensor signal reliably **in the frequency range where the transfer function is flat**—that is, **between the low-frequency pole and the high-frequency pole**.  
+In this region, the gain depends on the amplifier ratio $1 + R_f/R_g$​, which is good: both $R_f$​ and $R_g$​ are chosen by the designer and have well-controlled values.
 
-We can assume that the strain gauge 1 will experience the tension and so it will increase in its value and the strain gauge number 3 will experience the tension. the compression and so it will decrease in value. So if resistor 1 increases, the intermediate node between 1 and 2 will increase. 
+However, the gain in this midband also depends on the **total input capacitance**:
+$C_p + C_c$
 
-But also if resistor 3 decreases, the intermediate the intermediate node between 3 and 4 will increase in voltage. 
+Here:
 
-And so the differential output will remain pretty constant. 
+- $C_p$ is the piezoelectric capacitance (known and stable)
+- $C_c$​ is the **stray capacitance**, which is not well controlled and can vary with cables, connectors, layout, humidity, etc.
+- 
+Because the output voltage in this architecture is essentially:
+$$V_\text{out} \propto \frac{Q}{C_p + C_c}$$
 
-So this means that the fourth configuration will be insensitive to both temperature variation and bending. 
+any uncertainty or change in $C_c$​ directly changes the output.  
+This means:
 
-It will be sensitive only to tension or compression. 
+- $V_\text{out}$​ depends on how much unknown parasitic capacitance is present.
+- Therefore, the circuit **cannot accurately recover the charge Q***.
+- And since Q is proportional to the applied force, the circuit also **cannot reliably estimate the force**.
+    
+In other words:
 
-So this is just an example of how you can combine force, radiation, and energy. 
+>[!info] This voltage-mode readout suffers from the fact that the voltage across the piezoelectric element, $V_p$​, changes with stray capacitance. Because of this, the final output $V_\text{out}$​ is sensitive to parasitic effects, making precise force measurement impossible.
 
-In order to obtain what you want. Obviously you will have to analyze specifically your application to see if you want to be sensible to bending or not to be sensible to bending and so on and so decide the position of the full resistor carefully in the Whistler bridge in order to achieve your objective. 
+This is the main limitation of this architecture and the reason why, in practice, designers prefer a different readout circuit (the charge-mode amplifier), which removes the dependence on $C_c​$.
 
-Which are the main applications of train gauges? 
 
-Mainly they are used for railroad maintenance. 
+### <span style="color:rgb(161, 40, 226)">Second Readout Circuit (Charge mode amplifier)</span>
 
-In fact they can be put along the railroad to. 
+![[Pasted image 20251119200236.png]]
 
-Monitor the variation of the length of your rays and to see how they change for instance with temperature variation. 
+To eliminate the limitations of the first circuit, we can use a **charge amplifier** as the readout stage.
 
-Then they are used for the maintenance also for smart bridges for instance or to monitor the stress on the walls of the wind panels. 
+Unlike the previous non-inverting configuration, the charge amplifier uses the operational amplifier in an **inverting topology** with a feedback capacitor $C_f$​.  
+Here, $C_f$​ is not simply a high-frequency compensation component—**it is the core element of the measurement**, because:
 
-They can be used also in high precision robotics for medical application in order to have a feedback on the precise stress that you have in the different parts of this robot. 
+#### <span style="color:rgb(2, 141, 192)">1. Goal of the charge amplifier<br></span>
+We want **all the charge produced by the piezoelectric sensor** to be **integrated on $C_f$​**.
 
-Finally, they are typically used in the bathroom scales. In particular, in the bathroom scales, you have a base which is fixed and then. 
+In the ideal case, the sensor—modeled by a Norton source (current generator + capacitor $C_p$​ + resistor $R_p$​)—is connected directly into an op-amp input that sits at **virtual ground (0 V)**.
 
-You have instead a free end that is floating and over which we apply our load. 
+#### <span style="color:rgb(2, 141, 192)">2. Why we want Ri=0 (ideally)</span>
 
-Obviously, the beam which connects the free end to the load is connected to the free end. end with the fixed base will experience a bending which depends on the load itself. So with the strain gauge we can measure the amplitude of this bending and then we can obtain the value of the load, the weight of the load that we applied and we put on the free end. 
+Ideally, the input resistor $R_i$​ should be **zero ohms**.
 
-Now let's move to the second type of sensor that we will study today, which is the piezoelectric force sensor. 
+- With $R_i = 0$, the sensor is directly connected to virtual ground.
+- So **all current produced by the sensor flows into $C_f$​**.
+- This ensures that _100% of the charge_ is integrated, giving:
+    
+$$V_\text{out} = -\frac{Q}{C_f} + \frac{V_{cc}}{2}$$
 
-So. 
+This equation is extremely important:  
+➡️ **The output depends only on the feedback capacitor—not on the sensor capacitance or stray capacitance.**
 
-Also this kind of sensor can be used in order to measure force. 
+This is the key advantage of charge-mode readout.
 
-In a way which is more direct when it is back to strain gauges, because remember in strain gauges you do not directly measure stress, but you measure strain, and then from the strain, thanks to the E-Hang module, you can obtain the stress. 
+#### <span style="color:rgb(2, 141, 192)">3. Why we cannot actually make Ri=0</span>
 
-In piezoelectric material. 
+In practice, we must add a **small resistor $R_i$​** at the input. This resistor is _not_ part of the sensing model—it is purely for **stability compensation**.
 
-We have the property to generate a voltage difference across the material when the material is experiencing the presence of an external force. 
+***Reason: Large sensor capacitance makes the op-amp unstable***
 
-That show epitheliatric behavior are for instance quartz, in general crystals, ceramics and also some biological matters. 
+The piezoelectric element has a large internal capacitance $C_p$​, and connecting a large capacitance directly to the inverting input of an op-amp is known to cause **instability** or even oscillation.
 
-In this material, when no stress is applied to the material. 
+You have already seen this effect with photodiode circuits:
 
-The microscopic configuration of atoms generate a perfect balance of charges, like here in this example. Instead, you apply it. external force, so for instance a tension or a compression. 
+- Photodiode capacitance caused instability.
+- A feedback capacitor was added for compensation.
 
-You will create a deformation on the distribution of charges that you have inside your material, and in particular you could create a separation of charges in your material, and so you could measure a voltage across the two terminals of your pre-selected material when you. 
+Here the situation is similar, but the compensation method is different:
 
-You generate a tension across the material and an opposite voltage when you provide a compression to the material. 
+#### <span style="color:rgb(2, 141, 192)">4. Compensation method</span>
 
-Also. 
+- We insert a small resistor $R_i$​ in series with the input.    
+- This resistor shifts the pole created by $C_p$​ from **infinite frequency** to a **finite, stabilizing frequency**.
+- The value of $R_i$​ can be _very small_, but it must be **non-zero** to guarantee phase margin.
+    
+And importantly:
 
-The opposite behavior is true. So, in a PS electric material, if you apply a voltage, you can deformate the... you can induce a deformation in the distribution of the charges. 
+$$R_i \ll R_p$$
+So most of the piezoelectric current still flows into the charge amplifier, not into $R_p$.
 
-And so it can induce a variation of the shape of your material. So in particular if you apply a voltage in this direction. 
+This will simplify our transfer-function calculations later.
 
-You will see an elongation of the material. and if you apply a voltage in the opposite direction, you will see a compression of the material. 
+#### <span style="color:rgb(2, 141, 192)">5. Biasing at VCC​/2</span>
 
-But be careful, because this... 
+Just like in the first circuit, the op-amp uses a **single supply** (0–VCC), but we must measure both:
 
-Deformation in the organization of the charges is something that just responds to the variation of the external force that you apply. So when you for instance apply a stack of force, then you will have this deformation in the organization of your charges. 
+- positive charge (compression)
+- negative charge (tension)
+    
+Therefore:
+- We shift the operating point to **$V_{CC}/2$**.
+- This ensures the output can swing both above and below the midpoint.
+    
+During transfer-function analysis, however, this constant bias does not affect the dynamics, so we “turn it off” (set it to 0 V).
 
-Then they must you. 
+#### <span style="color:rgb(2, 141, 192)">6. Transfer Function Strategy</span>
 
-Tends to relax and to come back to the original configuration without any variation of voltage across the material. 
+Again, we want the final result:
 
-For this reason we can model our piezoelectric materials with a capacitance in parallel to a resistor and a current generator. 
+$$\frac{V_\text{out}(s)}{Q(s)}$$
 
-In particular. 
+But as before, we start with something more familiar:
 
-The current generator models the charge that is induced across the material. In particular. 
+1. **First compute** the transfer function
+    $$\frac{V_\text{out}(s)}{I(s)}$$
+2. Then use the fundamental relation in the Laplace domain:
+    $$I(s) = s Q(s)$$
+3. So,
+    $$\frac{V_\text{out}(s)}{Q(s)} = s \cdot \frac{V_\text{out}(s)}{I(s)}$$
+This is exactly the same reasoning as in the previous circuit.
 
-The current generator can inject a charge on the capacitor. 
+#### <span style="color:rgb(2, 141, 192)">7. Computation</span>
 
-And here we can represent the voltage difference across the material. 
+![[Pasted image 20251119202521.png]]
+Okay, so let’s start with the analysis. We have our current source representing the piezoelectric sensor.  After that, we see the sensor’s internal capacitance, which is the parallel combination of ($C_p$) and the stray capacitance ($C_c$).  Then we have the resistor ($R_p$), which models the piezoelectric material’s leakage.  In series with this, we add the small compensation resistor ($R_i$).  Finally, the signal enters the charge amplifier: the non-inverting input is grounded, and the feedback network includes ($R_f$) and ($C_f$).
 
-But then, the fact that the material relaxes and comes back to the unstressed state is represented with this resistance which will discharge the capacitance. 
+Our goal is to compute the output voltage.
 
-Obviously, we know that the current that we have to generate in order to mimic the charge of the capacitance is a current that depends on the derivative of the charge. 
+#### <span style="color:rgb(2, 141, 192)">8. Singularities of the Circuit</span>
 
-In the Laplace domain, we can say that the current is equal to the product between. 
+As in the previous example, we start by identifying the poles and zeros.
 
-S and the charge. Please remember it because it will be... 
+ ***Pole from ($C_p \parallel C_c$)***
+ 
+The parallel combination ($C_p + C_c$) produces one pole.  Because of the presence of ($R_i$), this pole is **not** at infinite frequency.  
+Its frequency is:
+$$f_{p1} = \frac{1}{2\pi (C_p + C_c) \left( R_p \parallel R_i \right)}  $$
 
-Use this equation later on when we will study the redox circuit of this sensor. 
 
-This model is based on a Norton equivalent of the sensor. Obviously we can do also the Thevenin equivalent, so the second one. 
+Since the inverting input is at virtual ground, the capacitors and resistors are referenced to ground, so the parallel combination is valid.
 
-But be careful because in this case the characteristic equations are a bit more complex, so typically we prefer to work with the first model, so with the Norton equivalent. 
+Because ($R_i \ll R_p$), the parallel resistance is dominated by ($R_i$). Thus, we can approximate:
 
-As I already mentioned. 
+$$f_{p1} \approx \frac{1}{2\pi (C_p + C_c) R_i }  $$
 
-These kind of sensors are really sensible to the variation of the force applied. 
+ ***Pole from the feedback capacitor $(C_f)$***
 
-So in particular, here you see, when you have a variation of the force, you will... 
+The second pole arises from the feedback network:
+$$f_{p2} = \frac{1}{2\pi R_f C_f}  $$
+Although ($C_p$) is physically much larger than ($C_f$), the corresponding pole is at a very high frequency because ($R_i$) is very small and close to zero.  
+Therefore:
 
-Generate an equivalent current. 
+- The pole associated with ($C_p + C_c$) is the **high-frequency pole**.
+- The pole associated with ($C_f$) is the **low-frequency pole**, which determines the integration range.
 
-Where the current is described as a delta, so Q by the delta T, and the typical charge that we can measure at the two terminals of the sensor is in the order of 10-20 pCol per N. 
+***Zeros***
 
-Then this charge Q will integrate in the equivalent capacitance of your material and you will obtain that the ratio Q over the capacitance will provide you the voltage that you need across your PS electric material. 
+There are **no zeros** in this circuit.  If ($C_p$) or ($C_c$) were short-circuited, they would force the input voltage ($V_p$) to zero, and consequently the output would be zero.  
+Similarly, if ($C_f$) is shorted, the output node is directly tied to virtual ground.  
+Thus, neither ($C_f$) nor ($C_p \parallel C_c$) produces zeros.
 
-But then, as we mentioned, if the force remains stable during time. 
+So the transfer function contains **only poles**.
 
-Then the material relaxes and comes back to the unstressed condition. And so also the voltage that you read across the base electric material will relax and will come back to be equal to zero. 
+#### <span style="color:rgb(2, 141, 192)">9. Transfer Function</span>
 
-The power of this relaxation is represented by the movement of the hands. 
+We start by computing the low-frequency gain.
 
-In our model with the tower of the circuit, so simply by rp. 
+Let ($I_f$) be the current flowing through ($R_i$) and therefore through the feedback network.  This current comes from the input current ($I)$, split between $(R_p)$ and $(R_i)$.  Using the current divider:
+$$I_f = I \cdot \frac{R_p}{R_p + R_i}  $$
+Since ($R_i \ll R_p$), this ratio is very close to 1.
 
-So, in theory, if we are able to measure the peak voltage that we have across the epithelial material. 
+At low frequency, the output voltage is:
+$$V_\text{out} = -I_f R_f  $$
 
-We can then obtain the value of Q and from Q we can obtain the value of the force which is applied to the material. 
+Thus:
+$$\frac{V_\text{out}}{I} =-\frac{R_p}{R_p + R_i} R_f  $$
 
-Unfortunately. 
+This gives the low-frequency constant gain.
 
-We don't have only the capacitance of the PSEM itself that can be characterized and typically is well known. 
+***Mid frequencies***
 
-But we have also other capacitances that influences the behavior of our PSEM. 
+At mid frequencies, we are above the pole of ($C_f$), so ($C_f$) behaves as a short circuit.  This shorts the output node to virtual ground, giving:
+$$\frac{V_\text{out}}{I} = 0  $$
+ ***High frequencies***
 
-In particular, we can have some stray capacitances. 
+At high frequency, the capacitors $(C_p)$ and $(C_c)$ also behave as shorts.  
+Thus:
 
-So, the evolved algebraic we read across the across our piezoelectric material will depend not only on the charge and the capacitance of the piezoelectric material itself, but it will depend also on the stray capacitances that are in parallel to the piezoelectric capacitance. 
+- The input current flows through the short created by $(C_p \parallel C_c)$.
+- $(C_f)$ is also a short.
 
-And the value of the three capacitance is not perfectly under our control, and so it could add some uncertainty in the estimation of the charge, and so on the estimation of the force. 
+Therefore, again:
+$$\frac{V_\text{out}}{I} = 0  
+$$
 
-Now we will see two redout circuits. One redout circuit in which the output is just proportional to vp. 
 
-And so it suffers for this problem. And another extent that avoid to have an output which depends on the presence of stray capacitance. So the second circuit obviously is the preferred one. 
+#### <span style="color:rgb(2, 141, 192)">10. Bode Plot Interpretation</span>
 
-But let's start with the first one. So in the first one we have our piezoelectric material which is modeled by the Norton equivalent model with. 
+If we plot the magnitude of $(V_\text{out}/I)$:
 
-The current generator, the capacitance and the resistance. 
+- We start at the low-frequency gain  
+    $\left| \frac{-R_p}{R_p + R_i} R_f \right|$
+- Then we encounter the pole due to ($C_f$).
+- Afterwards, we encounter the high-frequency pole from ($C_p + C_c$).
 
-And then we have an operational amplifier in a non-inverting configuration. 
+![[Pasted image 20251119203315.png]]
 
-And so. 
+So the final shape is:
+- **Flat** at low frequency
+- **-20 dB/dec** after the first pole
+- **-40 dB/dec** after the second pole
 
-As we know, the gain at low frequency of this non-inverting configuration is equal to 1 plus the feedback resistance and divided by the resistance that is between the. 
+with no zeros.
 
-Minus the ground. 
 
-So this is the gain of the non-inverting configuration. 
+#### <span style="color:rgb(2, 141, 192)">11. Transfer function dependent on Q</span>
+Up to now, we have computed the transfer function between the output voltage and the **input current**, $\frac{V_{\text{out}}}{I}$​​.  
+However, what we actually want is the transfer function between the output voltage and the **input charge**, $\frac{V_{\text{out}}}{Q}$​​.
 
-Then here in this circuit we also added the. 
+To move from one to the other, we simply recall that in the Laplace domain:
+$$I(s)=sQ(s)$$
 
-CF, a capacitance in parallel to the resistance, to the feedback resistance, that is used in order to obtain a high frequency filtering. And then. 
+Therefore:
+$$\frac{V_{\text{out}}}{I} = \frac{V_{\text{out}}}{sQ} \quad \Rightarrow \quad \frac{V_{\text{out}}}{Q} = s \cdot \frac{V_{\text{out}}}{I}$$
 
-We also show the CC which is the capacitance of the cable so it's this three capacitance that we mentioned before which is in parallel to the capacitance of the sensor itself. 
+So we now write the full Laplace expression of VoutI\frac{V_{\text{out}}}{I}IVout​​, and then multiply by sss to obtain the charge transfer function.
 
-Then since in our example the operational amplifier is a single power supply amplifier so the power supply is between ground and VDD But we want to be able to measure both tension and compression, so both positive and negative pp. 
 
-So where pp is the voltage that we measure across the piezoelectric material. 
+ **Transfer Function $\frac{V_{\text{out}}}{I}$​​ in the Laplace Domain**
 
-We want to bias the overall circuit at half of the dynamic of the the operational amplifier. And so we provide also this external voltage at one half the power supply of the operational amplifier in order to be at the middle of the dynamic when the piezoelectric material is in a non-stressed condition, so when its VP is equal to zero. In fact. 
+We know the low-frequency gain is:
+$$\frac{V_{\text{out}}}{I} = - \frac{R_p}{R_p + R_i} R_f$$
+In this circuit there are two poles:
 
-If you look at that circuit, when VP is equal to zero. 
+![[Pasted image 20251119204252.png]]
+- the low-frequency pole from $C_f R_f$​,
+- the high-frequency pole from $(C_p + C_c)(R_p \parallel R_i)$.
+    
+Since there are no zeros, the Laplace form is:
+$$\frac{V_{\text{out}}}{I}(s) = - \frac{R_p}{R_p + R_i} R_f \; \frac{1}{(1 + s R_f C_f)\left[1 + s (C_p + C_c)(R_p \parallel R_i)\right]}$$
 
-It means that we have no voltage difference across the preselative material, and so the voltage of this node is equal to the voltage of the other node, and it is equal to 1 half. 
+***Now Multiply by $s$ to get $\frac{V_{\text{out}}}{Q}$​​***
 
-Vcc. 
+$$\frac{V_{\text{out}}}{Q}(s) = s \cdot \left[ - \frac{R_p}{R_p + R_i} R_f \; \frac{1}{(1 + s R_f C_f)\left[1 + s (C_p + C_c)(R_p \parallel R_i)\right]} \right]$$
+Now we analyze the three frequency regions.
 
-Thanks to the negative feedback, the voltage at the plus is equal also to the voltage at the minus, so the minus is at 1 half Vcc. 
+ ***1. Low Frequency ($s \to 0$)***
+![[Pasted image 20251119205651.png]]
 
-So we have no current in Rg because it's between 1 half Vcc and 1 half Vcc. 
+When $s \to 0$:
 
-And so we have no current also in RF. And so at the output we have this. 
+- The denominators → 1
+- The numerator contains a factor $s$, so:
 
-1 half Vcc as the non-stress condition voltage. 
+$$\frac{V_{\text{out}}}{Q} \to 0$$
+Thus the transfer function **starts at zero**.  
+This looks like a zero at the origin—but it is _not_ a physical circuit zero; it only appears because we multiplied by sss.
 
-Then an output that instead depends on the on the presence of the of the force will be added to this Vcc divided by 2 and it carries. 
+***Mid Frequency (after the first pole, before the second)***
 
-Will be possible to have both positive or negative contribution. 
+![[Pasted image 20251119205643.png]]
+In this region:
 
-Now we will study more in detail this circuit in particular, we will study the similarities introduced by this circuit and also the transfer function. 
+- For the first pole: $s R_f C_f \gg 1$
+    ⇒ $1 + s R_f C_f \approx s R_f C_f$
+- For the second pole: $s (C_p + C_c)(R_p \parallel R_i) \ll 1$  
+    ⇒ $s(\ldots) \approx 1$
+Then:
 
-What is interesting is that we are not really interested in the transfer function of. 
+$$\frac{V_{\text{out}}}{Q} \approx s \left[ - \frac{R_p}{R_p + R_i} R_f \; \frac{1}{s R_f C_f} \right]$$
 
-Vout. 
+The $s$ cancels, $R_f$​ cancels, and since $R_i \ll R_p$​:
 
-Versus I, so versus the current. 
+$$\frac{R_p}{R_p + R_i} \approx 1$$
+Therefore the mid-band gain becomes:
 
-Which is typically what we do in a normal circuit, but in this case we are interested in the transfer function between the output voltage and the input charge. 
+$$\frac{V_{\text{out}}}{Q} \approx -\frac{1}{C_f}$$
+This is the key result:  **the transfer function in the useful bandwidth is completely independent of the sensor capacitance.**
 
-Okay. 
+***High Frequency (after both poles)***
 
-So at the beginning we will start writing the relation between the output voltage and the input current. And then, knowing the relation between current and charge, we will derive also the transfer function between the output voltage and the charge. 
+![[Pasted image 20251119205620.png]]
+In this region:
 
-Obviously when we study the transfer function we can put the constant supply, so this 1 half. 
+- For both poles:  
+    $s R_f C_f \gg 1$ and  
+    $s (C_p + C_c)(R_p \parallel R_i) \gg 1$
+    
+Thus:
+$$\frac{V_{\text{out}}}{Q} \approx s \left[ - \frac{R_f}{s R_f C_f \; s (C_p + C_c)(R_p \parallel R_i)} \right]$$
 
-Vcc, to be equal to zero. 
+One $s$ cancels, leaving a remaining $1/s$:
 
-So let me draw the circuit here. 
+$$\frac{V_{\text{out}}}{Q} \propto \frac{1}{s} \to 0 \quad \text{as } s \to \infty$$
 
-So let's start analyzing the circuit with an input current. 
+So the high-frequency gain goes to **zero**, as expected.
 
-Then we have the Cp, which is the capacitance of the piezoelectric material. 
+![[Pasted image 20251119205604.png]]
 
-Plus. 
+#### <span style="color:rgb(2, 141, 192)">9. Final Shape of the Bode Magnitude Plot</span>
 
-Cc, because it's in parallel to the cable capacitance, to the straight capacitance. 
+The magnitude of $$\left|\frac{V_{\text{out}}}{Q}\right|$$
+![[Pasted image 20251119205711.png]]
 
-Then we have the resistance. 
+## <span style="color:rgb(239, 179, 1)">Applications</span>
 
-RP. 
+In conclusion, piezoelectric sensors are useful in any application where we need to measure a **dynamic force** or a **rapidly varying mechanical stimulus**.  
+Since piezoelectric materials cannot measure static forces (their response goes to zero at low frequency), they are ideal for applications involving **impact, vibration, acceleration, or periodic loading**.
 
-Which is the resistance which models the discharge of the piezoelectric material. 
+### <span style="color:rgb(161, 40, 226)">1. Force and pressure measurement</span>
 
-And this resistance is in parallel to Rb. 
+Piezoelectric elements are commonly used when we want to measure how force is applied to a surface.  
 
-Which is this resistance that we added here. 
+![[Pasted image 20251119210004.png]]
 
-Which is very useful for biasing correctly the circuit at 1.5 Vcc, because otherwise without Rb. 
+For example, **force plates** used in rehabilitation, sports science, and gait analysis often rely on piezoelectric sensors to capture how the load is distributed when someone walks, runs, or jumps.
 
-We wouldn't have a DC path for this constant voltage VCC because it's true that we have this we have to this resistor but this is the resistor that models the behavior and the relaxation so it's not a physical resistor and so we have to put also this physical resistor okay then we can put this note. 
+### <span style="color:rgb(161, 40, 226)">2. Energy harvesting</span>
 
-To ground and then here we have the non-inverting configuration so plus minus the feedback resistance Rf in parallel to the capacitance. 
+![[Pasted image 20251119210031.png]]
 
-Cf and then here we have the resistance Rg and this is our Bout. 
+Piezoelectric materials can convert mechanical vibrations or fluid flow into electrical energy. This capability makes them suitable for low-power energy harvesters, where ambient vibrations are transformed into voltage that can be stored or used to power small electronic devices.
 
-So let's start computing the singularities of this circuit. 
+### <span style="color:rgb(161, 40, 226)">3. Ultrasonic technology (sensing and actuation)</span>
 
-So the capacitance Cp plus Cc. 
+![[Pasted image 20251119210018.png]]
 
-Introduced a pole. 
+We will see in the next class that piezoelectric materials are fundamental in **ultrasonic systems**, where they serve both as:
 
-Let's call it a pole 1. 
+- **Sensors**, converting ultrasonic waves into electrical signals
+- **Actuators**, generating ultrasonic vibrations when a voltage is applied
+    
 
-That is equal to 1 over 2 pi. 
+This dual property enables applications such as medical ultrasound imaging, ultrasonic cleaning, nondestructive testing, and sonar.
 
-The value of the capacitance, so Cp plus Cc. 
 
-Multiplied by the equivalent resistance. And the equivalent resistance. 
+### <span style="color:rgb(161, 40, 226)">4. Precision actuators</span>
 
-Obviously, is only Rp in parallel to Rb. 
+Piezoelectric elements are also used as **high-precision actuators**.  
+By applying a controlled voltage, the material expands or contracts by a very small and predictable amount.  
+This is particularly useful in:
 
-Then we have the second pole which is due to the. 
+- Precision dosing and pumping
+- Microfluidics
+- Optical alignment systems
+- High-resolution positioning stages
+    
 
-CF and so it is equal to 1 over 2 pi. 
+These actuators are valued for their accuracy, fast response, and ability to produce extremely fine displacements.
 
-CF and then multiplied by RF which is the equivalent resistance because for the equivalent resistance we have to switch off all the input generators so the voltage at the plus is equal to zero also the voltage at the minus is equal to zero and so we cannot have any current in Rg. 
 
-So the current of Cf will just circulate in Rf. 
+### <span style="color:rgb(161, 40, 226)">Final remark</span>
 
-And this is the reason why for the goal we see as an equivalent resistor Rf. 
+So overall, piezoelectric materials are extremely versatile components that can function as **sensors**, **actuators**, or even **energy sources**, depending on how we exploit their electromechanical properties.
 
-Now let's try to understand if these two capacitances introduce any zeros. 
-
-So we have a zero in the transfer function when. 
-
-At high frequencies, so when the capacitor has become a short circuit, the output is not forced to be equal to zero. 
-
-So if we consider Cp and Cc to be short. 
-
-When this is short it means that the voltage at the plus is forced to be equal to zero and so also the output. 
-
-So. 
-
-This means that... P and Cc do not introduce any zero. 
-
-On the other hand, instead, if we consider the capacitance. 
-
-Cf, we can see that even Cf is short. 
-
-V plus can be different from zero, it depends obviously on the current and on the frequency, but V plus in general can be different from zero. 
-
-And thanks to the feedback this V plus is reported to the minus and then to the output V out. And so V out is not forced by Cf when it is short to be equal to zero, and so it means that Cf introduces also a zero. 
-
-So let's try to compute the frequency of the zero. 
-
-In order to compute the frequency of the zero. 
-
-We have to consider which is the equivalent resistor that is seen by CF. 
-
-Considering Vout to be equal to zero. So if Vout is equal to zero, it means that RF is imparted to Rg, because they have one node that is in common and the other node, which is for both equal to zero volt. 
-
-And so this means that we have the frequency of T0 which is equal to 1 over. 
-
-2 pi. 
-
-CF multiplied by. 
-
-Rg in parallel to Rf. 
-
-Now. 
-
-We don't have the values of the resistance and the capacitances, but we can do some consideration. 
-
-So first of all, typically Cp is quite a large capacitor. 
-
-Because this is the capacitance of the sensor itself and it can be in the order of hundreds of pF. 
-
-Instead, the CF typically is very small because we put the CF in order to do a high pass filtering as we have seen here in this slide. So we can consider that with typical number. 
-
-F pole 1 is the pole at the lower frequency because the capacitance is very big. 
-
-Instead. 
-
-Pole 2 is the high frequency pole because we put a cf small enough in order to introduce the filtering at high frequencies. 
-
-And then regarding the zero, for sure the zero is at a frequency which is even higher than the pole of CF because the equivalent resistance Rg to Rf for sure will be smaller than Rf and so it will be at highest frequency among the three similarities. 
-
-Okay, so now we can start to compute the transfer function at the different frequencies or at low frequency when both the capacitor CPNCC and the capacitor CF can be considered open circuit. 
-
-Then at medium frequency, so after the pole of CPNCC, but before the pole of CF. 
-
-And at high frequency, so after all the singularities, so after the zero of CF. 
-
-So at low frequency we can say that our voltage. 
-
-Let's call it pp. 
-
-The voltage across the p-axial electric material. 
-
-So pp. 
-
-Is equal to the current I multiplied by. 
-
-Rp in parallel to Rb. 
-
-Because we are at low frequency and so Cp and Cc are open circuits. 
-
-Then the author. 
-
-Can be computed as the voltage at the plus. 
-
-Vp. 
-
-And then multiplied by the non-inverting gain, 1 plus. 
-
-Rf over Rg. 
-
-And so finally we can say that at the low frequency, Vout over I is equal to. 
-
-Rp in parallel to Rb multiplied by 1. 
-
-Plus RF over LG. 
-
-Then at the medium frequencies. 
-
-At medium frequencies we are after the low frequency pole, so it means that CP and CC are already seen as a short circuit. 
-
-If they are short circuit, it means that the voltage across this capacitor is equal to zero. 
-
-So that Vp. 
-
-Also Vp is equal to 0. 
-
-And so consequently also Vout, because Vout is Vp multiplied by the number in gain, so it would be equal to zero. 
-
-So Vout over I is equal to zero. 
-
-And exactly the same is also at high frequency, because also at high frequency we have the. 
-
-Cp and Cc to be short, so we have zero voltage at the plus and then also Cf is a short, and so this zero is reported to the output. So again, Vout over I is equal to zero. 
-
-If we want to draw this transfer function, which is the modulus of Vp over I, we can say that at low frequency it is equal to. 
-
-Rp parallel Rb multiplied by 1 plus. 
-
-Rf over Rg. 
-
-But then we miss. the first pole. 
-
-That is the f pole low due to Cp and Cc. 
-
-Now we meet a second pole. 
-
-We meet a second pole at higher frequency. 
-
-F pole high. 
-
-And finally we have the zero. 
-
-At F0. 
-
-So we have here a minus 20 dB over decade. 
-
-Then here we go to minus 40 dB over decade, and then we come back to be at minus 20 dB over decade. 
-
-But as we mentioned before, we are not really interested in this transfer function, because this is the transfer function between the output voltage sorry so the out. 
-
-Not vp but vout over the current. But we are interested in the transfer function between the output voltage and the input charge because that is the charge that is directly related to the force that we want to measure. 
-
-And so what we can do is remembering that if we can compute. 
-
-We are the transfer function. Vout over Is, then we know that it is equal to Vout over S by Q, because remember we said that in the Laplace domain the current is equal to the product between S and the charge, because in the Laplace domain the derivative becomes a multiplication by S. And so in this way we just have to multiply the transfer function. of the outer in respect to the current by s to obtain the transfer function of the outer in respect of q. 
-
-So now let's try to write the expression of the transfer function because by the moment we're just computing the singularities, so the pool and the zeros, and we computed the transfer function at the low frequency, medium frequency and high frequency. 
-
-But how can we write the transfer function? function so I can rewrite the equation of Vout over Is. 
-
-Remember this is equal to. 
-
-Vout over S by Q we just need to write. 
-
-Vout over I at low frequencies and then multiply it to 1 plus. 
-
-S tau of the zero and divide it by one plus s tau of the pole at low frequency multiplied by one plus s to the tau of the pole at high frequency. 
-
-We already have all these values, so we already have the transfer function at low frequency, the tau of the zero and the tau of the poles. 
-
-So we just have to write the equation. 
-
-So Vout over the current at low frequency is equal to. 
-
-Rp in parallel to Rb and multiplied by the new inverting gain. 
-
-So this is. 
-
-P in parallel to Rb multiplied by 1 plus. 
-
-Rf over Rg and then multiplied by. 
-
-1 plus. 
-
-S. 
-
-Tau of the zero and we said that the tau of the zero is given by cf by. 
-
-Rf in parallel to Rg and then divide by the two poles so. 
-
-1 plus. 
-
-S. 
-
-Cf Rf so the pole of this Cf capacitance multiplied by. 
-
-1 plus. 
-
-Cp plus Cc multiplied by the equivalent resistor Rp in parallel to Rg. 
-
-So this is the complete expression of the transfer function vout over i. 
-
-If we want to obtain the transfer function vout over q. 
-
-We can simply multiply by s this expression, because you see if we multiply by s, the s simplify. So we have to multiply And now we will... 
-
-We can study this transfer function at a different frequency, so low frequency before the two poles, medium frequency after the lower pole but before the high frequency pole, and at high frequency, so after all the singularities. 
-
-So in particular we can compute. 
-
-Vout over Q at low frequencies. 
-
-No frequency is means. 
-
-That s. 
-
-Which is equal to j omega. 
-
-Tends to zero, because the omega tends to zero. 
-
-And so you see in all these brackets where we have 1 plus s tau. 
-
-Since s tends to zero. 
-
-The s tau is negligible in respect to the 1. So we obtain a rb. 
-
-Parallel to Rb, multiplied by 1 plus. 
-
-Rf over Rg, multiplied by, at the denominator we have 1, because in the bracket 1 is dominant in respect to s tau. 
-
-So 1 by s. 
-
-And at the denominator we just have 1. 
-
-Since we are at a low frequency. 
-
-S tends to zero because omega tends to zero. 
-
-And so this is almost equal to zero. So the transfer function Vout over Q at low frequency tends to zero. 
-
-Then. 
-
-If we consider the medium frequencies. 
-
-Medium frequencies means that we are after the low frequency pole. 
-
-So it means that the s tau. 
-
-So this part for the low frequency pole is dominant in respect to the one. And so the equation becomes rp parallel to rb multiplied by 1 plus rf over rg multiplied by. 
-
-At the numerator we are still much lower, then the frequency of the zero, so the one is the dominant, and then we are multiplied by s. 
-
-At the denominator we are before the frequency of the pole of cf. 
-
-So one is dominant in respect to s cf by rf. 
-
-So we have one. 
-
-But then the low frequency pole is dominant in respect to the 1, so we have S multiplied by. 
-
-Cp plus cc multiplied by rp. 
-
-Parallel rp. 
-
-In this case you can see that we can simplify the s. 
-
-And we can also simplify rp in parallel to rp. 
-
-What we obtain at the end is that at medium frequency the transfer function is equal to 1 plus rf over Rg divided by. 
-
-Cb plus Cc. 
-
-And finally, at high frequency. 
-
-So after all the singularities. 
-
-We see that one is negligible in the free expression of the singularities. 
-
-And so it results to be. 
-
-Rp in parallel to Rb. 
-
-Multiplied by 1 plus. 
-
-Rf over Rg. 
-
-And then multiplied by. 
-
-ScF. 
-
-Rf in parallel to Rg multiplied by S. 
-
-And then. 
-
-ScF Rf, because I am neglecting all the ones. 
-
-Multiplied by ScP plus Cc. 
-
-And then multiply by rp in parallel to rb. I can simplify something so s with s, s with s. 
-
-Then rp in parallel to rb. 
-
-Rf with rf and also cf with cf. 
-
-Oh sorry no rf not here because okay. because this Rf is in the parallel, so Rf in parallel to Rg. 
-
-But you see, if you do some computation, so Rf in parallel to Rg divided by Rf is the inverse of 1 plus Rf over Rg, so you can also simplify this part with this part. 
-
-And so at the end you just obtain. 
-
-1 over. 
-
-Cp plus Cc. 
-
-So if we try to plot this transfer function. 
-
-So vout over q. 
-
-We see that at a low frequency it is equal to zeros, so we'd like to have something similar to a zero in the origin, which is due to this by s. 
-
-Then we have a medium frequency. 
-
-A fixed gain 1 plus rf. 
-
-Over Rg divided by Cp plus Cc. 
-
-Here we have the low frequency pole, the one due to the Cp and Cc. 
-
-Then we will have our second pole. 
-
-So the one at high frequency due to the. 
-
-Cf, and then we will also have the zero and the gain at high frequency. high frequency that will be equal to 1 over. 
-
-Cp plus Cc. 
-
-And so if you look we reobtain the same transfer function that we have drawn here in the first slide. 
-
-What we can notice is that obviously we can use this circuit in. 
-
-Where the transfer function is constant, so between the low frequency pole and the high frequency pole. 
-
-But here the gain depends on Rf and Rg, which is good because Rf and Rg are well known and put by the designer. 
-
-But the gain. 
-
-The transfer function, also depends on Cp plus Cc. 
-
-And CC is the stray capacitance that we cannot control very well. 
-
-So you see in this circuit, as we said already in the introduction. 
-
-Mainly we have the Vp, the voltage across the pixelated material, which then is amplified by this non-inverting configuration, but the output still depends on the stray capacitance, because Vp depends on the stray capacitance. 
-
-And so this circuit has this strong limitation that makes us not able from the measurement of Vout to estimate precisely Q. 
-
-Because we don't know precisely Cc. 
-
-And estimating Q is necessary because Q is then related to the force. 
-
-In order to avoid this problem we can use the second circuit. 
-
-Which is based, instead of a non-inverting configuration, it is based on a charge amplifier. 
-
-In the charge amplifier we have this configuration similar to the inverting one with a capacitance CF in the feedback and contrary to what we have done before, CF is not just there in order to do a high frequency filter but instead CF is used because we want to integrate the charge coming from our sensor. 
-
-On this capacitance. Ideally in a charge amplifier we would like to have our sensor that we can model with the current generator and then its capacitance and a parallel resistor directly connected to the virtual ground. So in theory we would like to have this resistance R i to be equal to zero ohm. 
-
-Why? 
-
-Because we want that all the charge coming from the current generator will flow directly in the virtual ground. 
-
-So this is zero volt, and so go in the CF. 
-
-So, only in this case, only in the case where i is perfectly equal to zero, all the charge generated by the sensor we will go in the CF and we integrate it in the CF. 
-
-Instead, if the resistance Ri is different from zero. 
-
-It means that we will have a current divider between Rp and. 
-
-Ri, because Rp and Ri are in parallel, so a portion of the. 
-
-Of the current will go in Rp and the other portion will go in Ri and so we we will integrate in Cf only a portion of the current. 
-
-But why do we need to put this Ri? 
-
-This Ri is a very small resistor which is intended just for compensating the circuit. 
-
-In fact having a circuit with a big input capacitance like the CP. 
-
-Make the circuit to be unstable. We have already seen an example similar to this one when we studied the photodiode. Also in that case the capacitance of the photodiode itself made the stage to be unstable and also in that case we needed to compensate the circuit. In that case we compensated using the CF on the feedback. And now. 
-
-We compensate putting these small size Ri. In this case, if we put this resistance, you see that the capacitance Cp see a pole that is not at infinite frequency. 
-
-Because without the Ri, the C pole is directly connected to the ground, to the virtual ground, and so the equivalent resistor is zero. 
-
-And so the if the equivalent resistor is zero its pole is towards infinity. If we put the resistance Ri. 
-
-The Cp is not directly connected to the virtual ground and so we see an equivalent resistor which is not exactly zero, it's small because Ri is a small resistor, but it's not at the infinite. And this makes the circuit to be back to be stable. please consider that in order to make this surface stable it is enough to put to add a very small resistor R i and for sure this resistor will be much smaller than R p okay and we will take this consideration in account to do some simplification when we will compute the transfer fraction. 
-
-Also in this case we added the biasing at 1-alpha Vcc because we have a single power supply operational amplifier which is powered between Vcc and 0 volt. 
-
-But also in this case when we study the faster function we can switch off the 1-alpha Vcc and consider it to be to ground. And also in this case we are interested in the relation between the output voltage and the charge that we generate consequently to the application of a force on the piezoelectric material. But again. 
-
-Since we are not used to study the relation between voltage and charge, we will start studying the relation between voltage and the input current. And then we will remember that the input current can be written as the product of s by q. 
-
-Okay, so let's start with the computation. 
-
-We have our current generator. 
-
-I. 
-
-Then here we have the capacitance, and we can consider this capacitance to be the parallel between Cp and Cc. 
-
-Then we have the resistance which models the piezoelectric material, so Rp. 
-
-Then we have the compensation resistance, the small value resistance Ri. 
-
-And finally we have our charge amplifier, so with the plus connected to ground. And then in the feedback we have. 
-
-Rf and Cr. 
-
-And we are interested to compute the output voltage. 
-
-Also in this case we can start with studying the singularities of this circuit. 
-
-So the capacitors Cp in parallel to Cc provide one pole that thanks to the presence of R i is not at infinite frequency. 
-
-We have the frequency of a pole. 1 to be equal to 1 over 2 pi cp plus cc multiplied by rp in parallel to ri. 
-
-They are in parallel obviously because at the minus we have the virtual ground. 
-
-In the parallel. 
-
-Since Ri is much smaller than Rp, we can say that Ri dominates, so this is almost equal to 1 over 2π. 
-
-Cp plus Cc multiplied by Ri. 
-
-Then we have the pole of Cf that is equal to 1 over 2π. 
-
-In this case it's true that CP is a bigger capacitance, but Ri is a very small resistor and Ri is very close to zero. 
-
-As of for sure the pole of CP and CC will be at very high frequency. 
-
-In this case, this will be the higher pole. 
-
-Instead, the pole due to Cf needs to be at quite a low frequency in order to have this integration of charge. 
-
-So this will be sized to be the frequency, so this is the high frequency. Instead, the pole of Cf is the pole at low frequency. 
-
-In this case we have no zeros because if you consider the capacitance Cp and Cc. 
-
-If they are short. 
-
-They impose an input voltage Vp to be equal to zero. 
-
-When they are short. 
-
-The output voltage will be equal to zero. 
-
-But also in the case of Cf this time if it is short it means that it directly connect Vout to the vector ground so force Vout to be equal to zero. 
-
-So it means that nor. 
-
-Cp and Cc neither Cf introduce any zeros. So in this case we just have poles. 
-
-Ok, so let's start to compute the transfer function. 
-
-So, let's start to compute which is the output voltage at low frequency. 
-
-So we can call if the current that will go in Ri, because it is then the same current that will flow in the feedback, and the counter that goes in Ri is provided by the current divider equation between the input current which is divided between Rp and Ri. 
-
-So. 
-
-If is equal to I multiplied by Rp and divided by. 
-
-Rp plus Ri. 
-
-Remember that this current divider is almost equal to 1 because ri is much smaller than rp. 
-
-Stand by now. 
-
-Vout will be equal to. 
-
-At low frequency, to minus IF, so the current multiplied by RF. 
-
-And so finally. 
-
-Vout over. 
-
-I is equal to minus. 
-
-Rp over rp plus ri multiplied by rf. 
-
-At medium frequency means that we are after the pole of cf. 
-
-So cf is a short circuit and so the output is directly shorted to the virtual ground and so at medium frequency we have a transfer function that is equal to zero. 
-
-And also at high frequency. 
-
-At high frequency it is equal to zero both because the current i will go in the short made by Cp and Cc and then also because Cf is a short and so the virtual ground is directed shorted. 
-
-So we can plot the transfer function of dVout over current, we are interested in the module. and so it will be equal to the modulus of minus rp over rp plus ri by rf, then we meet the first pole and then we meet also the second pole. 
-
-And f pole i. 
-
-But again this is the transfer function between the output voltage and the input current, but we want to obtain the transfer function between the output voltage and the input charge. 
-
-So. 
-
-As we have done before, we can remember that. 
-
-Vout over I, this module, is equal to. 
-
-Vout divided by S by Q in the Laplace domain. 
-
-And so now we will have to write explicitly the Laplace expression of Vout over I. 
-
-In order then to multiply by S to obtain the expression of Vout over Q. 
-
-So let's do it. 
-
-Vout. 
-
-I that is equal to Vout over. 
-
-SQ. 
-
-Is equal to. 
-
-We can consider the out over i at low frequency. 
-
-And then in this case we have to multiply by 1, because we have no zeros, and divide by 1 plus s tau at low frequency multiplied by 1 plus s tau of the pole at high frequency. 
-
-And so... 
-
-It is equal to the gain at low frequencies, so minus. 
-
-RP over RP plus Ri multiplied by RF. 
-
-Minus. 
-
-P over. 
-
-RP plus Ri multiplied by. 
-
-RF, and then we multiply by 1 over. 
-
-The pole at low frequencies of 1 plus SCFF and then the pole at low frequencies of 1 plus SCP plus. 
-
-C0 multiplied by RP in parallel to RI. 
-
-Ok. 
-
-Now we can consider what happens at low frequency, medium frequency and high frequency. 
-
-But before, we should multiply by s in order to find the transfer function in respect to q instead of in respect to s. 
-
-So we can say that bout over q. 
-
-At low frequencies so when s tends to zero. 
-
-Is equal to zero because the denominator becomes equal to one but at the numerator we have the s that s to zero then if we compute it so the out over q at medium frequency it means that we are after the low frequency pole but before the high frequency pole so it is equal to minus. 
-
-Rp over p plus rpi multiplied by rf and then we have at the numerator s. 
-
-At the denominator, since we are after the frequency pole. 
-
-S, cf, rf dominates in respect to 1. 
-
-Instead, in the second part, the 1 is the dominant part. 
-
-And so. 
-
-In this case, we can simplify the S and we can simplify our F. 
-
-We can also consider that rp divided by rp plus ri is almost equal to 1, so this is almost equal to 1, because ri is negligible in respect to rp. 
-
-And so, at the end, we obtain that. 
-
-The gain at medium frequency is almost minus 1 over CF. 
-
-Then if we consider the high frequency. 
-
-So after both the poles. 
-
-The gain becomes minus. 
-
-RP over RP plus RI multiplied by RF. 
-
-Then at the numerator we have the S and at the denominator the S-tau part is dominant for both the ports. So we have SCF RF multiplied by SCP. 
-
-CC. 
-
-RP in parallel to RI. 
-
-In this case you see that just one S. 
-
-Simplifying, and also the RF. 
-
-But we still have this S at the denominator. 
-
-At high frequency there has 10 to infinity, so since it has 10 to infinity, it means, and it is at the denominator, the overall result is 10 to 0, so this is almost equal to 0. 
-
-So if we represent finally the transfer function in this case. 
-
-So we want to represent the modulus of Vout over Q versus frequency. 
-
-We obtain that at low frequency is equal to zero, so we start with a zero in the origin, which is not a physical zero in the origin, but it is due to this multiplication by S. 
-
-Then at medium frequency we have the modulus of minus one over Cf. 
-
-And then at high frequency we have... 
-
-And we have our two poles, the pole at blue frequency and the pole at high frequency. And this is exactly the transfer function that we provided you here in the slide with a zero. 
-
-This. 
-
-Like a zero in the origin, then again at medium frequency that in modules is equal to one over cf. 
-
-And then the second pole and the zero. gain at high frequency. 
-
-And so you see that in the bandwidth of interest, so between the low frequency and the high frequency, we have a transfer function which depends only on CF, so it is perfectly independent from the stray capacitance. 
-
-And so in this case, since CF is when only stood by the designer we can measure in vout. 
-
-We can derive the value of Q, and so the value of the force applied on your sensor. 
-
-This is the reason why this second circuit is the one that is the preferred one for this kind of sensor. 
-
-So in conclusion, in which application can we use the piezoelectric sensors? Maybe they are used when we want to measure an act of force on the sensor. So for instance, they can be used in force platform for rehabilitation of sports when you want to see how you distribute the force when you are walking or running and so on. 
-
-PS-Electric materials can be also used in energy harvesting because they can transform a vibration or the high flow for instance in a voltage that can be exported inside your circuit. 
-
-We will see during next class that. 
-
-PS-Electric materials are also used for ultrasonic technologies and they are both used as sensors. and also actuators, because we exploit the fact that if we apply a force they produce a voltage, but also the vice versa, if we apply a voltage they can produce a vibration of the material. 
-
-And finally sometimes they are used as actuators. 
-
-So they are used to apply a voltage across the material and then generate a tension. which is well controlled by the voltage that you apply. So for instance it can be very useful in pumping and dosing in order to produce solutions with very precise quantities of material. 
-
-Okay. 
-
-So that's all for today and see you during the next class. 
-
-Bye! 
-
-
+That concludes today’s topic—see you in the next class!
