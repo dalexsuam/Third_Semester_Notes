@@ -1,362 +1,986 @@
-
-23/10/2025
+30/10/2025
 ***
-Hello everyone,  
-today’s topic is **magnetic field sensors**, and in particular, we will study **two main types**: **Hall sensors** and **magnetoresistive sensors**.
+
+# <span style="color:rgb(223, 109, 109)">Strain and Force Sensors</span>
+
+Hello everybody!  Today’s topic is **strain and force sensors**.
+
+In particular, we will study two main types: **strain gauges** and **piezoelectric force sensors**.Let’s begin with **strain gauges**, which are resistive sensors used to measure strain.  They can be spelled either _strain gauges_ or _strain gages_—both forms are correct. Before going into the details, let’s quickly review some basic concepts from mechanics.
+
+---
+# <span style="color:rgb(223, 109, 109)">Strain Gauges</span>
+
+![[Pasted image 20251118104533.png|400]]
+
+## <span style="color:rgb(239, 179, 1)">Basic Principles - Mechanics</span>
+### <span style="color:rgb(161, 40, 226)">Stress</span>
+
+![[Pasted image 20251118104559.png]]
+Stress is defined as the ratio between the force applied to a material and its cross-sectional area.  If the cross-section is ($W \times H$), then:
+$$\sigma = \frac{F}{WH}, \space [Pa=N/m^2]  
+$$
+Stress is measured in **Pascals (Pa)**.
+
+### <span style="color:rgb(161, 40, 226)">Strain</span>
+
+![[Pasted image 20251118104912.png]]
+Strain represents the **normalized elongation** of a material.  If a material of length $(L)$ is stretched by a force in the direction of its length, it will elongate by $(\Delta L)$.
+$$\varepsilon = \frac{\Delta L}{L}  $$
+Strain is dimensionless, but because the values are usually very small, it is often expressed in **microstrain** $(\mu\varepsilon = 10^{-6})$.
+
+### <span style="color:rgb(161, 40, 226)">Young’s Modulus</span>
+
+The relationship between stress and strain is given by **Young’s modulus**, defined as:
+$$
+E = \frac{\sigma}{\varepsilon}  
+$$
+Young’s modulus is also measured in **Pascals**.
+
+### <span style="color:rgb(161, 40, 226)">Necking</span>
+
+![[Pasted image 20251118105030.png]]
+When a material is subjected to tension, it elongates in the direction of the applied force, but it becomes thinner in the perpendicular directions.  
+This thinning effect is known as **necking**.
+
+### <span style="color:rgb(161, 40, 226)">Poisson’s Ratio</span>
+
+Poisson’s ratio quantifies this phenomenon (Necking). It is defined as the (negative) ratio between the relative change in width or height and the relative change in length:
+
+$$  
+\nu = -\frac{\Delta W/W}{\Delta L/L} = -\frac{\Delta H/H}{\Delta L/L}  
+$$
+The negative sign ensures that Poisson’s ratio is positive, since elongation ($\Delta L>0$) is accompanied by a reduction in width or height ($\Delta W<0$).
 
 
-# <span style="color:rgb(223, 109, 109)">Hall Sensors</span>
+## <span style="color:rgb(239, 179, 1)">Stress- Strain Curve</span>
 
-Let’s begin with the **Hall sensors**
-![[Pasted image 20251021233314.png]]
-Hall sensors are **simple and inexpensive** magnetic field sensors that typically have **three terminals**. Their operation is based on the **Hall effect**.
-.
-![[Pasted image 20251021233339.png]]
+![[Pasted image 20251118122827.png]]
 
-They consist of a **thin sheet of conductive or semiconductor material**. Inside this sheet, we **force a current** to flow in one direction, while we **measure a voltage** in the perpendicular direction. This voltage is **proportional to the strength of the magnetic field** applied.
+Normally, for most materials we can distinguish two regions in the stress–strain curve. This curve shows how much stress must be applied to produce a given strain. As you can see, the curve is divided into two main regions: the **elastic region** and the **plastic region**.
 
-However, the output voltage is usually **very small** — typically in the **microvolt range**. For this reason, most Hall sensors include an **integrated differential amplifier** directly on the same chip as the sensing element.
+In the **elastic region**, the relationship between stress and strain is linear. This means that the Young’s modulus remains constant, since it corresponds to the slope of this linear portion of the curve.
 
-In some cases, a **comparator or trigger circuit** is also integrated. This allows the Hall sensor to be used as a **digital sensor** — working as an **on/off detector**. In that case:
+In the **plastic region**, the relationship is no longer linear. Instead, the curve starts to saturate until it reaches the **failure point**, which is the moment when the material breaks.
 
-- When the magnetic field exceeds a certain threshold, the output switches to **1**.
-- When the field is below the threshold, the output stays at **0**.
-## <span style="color:rgb(239, 179, 1)">Working Principle</span>
+## <span style="color:rgb(239, 179, 1)">Strain Gauge - Working Principle</span>
 
-Now, let’s take a closer look at the **working principle** behind Hall sensors to better understand how they function.
+![[Pasted image 20251118123606.png]]
+
+Now let’s better understand the working principle of strain gauges. A strain gauge is simply a resistor whose resistance changes when the material is strained. You know that the resistance $(R)$ of a conductor is:
+$$R = \rho \frac{L}{A} = \rho \frac{L}{W \cdot H}  $$
+If we apply tension to the material:
+
+- its length $(L)$ increases,
+- its cross-section $(A)$ decreases due to necking (both $(W)$ and $(H)$ shrink),
+
+and both effects cause the resistance to **increase**.
+
+If instead we apply compression:
+
+- the length decreases,
+- the cross-section increases,
+
+and the resistance **decreases**.
+
+For some materials, resistivity $(\rho)$ also changes with stress. This is the **piezoresistive effect**, where the normalized change in resistivity is proportional to the stress applied:
+
+$$\frac{\Delta \rho}{\rho} = \beta \cdot \sigma = \beta \cdot E \cdot \varepsilon = \beta \cdot E \cdot \frac{\Delta L}{L}$$
+and this can also be written using strain $(\Delta L / L)$ by including the Young’s modulus.
+### <span style="color:rgb(161, 40, 226)">Sensitivity to strain direction</span>
+
+The material is sensitive to strain **only when it is applied along the main length** of the resistor. If the stress is applied in the orthogonal direction, the resistance change is negligible.
+
+This remains true for **bonded strain gauges**, which are the most common type.  
+In these devices, the resistor is folded many times (zig-zag pattern) to increase the effective length. The sensor still responds mainly to tension or compression along its principal axis and remains almost insensitive to lateral forces applied perpendicular to that axis.
+
+### <span style="color:rgb(161, 40, 226)">Gauge Factor (Sensitivity of a Strain Gauge)</span>
+
+The **gauge factor (G)** represents the sensitivity of a strain gauge.  
+It is defined as:
+  
+$$G = \frac{dR/R}{\varepsilon} =\frac{dR / R}{dL / L}  $$
+where:
+- ($dR / R$) = relative change in resistance
+- ($dL / L$) = axial strain
+    
+**Deriving the Gauge Factor**
+
+The resistance of a conductor is:
+$$R = \rho \frac{L}{W H}$$
+Let's do some variations and apply $ln$ in both sides
+$$ ln(R)=ln(\rho)+ln(L)-ln(W)-ln(H)$$
+And if we make the derivative of all these we would get
+$$ d(ln(R))=d(ln(\rho))+d(ln(L))-d(ln(W))-d(ln(H))$$
+We finally obtain the relative variation of this expression gives:
+$$\frac{dR}{R}  
+= \frac{dL}{L}-\frac{d\rho}{\rho}-\frac{dW}{W}-\frac{dH}{H}$$
+(The width (W) and height (H) terms have negative signs because they are in the denominator)
+
+**Using Poisson’s Ratio**
+Poisson’s ratio is defined as:
+$$\nu = -\frac{dW/W}{dL/L} = -\frac{dH/H}{dL/L}$$
+Therefore:
+$$  -\frac{dW}{W} = \nu \frac{dL}{L}$$
+$$-\frac{dH}{H} = \nu \frac{dL}{L}  $$
+
+Substituting these into the expression for ($dR/R$):
+
+$$  
+\frac{dR}{dR}  
+= \frac{dL}{dL} + \frac{d\rho}{\rho}+2\nu \frac{dL}{L}  
+$$
+**Including the Piezoresistive Effect**
+
+For piezoresistive materials:
+$$\frac{d\rho}{\rho} = \beta E \frac{dL}{L}  $$
+Substitute this:
+$$\frac{dR}{R}  = \left(1 + 2\nu + \beta E\right)\frac{dL}{L} $$
+Finally:
+$$\boxed{ G= 1 + 2\nu + \beta E  }$$
+> [!info] **Special Cases** Non-piezoresistive materials (most metals)
+$$\beta = 0 \quad \Rightarrow \quad G \approx 1 + 2\nu  $$
+Typical values:  
+ $$G ≈ 2$$
+
+> [!error] Piezoresistive materials (e.g., silicon)  
+$$G = 1 + 2\nu + \beta E $$
+The term ($\beta E$) is large → G can be 50–150 or higher
+
+
+![[Pasted image 20251118210501.png]]
+
+In this table, you can see the gauge factor values for different materials.  
+One important thing to notice is that the gauge factor is **not always constant** over the full strain range.
+
+To make this clearer, the table provides values for _low strain_ (typically below about 1%) and _high strain_.
+
+![[Pasted image 20251118210145.png]]
+
+For some materials—an example is **constantan alloy**—the relationship between ΔR/R and strain is almost perfectly linear.  
+Because of this, the gauge factor remains nearly constant for both low and high strain.
+
+However, other materials behave very differently.  
+For example, **nickel** shows a strong nonlinearity:
+
+- at low strain, the ΔR/R–strain curve has a **negative** slope
+- at higher strain, the slope becomes **positive** and more linear
+    
+This change of slope explains why the gauge factor for nickel is negative at low strain but becomes positive when the strain increases.
+
+## <span style="color:rgb(239, 179, 1)">Strain Gauge Fabrication</span>
+
+Now, regarding the structure and fabrication of strain gauges, there isn’t much new to say, because the process is essentially the same as the one used for thin-film, patterned RTDs. The fabrication is based on **photolithography**, which typically includes four main steps:
+
+![[Pasted image 20251118211247.png]]
+1. **Photoresist deposition** – A layer of photoresist is applied on top of the material.  
+    The photoresist can be _positive_ or _negative_, depending on whether it becomes stronger or weaker when exposed to light.
+2. **Exposure to light** – Ultraviolet light is used to define the desired pattern on the photoresist.
+3. **Etching** – The unprotected areas of the underlying material are removed.
+4. **Photoresist removal** – The remaining photoresist is stripped away, leaving the final patterned structure.
+    
+The main difference compared to thin-film RTDs lies in the **carrier material**.  
+For strain gauges, the carrier must be **flexible**, because the entire strain gauge is glued onto the specimen or structure being measured.  
+If the specimen undergoes elongation or compression, the carrier—and therefore the gauge itself—must deform in exactly the same way.  
+This ensures that the electrical resistance truly reflects the strain experienced by the specimen.
+
+
+## <span style="color:rgb(239, 179, 1)">Strain Gauge - Readout circuit<br></span>
+![[Pasted image 20251118211640.png]]
+When using strain gauges, we need a circuit to read their resistance changes, and the most common approach is to use a **Wheatstone bridge**, similar to what we do with RTDs.
+
+A key issue with strain gauges is **temperature sensitivity**. Since strain gauges are resistors, their resistance naturally changes with temperature. If we want the output of our measurement to reflect only the **strain applied to the material**, we need a way to cancel out any voltage changes caused by temperature.
+
+![[Pasted image 20251118211754.png|400]]
+One effective method is to use **two strain gauges placed orthogonally** (at right angles) to each other:
+
+- **Strain gauge 1:** Aligned with the main length of the material, so it is parallel to the applied force.
+- **Strain gauge 2:** Placed perpendicular (orthogonal) to the applied force, so it does not experience strain from the force.
+    
+Here’s why this works:
+
+- When **temperature changes**, both gauges’ resistances increase by the same amount. If we place them in the same branch of the Wheatstone bridge, the voltage at the intermediate point stays roughly at half the supply voltage. This means **temperature effects are canceled out**.
+    
+- When a **mechanical strain** is applied:
+    
+    - Gauge 1, which is aligned with the force, changes its resistance.
+    - Gauge 2, which is perpendicular, does **not** change.
+        
+
+This creates an **imbalance in the Wheatstone bridge**, which produces a voltage difference that we can measure. This voltage depends **only on the strain**, not on the temperature.
+
+In short, this orthogonal strain gauge configuration allows us to measure strain accurately while compensating for temperature variations.
+
+## <span style="color:rgb(239, 179, 1)">Strain Gauge - Bending measure</span>
+
+![[Pasted image 20251118212425.png]]
+Another important application is **measuring the bending of beams**. When a beam bends, one side experiences **tension** while the opposite side experiences **compression**:
+
+- In the example here, the **top side** of the beam is under tension.
+- The **bottom side** is under compression.
+    
+To measure this bending, we can place **two strain gauges**: one on the top and one on the bottom of the beam, and connect them in the **same branch of a Wheatstone bridge**.
+
+Here’s what happens:
+
+- The **top strain gauge** (under tension) increases its resistance.
+- The **bottom strain gauge** (under compression) decreases its resistance.
+- This difference creates an **imbalance in the Wheatstone bridge**, causing a measurable voltage difference at the intermediate node. This voltage tells us that bending is happening.
+    
+![[Pasted image 20251118212514.png|400]]
+An important feature of this setup is that it is **insensitive to uniform tension or compression**:
+
+- If the whole beam is just stretched (tension) or squeezed (compression), both top and bottom gauges change in the **same direction**.
+- This causes **little to no change** in the voltage at the intermediate node, so the bridge output does not respond to overall tension or compression—only to bending.
+    
+![[Pasted image 20251118212610.png]]
+If you want **higher sensitivity**, you can use a **full Wheatstone bridge with four resistances**:
+
+- Place two resistors corresponding to the **top side** in opposite positions of the bridge.
+- Place the other two resistors corresponding to the **bottom side** in the remaining opposite positions.
+    
+
+In this configuration:
+
+- The two resistors on the **tension side** increase in resistance.
+- The two resistors on the **compression side** decrease in resistance.
+- This creates a **larger voltage difference** between the two branches of the bridge, giving a stronger signal and higher sensitivity to bending.
+
+## <span style="color:rgb(239, 179, 1)">Strain Gauge - Possible Configurations</span>
+
+
+
+second configuration
+
+
+
+third 
+
+
+
+
+
+
+![[Pasted image 20251118213729.png]]
+
+Here we show **different Wheatstone bridge configurations**, ranging from the simplest (one strain gauge) to the most complete (four strain gauges). Here, we focus on **measuring tension or compression while being insensitive to bending**—the opposite of the bending-sensitive setup we discussed previously.
+
+### <span style="color:rgb(161, 40, 226)">1. Single strain gauge</span>
+![[Pasted image 20251118213749.png]]
+- Simple setup with **one strain gauge**.
+- Measures tension (resistance increases) and compression (resistance decreases).
+- **Drawbacks:** Sensitive to **temperature** and also to **bending**, which can cause unwanted voltage changes.
+    
+
+### <span style="color:rgb(161, 40, 226)">2. Two strain gauges on opposite sides</span>
+
+
+| Configuration                        | Readout Circuit                      |
+| ------------------------------------ | ------------------------------------ |
+| ![[Pasted image 20251118213816.png]] | ![[Pasted image 20251118213123.png]] |
+
+- Place two strain gauges on opposite sides of the beam in **opposite positions on the Wheatstone bridge**.
+- **Effect under tension:** Both resistors increase → voltage imbalance is measurable → output shows tension.
+- **Effect under bending:** One resistor increases (tension side), the other decreases (compression side) → the changes **balance each other**, so output is nearly zero → insensitive to bending.
+- **Temperature sensitivity:** Both resistors increase with temperature → output is still affected → **temperature is not compensated**.
+
+### <span style="color:rgb(161, 40, 226)">3. Two gauges with one orthogonal for temperature compensation</span>
+
+| Configuration                        | Readout Circuit                      |
+| ------------------------------------ | ------------------------------------ |
+| ![[Pasted image 20251118213935.png]] | ![[Pasted image 20251118213220.png]] |
+
+- Add a second gauge **orthogonal to the first** (insensitive to tension/compression).
+- **Temperature effect:** Both gauges on the same branch increase equally → intermediate node voltage remains constant → **temperature compensated**.
+- **Bending effect:** The first gauge still changes with bending → output voltage changes → **sensitive to bending**.
+    
+### <span style="color:rgb(161, 40, 226)">4. Four-gauge configuration (optimal)</span>
+
+| Configuration                        | Readout Circuit                      |
+| ------------------------------------ | ------------------------------------ |
+| ![[Pasted image 20251118214027.png]] | ![[Pasted image 20251118213433.png]] |
+
+- Combines **temperature compensation** and **bending insensitivity**.
+- Arrangement:
+    
+    - **Top side:** two gauges in orthogonal positions.
+    - **Bottom side:** two gauges in orthogonal positions.
+        
+- **Temperature effect:** All four gauges change equally → bridge remains balanced → output = 0.
+![[Pasted image 20251118213609.png]]
+
+- **Tension effect:** Only the gauges aligned with the force change → creates imbalance → output shows tension/compression.
+- **Bending effect:** Top gauge under tension, bottom gauge under compression → intermediate node changes **cancel each other** → output remains near zero.
+    
+
+**Conclusion:**
+
+- By carefully choosing **gauge positions** and **bridge configuration**, you can design a system that is:
+    
+    - Sensitive **only to tension/compression**,
+    - Insensitive to **bending**,
+    - And/or **temperature variations**, depending on the configuration.
+        
+- The specific choice depends on the measurement objective for your application.
+    
+
+## <span style="color:rgb(239, 179, 1)">Strain Gauges - Applications</span>
+
+Strain gauges are used to measure small deformations or changes in length in various structures and devices. Their main applications include:
+
+![[Pasted image 20251118214809.png|400]]
+1. **Railroad Maintenance:** Strain gauges can be installed along railway tracks to monitor changes in the length of the rails. This helps track how the rails expand or contract with temperature changes and ensures timely maintenance.
+    
+2. **Structural Monitoring:** They are used in “smart” infrastructure, like bridges, to monitor stress and detect potential problems. Strain gauges can also be applied to structures such as wind turbine panels to measure stress on their walls.
+    
+3. **High-Precision Robotics:** In medical or delicate robotic applications, strain gauges provide feedback on the stress experienced in different parts of the robot. This helps control the force applied with high accuracy.
+![[Pasted image 20251118214829.png]]
+
+4. **Bathroom Scales:** Strain gauges are commonly used in scales to measure weight. The scale has a fixed base and a free end where the load is applied. The connecting beam bends depending on the load, and the strain gauge measures this bending. From this measurement, the scale can calculate the weight applied.
+
+# <span style="color:rgb(223, 109, 109)">Piezoelectric Force Sensor</span>
+
+![[Pasted image 20251118215300.png|300]]
+
+The second type of sensor we will study today is the **piezoelectric force sensor**. Like strain gauges, it is used to measure force. However, unlike strain gauges, piezoelectric sensors measure force **more directly**. Remember that strain gauges measure strain, and we calculate stress from strain using the material’s Young’s modulus. Piezoelectric sensors, instead, generate an electrical signal directly from the applied force.
+
+## <span style="color:rgb(239, 179, 1)">Piezoeletric Effect</span>
+![[Pasted image 20251118215315.png]]
+
+In piezoelectric materials, we find a very useful property: **when an external force is applied, the material generates a voltage difference across its terminals**.
+
+Materials that show this piezoelectric behaviour include **quartz, many types of crystals, ceramics, and even some biological materials**.
+
+When **no force** is applied, the internal arrangement of charges inside the material is perfectly balanced. But if we apply a **force**, either tension or compression, the internal structure deforms, and this deformation causes the charges to become **unbalanced**.  
+As a result, there is a **separation of charges**, and we can measure a voltage across the two terminals of the material.
+
+- A **tensile force** produces a voltage with one sign.
+- A **compressive force** produces a voltage with the opposite sign.
+    
+
+The interesting part is that the **reverse effect** is also true: if you apply a voltage to a piezoelectric material, you can cause a small deformation in it.
+
+- Applying voltage in one direction makes the material **elongate**.
+- Applying voltage in the opposite direction makes it **compress**.
+    
+
+>[!important] This deformation only responds to **changes** in the applied force.  
+If you apply a constant force, the material will generate a voltage at the moment when the force changes, but then it will gradually **relax** and return toward its original configuration. As a result, the voltage disappears even if the force remains applied.
+
+
+## <span style="color:rgb(239, 179, 1)">Piezoelectric Sensor - Electric Model</span>
+
+![[Pasted image 20251118222721.png]]
+For this reason, we can model a piezoelectric material using a **capacitor in parallel with a resistor and a current source**.
+
+- The **current source** represents the charge generated inside the material when it is stressed.
+- This current “injects” charge into the **capacitor**, and the voltage across the capacitor represents the **voltage generated by the piezoelectric material**.
+- The **resistor** models the fact that the material slowly **relaxes** and returns to its original, unstressed state. This relaxation causes the capacitor to discharge over time.
+
+We also know that the current needed to represent how the charge changes is related to the **derivative of the charge**.  
+In the Laplace domain, this becomes:
+$$I(t) = \frac{dQ(t)}{dt}$$
+$$I(s) = s \cdot Q(s)$$
+
+Please keep this relation in mind, because we will use it later when studying the **readout circuit** for this sensor.
+
+This model corresponds to the **Norton equivalent** of the sensor.  
+
+![[Pasted image 20251118222915.png]]
+
+Of course, we can also build the **Thevenin equivalent**, but its equations are more complicated. For this reason, we usually prefer to work with the Norton model.
+
+![[Pasted image 20251118223355.png|300]]
+As mentioned before, piezoelectric sensors are very sensitive to **changes** in the applied force.  This means that when the force varies, the sensor generates an **equivalent current**, which can be expressed as:
+
+$$I = \frac{\Delta Q}{\Delta t}  $$
+
+The typical amount of charge generated by these sensors is around **10–20 picocoulombs per newton**.
+
+This charge (Q) accumulates on the **equivalent capacitance** of the material, and the voltage you measure across the sensor is:
+$$V = \frac{Q}{C}  $$
+
+However, as we said earlier, if the force stays constant over time, the material will slowly **relax** back to its original state.  Because of this relaxation, the voltage across the piezoelectric material will also decrease and eventually return to zero. In our electrical model, this relaxation is represented by the **time constant** of the circuit, which is:
+$$\tau = C_p \cdot R_p  $$
+
+In theory, if we can measure the **peak voltage** generated by the sensor, we can determine the charge (Q), and from that, the value of the applied force.
+
+### <span style="color:rgb(161, 40, 226)">The practical problem: stray capacitances</span>
+
+The difficulty is that we do not only have the well-defined capacitance of the piezoelectric material. There are also **stray (parasitic) capacitances** in the system—coming from cables, connectors, or the environment.
+
+These stray capacitances appear **in parallel** with the piezoelectric capacitance, so the voltage we measure depends not only on the charge and the sensor’s own capacitance, but also on these unwanted extra capacitances.
+$$V = \frac{Q}{C_p+C_{stray}}$$
+
+Since stray capacitances are not perfectly controlled or predictable, they introduce **uncertainty** in the estimation of charge, and therefore in the estimation of force.
+
+
+## <span style="color:rgb(239, 179, 1)">Readout Circuits</span>
+
+As mentioned, we will examine two readout circuits:
+
+1. **The first circuit** gives an output directly proportional to the piezoelectric voltage ($V_p$).  
+    This circuit is affected by stray capacitances.
+2. **The second circuit** provides an output that does **not** depend on stray capacitances, making it the preferred solution.
+
+### <span style="color:rgb(161, 40, 226)">First Readout Circuit (Voltage Mode Readout)</span>
+
+Let’s begin with the first circuit. In this configuration, the piezoelectric material is modeled using its **Norton equivalent**, which includes:
+
+- a current source (representing the generated charge),
+- a capacitance ($C_p$),
+- and a resistance ($R_p$) (representing relaxation).
+![[Pasted image 20251118224152.png]]
+
+This sensor is followed by an **operational amplifier** in a **non-inverting configuration**.
+
+#### <span style="color:rgb(2, 141, 192)">1. Gain of the amplifier</span>
+In a non-inverting amplifier, the **low-frequency gain** is:
+$$G_{LF} = 1 + \frac{R_f}{R_g}  $$
+This matches what we see in the circuit. A capacitor ($C_f$) is connected in parallel with ($R_f$) to provide **high-frequency filtering**.
+
+#### <span style="color:rgb(2, 141, 192)">2. Cable capacitance</span>
+
+![[Pasted image 20251118224242.png]]
+The capacitance of the cable, ($C_c$), appears **in parallel** with the sensor capacitance ($C_p$).  
+This is the stray capacitance we discussed before, and it affects the final output because it changes the effective capacitance seen by the sensor.
+
+#### <span style="color:rgb(2, 141, 192)">3. Biasing the circuit<br></span>
+![[Pasted image 20251118224242.png]]
+The op-amp is powered with a **single supply** (0 V to $V_{cc}$).  
+However, we want to measure both:
+
+- tension → positive ($V_p$)
+- compression → negative ($V_p$)
+
+To allow this with a single supply, we **bias the entire circuit at half the supply**, ($V_{cc}/2$).  This makes ($V_{cc}/2$) the “resting point” when the sensor is not stressed.
+
+Here’s what happens when ($V_p = 0$):
+
+- There is no voltage difference across the sensor.
+- Both sensor terminals sit at the bias level ($V_{cc}/2$).
+- By negative feedback, the op-amp forces the **inverting input** to also be at ($V_{cc}/2$).
+- No current flows through ($R_g$) or ($R_f$).
+- Therefore, the output ($V_o$) is also equal to ($V_{cc}/2$).
+    
+When a force is applied, a voltage contribution is added on top of this ($V_{cc}/2$), and the output can move up or down depending on the direction of the force.
+
+Here is your full text rewritten in **clear, smooth, easy English**, keeping all the technical content but making the explanation much clearer and better organized. I did _not_ change the meaning—only the readability.
+
+
+#### <span style="color:rgb(2, 141, 192)">4. Transfer Function: From Input Charge to Output Voltage</span>
+
+To analyze how this circuit processes the signal from the piezoelectric sensor, we first consider the sensor’s behavior in terms of **input current**, and then we convert the result to a function of **input charge**.
+
+Normally, in circuit analysis we look at the transfer function between **voltage and current**, but piezoelectric sensors naturally generate **charge**, so the transfer function we ultimately want is:
+$$\frac{V_o}{Q}  $$
+
+To get there, we follow these steps:
+
+1. **First**, compute the relation between the output voltage ($V_o$) and the input current (I).
+2. **Then**, since in the Laplace domain  
+    $I(s) = sQ(s)$ 
+    we convert the result by simply multiplying by (s), which gives us  
+    $\frac{V_o}{Q} = s \cdot \frac{V_o}{I}$. 
+    
+Also, because the bias voltage ($V_{cc}/2$) does not affect the circuit’s frequency behavior, we set it to zero during the AC analysis.
+
+#### <span style="color:rgb(2, 141, 192)">5. Circuit for AC Analysis</span>
+
+When we draw the simplified AC model:
+![[Pasted image 20251118230014.png]]
+- The sensor is represented by:
+    
+    - a current source (I),
+    - a capacitance ($C_p$),
+    - a resistance ($R_p$).
+        
+- In parallel with this, we have the cable capacitance ($C_c$) and the bias resistor ($R_b$).
+- The amplifier is a standard non-inverting configuration with gain:  
+    $1 + \frac{R_f}{R_g}$    
+- The feedback includes a capacitor ($C_f$), providing high-frequency filtering.
+#### <span style="color:rgb(2, 141, 192)">5. Poles and Zero of the Circuit</span>
+
+**Pole 1 — due to ($C_p + C_c$)**
+The first pole is created by the **total capacitance at the input**, which is:
+$$C_p + C_c  $$
+The equivalent resistance seen by this capacitance is:
+$$R_p \parallel R_b  $$
+So the first pole frequency is:
+$$f_{p1} = \frac{1}{2\pi (C_p + C_c)(R_p \parallel R_b)}  $$
+
+**Pole 2 — due to ($C_f$)**
+
+The second pole comes from the feedback capacitor ($C_f$).  To find its frequency, we “turn off” all input sources.  This sets the op-amp inputs to 0 V, so no current flows through ($R_g$).  Thus, ($C_f$) only sees ($R_f$).
+
+So:
+$$f_{p2} = \frac{1}{2\pi C_f R_f}  $$
+**Zero — due to ($C_f$)**
+
+A zero appears when a capacitor becomes a **short circuit** but does _not_ force the output to zero.
+
+- When ($C_p$) and ($C_c$) are shorted at high frequencies → the input node is forced to 0 V → **no zero** from them.
+- When ($C_f$) is shorted → the output is _not_ forced to zero → this introduces a **zero**.
+
+To find the zero’s frequency, we set the output node to 0 V and find the equivalent resistance seen by ($C_f$):
+$$
+R_f \parallel R_g  
+$$
+So the zero is at:
+
+$$f_z = \frac{1}{2\pi C_f (R_f \parallel R_g)}$$
+
+**Typical ordering of singularities**
+
+- ($C_p + C_c$) is usually quite large → **low-frequency pole**.   
+- ($C_f$) is small → **high-frequency pole**.
+- The zero comes at an even higher frequency because ($R_f \parallel R_g < R_f$).
+
+Thus, the order is:
+$$f_{p1} < f_{p2} < f_z  $$
+#### <span style="color:rgb(2, 141, 192)">6. Transfer Function in Different Frequency Regions</span>
+
+**1. Low Frequency (before the first pole)**
+
+At low frequency, all capacitors behave as open circuits.
+$$V_p = I \cdot (R_p \parallel R_b)  $$
+The output voltage is simply the input voltage multiplied by the non-inverting gain:
+$$V_o = V_p \left(1 + \frac{R_f}{R_g}\right)  $$
+So the low-frequency gain is:
+$$\frac{V_o}{I} =  
+(R_p \parallel R_b)\left(1 + \frac{R_f}{R_g}\right)  $$
+ **2. Medium Frequency (after pole 1, before pole 2)**
+
+After the first pole, ($C_p + C_c$) behave like short circuits.  This forces the input node to **0 V**, so:
+$$V_p = 0 \quad\Rightarrow\quad V_o = 0  $$
+Thus:
+$$\frac{V_o}{I} = 0  $$
+**3. High Frequency (after the second pole and after the zero)**
+
+At high frequency, both:
+
+- ($C_p + C_c$) are shorted → input = 0 V    
+- ($C_f$) is shorted → feedback forces output = 0 V
+
+Therefore:
+$$\frac{V_o}{I} = 0  $$
+#### <span style="color:rgb(2, 141, 192)">7.  Sketch of the Bode Plot</span>
+
+The magnitude of $\dfrac{V_o}{I}$ looks like this:
+
+![[Pasted image 20251119081433.png]]
+- A constant gain at low frequency.
+- A first roll-off of **−20 dB/dec** after the first pole.
+- Then a second roll-off of **−40 dB/dec** after the second pole.
+- Then, after the zero, the slope returns to **−20 dB/dec**.
+#### <span style="color:rgb(2, 141, 192)">8. Compact transfer-function expression</span>
+
+Start from the current-to-voltage form (useful for circuit algebra). The current-to-voltage transfer function of the voltage-mode readout is:
+ $$ \boxed{\,\frac{V_o}{I}(s) = (R_p\!\parallel\!R_b)\left(1+\frac{R_f}{R_g}\right)\cdot \frac{1 + s\tau_z}{(1 + s\tau_{p1})(1 + s\tau_{p2})}\,}$$
+where the time constants are:
+
+![[Pasted image 20251119194909.png]]
+- low-frequency pole (sensor + cable):
+$$\tau_{p1} = (C_p + C_c)\,(R_p\!\parallel\!R_b)$$
+- high-frequency pole (feedback $C_f$ with $R_f$​):    
+$$\tau_{p2} = C_f\,R_f$$
+- zero (feedback $C_f$​ sees $R_f\parallel R_g$​ when $V_o=0$):
+$$\tau_z = C_f\,(R_f\!\parallel\!R_g)$$
+#### <span style="color:rgb(2, 141, 192)">9. Convert to charge-to-voltage</span>
+
+Because in the Laplace domain $I(s)=s\cdot Q(s)$, the desired transfer function is simply
+  $$\boxed{\,\frac{V_o}{Q}(s) = s\cdot\frac{V_o}{I}(s)\,}$$
+So explicitly:
+
+$$\frac{V_o}{Q}(s) = s\,(R_p\!\parallel\!R_b)\left(1+\frac{R_f}{R_g}\right) \frac{1 + s\tau_z}{(1 + s\tau_{p1})(1 + s\tau_{p2})}$$
+
+#### <span style="color:rgb(2, 141, 192)">10. Useful frequency-region approximations</span>
+
+Take $s=j\omega$. 
+***Low frequency ( $\omega \ll 1/\tau_{p1}$​ )***
+
+![[Pasted image 20251119194629.png]]
+All $1+s\tau\approx1$. 
+Then
+$$\frac{V_o}{Q}(s)\approx s\,(R_p\!\parallel\!R_b)\left(1+\frac{R_f}{R_g}\right)$$
+Since $s\to0$, the transfer tends to **0** (zero at origin). Physically: piezo responds to changes, so DC/very low frequencies give no steady output.
+
+***Mid frequencies (after $f_{p1}$​, before $f_{p2}$​: $1/\tau_{p1}\ll\omega\ll 1/\tau_{p2}$​)
+
+![[Pasted image 20251119194648.png]]
+
+Here $1+s\tau_{p1}\approx s\tau_{p1}$, but $1+s\tau_{p2}\approx1$ and $1+s\tau_z\approx1$ (zero not yet reached). Substitute and simplify:
+$$\frac{V_o}{Q}(s)\approx \frac{(R_p\!\parallel\!R_b)\left(1+\dfrac{R_f}{R_g}\right)}{(C_p+C_c)(R_p\!\parallel\!R_b)} = \frac{1+\dfrac{R_f}{R_g}}{C_p + C_c}$$
+
+So the mid-band response is **flat** (frequency independent) and equal to:
+$$\boxed{\ \frac{V_o}{Q}\ \Bigr|_{\text{mid}} = \frac{1 + R_f/R_g}{C_p + C_c}\ }$$ 
+Interpretation: amplifier gain multiplies the charge→voltage conversion set by the total input capacitance.
+
+***High frequency ( $\omega \gg 1/\tau_{z}$  and $\omega\gg 1/\tau_{p2}$ )***
+
+![[Pasted image 20251119194703.png]]
+All $1+s\tau$ dominated by the $s\tau$ terms. After cancellation (work shown below), the limit is:
+ $$\boxed{\ \frac{V_o}{Q}\ \Bigr|_{\infty} = \frac{1}{C_p + C_c}\ }$$
+So at very high frequency the gain given by the amplifier cancels out and the response tends to $1/(C_p+C_c)$.
+$$(1+R_f/R_g)\cdot\frac{(R_f\parallel R_g)/R_f}{C_p+C_c}$$ But $(R_f\parallel R_g)/R_f = 1/(1+R_f/R_g)$, so the amplifier gain cancels.
+
+#### <span style="color:rgb(2, 141, 192)">11. Bode-shape summary</span>
+
+![[Pasted image 20251119194754.png]]
+- At very low freq: starts at **0** (zero at origin, slope +20 dB/dec from origin if plotted vs. freq because of the multiplying sss).
+- Midband: **flat** plateau at $(1+R_f/R_g)/(C_p+C_c)$.
+- Above $f_{p2}$​ and after the zero $f_z$​: slope changes and the final high-freq plateau equals $1/(C_p+C_c)$.
+
+(Equivalent verbal description: zero at origin → midband flat → second pole rolls off → zero restores slope → high-freq limit.)
+
+![[Pasted image 20251119194935.png]]
+#### <span style="color:rgb(2, 141, 192)">12. Additional Physical Insight</span>
+
+In this voltage-mode readout circuit, we can only use the sensor signal reliably **in the frequency range where the transfer function is flat**—that is, **between the low-frequency pole and the high-frequency pole**.  
+In this region, the gain depends on the amplifier ratio $1 + R_f/R_g$​, which is good: both $R_f$​ and $R_g$​ are chosen by the designer and have well-controlled values.
+
+However, the gain in this midband also depends on the **total input capacitance**:
+$C_p + C_c$
+
+Here:
+
+- $C_p$ is the piezoelectric capacitance (known and stable)
+- $C_c$​ is the **stray capacitance**, which is not well controlled and can vary with cables, connectors, layout, humidity, etc.
+- 
+Because the output voltage in this architecture is essentially:
+$$V_\text{out} \propto \frac{Q}{C_p + C_c}$$
+
+any uncertainty or change in $C_c$​ directly changes the output.  
+This means:
+
+- $V_\text{out}$​ depends on how much unknown parasitic capacitance is present.
+- Therefore, the circuit **cannot accurately recover the charge Q***.
+- And since Q is proportional to the applied force, the circuit also **cannot reliably estimate the force**.
+    
+In other words:
+
+>[!info] This voltage-mode readout suffers from the fact that the voltage across the piezoelectric element, $V_p$​, changes with stray capacitance. Because of this, the final output $V_\text{out}$​ is sensitive to parasitic effects, making precise force measurement impossible.
+
+This is the main limitation of this architecture and the reason why, in practice, designers prefer a different readout circuit (the charge-mode amplifier), which removes the dependence on $C_c​$.
+
+
+### <span style="color:rgb(161, 40, 226)">Second Readout Circuit (Charge mode amplifier)</span>
+
+![[Pasted image 20251119200236.png]]
+
+To eliminate the limitations of the first circuit, we can use a **charge amplifier** as the readout stage.
+
+Unlike the previous non-inverting configuration, the charge amplifier uses the operational amplifier in an **inverting topology** with a feedback capacitor $C_f$​.  
+Here, $C_f$​ is not simply a high-frequency compensation component—**it is the core element of the measurement**, because:
+
+#### <span style="color:rgb(2, 141, 192)">1. Goal of the charge amplifier<br></span>
+We want **all the charge produced by the piezoelectric sensor** to be **integrated on $C_f$​**.
+
+In the ideal case, the sensor—modeled by a Norton source (current generator + capacitor $C_p$​ + resistor $R_p$​)—is connected directly into an op-amp input that sits at **virtual ground (0 V)**.
+
+#### <span style="color:rgb(2, 141, 192)">2. Why we want Ri=0 (ideally)</span>
+
+Ideally, the input resistor $R_i$​ should be **zero ohms**.
+
+- With $R_i = 0$, the sensor is directly connected to virtual ground.
+- So **all current produced by the sensor flows into $C_f$​**.
+- This ensures that _100% of the charge_ is integrated, giving:
+    
+$$V_\text{out} = -\frac{Q}{C_f} + \frac{V_{cc}}{2}$$
+
+This equation is extremely important:  
+➡️ **The output depends only on the feedback capacitor—not on the sensor capacitance or stray capacitance.**
+
+This is the key advantage of charge-mode readout.
+
+#### <span style="color:rgb(2, 141, 192)">3. Why we cannot actually make Ri=0</span>
+
+In practice, we must add a **small resistor $R_i$​** at the input. This resistor is _not_ part of the sensing model—it is purely for **stability compensation**.
+
+***Reason: Large sensor capacitance makes the op-amp unstable***
+
+The piezoelectric element has a large internal capacitance $C_p$​, and connecting a large capacitance directly to the inverting input of an op-amp is known to cause **instability** or even oscillation.
+
+You have already seen this effect with photodiode circuits:
+
+- Photodiode capacitance caused instability.
+- A feedback capacitor was added for compensation.
+
+Here the situation is similar, but the compensation method is different:
+
+#### <span style="color:rgb(2, 141, 192)">4. Compensation method</span>
+
+- We insert a small resistor $R_i$​ in series with the input.    
+- This resistor shifts the pole created by $C_p$​ from **infinite frequency** to a **finite, stabilizing frequency**.
+- The value of $R_i$​ can be _very small_, but it must be **non-zero** to guarantee phase margin.
+    
+And importantly:
+
+$$R_i \ll R_p$$
+So most of the piezoelectric current still flows into the charge amplifier, not into $R_p$.
+
+This will simplify our transfer-function calculations later.
+
+#### <span style="color:rgb(2, 141, 192)">5. Biasing at VCC​/2</span>
+
+Just like in the first circuit, the op-amp uses a **single supply** (0–VCC), but we must measure both:
+
+- positive charge (compression)
+- negative charge (tension)
+    
+Therefore:
+- We shift the operating point to **$V_{CC}/2$**.
+- This ensures the output can swing both above and below the midpoint.
+    
+During transfer-function analysis, however, this constant bias does not affect the dynamics, so we “turn it off” (set it to 0 V).
+
+#### <span style="color:rgb(2, 141, 192)">6. Transfer Function Strategy</span>
+
+Again, we want the final result:
+
+$$\frac{V_\text{out}(s)}{Q(s)}$$
+
+But as before, we start with something more familiar:
+
+1. **First compute** the transfer function
+    $$\frac{V_\text{out}(s)}{I(s)}$$
+2. Then use the fundamental relation in the Laplace domain:
+    $$I(s) = s Q(s)$$
+3. So,
+    $$\frac{V_\text{out}(s)}{Q(s)} = s \cdot \frac{V_\text{out}(s)}{I(s)}$$
+This is exactly the same reasoning as in the previous circuit.
+
+#### <span style="color:rgb(2, 141, 192)">7. Computation</span>
+
+![[Pasted image 20251119202521.png]]
+Okay, so let’s start with the analysis. We have our current source representing the piezoelectric sensor.  After that, we see the sensor’s internal capacitance, which is the parallel combination of ($C_p$) and the stray capacitance ($C_c$).  Then we have the resistor ($R_p$), which models the piezoelectric material’s leakage.  In series with this, we add the small compensation resistor ($R_i$).  Finally, the signal enters the charge amplifier: the non-inverting input is grounded, and the feedback network includes ($R_f$) and ($C_f$).
+
+Our goal is to compute the output voltage.
+
+#### <span style="color:rgb(2, 141, 192)">8. Singularities of the Circuit</span>
+
+As in the previous example, we start by identifying the poles and zeros.
+
+ ***Pole from ($C_p \parallel C_c$)***
  
-![[Pasted image 20251021233418.png]]
+The parallel combination ($C_p + C_c$) produces one pole.  Because of the presence of ($R_i$), this pole is **not** at infinite frequency.  
+Its frequency is:
+$$f_{p1} = \frac{1}{2\pi (C_p + C_c) \left( R_p \parallel R_i \right)}  $$
 
-Here we can see our **thin conductive sheet**.  We apply an **external voltage** $V_x$​ between two terminals of the material to **induce a current flow**. In this example, the current flows along the **x-direction**.
 
-Now, if an **external magnetic field** $\mathbf{B}$ is applied **perpendicular** to the sheet, the **moving charge carriers** inside will experience a **Lorentz force**.  
+Since the inverting input is at virtual ground, the capacitors and resistors are referenced to ground, so the parallel combination is valid.
 
-	$$F_L=q\cdot v_x \times B_z $$
+Because ($R_i \ll R_p$), the parallel resistance is dominated by ($R_i$). Thus, we can approximate:
 
-The Lorentz force acts on any moving charge in a magnetic field and changes the **direction of its motion**.
+$$f_{p1} \approx \frac{1}{2\pi (C_p + C_c) R_i }  $$
 
-In this example:
-![[Pasted image 20251026084355.png]]
-- The **velocity** of the charge carriers is along the **x-axis**    
-- The **magnetic field** is applied along the **z-axis**,
-- So the **Lorentz force** will deflect the carriers sideways — towards the **right-hand side** if the carriers are **positive charges (holes)**.
+ ***Pole from the feedback capacitor $(C_f)$***
 
-As a result, **positive charges accumulate on one side** of the material.  This **charge separation** creates a **transverse voltage** — a voltage that develops **perpendicular** to the current flow. The right side becomes **more positive** compared to the left.
+The second pole arises from the feedback network:
+$$f_{p2} = \frac{1}{2\pi R_f C_f}  $$
+Although ($C_p$) is physically much larger than ($C_f$), the corresponding pole is at a very high frequency because ($R_i$) is very small and close to zero.  
+Therefore:
 
-Eventually, the Lorentz force is **balanced** by the **Coulomb force** due to this charge separation, and the system reaches equilibrium.
+- The pole associated with ($C_p + C_c$) is the **high-frequency pole**.
+- The pole associated with ($C_f$) is the **low-frequency pole**, which determines the integration range.
+
+***Zeros***
+
+There are **no zeros** in this circuit.  If ($C_p$) or ($C_c$) were short-circuited, they would force the input voltage ($V_p$) to zero, and consequently the output would be zero.  
+Similarly, if ($C_f$) is shorted, the output node is directly tied to virtual ground.  
+Thus, neither ($C_f$) nor ($C_p \parallel C_c$) produces zeros.
+
+So the transfer function contains **only poles**.
+
+#### <span style="color:rgb(2, 141, 192)">9. Transfer Function</span>
+
+We start by computing the low-frequency gain.
+
+Let ($I_f$) be the current flowing through ($R_i$) and therefore through the feedback network.  This current comes from the input current ($I)$, split between $(R_p)$ and $(R_i)$.  Using the current divider:
+$$I_f = I \cdot \frac{R_p}{R_p + R_i}  $$
+Since ($R_i \ll R_p$), this ratio is very close to 1.
+
+At low frequency, the output voltage is:
+$$V_\text{out} = -I_f R_f  $$
+
+Thus:
+$$\frac{V_\text{out}}{I} =-\frac{R_p}{R_p + R_i} R_f  $$
+
+This gives the low-frequency constant gain.
+
+***Mid frequencies***
+
+At mid frequencies, we are above the pole of ($C_f$), so ($C_f$) behaves as a short circuit.  This shorts the output node to virtual ground, giving:
+$$\frac{V_\text{out}}{I} = 0  $$
+ ***High frequencies***
+
+At high frequency, the capacitors $(C_p)$ and $(C_c)$ also behave as shorts.  
+Thus:
+
+- The input current flows through the short created by $(C_p \parallel C_c)$.
+- $(C_f)$ is also a short.
+
+Therefore, again:
+$$\frac{V_\text{out}}{I} = 0  
 $$
-F_c = q\cdot E_y 
-$$
 
-![[Pasted image 20251026084527.png]]
-Now, if the **charge carriers are electrons** instead of holes, the situation looks a bit different.  
-Even though the **current direction** remains the same, the **velocity of electrons** is **opposite** to the direction of the current because electrons have **negative charge**.
 
-So, in this case:
+#### <span style="color:rgb(2, 141, 192)">10. Bode Plot Interpretation</span>
 
-- The **velocity** points in the opposite direction,
-- The **magnetic field** still points upward (z-direction),
-- According to the **right-hand rule**, the force on the moving electrons points in the opposite direction.
+If we plot the magnitude of $(V_\text{out}/I)$:
+
+- We start at the low-frequency gain  
+    $\left| \frac{-R_p}{R_p + R_i} R_f \right|$
+- Then we encounter the pole due to ($C_f$).
+- Afterwards, we encounter the high-frequency pole from ($C_p + C_c$).
+
+![[Pasted image 20251119203315.png]]
+
+So the final shape is:
+- **Flat** at low frequency
+- **-20 dB/dec** after the first pole
+- **-40 dB/dec** after the second pole
+
+with no zeros.
+
+
+#### <span style="color:rgb(2, 141, 192)">11. Transfer function dependent on Q</span>
+Up to now, we have computed the transfer function between the output voltage and the **input current**, $\frac{V_{\text{out}}}{I}$​​.  
+However, what we actually want is the transfer function between the output voltage and the **input charge**, $\frac{V_{\text{out}}}{Q}$​​.
+
+To move from one to the other, we simply recall that in the Laplace domain:
+$$I(s)=sQ(s)$$
+
+Therefore:
+$$\frac{V_{\text{out}}}{I} = \frac{V_{\text{out}}}{sQ} \quad \Rightarrow \quad \frac{V_{\text{out}}}{Q} = s \cdot \frac{V_{\text{out}}}{I}$$
+
+So we now write the full Laplace expression of VoutI\frac{V_{\text{out}}}{I}IVout​​, and then multiply by sss to obtain the charge transfer function.
+
+
+ **Transfer Function $\frac{V_{\text{out}}}{I}$​​ in the Laplace Domain**
+
+We know the low-frequency gain is:
+$$\frac{V_{\text{out}}}{I} = - \frac{R_p}{R_p + R_i} R_f$$
+In this circuit there are two poles:
+
+![[Pasted image 20251119204252.png]]
+- the low-frequency pole from $C_f R_f$​,
+- the high-frequency pole from $(C_p + C_c)(R_p \parallel R_i)$.
     
+Since there are no zeros, the Laplace form is:
+$$\frac{V_{\text{out}}}{I}(s) = - \frac{R_p}{R_p + R_i} R_f \; \frac{1}{(1 + s R_f C_f)\left[1 + s (C_p + C_c)(R_p \parallel R_i)\right]}$$
 
-However, because the **charge q** of electrons is **negative**, the Lorentz force ends up being **in the same direction** as for the positive charges.
+***Now Multiply by $s$ to get $\frac{V_{\text{out}}}{Q}$​​***
 
-That means the **deflection** is still **toward the right**, but now the **accumulated charges are negative**.  
-Therefore, the **Hall voltage** has the **opposite polarity** compared to the case with positive carriers — the **right side becomes more negative**.
+$$\frac{V_{\text{out}}}{Q}(s) = s \cdot \left[ - \frac{R_p}{R_p + R_i} R_f \; \frac{1}{(1 + s R_f C_f)\left[1 + s (C_p + C_c)(R_p \parallel R_i)\right]} \right]$$
+Now we analyze the three frequency regions.
 
-So, when using a **Hall element**, always keep in mind that the **sign of the output voltage** depends on the **type of charge carriers** in the material — holes or electrons.
+ ***1. Low Frequency ($s \to 0$)***
+![[Pasted image 20251119205651.png]]
 
-Now, let’s go a bit further and look at the **mathematical relationship** between the **measured Hall voltage $V_H$​ and the **magnetic field $B$** that we want to determine.
+When $s \to 0$:
 
-# <span style="color:rgb(239, 179, 1)">Magnetic Field Computation</span> 
+- The denominators → 1
+- The numerator contains a factor $s$, so:
 
-![[Pasted image 20251026205724.png]]
-At the **steady state**, the two forces acting on the charge carriers — the **Coulomb force** and the **Lorentz force** — will have **equal magnitudes**.  This means that the **net force** along the **y-direction** must be **zero**.
+$$\frac{V_{\text{out}}}{Q} \to 0$$
+Thus the transfer function **starts at zero**.  
+This looks like a zero at the origin—but it is _not_ a physical circuit zero; it only appears because we multiplied by sss.
 
-If we consider only the magnitudes of these two forces, we can equate them.  Since the charge $q$ appears in both expressions, it cancels out. From this, we obtain a relationship showing that the **electric field in the y-direction** (the one responsible for the Hall voltage $V_H$​) must be equal to the **vector product** of the **carrier velocity** and the **magnetic field**:
-$$|E_y| = |v_x \times B_z|$$
-In our case, the **magnetic field** is **orthogonal** to the **current flow** — that is, $\mathbf{B}$ is along the **z-axis**, and the current flows along the **x-axis**.  So the vector product simplifies to a simple multiplication, and we can write:
-$$E_y=v_x \cdot B_z $$
-We don’t measure the **electric field** directly, but we know it is **related to the Hall voltage** through the geometry of the sensor.  In particular:
+***Mid Frequency (after the first pole, before the second)***
 
-$$E_y = \frac{V_H}{W}$$
+![[Pasted image 20251119205643.png]]
+In this region:
 
-where $W$ is the **distance** between the two terminals along which we measure the Hall voltage.
+- For the first pole: $s R_f C_f \gg 1$
+    ⇒ $1 + s R_f C_f \approx s R_f C_f$
+- For the second pole: $s (C_p + C_c)(R_p \parallel R_i) \ll 1$  
+    ⇒ $s(\ldots) \approx 1$
+Then:
 
-Next, we can relate the **velocity of the carriers** to the **current density** $J$.  The drift velocity of the carriers is given by:
+$$\frac{V_{\text{out}}}{Q} \approx s \left[ - \frac{R_p}{R_p + R_i} R_f \; \frac{1}{s R_f C_f} \right]$$
 
-$$v = \frac{J}{q \, n}$$
+The $s$ cancels, $R_f$​ cancels, and since $R_i \ll R_p$​:
 
-where
+$$\frac{R_p}{R_p + R_i} \approx 1$$
+Therefore the mid-band gain becomes:
 
-- $q$ is the charge of each carrier,
-- $n$ is the **concentration** of free carriers in the material, and
-- $J$ is the **current density**, defined as the current III divided by the **cross-sectional area** through which it flows:
+$$\frac{V_{\text{out}}}{Q} \approx -\frac{1}{C_f}$$
+This is the key result:  **the transfer function in the useful bandwidth is completely independent of the sensor capacitance.**
 
-$$J = \frac{I}{W \, T}$$
+***High Frequency (after both poles)***
 
-with $T$ being the **thickness** of the material.
+![[Pasted image 20251119205620.png]]
+In this region:
 
-Now, if we substitute these relationships into our earlier equation $E_y = v \cdot B$, we obtain:
-
-$$\frac{V_H}{W} = \frac{J}{q n} BW$$
-
-Rearranging gives the final expression for the **Hall voltage**:
-$$V_H = \frac{1}{q n} \, \frac{I B}{T}$$
-The term $$\frac{1}{q n}$$$1/qn$​ depends only on the material properties and is defined as the **Hall constant** $R_H$:
-$$R_H = \frac{1}{q n}$$
-Thus, we can write the Hall voltage in a compact form:
-$$V_H = R_H \, \frac{I B}{T}$$
-This equation shows that the Hall voltage is **directly proportional** to the applied magnetic field $B$, to the **current** $I$, and **inversely proportional** to the thickness $T$ of the conductive layer.
-
-Now, remember that the **sign of the Hall voltage** depends on the **type of charge carriers**:
-
-- For **n-type semiconductors** (electrons as majority carriers), the Hall constant $R_H$​ is **negative**, because $q$ is negative.
+- For both poles:  
+    $s R_f C_f \gg 1$ and  
+    $s (C_p + C_c)(R_p \parallel R_i) \gg 1$
     
-- For **p-type semiconductors** (holes as majority carriers), $R_H$​ is **positive**.
-    
-Therefore, when interpreting the measured Hall voltage, it is important to consider this sign — by convention, a **positive Hall voltage** corresponds to **hole conduction**.
+Thus:
+$$\frac{V_{\text{out}}}{Q} \approx s \left[ - \frac{R_f}{s R_f C_f \; s (C_p + C_c)(R_p \parallel R_i)} \right]$$
+
+One $s$ cancels, leaving a remaining $1/s$:
+
+$$\frac{V_{\text{out}}}{Q} \propto \frac{1}{s} \to 0 \quad \text{as } s \to \infty$$
+
+So the high-frequency gain goes to **zero**, as expected.
+
+![[Pasted image 20251119205604.png]]
+
+#### <span style="color:rgb(2, 141, 192)">9. Final Shape of the Bode Magnitude Plot</span>
+
+The magnitude of $$\left|\frac{V_{\text{out}}}{Q}\right|$$
+![[Pasted image 20251119205711.png]]
 
 ## <span style="color:rgb(239, 179, 1)">Applications</span>
 
-![[Pasted image 20251026211750.png]]
-**Hall sensors** are mainly used in applications where you do **not need to measure the magnetic field precisely**, but simply need to **detect whether a magnetic field is present or not**.
+In conclusion, piezoelectric sensors are useful in any application where we need to measure a **dynamic force** or a **rapidly varying mechanical stimulus**.  
+Since piezoelectric materials cannot measure static forces (their response goes to zero at low frequency), they are ideal for applications involving **impact, vibration, acceleration, or periodic loading**.
 
-For example, they are commonly used for **proximity detection**, to sense whether a magnetic object is near the sensor. They can also be used as **displacement sensors**, as shown in this example where a **magnetic slide** moves under the action of a **hydraulic actuator**. By placing Hall sensors along the path, you can detect the position of the magnetic slide depending on which sensor is activated.
+### <span style="color:rgb(161, 40, 226)">1. Force and pressure measurement</span>
 
-![[Pasted image 20251026212726.png]]
+Piezoelectric elements are commonly used when we want to measure how force is applied to a surface.  
 
-Another common use is in **magnetic switches**, which open or close a circuit when a magnet comes near the sensor. This principle is also applied in **door interlock systems** — for instance, to automatically disable hazardous equipment when a door is opened. In such systems, a small magnet rotates with the key, and the Hall sensor detects the magnet’s position, allowing the system to know when the door is being opened or closed.
+![[Pasted image 20251119210004.png]]
 
-![[Pasted image 20251026212625.png]]
+For example, **force plates** used in rehabilitation, sports science, and gait analysis often rely on piezoelectric sensors to capture how the load is distributed when someone walks, runs, or jumps.
 
-Hall sensors can also be used for **current measurement**. When a current flows through a wire or coil, it generates a magnetic field proportional to the current. A Hall sensor can detect this field, allowing indirect measurement of the current’s presence or magnitude.
+### <span style="color:rgb(161, 40, 226)">2. Energy harvesting</span>
 
-In addition, Hall sensors are used in **magnetic encoders**, which are devices that track the **movement or rotation** of mechanical components using magnetic fields.
+![[Pasted image 20251119210031.png]]
 
-Finally, they can also be found in **electronic compasses**, where they detect the **Earth’s magnetic field** to determine orientation.
+Piezoelectric materials can convert mechanical vibrations or fluid flow into electrical energy. This capability makes them suitable for low-power energy harvesters, where ambient vibrations are transformed into voltage that can be stored or used to power small electronic devices.
 
-# <span style="color:rgb(223, 109, 109)">Magnetoresistors</span>
+### <span style="color:rgb(161, 40, 226)">3. Ultrasonic technology (sensing and actuation)</span>
 
-![[Pasted image 20251026213534.png]]
-## <span style="color:rgb(239, 179, 1)">Magnetoresistance</span>
+![[Pasted image 20251119210018.png]]
 
-Now let’s move to the next type of magnetic field sensors — the **magnetoresistive sensors**.
+We will see in the next class that piezoelectric materials are fundamental in **ultrasonic systems**, where they serve both as:
 
-In this case, the principle of operation is based on **resistances that change their value depending on the external magnetic field**. We won’t go into detail about the **readout circuits** used for these sensors, since they are quite similar to those already studied for **resistive temperature detectors (RTDs)**. In practice, the measurement can be done either by **injecting a current and reading the output voltage**, or by using a **Wheatstone bridge configuration**, as shown in this example.
-
-So, what exactly is **magnetoresistance**?  
-
-It refers to a **material property** where the **electrical resistance changes** when the material is exposed to a magnetic field. These sensors are **solid-state devices**, meaning they can be **integrated directly into silicon**, allowing them to be **very small** in size. Moreover, they are **more sensitive than Hall sensors**, making them suitable for applications where a **more accurate estimation of the magnetic field** is needed.
-
-The key performance indicator for magnetoresistive sensors is the **magnetoresistance ratio (MR)**. This ratio is defined as the **difference between the maximum and minimum resistance values**, divided by the **minimum resistance**.  
-
-$$MR=\frac{R_{max}-R_{min}}{R_{min}} $$
-
-Mathematically, it represents how much the resistance changes with respect to its baseline value — essentially indicating the **maximum signal variation** that the sensor can produce in response to a magnetic field.
-
-## <span style="color:rgb(239, 179, 1)">Magneto-resistive materials</span>
-
-All conductive materials exhibit some level of **magnetoresistance**, meaning their resistance changes slightly when exposed to a magnetic field. However, in most common conductors this effect is **very weak**, making it unsuitable for sensing applications. This weak response is referred to as **ordinary magnetoresistance**.
-
-In contrast, **materials specifically designed for magnetic sensing** show a much stronger magnetoresistive effect and can be classified into three main categories:
-
-1. **Anisotropic Magnetoresistance (AMR):** These materials have a magnetoresistance ratio of about **1–2%**.
-2. **Giant Magnetoresistance (GMR):** These exhibit a much larger ratio, typically in the range of **20–50%**.
-3. **Tunneling Magnetoresistance (TMR):** These can reach even higher values, around **50–60%**.
+- **Sensors**, converting ultrasonic waves into electrical signals
+- **Actuators**, generating ultrasonic vibrations when a voltage is applied
     
 
-Now, let’s take a closer look at each of these three types of magnetoresistive sensors.
+This dual property enables applications such as medical ultrasound imaging, ultrasonic cleaning, nondestructive testing, and sonar.
 
-### <span style="color:rgb(161, 40, 226)">Anisotropic Magnetoresistance (AMR)</span>
-![[Pasted image 20251026215126.png]]
-	 
-Anisotropic magnetoresistances are called _anisotropic_ because their properties depend on the **angle between the electrical current and the direction of magnetization** within the material.
 
-To observe this effect, the material must be **magnetized** and a **current must flow** through it.
+### <span style="color:rgb(161, 40, 226)">4. Precision actuators</span>
 
-- When the **magnetization is parallel** to the current flow (left image), the material shows its **maximum resistivity**. This happens because the **atomic orbitals** are slightly **distorted**, increasing the **probability of electron scattering** inside the material. More scattering means higher energy dissipation, and therefore a **higher resistance**.
-    
-- Conversely, when the **magnetization is perpendicular** to the current flow (right image), the **interaction between the moving carriers and the valence electrons** is minimized. This reduces scattering events and results in the **minimum resistance**.
+Piezoelectric elements are also used as **high-precision actuators**.  
+By applying a controlled voltage, the material expands or contracts by a very small and predictable amount.  
+This is particularly useful in:
 
-![[Pasted image 20251026221717.png]]
-If we study in more detail the relationship between the **resistance** of the material and the **angle (θ)** between the current and the magnetization, we find that it follows this equation:
-
-$$R = R_0 + \Delta R \cdot \cos^2(\theta)$$
-
-where:
-
-- $R_0$​ is the base resistance of the material,
-- $\Delta R$ is the maximum variation of resistance, and
-- $\theta$ is the angle between the current and the magnetic field direction.
-
-From this relation:
-
-- The **maximum resistance** occurs when $\cos^2(\theta) = 1$ → at 0°, 180°, or -180°.
-- The **minimum resistance** equals $R_0$​ when $\cos^2(\theta) = 0$ → at 90°, 270°, or their negative equivalents.
-- An **intermediate resistance**, $R_0 + \frac{\Delta R}{2}$​, occurs at 45°, where $\cos^2(45°) = 0.5$.
-
-![[Pasted image 20251026222157.png]]
-
-The **best operating point** is around **-45°**, because at this angle the resistance curve is most **linear** and the **sensitivity** (the derivative of the curve) is highest.
-
-For this reason, AMR sensors include **conductive shunts**—highly conductive paths oriented at **45°** with respect to the magnetization direction.
-
-- The **brown** regions in the figure represent the **magnetic material** (high resistivity).
-- The **yellow** regions are the **conductive shunts** (low resistivity).
-
-![[Pasted image 20251026222225.png]]
-
-When a voltage is applied, the current follows the **path of least resistance**, which means it travels **orthogonally to the conductive shunts**, minimizing its path through the resistive magnetic material.
-
-In this configuration, with no external magnetic field (H = 0), the **angle between current and magnetization** is **−45°**, setting the device exactly at its **optimal working point** for sensitivity.
-
-![[Pasted image 20251026223003.png]]
- 
- Now, when we apply an **external magnetic field (H)**, the **overall magnetic flux** in the material becomes the **vector sum** of two components: the **initial magnetization** of the material and the **applied external field**.
-
-As a result, the **direction of the total magnetization** changes depending on the **strength and orientation** of this external field. This change in direction also modifies the **angle (θ)** between the magnetization and the current flow.
-
-Since the resistance of the material depends on this angle, as we saw before, the application of an external magnetic field leads to a **variation in the overall resistance (R)**.
-
-Let’s now analyze in more detail the **relationship between the resistance R** and the **external field H**.
-
-![[Pasted image 20251026225057.png]]
-
-Start from the initial condition (no external field). With $(H=0)$ the total flux $(B)$ equals the material’s initial magnetization (M). The device is biased so the current $(I)$ makes an angle $(\theta=-45^\circ)$ with $(B)$. Using  
-$$  
-R(\theta)=R_0+\Delta R\cos^2\theta    
-$$we get the starting resistance  
-$$R = R_0 + \tfrac{1}{2}\Delta R.  
-$$
-Now apply an external field (H) **perpendicular** to the initial magnetization (M). Consider these cases:
-
-![[Pasted image 20251026225246.png]]
-1. **(H = M) (same magnitude, perpendicular direction):**  
-    The vector sum $(B=M+H)$ points at $(+45^\circ)$ relative to (M). Because the shunt/current geometry fixes the current direction, the angle between $(B)$ and $(I)$ becomes $(\theta=0^\circ)$. Then $(\cos^2\theta=1)$ and  
-    $$R = R_0 + \Delta R  $$
-    — the **maximum** resistance.
-
-![[Pasted image 20251026225514.png]]
-1. **$(H \gg M)$** (very large perpendicular $(H)$):  
-    $(B)$ aligns with $(H)$; the angle between $(B)$ and $(I)$ tends to $(\theta=45^\circ)$. Thus $(\cos^2 45^\circ=1/2)$ and  
-    $$
-    R \to R_0 + \tfrac{1}{2}\Delta R,  $$
-     
-    which is the same value as the $(H=0)$ starting point (an asymptote for large positive $(H)$).
-
-![[Pasted image 20251026225552.png]]
-1. **(H) perpendicular but in the opposite direction (i.e. (-H), same magnitude):**  
-    Now $(B)$ points to $(-45^\circ)$ relative to (M), which makes the angle between (B) and the fixed current (I) equal to $(\theta=90^\circ)$. Because $(\cos^2 90^\circ=0)$,  
-$$    R = R_0  $$
-    — the **minimum** resistance.
-
-![[Pasted image 20251026225840.png]]
-1. **$(H \ll -M)$** (very large negative perpendicular $(H)$):  
-    $(B)$ is dominated by $(H)$ and the angle between $(B)$ and $(I)$ tends to $(\theta=135^\circ)$. Again $(\cos^2 135^\circ=1/2)$, so  
-    
-    $$R \to R_0 + \tfrac{1}{2}\Delta R$$
-    the same asymptote as for large positive (H).
-
-![[Pasted image 20251026230112.png]]
-If you plot $(R)$ versus $(H)$ for $(H)$ ranging from large negative to large positive values, you get this shape:
-
-- At very large $(|H|)$ (either sign) the curve approaches the same asymptote $(R_0 + \tfrac{1}{2}\Delta R)$.
-    
-- For positive $(H)$, the resistance **increases** from the asymptote, reaches a **maximum** at $(H=+M)$ $((R_0+\Delta R))$, then falls back to the asymptote as $(H\to+\infty)$.
-    
-- For negative $(H)$, the resistance **decreases** from the asymptote, reaches a **minimum** at $(H=-M) ((R_0))$, then rises back to the same asymptote as $(H\to-\infty)$.
+- Precision dosing and pumping
+- Microfluidics
+- Optical alignment systems
+- High-resolution positioning stages
     
 
-In the interval $(H\in[-M,+M])$ the $(R(H))$ curve is **monotone and approximately linear**, which is precisely the range where AMR sensors are used for measurement. In that range you can both **measure the magnitude** and **determine the sign** of the applied field.
-
-### <span style="color:rgb(161, 40, 226)">Giant Magnetoresistance (GMR)</span>
-
-![[Pasted image 20251026230400.png]]
-
-Giant magnetoresistances are called _“giant”_ because their magnetoresistance ratio is much higher than that of anisotropic magnetoresistances.
-
-A GMR device is made of **two or more layers of ferromagnetic metals** (shown in brown) separated by **very thin non-magnetic metal spacers** (shown in orange). These spacer layers are crucial:
-
-- They **allow the magnetic orientation** of adjacent ferromagnetic layers to be different — even opposite.
-- At the same time, they **conduct electric current**, so electrons can move from one magnetic layer to another.
-    
-
-Now, what happens depends on how the magnetic layers are aligned:
-
-- **Opposite alignment (antiparallel, left image):**  
-    The spins of the electrons in one magnetic layer are opposite to those in the next. Because of this, electrons experience more scattering when moving between layers, so the **resistance increases**.
-- **Same alignment (parallel, right image):**  
-    The spins of the electrons are all oriented in the same direction, allowing them to move easily from one layer to another. As a result, the **resistance decreases**.
-![[Pasted image 20251027081424.png]]
-
-When no external magnetic field is applied, the **spacer layers**—which are only a few atoms thick—create a **strong exchange coupling** between adjacent ferromagnetic layers. This coupling naturally favors an **antiparallel alignment** of their magnetic fields: the north pole of one layer attracts the south pole of the next.
-
-![[Pasted image 20251027081452.png]]
-
-Because of this antiparallel configuration, the **resistance of the material is high**. In the graph showing resistance versus external magnetic field, this corresponds to a **maximum resistance at zero external field**.
-
-![[Pasted image 20251027081504.png]]
-
-When an **external magnetic field** is applied and becomes strong enough to **overcome the interlayer coupling**, all magnetic layers align in the same direction, producing a **parallel configuration**. In this case, the resistance reaches its **minimum value**.
-
-![[Pasted image 20251027081522.png]]
-As the external field increases (either positively or negatively), the resistance decreases until it reaches this minimum. The characteristic curve is **even**, meaning it is symmetric with respect to the origin. Therefore, with **giant magnetoresistances (GMRs)**, unlike with anisotropic magnetoresistances (AMRs), we can only determine the **magnitude** of the magnetic field — not its **direction** or sign.
-	 
-Giant magnetoresistances can be read out using **two configurations**: **current-in-plane (CIP)** or **current-perpendicular-to-plane (CPP)**.
-
-![[Pasted image 20251027082127.png]]
-In the **current-in-plane configuration**, the voltage is applied along the longitudinal sides of the material, forcing the current to flow **parallel** to the magnetic layers. In this case, the **sensitivity is lower** because the current mainly remains within each layer — a phenomenon known as the **shunting effect**. This reduces the likelihood of electrons moving between layers, which in turn minimizes the difference in resistance between the parallel and antiparallel magnetization states.
-
-![[Pasted image 20251027082146.png]]
-In the **current-perpendicular-to-plane configuration**, the voltage is applied **perpendicular** to the layers, forcing the current to travel **through** the stacked layers. Here, electrons must cross different magnetic and non-magnetic layers, so the **difference in resistance** between the parallel and antiparallel configurations is much more pronounced, leading to **higher sensitivity**.
-
-However, because these layers are extremely thin, the **overall resistance (R₀)** of the structure is very low. As a result, even though the **percentage variation** in resistance (the magnetoresistance ratio) is larger in the CPP configuration, the **absolute change in resistance** can still be very small and difficult to measure.
-
-For this reason, the **current-in-plane configuration** is usually preferred, since it provides a **higher base resistance (R₀)**, making it easier to detect and measure the resistance changes in practice.
-
-### <span style="color:rgb(161, 40, 226)">Tunneling Magnetoresistance (TMR)</span>
-   
-![[Pasted image 20251027082412.png]]
-Finally, we have the **tunneling magnetoresistances (TMRs)**, which are sensors that use **two different magnetic layers**. One is called the **pinned layer**, which is deposited on top of an **antiferromagnetic pinning layer**.
-
-The **pinning layer** itself does not have intrinsic magnetization, but its purpose is to **lock the magnetization direction** of the adjacent ferromagnetic layer (the pinned layer). This means that the orientation of the pinned layer’s magnetization depends only on the properties of the pinning layer and **does not change** when an external magnetic field is applied.
-
-The second layer, called the **free layer**, is also ferromagnetic, but unlike the pinned layer, its magnetization **can rotate** in response to an external magnetic field. In the initial state, the free layer is typically designed so that its magnetization is **perpendicular** to that of the pinned layer.
-
-![[Pasted image 20251027082934.png]]
-
-Now, if we apply an external magnetic field, we can modify the orientation of the magnetization in the **free layer**. Between the pinned layer and the free layer, however, there is an **insulating layer**. This layer does not block the magnetic field — so the two magnetic layers can still have different orientations — but it **does block the flow of electrical current**.
-
-In classical physics, an electron cannot cross this insulating barrier. However, according to **quantum mechanics**, there is a small probability that an electron can pass through the insulator — a phenomenon known as the **tunneling effect**. This is why this type of sensor is called a **tunneling magnetoresistance (TMR)** sensor: it relies on the quantum tunneling of electrons.
-
-In particular, when the magnetizations of the pinned layer and the free layer are **parallel** (as in the plot on the left), the probability that an electron with a given spin will tunnel through the barrier is relatively **high**, because there are many available electronic states in the upper layer that match the spin of the tunneling electrons. As a result, the **resistance is low**.
-
-Conversely, when the magnetizations of the two layers are **antiparallel** (as in the plot on the right), the available spin states in the upper layer do not correspond to those in the lower layer. Therefore, the **tunneling probability decreases drastically**, leading to a **much higher resistance**.
-
-![[Pasted image 20251027083011.png]]
-
-So, **to summarize**, in the **rest condition**, that is, without any external magnetic field, the magnetizations of the pinned layer and the free layer are **perpendicular** to each other. In this state, the sensor exhibits a certain resistance, which we can call **R₀**.
-
-When an **external magnetic field** is applied and causes the magnetization of the free layer to **rotate** toward the **same direction** as the pinned layer, the overall resistance **decreases**, reaching a **minimum value** once the external field fully overcomes the perpendicular rest magnetization.
-
-On the other hand, if the external field is applied in the **opposite direction**, aligning the magnetization of the free layer **antiparallel** to that of the pinned layer, the **resistance increases**.
-
-Therefore, in this case, the resistance–magnetic field characteristic is **monotonic**, unlike in giant magnetoresistance sensors. This means that tunneling magnetoresistance (TMR) sensors allow us to measure not only the **magnitude** but also the **direction** of the external magnetic field.
-
-![[Pasted image 20251027083255.png]]
-
-Tunneling magnetoresistance (TMR) sensors are **always used in a current-perpendicular-to-plane configuration**. This means that the external voltage is applied **perpendicular to the layers**, forcing the current to flow **from one magnetic layer to the other**. This configuration is necessary because, as mentioned earlier, there is an **insulating layer** between the pinned layer and the free layer. If we used a current-in-plane configuration, **no electrons would be able to tunnel** through the insulator, and the tunneling effect would not occur.
-
-In the perpendicular configuration, we must be careful with the **applied voltage**, which is typically limited to a few **millivolts** to avoid damaging the thin insulating barrier. For this reason, a **manual resistor** is often added **in series** with the sensor to control the overall resistance and **limit the voltage drop** across the tunneling barrier.
-
-<span style="color:rgb(2, 141, 192)"><b>Applications of Magnetoresistive Sensors</b></span>
-
-Magnetoresistive sensors are mainly used in applications that require **high sensitivity** and the ability to **measure the actual magnitude of the magnetic field**. For example, they are used for **eddy current sensing**. Eddy currents are circular currents that appear in metallic materials when these materials are exposed to varying magnetic fields. These currents generate **secondary magnetic fields**, which can be detected using magnetoresistive sensors.
-
-They can also be employed to measure **very weak magnetic fields**, such as those produced by stressed ferromagnetic materials. This property makes them useful for **detecting defects or non-uniformities** within magnetic structures. In addition, magnetoresistive sensors are used to **monitor stress** in metallic reinforcements or fasteners by measuring the magnetic field inside these materials.
-
-Finally, they are commonly used in **displacement encoders**, a topic that will be explored in one of the next classes.
+These actuators are valued for their accuracy, fast response, and ability to produce extremely fine displacements.
 
 
+### <span style="color:rgb(161, 40, 226)">Final remark</span>
 
+So overall, piezoelectric materials are extremely versatile components that can function as **sensors**, **actuators**, or even **energy sources**, depending on how we exploit their electromechanical properties.
+
+That concludes today’s topic—see you in the next class!

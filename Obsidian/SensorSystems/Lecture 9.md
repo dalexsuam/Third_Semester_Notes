@@ -1,1147 +1,754 @@
 
-6/11/2025
+13/11/2025
 ***
-# <span style="color:rgb(223, 109, 109)">Displacement, Proximity and Distance Sensors (Part 1)</span>
 
-Hello everybody!  Today’s topic is **displacement, proximity, and distance sensors**.
-In this lecture, we will focus on **resistive sensors** (potentiometers), as well as **capacitive** and **inductive** sensors. In the next class, we will move on to **acoustic**, **optical**, and **magnetic** sensors.
+# <span style="color:rgb(223, 109, 109)">Displacement, Proximity and Distance Sensors (Part 2)</span>
 
-## <span style="color:rgb(239, 179, 1)">Introduction to the Three Quantities</span>
+Hello everybody. Today we will continue with the second part of our lecture on displacement, proximity, and distance sensors.
 
-Before analyzing the sensors, let’s clarify the three physical quantities we are interested in:
+In the previous class, we examined potentiometers, capacitive sensors, and inductive sensors. Today our attention will shift to acoustic and optical sensors, followed by magnetic sensors.
 
-### <span style="color:rgb(161, 40, 226)">• Displacement (linear or angular)</span>
+We have already discussed the conceptual differences between displacement, proximity, and distance measurements. With the acoustic and optical sensors presented today, we will see how these technologies allow us to measure proximity and distance effectively.
 
-**Linear displacement** is the straight-line change in position of an object from its initial point to its final point.  
-It can be measured using:
-
-- Potentiometers
-- Capacitive sensors
-- Inductive sensors
-- Optical or magnetic encoders
-    
-**Angular displacement** is the angle through which an object rotates around a fixed axis.  
-It can be measured using:
-
-- Potentiometers
-- Rotary encoders
-    
-### <span style="color:rgb(161, 40, 226)">• Proximity</span>
-
-A proximity sensor detects whether an object is **present or absent** within a specified range.  
-This means proximity sensing is **binary**:
-
-- Output = 1 → an object is within the detection range
-- Output = 0 → no object is detected
-    
-Proximity sensing can be implemented using:
-
-- Capacitive sensors
-- Inductive sensors
-- Acoustic (ultrasonic) sensors
-- Optical sensors
-
-### <span style="color:rgb(161, 40, 226)">• Distance</span>
-
-Distance is the **absolute separation** between the sensor and the target object.  
-Unlike proximity, it is not binary. It provides a **continuous measurement**.
-
-Distance can be measured using:
-
-- Acoustic (ultrasonic) sensors
-- Optical sensors (e.g., time-of-flight, laser triangulation)
-
-## <span style="color:rgb(239, 179, 1)">Potentiometers</span>
+Finally, in the last part of the class, we will introduce encoders—devices that enable precise measurement of linear or angular displacement.
+So let's start with acoustic sensors.  
   
+## <span style="color:rgb(239, 179, 1)">Acoustic Sensors</span>
 
+![[Pasted image 20251120225728.png|200]]
+Acoustic sensors are mainly used to measure proximity and distance, although they can also be applied to displacement measurements. These sensors consist of a source, which generates ultrasound waves, and a receiver, which detects the returning waveform.
 
+Before analyzing the sensor operation, let’s review some basics about ultrasound. Humans can hear sounds in the range of 20 Hz to 20 kHz. Sounds with frequencies above 20 kHz are considered ultrasounds, meaning they are inaudible to humans, though some animals can perceive them.
 
-Let’s begin with potentiometers. Potentiometers, as mentioned earlier, are resistive sensors used to measure linear or angular displacement.
+The speed of sound in air depends on temperature and is given by the equation:
+$$c = 331 + 0.6 \cdot T$$
 
-You have already worked with a potentiometer during the laboratory sessions. Their operating principle is quite simple: a potentiometer is essentially a resistor with two fixed terminals, A and B, just like any ordinary resistor. However, it also includes a third terminal, known as the _wiper_, which moves along the resistive track.
+where $c$ is in meters per second and $T$ is the temperature in degrees Celsius. This dependence on temperature is important because many acoustic sensor measurements rely on the sound velocity. Therefore, temperature compensation is often necessary. For reference, at 20°C, the speed of sound in air is approximately 344 m/s.
 
-![[Pasted image 20251120094507.png]]
+Another important consideration is the wavelength of the ultrasound, which is related to the frequency by:
+$$\lambda = \frac{c}{f}$$
 
-As the wiper changes position, the electrical node at point C shifts accordingly, creating a different resistive division of the supply voltage ($V_s$) applied across terminals A and B.
+Shorter wavelengths allow for better resolution. This is because sound waves can only interact with objects that are roughly the same size as the wavelength or larger. For example, a small dust particle will not affect the propagation of low-frequency audible sounds.
 
-If the moving mechanical element is connected to the wiper, the wiper moves together with the object. Starting from a defined zero position, any displacement of the object corresponds to a shift in the wiper’s position, allowing us to measure the displacement (x).
+To illustrate:
 
-The operating equation is straightforward because it relies on the concept of a voltage divider. The output voltage ($V_{\text{out}}$), associated with the object’s position, is given by:
-$$  
-V_{\text{out}} = V_s \cdot \frac{R_{AC}}{R_{AC} + R_{CB}}  
-$$
-
-Since ($R_{AC} + R_{CB}$) equals the total resistance ($R_{AB}$), what we effectively measure is a voltage proportional to the resistance ($R_{AC}$). This resistance is, in turn, proportional to the object’s displacement (x).
-
-Therefore, by measuring the output voltage, we can infer the displacement of the object relative to its zero position.
-
-### <span style="color:rgb(161, 40, 226)">Types of Potentiometers</span>
-
-
-There are two main types of potentiometers: **linear potentiometers** and **rotary potentiometers**.
-
-| Linear Potentiometer                 | Rotatory Potentiometer               |
-| ------------------------------------ | ------------------------------------ |
-| ![[Pasted image 20251120095858.png]] | ![[Pasted image 20251120095937.png]] |
-| ![[Pasted image 20251120095947.png]] | ![[Pasted image 20251120095955.png]] |
-
-In a **linear potentiometer**, the resistive element is arranged in a straight, linear configuration, and the wiper moves along this path in a straight line.  
-In contrast, a **rotary potentiometer** features a resistive track arranged in a circular (wound) layout. In the simplified illustration, only one loop is shown, but in practice the resistive strip may be wound over multiple turns. The wiper moves rotationally along this circular track.
-
-Depending on the type of mechanical motion involved, both linear and rotary potentiometers can be used to measure either linear or angular displacement.
-
-For **linear displacement**, two approaches are possible:
-
-
-| Linear Displacement                                                              | Angular Displacement                 |
-| -------------------------------------------------------------------------------- | ------------------------------------ |
-| ![[Pasted image 20251120100417.png]]<br>![[Pasted image 20251120100436.png]]<br> | ![[Pasted image 20251120100423.png]] |
-
-
-1. **Using a linear potentiometer**:  
-    The moving object is directly attached to the wiper, which moves linearly along the resistive strip.
-2. **Using a rotary potentiometer**:  
-    The linear motion of the object can be converted into rotation. This is typically achieved by attaching the object to a cable or string connected to a rotating shaft. As the object moves linearly, the cable causes the shaft to rotate, and this rotation is measured by the rotary potentiometer.
-
-
-On the other hand, **angular displacement** is typically measured using rotary potentiometers.  In this case, the rotating object or shaft is mechanically coupled to the rotating shaft of the potentiometer, allowing direct measurement of angular position.
-
-## <span style="color:rgb(239, 179, 1)">Capacitive Sensors - Distance</span>
-
-![[Pasted image 20251120103054.png]]
-Now let us move on to the next category of sensors: **capacitive sensors**.
-![[Pasted image 20251120103036.png]]
-Capacitive sensors are mainly used for **measuring linear displacement** or for **proximity detection**.  Before examining these applications, we first need to review the concept of **capacitance** and understand which parameters influence its value.
-
-### <span style="color:rgb(161, 40, 226)">Capacitance Review</span>
-Capacitors can be built using different geometries, but the two most common structures are the **parallel-plate capacitor** and the **cylindrical capacitor**.
-
-To determine the capacitance for these configurations, we rely on three key relationships:
-
-1. **Gauss’s Law**, which states that the electric flux of the electric field (E) depends on the enclosed charge (Q) divided by the permittivity $(\varepsilon$) of the medium.
-$$\Phi_E= EA=\frac{Q}{\varepsilon}$$
-2. The relation between electric field and voltage:  
-    $$E = \frac{\Delta V}{d}  $$
-    where (d) is the distance between the plates over which the voltage ($\Delta V$) is measured.
+- A 20 kHz sound has a wavelength of approximately 17 mm. This means the sensor can detect objects that are 17 mm or larger.
+- Increasing the frequency to 80 kHz reduces the wavelength to 4.3 mm.
+- At 200 kHz, the wavelength is 1.7 mm, allowing detection of even smaller objects.
     
-3. The definition of capacitance:  
-    $$Q = C \cdot \Delta V$$
-By combining these three equations, we obtain the capacitance expressions for different geometries.
 
-If we take equation 1 ($EA=Q/\varepsilon$) and equation two ($E=\Delta V/d$) we obtain
-$$\frac{\Delta V}{d}\cdot A=\frac{Q}{\varepsilon}
-$$
-Now by replacing $Q$ in equation three and clearing the $C$,  we obtain
-$$
-C=\frac{\varepsilon \cdot A}{d}
-$$
-### <span style="color:rgb(161, 40, 226)">Parallel-Plate Capacitor</span>
+Finally, the reflectivity of the target material affects the sensor’s performance. Materials like metal, wood, concrete, glass, rubber, and paper reflect nearly all the incident ultrasound, providing a strong return signal. On the other hand, materials such as cloth, cotton, and wool absorb much of the ultrasound, resulting in low reflectivity and weaker signals.
 
-![[Pasted image 20251120103121.png]]
-For a parallel-plate capacitor, the capacitance is given by:
-$$C = \varepsilon_r \varepsilon_0 \frac{A}{d}  $$
 
-where:
 
-- $(A)$: area of the plates
-- $(d):$ distance between the plates
-- ($\varepsilon_r \varepsilon_0$): permittivity of the dielectric material between the plates
-### <span style="color:rgb(161, 40, 226)">Cylindrical Capacitor</span>
+Another very important parameter is that we need to consider is the ultrasound attenuation in air.  For sure we know that all the sounds that are propagating inside the medium.  In the air in particular in this case.  Experience the diffusion loss. So you know that the sound is propagating on a spherical surface and so the more far away you are and more attenuated is the sound that you perceive and this is due to the diffraction phenomena.  But then there is also a second phenomena that is more related to frequency. In fact the diffusion loss.  So the one for the spherical attenuation, is independent from the wavelength.  
+  
+### <span style="color:rgb(161, 40, 226)">Ultrasound attenuation in air</span>
+  
+![[Pasted image 20251121094539.png|300]]
+The second phenomenon—**absorption loss**—is related to the amount of acoustic energy that is **absorbed by the propagation medium**.
 
-![[Pasted image 20251120103136.png]]
-A cylindrical capacitor consists of:
+![[Pasted image 20251121094601.png]]
+In air, for example, small particles such as dust or other suspended contaminants can absorb part of the ultrasonic energy. This effect becomes **significant at higher frequencies**. For this reason, in the graph you can observe that, especially at **larger propagation distances**, higher-frequency ultrasound waves exhibit **greater attenuation** compared to lower-frequency waves.
 
-- an **inner cylinder** with radius ($R_1$)
-- an **outer cylinder** with radius ($R_2$)
+For low frequencies such as **20 kHz**, the attenuation due to absorption is almost negligible. As a result, the measured attenuation closely follows the curve associated with **diffusion loss alone**.
+
+At higher frequencies, however, absorption losses become increasingly relevant. Consequently, the higher the frequency, the greater the absorption, and the shorter the effective propagation distance of the ultrasound signal.
+
+This leads to a fundamental **trade-off**:
+
+- **Higher frequencies** → better spatial resolution (because smaller objects can be detected), but reduced maximum measurable distance due to stronger absorption.
+- **Lower frequencies** → longer measurement range, but poorer resolution.
+
+### <span style="color:rgb(161, 40, 226)">Sound Pressure Level (SPL) and Sensitivity</span>
+
+#### <span style="color:rgb(2, 141, 192)">Sound Pressure Level (SPL)</span>
+To quantify the amount of sound that reaches a sensor, a commonly used figure of merit is the **Sound Pressure Level (SPL)**.  SPL is expressed in **decibels (dB)** and is defined as the logarithmic ratio between:
+$$SPL=20\cdot Log \left( \frac{P}{P_o} \right) \space (dB)$$
+- the **sound pressure** measured at the sensor, and    
+- a **reference sound pressure**, which is conventionally set to **20 μPa**.
     
-Using Gauss’s law and the same relationships as before, we can derive the capacitance formula for the cylindrical geometry. The full expression is more complex, but in the case of a **thin cylindrical capacitor**, the formula can be simplified.
+Mathematically, SPL is obtained by taking the logarithm of this ratio and multiplying it by 20.
 
-Let us define:
-- ($R = \frac{R_1 + R_2}{2}$), the average radius
-- ($w = R_2 - R_1$), the spacing between the cylinders
+#### <span style="color:rgb(2, 141, 192)">Sensitivity</span>
 
-If the capacitor is thin (i.e., ($R_1$) and ($R_2$) are very close), then ($w \ll R$) and we can write:
-$$C = \frac{2 \pi \varepsilon l}{\ln(1 + w/R)}  $$
+$$S_{lin} = \frac{V_{out}}{P_{in}} \space (V/Pa)$$
+Another important parameter—common to many types of sensors, including ultrasonic sensors—is the **sensitivity**.  The sensitivity describes how effectively the sensor converts the **input sound pressure** into an **output voltage**. For ultrasonic sensors, it is therefore expressed in **volts per pascal (V/Pa)**.
+$$S_{dB} = 20\cdot Log \left( \frac{S_{lin}}{S_{ref}} \right) \space (dB)$$
 
-Since ($w/R \to 0$), the logarithm can be approximated, giving the simplified formula:
-$$C = \varepsilon \frac{2 \pi R l}{w}  $$
+However, instead of using a linear scale, the sensitivity is typically expressed in **decibels**. To do this, the linear sensitivity is divided by a reference sensitivity of **1 V/Pa**, and the logarithm of this ratio is taken and multiplied by 20. This yields the **sensitivity in dB**.
+ 
+### <span style="color:rgb(161, 40, 226)">Different Ultrasound Structures</span>
 
-Here, ($2 \pi R l$) represents the **effective surface area** of the plates. The spacing between the plates is the difference between the radii, ($w = R_2 - R_1$). This final expression closely resembles the parallel-plate capacitor formula and is often easier to remember.
+How can we detect sound, and how can we generate it? As discussed earlier when studying force sensors, **piezoelectric materials** have a unique dual capability:
 
-### <span style="color:rgb(161, 40, 226)">Displacement Sensors</span>
+1. **Detection:** they generate a voltage proportional to an applied pressure variation.
+2. **Actuation:** they vibrate when an AC voltage is applied to them.
 
-#### <span style="color:rgb(2, 141, 192)">Parallel-Plate Capacitive Displacement Sensor</span>
+For this reason, piezoelectric materials are ideal both for **ultrasound detection** and **ultrasound generation**.
 
-Consider a parallel-plate capacitor in which a dielectric object moves between the plates.  
-The region between the plates is therefore partially filled with air (permittivity $\varepsilon_0$​) and partially filled with a material characterized by a relative permittivity $\varepsilon_r$.
+#### <span style="color:rgb(2, 141, 192)">Typical Sensor/Actuator Structures</span>
 
-As the object moves, the portion of the capacitor occupied by the material changes, and therefore the overall capacitance varies with the object’s position $x$.
+Several structural configurations exist for piezoelectric ultrasonic devices.
+##### <span style="color:rgb(71, 215, 140)">1. Open Structure</span>
+![[Pasted image 20251121095919.png]]
 
-**Modeling the capacitance**
+One of the most common designs is the **open structure**, which includes:
 
-![[Pasted image 20251120105651.png]]
-We can represent the system as two capacitors in parallel:
-
-- **$C_1$​**: the upper region filled only with air
-- **$C_2$​**: the lower region filled with the dielectric material
-
-Both capacitors share:
-
-- Plate length $L$
-- Plate separation $W$ (constant)
-
-The height of the plates is $H$, but only a portion of this height corresponds to each region.
-
-**Capacitance of each region**
-
-***1. Upper capacitor (air only):***
-
-![[Pasted image 20251120105830.png|200]]
-$$C_1 = \varepsilon_0 \, \frac{L(H - x)}{W}$$
-
-***2. Lower capacitor (dielectric inserted):***
-![[Pasted image 20251120105924.png|200]]
-$$C_2 = \varepsilon_0 \varepsilon_r \, \frac{L x}{W}$$
-***Total capacitance***
-
-Since the two regions are in parallel:
-
-$$C_{\text{tot}} = C_1 + C_2$$
-Substituting:
-
-$$C_{\text{tot}} = \varepsilon_0 \frac{L}{W} \left( h - x + \varepsilon_r x \right)$$
-Rearranging:
-$$\boxed{ C_{\text{tot}} = \varepsilon_0 \frac{L}{w} \left[ h + x(\varepsilon_r - 1) \right] }$$
-This expression shows that the capacitance increases **linearly** with displacement $x$.
-
-
-#### <span style="color:rgb(2, 141, 192)">Cylindrical Capacitive Displacement Sensor</span>
-
-![[Pasted image 20251120110132.png]]
-A similar principle applies to the cylindrical geometry.  Here, the **moving object is mechanically connected to the inner cylinder** of a coaxial capacitor.  
-As the object moves, the axial overlap length between the inner and outer cylinders changes.
-
-Assuming the capacitor is thin (so that we can use the simplified expression for cylindrical capacitors), the capacitance is proportional to the lateral overlapping area.
-***Capacitance expression***
-$$C = \varepsilon_0 \varepsilon_r \frac{2\pi R x}{W}$$
-Where:
-
-- $R$: average radius of the cylinders
-- $x$: overlapping length (proportional to object displacement)
-- $W$: small radial separation between the two cylinders
-
-Again, the capacitance depends **linearly** on the displacement $x$.
-#### <span style="color:rgb(2, 141, 192)">Summary</span>
-
-Both geometries—parallel-plate and cylindrical—allow us to design a displacement sensor in which the capacitance varies linearly with the position of an object:
-
-- **Parallel-plate:** dielectric object moves between the plates
-- **Cylindrical:** inner cylinder moves along its axis with the object
-
-In both cases, the capacitance can be written as:
-$$C(x) = C_0 + kx$$
-
-where:
-- $C_0$​: constant component
-- $kx$: displacement-dependent component
-
-Typical capacitive displacement sensors can achieve a resolution of around **1 µm**.
-### <span style="color:rgb(161, 40, 226)">Measuring Capacitance (Single-Ended)</span>
-
-To determine the displacement ($x$) using a capacitive sensor, we must first **measure the capacitance**.  A common and effective method is to incorporate the sensor capacitor into an **oscillator circuit** whose **oscillation frequency depends on the capacitance**.  By measuring this frequency (or its period), we can infer the value of (C), and therefore the displacement.
-
-Below are two representative oscillator implementations: one based on **digital circuitry** and one based on **analog circuitry**. In both cases, the oscillation frequency is a function of the capacitance.
-
-#### <span style="color:rgb(2, 141, 192)">Measuring Capacitance Using a Digital Schmitt-Trigger Oscillator</span>
-
-![[Pasted image 20251120111158.png]]
-The first example uses a **Schmitt-trigger inverter**.  A Schmitt trigger is a digital component that:
-
-- Outputs the logical opposite of its input.
-- Exhibits **hysteresis**, meaning it switches its output at two distinct threshold voltages:
-    - a **higher threshold** for switching from HIGH → LOW
-    - a **lower threshold** for switching from LOW → HIGH
+- A **housing** with openings that allow ultrasound waves to reach the piezoelectric element (for sensing) or to exit the device (for actuation).
+- A **mechanical assembly** called the _motive vibrator_, composed of:
+![[Pasted image 20251121100045.png|300]]
+    - A **resonator**, usually a conical metal diaphragm that focuses or amplifies the acoustic energy.
+    - A **vibrator**, typically a circular disc of piezoelectric ceramic that performs the actual sensing or actuation.
         
-***Principle of operation***
 
-![[Pasted image 20251120111711.png]]
-![[Pasted image 20251120111855.png]]
-1. Assume the inverter output is initially HIGH.
-    - Since the inverter outputs the opposite of the input, the capacitor voltage ($V_C$) must be LOW.
-2. With the output HIGH, current flows through resistor (R) into the capacitor.
-    - The capacitor charges.
-    - The charging slope ($dV_C/dt$) depends on the time constant (RC).
-3. When the capacitor voltage reaches the **upper threshold**, the Schmitt trigger switches.
-    - The output abruptly goes LOW.
-4. With the output LOW, current reverses direction and the capacitor **discharges** through the same resistor.
-5. When the capacitor voltage reaches the **lower threshold**, the output switches HIGH again.
+The conical metal sheet concentrates acoustic energy toward the piezoelectric disc, improving efficiency.
+
+##### <span style="color:rgb(71, 215, 140)">2. Enclosed Structure</span>
+
+![[Pasted image 20251121100122.png|300]]
+Another configuration is the **fully enclosed structure**, which is well suited for outdoor applications.  
+In this case:
+
+- The metallic housing is completely sealed to prevent dust, moisture, or rain from entering.
+- The piezoelectric ceramic is mounted directly in contact with the housing.
+- Sound waves propagate through the metal casing to the ceramic element.
     
-This charge–discharge cycle repeats indefinitely, creating a square-wave output whose **period (T)** depends on the charging and discharging slopes, therefore on:
+This design offers higher environmental robustness.
 
-$$T \approx RC  $$
-Thus, if we measure the period (or frequency), we can deduce the capacitance:
-$$C \approx \frac{T}{R}$$
-#### <span style="color:rgb(2, 141, 192)">Measuring Capacitance Using an Analog Schmitt-Trigger Oscillator</span>
+##### <span style="color:rgb(71, 215, 140)">3. High-Frequency Structures</span>
 
-![[Pasted image 20251120112112.png]]
-The second example uses two operational amplifiers:
+![[Pasted image 20251121100243.png|300]]
+For applications requiring the detection of **very high-frequency ultrasound**, the design must be adapted further. Standard piezoelectric sensors typically operate efficiently only up to approximately **70 kHz**. This limitation is caused by the **acoustic impedance mismatch** between:
 
-1. **A Schmitt-trigger comparator** (with positive feedback).  
-    This sets two voltage thresholds.    
-2. **An integrator** (op-amp with capacitor in feedback).  
-    This generates a linear ramp voltage across the capacitor.
+- The piezoelectric ceramic (≈ ($10^7$) acoustic impedance)
+- Air (≈ ($10^2$))
     
-***Principle of operation***
+Because of this five-order-of-magnitude difference, most of the ultrasound energy is **reflected**, resulting in poor transmission.
 
-![[Pasted image 20251120112415.png]]
-![[Pasted image 20251120112514.png]]
+To address this issue, high-frequency sensors incorporate **ultrasonic radiation surfaces**, also known as **acoustic impedance matching layers**. Their purpose is to gradually match the impedance of air to the impedance of the ceramic, improving energy transfer.
 
-- When the Schmitt-trigger output is HIGH:
-    - A constant current flows through the resistor into the capacitor.
-    - The integrator converts this current into a **linear decrease** in the voltage $(V_C$) (a negative ramp).
-- When the capacitor voltage reaches the lower threshold:
-    - The Schmitt trigger switches LOW.
-- With the output LOW:
-    - The current reverses direction.
-    - The integrator generates a **linear increase** in ($V_C$) (a positive ramp).
-- When ($V_C$) reaches the upper threshold:
-    - The trigger switches HIGH again.
+This concept is analogous to **anti-reflection coatings** used in optics, which help match refractive indices to reduce reflection between air and silicon.  
+Here the same principle is applied to **acoustic waves** instead of light.
 
-This produces a triangle waveform at the capacitor and a square wave at the comparator output.
+### <span style="color:rgb(161, 40, 226)">Use in Proximity and Distance</span>
 
-Since:
-$$I = C \frac{dV}{dt} \quad \Rightarrow \quad \frac{dV}{dt} = \frac{I}{C}  $$
+How can we use ultrasonic sensors to measure proximity or distance?
 
+#### <span style="color:rgb(2, 141, 192)">Proximity Measuring using Ultrasonic Sensors</span>
 
-the slope of the triangle wave depends on (C), and the time required to traverse the thresholds defines the oscillation period.  
-Therefore:
-$$T \propto C  $$
-Thus, measuring the oscillation period directly yields the capacitance.
+To perform proximity sensing, we typically use a configuration consisting of a **source** and a **receiver**. As previously discussed, both components can be made from **piezoelectric materials**:
+![[Pasted image 20251121101126.png|400]]
 
-
-#### <span style="color:rgb(2, 141, 192)">From Oscillation Period to Displacement</span>
-
-If we can measure the oscillation period using, for example, a microcontroller’s digital input and a timer:
-
-1. Count the number of oscillation cycles during a known time window.
-2. Compute the period (T) or frequency (f = 1/T).
-3. Use the calibrated relationship (C(x)) to calculate displacement (x).
+- In the **source**, the piezoelectric material receives an applied voltage and vibrates, generating ultrasound that propagates through the medium.
+- In the **receiver**, the piezoelectric material acts as a sensor: variations in pressure due to incoming sound waves produce a voltage proportional to those pressure changes.
     
+The source emits an ultrasonic wave with a certain amplitude. This wave travels through the air until it reaches an object, which **backscatters** part of the acoustic energy toward the receiver.
 
-### <span style="color:rgb(2, 141, 192)">Limitations of the Single-Ended Approach</span>
+The receiver detects this **returning ultrasound**, whose amplitude depends on:
 
-Using a _single_ capacitor has drawbacks:
-- **Geometrical tolerances**  
-    Variations in ($L$) or ($w$) (plate dimensions) affect capacitance.
+1. The distance the wave travelled in the medium.
+2. The reflectivity of the target object.
     
-- **Temperature dependence**  
-    The dielectric constant ($\varepsilon_r$) changes with temperature, causing drift in the capacitance and therefore in the measured displacement.
-    
-These limitations motivate the use of **differential capacitive sensors**, which greatly reduce sensitivity to temperature and mechanical tolerances.
+If a returning signal is detected, we can conclude that an object is present. The detection threshold must be selected according to the required sensing range of the proximity sensor. As with capacitive proximity sensors, the **sensitivity depends on the material** of the target. For this reason, datasheets typically provide a **relative sensing distance** curve that shows how detection distance varies with the reflectivity of different materials.
 
-### <span style="color:rgb(161, 40, 226)">Measuring Capacitance (Differential Approach)<br></span>
-To mitigate the limitations of measuring a single capacitance—such as temperature drift, geometric tolerances, and variations in permittivity—we can adopt a **differential capacitive sensing approach**.
 
-In this configuration, the output signal is not based on the variation of one capacitor alone, but on the **difference** between two capacitances, ($C_1$) and ($C_2$), which vary in opposite directions as the object moves.
+#### <span style="color:rgb(2, 141, 192)">Distance Measurement Using Ultrasonic Sensors</span>
 
-An additional advantage of the differential approach is that we no longer require an oscillator circuit to infer capacitance. Instead, we can directly measure a **differential voltage** using a **Wheatstone bridge**, which simplifies the readout circuitry.
+Ultrasonic sensors can also be used to **measure distance**. As before, a source generates the ultrasound and a receiver detects the reflected wave. However, in this case, the source emits **short acoustic pulses**. These pulses propagate through the medium, reflect from the object, and return to the receiver.
+![[Pasted image 20251121101256.png|500]]
+For distance measurement, we are **not interested in the amplitude** of the reflected signal, because amplitude depends strongly on the target’s reflectivity and therefore cannot reliably indicate distance. Instead, we measure the **time of flight (ToF)**: the time delay between the emission of the pulse and the detection of the reflected signal.
 
-Both **parallel-plate** and **cylindrical** geometries can be implemented in differential form.
-#### <span style="color:rgb(2, 141, 192)">Differential Parallel-Plate Geometry</span>
-
-![[Pasted image 20251120114802.png|300]]
-In this configuration we use **three plates**, where the middle plate is shared between two capacitors:
-- ($C_1$): formed by plates **A** and **B**
-- ($C_2$): formed by plates **B** and **C**
-    
-When the movable plate shifts by a displacement ($x$):
-
-- The separation of plates A–B becomes ($W - x$).
-- The separation of plates B–C becomes ($W + x$).
-    
-Thus, the capacitances are:
-$$C_1 = \frac{\varepsilon_0 A}{w - x}, \qquad  
-C_2 = \frac{\varepsilon_0 A}{w + x}  $$
-where ($A$) is the fixed plate area.
-
-Because the two capacitances vary oppositely, any common-mode effects (e.g., temperature-dependent permittivity) affect both equally and thus largely cancel out.
-#### <span style="color:rgb(2, 141, 192)">Wheatstone Bridge Readout</span>
-![[Pasted image 20251120114952.png]]
-To extract the imbalance between ($C_1(x)$) and ($C_2(x)$), we place them in one branch of a Wheatstone bridge driven by a sinusoidal excitation voltage ($V_A$).  
-The other branch contains two **fixed** capacitors equal to the nominal value at the zero-displacement position (i.e., ($\frac{\varepsilon_0 A}{W}$)).
-
-Because capacitors have infinite impedance at DC, the bridge must be excited with an **AC voltage**, not a DC source.
-
-Let:
-- $(V_+)$ be the voltage at the midpoint of the variable branch.
-- ($V_-)$ be the voltage at the midpoint of the fixed branch.
-
-***Computation of ($V_+$)***
-
-Using the capacitive divider rule:
-$$V_+ = V_A \cdot \frac{C_1}{C_1 + C_2}$$
-
-Substitute definitions of ($C_1$) and ($C_2$), simplify, and we obtain:
-$$V_+ = V_A \frac{w + x}{2w}  $$
-***Computation of $(V_-)$***
-
-The fixed capacitors are equal, so the midpoint divides the voltage exactly in half:
-$$V_- = \frac{V_A}{2}$$
-
-***Output of the Bridge***
-$$V_{\text{out}} = V_+ - V_-  
-= V_A \left( \frac{w + x}{2w} - \frac{1}{2} \right)  
-= \frac{V_A}{2} \frac{x}{w}$$
-
-Thus:
-$$\boxed{V_{\text{out}} = \frac{V_A}{2} \cdot \frac{x}{w}}$$
-
-The output voltage is **directly proportional to the displacement** (x), and importantly:
-
-- It **does not depend** on the permittivity ($\varepsilon_r$).
-- It is robust against common-mode variations.
-- It provides a **linear response** with respect to displacement.
-
-#### <span style="color:rgb(2, 141, 192)">Differential Cylindrical Geometry</span>
-
-![[Pasted image 20251120115324.png|300]]
-A similar differential principle can be implemented using cylindrical plates.
-
-Here:
-- There are two **fixed outer cylinders**, forming two capacitors with a **movable inner cylinder**.
-- When the inner cylinder shifts by (x), one capacitance increases and the other decreases.
-
-The capacitances are proportional to the lateral facing area:
-$$C_1 = \frac{\varepsilon_0 \varepsilon_r \pi d}{W} (L + x) $$
-$$C_2 = \frac{\varepsilon_0 \varepsilon_r \pi d}{W} (L - x) $$
+The distance to the target is given by: 
+$$d = \frac{C(T) \cdot T_{\text{ToF}}}{2} $$
 
 where:
-- $(d)$ = diameter of the inner cylinder
-- $(L)$ = length of overlap at the zero position
-
-Placing these in a Wheatstone bridge exactly as before yields:
-$$\boxed{V_{\text{out}} = V_A \frac{x}{2L}}  $$
-Again, the output is **linearly proportional** to the displacement and **independent** of permittivity.
-#### <span style="color:rgb(2, 141, 192)">Summary of Advantages</span>
-
-The differential capacitive approach offers:
-
- Linear relationship between output voltage and displacement  
- Immunity to variations in dielectric constant  
- Reduced sensitivity to temperature and geometry tolerances  
- Simple readout using a Wheatstone bridge (no oscillator required)  
- Higher measurement stability and accuracy
-
-## <span style="color:rgb(239, 179, 1)">Capacitive Sensor - Proximity</span>
-  
-Now let’s talk about another type of **capacitive sensor**. Unlike the ones we discussed earlier, which measure displacement, this type of sensor is used to detect **proximity** — that is, whether an object is nearby or not.
-
-A **proximity sensor** is essentially an on-off sensor. It does not provide a continuous measurement; it simply tells you if an object is present or absent in its sensing range.
-![[Pasted image 20251120120405.png|300]]
-
-A capacitive proximity sensor is usually made using **two concentric electrodes**, forming what’s called a planar capacitor. Think of it like this:
-
-- There is a circular **inner plate** and a surrounding **outer plate**.
-- If you look at a cross-section, you can see the plates stacked. The outer plate may look like two parts in the cross-section, but it is actually one piece.
-- The sensor generates an **electric field** between these two plates.
+- $(d)$ is the distance to the object,
+- $(T_{\text{ToF}})$ is the measured time of flight,
+- ($C(T)$) is the speed of sound in the medium at temperature ( T ).
     
-![[Pasted image 20251120120428.png]]
-When a target object comes close to the sensor, it **interacts with this electric field**. This interaction changes the **capacitance** of the sensor. Why does this happen? Because capacitance depends on:
+Since the pulse travels **from the source to the object and then back to the receiver**, the total measured time corresponds to twice the actual one-way distance, hence the division by 2. To obtain accurate results, **temperature calibration is required**, because the speed of sound varies with temperature.
 
-1. The **permittivity** of the material between the plates (how easily the material allows an electric field to pass through it).
-2. The **area** of the plates.
-3. The **distance** between the plates.
-    
+##### <span style="color:rgb(71, 215, 140)">Example of Circuit Setup to Measure Distance</span>
+Here we can examine in more detail a typical setup used to measure distances with ultrasonic actuators and sensors.
+![[Pasted image 20251121101850.png|600]]
+The system consists of a **source** (also called the *transmitter*) and a **receiver**. The transmitter is connected to a **pulse-generation circuit**, which produces the voltage pulses that drive the piezoelectric element. This oscillating voltage is converted into ultrasonic waves. These ultrasound pulses travel through the medium, reach the target object, and are backscattered toward the receiver.
 
-As the target approaches, the effective permittivity between the plates increases, causing the capacitance to rise.
+The receiver is connected to its dedicated **front-end circuitry**, which conditions and amplifies the electrical signal generated by the piezoelectric sensor when it detects the incoming acoustic wave.
 
-To detect this change, the sensor is connected to an **oscillator circuit**:
+Above the transmitter and receiver electronics, the system includes additional circuitry capable of measuring the **time delay** between:
+- the emission of the electrical pulse that excites the transmitter (start signal), and  
+- the detection of the returned acoustic pulse at the receiver (stop signal).
 
-- The oscillator requires a minimum capacitance to start oscillating.
-- When the object is close enough, the capacitance rises, and the oscillator begins to work.
-- As the object moves farther away, the capacitance drops, the oscillation slows, and eventually stops.
-    
-A **trigger circuit** (like a comparator) monitors the oscillator. When the oscillation passes a certain threshold, the sensor outputs a **digital signal** indicating the presence of an object. Essentially, the output is high if an object is near and low if no object is nearby.
+A straightforward way to measure this delay is to use a **counter** that counts the number of cycles from a reference **clock oscillator**. For example, consider a clock running at 100 MHz—a frequency that is easy to generate. A 100 MHz clock has a period of 10 ns. Using this value in the distance equation, we obtain a **minimum measurable distance (i.e., the resolution)** of approximately **2 µm**, which is already extremely good for many applications.
 
-### <span style="color:rgb(161, 40, 226)">How Material Properties Affect the Sensor<br></span>
-![[Pasted image 20251120120512.png|400]]
+In applications where even higher resolution is required, the counter can be replaced by a **Time-to-Digital Converter (TDC)**. A TDC uses a more advanced architecture than a simple counter, allowing timing resolutions in the **picosecond** range. This improvement in temporal resolution translates directly into **better spatial resolution**.
 
-The sensor’s behavior depends heavily on the **dielectric constant** (also called relative permittivity, εr) of the material it is detecting. Different materials affect the capacitance differently:
+Below is an example of a transmitter/receiver pair that can be used for distance-measurement applications.
+![[Pasted image 20251121102116.png|340]]
 
-- **Water** has a very high dielectric constant, which makes it easy for the sensor to detect from a longer distance.
-- **Air** and **vacuum** have very low dielectric constants (about 1), so they hardly change the sensor’s capacitance.
-- Other materials fall somewhere in between. For example, alcohol has a dielectric constant around 25.8, while plexiglass is around 3.
-    
-![[Pasted image 20251120120544.png|400]]
-This variation affects the **effective sensing distance** — the distance at which the sensor can reliably detect an object:
 
-- Sensors usually provide a **digital output**, so instead of sensitivity, we talk about the distance at which detection occurs.
-- Datasheets often define the sensing distance based on **water** because it has the highest dielectric constant and gives a clear reference.
-    
+#### <span style="color:rgb(2, 141, 192)">Distance Measurement Ultrasound Tx Circuit - More detail</span>
+
+We will look in more detail at the circuits used in an ultrasonic distance measurement system. The example circuits shown are taken from real datasheets and correspond to actual components, but we can treat them as a combination of simpler functional blocks.
+![[Pasted image 20251121102744.png]]
+##### <span style="color:rgb(71, 215, 140)">1. Enable Signal Generation</span>
+
+| Circuit                              | Signal                               |
+| ------------------------------------ | ------------------------------------ |
+| ![[Pasted image 20251121102827.png]] | ![[Pasted image 20251121102842.png]] |
+
+The first block is responsible for generating the **enable signal**.  This signal defines **when** we want to emit an ultrasound burst.
 
 For example:
-![[Pasted image 20251120120609.png]]
+- One enable pulse may trigger the first burst here,  
+- Another enable pulse may trigger a second burst later in time.
 
-- If a sensor has a **rated sensing distance of 10 mm for water**, it can detect water up to 10 mm away.
-- For alcohol (εr ≈ 25.8), the effective sensing distance drops to roughly **8.5 mm**.
-- For a material with εr = 10, the effective sensing distance might only be **6 mm**.
+So the enable signal essentially “opens” time windows during which the transmitter is allowed to generate ultrasound.
+
+##### <span style="color:rgb(71, 215, 140)">2. Oscillator Block</span>
+
+| Circuit                              | Signal                               |
+| ------------------------------------ | ------------------------------------ |
+| ![[Pasted image 20251121102923.png]] | ![[Pasted image 20251121102953.png]] |
+
+The second block is an **oscillator**.
+- This oscillator produces a periodic signal at the **desired ultrasonic frequency**.  
+- For instance, an oscillator running at **40 kHz** will generate the electrical signal required to produce a **40 kHz ultrasonic wave**.
+- 
+At its output node, we observe a high-frequency signal (e.g., a 40 kHz square wave).
+
+##### <span style="color:rgb(71, 215, 140)">3. Gating the Oscillation (Burst Generation)</span>
+
+| Circuit                              | Signal                               |
+| ------------------------------------ | ------------------------------------ |
+| ![[Pasted image 20251121103103.png]] | ![[Pasted image 20251121103125.png]] |
+
+Next, we use **logic gates**, in particular an **AND gate**, to ensure that the oscillation is applied to the transmitter **only during the enable interval**.
+
+- The AND gate receives:
+  - the **enable signal**, and 
+  - the **oscillator output**.
+- Its output is:
+  - zero (no drive) when the enable signal is low,  
+  - a copy of the oscillator waveform when the enable signal is high.
+
+In this way, the transmitter receives a **burst** of oscillating voltage only during the enable time, as shown by a finite-duration high-frequency signal. This burst produces the corresponding burst of ultrasound.
+
+
+##### <span style="color:rgb(71, 215, 140)">4. Circuit: Driver Stage</span>
+
+| Circuit                              | Signal                               |
+| ------------------------------------ | ------------------------------------ |
+| ![[Pasted image 20251121103103.png]] | ![[Pasted image 20251121103125.png]] |
+Finally, we have the **driver circuit**, which interfaces the logic-level signal with the **piezoelectric transducer**.
+
+- The driver replicates the oscillating waveform as a **square wave**.
+- It provides this waveform with **opposite polarity** on the two terminals of the piezoelectric element:
+  - one terminal sees the signal,
+  - the other sees the inverted version (180° phase shift).
+
+This differential drive effectively doubles the peak-to-peak voltage across the piezoelectric material, improving the efficiency of ultrasound generation.
+
+#### <span style="color:rgb(2, 141, 192)">Distance Measurement Ultrasound Rx Circuit - More detail</span>
+
+Now, let us move to the **receiving circuitry**.  The receiving stage is essentially a **standard non-inverting amplifier** used to amplify the voltage generated by the piezoelectric sensor.
+![[Pasted image 20251121103710.png|400]]
+
+##### <span style="color:rgb(71, 215, 140)">1. Input Connection and DC Blocking</span>
+
+![[Pasted image 20251121104416.png|400]]
+The piezoelectric receiver is connected to the **non-inverting input** of the operational amplifier. Before the signal reaches the amplifier, it passes through a pair of capacitors that act as **AC-coupling (DC-blocking) elements**.  These capacitors remove any DC component from the sensor signal, ensuring that only the AC ultrasound signal is amplified.
+
+##### <span style="color:rgb(71, 215, 140)">2. DC Operating Point (Gain = 1 for DC)</span>
+
+Because this circuit uses a **single-supply operational amplifier**, we need to bias the amplifier at **mid-supply** to allow the output to swing properly around a central value.
+
+![[Pasted image 20251121104522.png|400]]
+- A voltage divider (100 kΩ / 100 kΩ) generates **VDD/2**,
+- This bias voltage is applied to both the non-inverting and inverting inputs (for DC only),
+- The feedback network includes a capacitor, so at DC the capacitor behaves as an open circuit.
+
+In this DC condition:
+
+- No current flows through the feedback resistor ($R_F$),    
+- The voltage at the inverting input equals the voltage at the non-inverting input,
+- Therefore the **DC gain is 1**, placing the amplifier output at **VDD/2**.
+
+This ensures the output remains centered in the linear operating region of the op-amp.
+##### <span style="color:rgb(71, 215, 140)">3. AC Gain (Amplification of the Ultrasonic Signal)</span>
+
+When an AC signal arrives from the piezoelectric sensor, the capacitors now behave approximately as **short circuits** at the ultrasonic frequency.
+
+![[Pasted image 20251121104714.png|400]]
+
+In this case, the amplifier behaves like a **standard non-inverting stage**, whose gain is:
+$$A_{AC} = 1 + \frac{R_F}{R_{IN}}  $$
+Given:
+- ( $R_F = 100 \text{kΩ}$)
+- ( $R_{IN} = 1 \text{kΩ}$ )
+
+We obtain: 
+$$A_{AC} = 1 + \frac{100,000}{1,000} = 101  $$
+
+Thus, the AC ultrasonic signal is amplified by a factor of **101**, while the DC bias remains unchanged at unity gain.
+
+This configuration is simple but highly effective for reading out piezoelectric ultrasound receivers:
+
+- **DC biasing** ensures proper operation under single-supply conditions,
+- **AC gain** provides strong amplification of the received ultrasonic burst.
+ 
+### <span style="color:rgb(161, 40, 226)">Other Operation Modes</span>
+
+Ultrasonic sensors can also operate in alternative modes, particularly for **measuring displacement**.  In this case, the measurement relies on the **Doppler effect**.
+
+#### <span style="color:rgb(2, 141, 192)">1. Displacement Measurement Using the Doppler Effect</span>
+
+According to the Doppler principle, when a sound source and an object move relative to one another, the frequency perceived by the object changes:
+
+![[Pasted image 20251121105503.png|700]]
+- If the object is **approaching** the source, it perceives a **higher** sound frequency.
+- If the object is **moving away**, it perceives a **lower** frequency.
     
-This is why the material in front of the sensor matters — the sensor might detect some objects farther away and others only when they are very close.
+The same effect occurs in the **reflected (backscattered) sound**:
 
-Graphs in datasheets often show the **relative sensing distance**, which is the effective distance as a percentage of the rated distance for different materials. This makes it easier to understand how the sensor behaves with various targets.
-
-### <span style="color:rgb(161, 40, 226)">Working Principle</span>
-
-Now, let’s go deeper into how a **capacitive proximity sensor** actually works, focusing on the **oscillator circuit** it uses.
-![[Pasted image 20251120121212.png]]
-In a capacitive proximity sensor, the sensor’s capacitance is connected to an **oscillator**. The ability of this oscillator to generate a signal depends on the **capacitance** of the sensor: when the capacitance is high enough, the oscillator starts oscillating; when it is too low, it does not.
-
-The oscillator used in these sensors is usually a **parallel RLC oscillator**, meaning it is made of a **resistor (R), inductor (L), and capacitor (C)** connected in parallel.
-
-- This oscillator has a **resonant frequency**, which is the natural frequency at which it oscillates. It is given by the formula:  
-    $$\omega_0 = \frac{1}{\sqrt{LC}}  $$
-However, a simple RLC circuit is not enough to maintain continuous oscillations. Why? Because **resistors dissipate energy**, which means that over time the oscillations would gradually die out. To sustain oscillation, we need a **source of energy**, and this is provided by an **operational amplifier (op-amp)** powered by an external supply.
-![[Pasted image 20251120121301.png|400]]
-
-- The op-amp provides **positive feedback** to keep the oscillation going.
-- At the same time, it also uses **negative feedback** to prevent the oscillation from growing uncontrollably.
-
-For the oscillation to remain **stable** — not too big and not zero — the **strength of the positive feedback** must exactly balance the **strength of the negative feedback**.
-
-- In the circuit, the **negative feedback** is determined by a voltage divider (R1 and R2).
-- The **positive feedback** depends on the relationship between the impedance of the RLC circuit and a resistor (R4).
+- If the object is moving closer to the sensor, the reflected signal will exhibit an **increased frequency**.
+- If it moves away, the reflected frequency decreases.
     
 
-The RLC circuit always oscillates at its resonant frequency, so to calculate the effective impedance of the RLC part, we consider:
-$$Z_{eq} = R3 \parallel (sL) \parallel \frac{1}{sC}$$
-- Here, ($s = j\omega_0$), corresponding to the resonant frequency.
-- At resonance, this equivalent impedance simplifies to **R3**, meaning the positive feedback is controlled by R3 and R4.
-- By choosing R1, R2, R3, and R4 correctly, we can balance positive and negative feedback, ensuring a **steady oscillation**.
-#### <span style="color:rgb(2, 141, 192)">Role of the Damping Factor</span>
+Therefore, the **received frequency varies over time** depending on the movement of the target. For example, if the object oscillates around a central position, the output signal will show a frequency modulation: sometimes slightly higher, sometimes slightly lower than the original transmitted frequency.
 
-The behavior of the oscillator also depends on the **damping factor (ζ)**, which is related to the **quality factor (Q)** of the circuit:
-$$\zeta = \frac{1}{2Q} = \frac{1}{2R} \sqrt{\frac{L}{C}}  $$
-- If ζ < 1 → the circuit is **underdamped** and able to oscillate.
-- If ζ = 1 → the circuit is **critically damped** and cannot sustain oscillation.
-- If ζ > 1 → the circuit is **overdamped** and also cannot oscillate.
+This frequency variation can be processed to determine the **velocity** and **displacement** of the moving object.
+#### <span style="color:rgb(2, 141, 192)">2. Measuring Medium Density Through Direct Propagation Time</span>
+
+Another operating mode consists of measuring the **direct propagation time** of ultrasound through a medium. This technique is useful for estimating the **density** or **composition** of a substance.
+
+The principle is based on the fact that:
+![[Pasted image 20251121105528.png|600]]
+
+- The **speed of sound** in a medium, $c$, **decreases** as the medium’s **density increases**.
+
+In this setup, the **source** and the **receiver** are positioned on **opposite sides** of the medium. The distance between them is fixed.  
+The measured **time of flight** between the transmitted pulse and the received pulse therefore depends **only** on the sound velocity ccc, not on distance (which is known and constant).
+
+Since:
+$$c = \frac{d}{\text{TOF}}$$
+
+and $c$ is a function of the medium’s density, the sensor can be used to **identify or estimate the type of medium** located between the transmitter and receiver.
+
+### <span style="color:rgb(161, 40, 226)">Applications of Ultrasound Sensors</span>
+
+![[Pasted image 20251121105857.png]]
+Ultrasonic sensors have a wide range of practical applications.  In proximity sensing, they are commonly used in **parking systems** to detect whether parking slots are occupied or free.  
+
+![[Pasted image 20251121105912.png]]
+For **distance measurement**, ultrasonic sensors are widely implemented in **automotive rear-sonar systems**, where they provide not only a binary indication of an obstacle but also a measurement proportional to the actual distance. This allows the vehicle to inform the driver with a continuous, distance-dependent warning.
+
+![[Pasted image 20251121105925.png]]
+As mentioned earlier, ultrasonic devices can also be employed to measure **displacement** or **direct propagation time**, enabling more advanced sensing applications.  For example, they play a fundamental role in **flow meters**, which measure the velocity of liquids flowing through a pipe. In these systems, the Doppler effect is exploited: the frequency of the received ultrasonic wave increases as the flow speed rises. The faster the fluid flows, the larger the frequency shift observed by the sensor.
+
+## <span style="color:rgb(239, 179, 1)">Optical Sensors</span>
+
+Let us now move on to **optical sensors**. As you will notice, they share many analogies with acoustic sensors; however, the key difference lies in the **propagation speed** of the signal. Light travels orders of magnitude faster than sound, which profoundly affects the sensor’s operating principles and performance.
+![[Pasted image 20251121112455.png|300]]
+
+Optical sensors can also operate as **proximity sensors**, and—similarly to ultrasound systems—they require a **transmitter** and a **receiver**.  Typically, the transmitter is an **infrared LED** or an **infrared laser diode**. Infrared is preferred because it is **invisible to the human eye**, avoiding visual disturbance.  
+The receiver is most often a **photodiode**, which converts the incident light into an electrical current.
+
+![[Pasted image 20251121112513.png|300]]
+One major advantage of optical proximity sensors is that they are **immune to electromagnetic interference**, unlike capacitive or inductive proximity sensors, which can be affected by external electromagnetic fields.
+
+However, when designing optical sensors, it is crucial to ensure **immunity to ambient light**, since sunlight or artificial lighting can interfere with photodiode readings. In the next slides, we will discuss methods to achieve this immunity.
+
+Another important benefit of optical techniques is that they can achieve **greater sensing ranges**, both compared to capacitive/inductive sensors and often even compared to acoustic proximity sensors.
+
+There are two main configurations for optical proximity sensing:
+
+### <span style="color:rgb(161, 40, 226)">1. Transmission Configuration</span>
+
+Here, the **transmitter and receiver are placed on opposite sides** of the monitored area.
+
+![[Pasted image 20251121112541.png|400]]
+
+- If no object is present, the emitted light reaches the receiver.
+- If an object intervenes, it blocks the beam, and the receiver detects the interruption.
+
+### <span style="color:rgb(161, 40, 226)">2. Reflection (Diffuse) Configuration</span>
+
+In this configuration, the **transmitter and receiver are placed on the same side**.
+
+![[Pasted image 20251121112610.png|300]]
+
+- If no object is present, the emitted light travels forward and does not return to the receiver.
+- If an object is in proximity, it **backscatters** part of the light toward the receiver, which detects its presence.
+    
+These two setups cover most proximity-sensing applications in industrial and consumer systems.
+
+
+### <span style="color:rgb(161, 40, 226)">Three Main Setups</span>
+
+Optical sensors can be implemented in three main setups: **True Beam**, **Retroreflective**, and **Diffuse**. Let’s analyze each of them in detail.
+
+#### <span style="color:rgb(2, 141, 192)">1. True Beam Setup  </span>
+
+![[Pasted image 20251121113205.png]]
+In the True Beam setup, the emitter and the receiver are placed on opposite sides of the target. The presence of a target interrupts the light beam, preventing it from reaching the receiver. This configuration is very robust and precise, allowing detection of very small objects, especially when using focused lasers. It also supports long detection distances, up to tens of meters, and in some cases even up to 100 meters.
+
+The main drawback of this setup is practical: the emitter and receiver need to be installed on opposite sides of the target area, which can be inconvenient in many applications.
+
+#### <span style="color:rgb(2, 141, 192)">2. Retroreflective Setup  </span>
+
+![[Pasted image 20251121113242.png]]
+
+In the retroreflective setup, both the emitter and receiver are placed on the same side. A retroreflective material is positioned opposite the sensor to reflect the light back to the receiver. This setup behaves similarly to the True Beam setup, but it avoids the need to supply power to two separate locations because the source and detector are co-located.
+
+One limitation is that highly reflective targets may return part of the light directly to the receiver, which can be mistaken for the reflection from the retroreflector. To mitigate this, polarization filtering can be used. Certain reflectors are designed to return light with a specific polarization, and the receiver detects only that polarized light, avoiding interference from reflections off the target. The polarization of light refers to the orientation of the electric field vibration in the propagating electromagnetic wave.
+
+#### <span style="color:rgb(2, 141, 192)">3. Diffuse Setup </span>
+![[Pasted image 20251121113319.png]]
+
+The diffuse setup is the most widely used configuration. In this case, the target itself reflects or backscatters light to the sensor. The sensor detects the presence of the object when it receives the reflected light.
+
+Unlike the previous setups, here the detection depends on the reflectivity of the target material. High-reflectivity materials may produce a strong signal at shorter distances, while low-reflectivity materials can be detected from farther away.
+
+This setup is especially practical when a fixed reflector or opposite side is not feasible. A common example is a smartphone proximity sensor that turns off the display when you bring the phone close to your face. In such cases, the emitter and receiver must be in the same device, and the target (your head) itself reflects the light.
+
+### <span style="color:rgb(161, 40, 226)">How to Implement An Optical Proximity Sensor?</span>
+
+To implement an optical proximity sensor, the basic components are:
+![[Pasted image 20251121113604.png|400]]
+
+1. **Light Source** – Usually an LED or a laser that emits the light.
+2. **Photodiode** – Acts as the receiver to detect reflected or backscattered light.
+    
+A key challenge is **making the sensor immune to ambient light**. For example, a smartphone must detect the light reflected from your head and ignore sunlight, lamps, or other background sources.
+
+
+
+The solution is **modulated light**. The LED is driven with a modulated signal, typically a square wave at a high frequency (tens of kilohertz). This allows the sensor to distinguish between the emitted light and slowly varying ambient light.
+
+The signal flow works like this:
+![[Pasted image 20251121113718.png|500]]
+
+1. **LED Driver** – Usually a transconductance amplifier that forces the desired current into the LED, generating modulated light.
+2. **Photodiode** – Detects the light reflected from the target. The current it produces is proportional to the received light intensity.
+3. **Transimpedance Amplifier (TIA)** – Converts the photodiode current into a voltage signal that can be further processed.
+4. **High-Pass Filter** – Filters out DC and slow-varying components, passing only the modulated signal corresponding to the LED frequency. This removes interference from ambient light.
+5. **Analog-to-Digital Converter (ADC)** – Digitizes the filtered signal so it can be read by a microcontroller or other digital system via standard protocols such as I²C or SPI.
+    
+By using this combination of modulation, filtering, and amplification, the sensor can reliably detect proximity while ignoring external light sources.
+
+
+### <span style="color:rgb(161, 40, 226)">Optical distance measurement using time-of-flight (ToF):</span>  
+
+When measuring **distance** with optical sensors, we exploit the **time of flight** of light, instead of sound as in acoustic sensors.  
+
+***Basic principle:***
+1. **Transmitter:** Typically a laser is used because it can generate very short light pulses.  
+2. **Propagation:** The pulse travels to the target and is partially backscattered in all directions.  
+3. **Receiver:** A photodiode or a single-photon avalanche diode (SPAD) detects the returning light.  
+4. **Time Measurement:** The **time delay** between emission and detection, \(\Delta t\), is measured using a **time-to-digital converter (TDC)**.  
+
+![[Pasted image 20251121114115.png|400]]
+
+***Distance Calculation:***
+The distance \(d\) is calculated as:
+$$d = \frac{c \cdot \Delta t}{2}$$
+- $(c)$ is the speed of light, approximately ($3 \times 10^8 \, \text{m/s}$).  
+- The division by 2 accounts for the round-trip of the light pulse.  
+
+***Resolution Considerations:***
+- Because light is extremely fast, $(\Delta t)$ must be measured with very high precision.  
+- For example, a time resolution of 300 picoseconds corresponds to a distance resolution of about **5 cm**.  
+- Compared to acoustic sensors, which can reach **micrometer resolution**, optical ToF sensors typically achieve **centimeter-level resolution**.  
+
+**Key Takeaways:**
+- Optical ToF is excellent for longer ranges and high-speed measurements.  
+- However, it is limited in precision compared to acoustic time-of-flight methods due to the extremely high speed of light.  
+
+#### <span style="color:rgb(2, 141, 192)">Working Sensor - Time-correlated single photon counting (TCSPC)</span>
+In optical time-of-flight measurements, the receiver can be a **photodiode** or, more commonly, a **single-photon avalanche diode (SPAD)**.
+
+##### <span style="color:rgb(71, 215, 140)">Why not just a photodiode?</span>
+- A photodiode detects many photons simultaneously and reproduces the pulse shape of the returning light.
+- This works well if the returning pulse is strong, which happens at short distances or with highly reflective targets.
+- However, for **long distances** or **low-reflectivity targets**, the pulse is heavily attenuated. You may receive **only one photon or even none per pulse**.
+- Increasing the laser intensity is often limited due to **safety regulations**, especially for infrared lasers.
+    
+**The solution: Single-Photon Avalanche Diode (SPAD)**
+
+- A SPAD can detect **even a single photon**.
+- Because a single measurement may not detect any photons, the laser pulse must be **repeated many times**.
+    
+##### <span style="color:rgb(71, 215, 140)">How it works:</span>
+![[Pasted image 20251121114829.png|400]]
+1. Fire a laser pulse.
+    - Measurement 1: no photon detected.
+    - Measurement 2: one photon detected at some time.
+    - Measurement 3: another photon detected at a different time, and so on.
+2. After many repetitions, you can build a **histogram of photon arrival times**.
+3. This histogram reconstructs the **shape of the original laser pulse**, because the probability of detecting a photon is higher when the pulse is stronger.
+    
+**Distance extraction:**
+
+- You can apply a **threshold** to the histogram to detect the pulse arrival time.
+- Alternatively, you can compute the **centroid of the distribution** to achieve **better precision**.
+
+##### <span style="color:rgb(71, 215, 140)">Advantages and disadvantages:</span>
+
+- **Advantages:**
+    - Can detect very weak signals.
+    - Works for long distances or low-reflectivity objects.
+    - No need for powerful laser pulses.
+        
+- **Disadvantages:**
+    - Requires many repetitions of the laser pulse.
+    - Needs a high-frequency laser to acquire sufficient data quickly.
+
+This method is known as **time-correlated single photon counting (TCSPC)** and is widely used in high-precision distance sensing applications.
+
+#### <span style="color:rgb(161, 40, 226)">Example and Applications</span>
+
+So, an example of application of time-of-flight optical sensors is what we call **LiDAR**, which stands for **Light Detection and Ranging**. Sometimes it is also called **Laser Imaging Detection and Ranging**. The idea is to reconstruct a **three-dimensional environment** using a sensor that measures distances very precisely.
+
+![[Pasted image 20251121115409.png|300]]
+
+For instance, imagine a **drone flying over an area of interest**. The LiDAR sensor emits laser pulses toward the ground, and these pulses are reflected back by the objects in the environment. The sensor measures the **time it takes for the light to travel to the object and back**, and from this time-of-flight, it calculates the distance of each point.
+
+In many visualizations, the color of the points does not represent the actual color of the object. Instead, it represents distance. For example, in some visualizations, **blue can represent points that are closer to the drone**, and **orange can represent points that are farther away**. In this way, you can see a 3D map of the environment, where the depth information is encoded in color.
+#### <span style="color:rgb(2, 141, 192)">TOF sensor Chip</span>
+
+![[Pasted image 20251121115500.png|500]]
+
+Now, let’s consider a **time-of-flight sensor chip**. In these chips, you have the **LED or laser driver**, which generates the light pulses, and a **sensor array**, for example, a **SPAD array** (Single Photon Avalanche Diode array), which can detect even single photons. This is very important, because in some cases, the reflected light is very weak, especially if the target is far away or has a low reflectivity.
+
+The advantage of using this kind of sensor, compared to standard amplitude-based proximity sensors, is that we measure **actual distance** rather than relying on how strong the reflected signal is. Standard sensors might fail to detect very dark objects because the reflected signal is too weak. With a time-of-flight sensor, the measurement depends on the **time delay**, so you can detect objects reliably regardless of their surface reflectivity.
+
+Practical examples of these sensors include:
+
+- **Enhanced proximity sensors**: These are used in situations where you want to detect the presence of an object reliably, even if it has very low reflectivity.
+- **Smartphones**: For example, in the front camera, a time-of-flight sensor can be used to measure the distance to the subject and **automatically adjust the focus**.
+- **Public washroom sinks**: The sensor detects hands and activates the water tap automatically.
+- **Automotive applications**: In autonomous or assisted driving, LiDAR sensors reconstruct the environment in front of the vehicle. They detect other cars, pedestrians, or obstacles. This is extremely useful for navigation and safety.
     
 
-Now imagine the sensor **without any object nearby**:
+Finally, time-of-flight principles are also applied in **optical encoders**, which we will study in a bit. These encoders allow us to measure **linear or angular displacement** with high precision.
 
-- The capacitance is small (close to that of air or vacuum).
-- This makes the damping factor ζ > 1 → the circuit is overdamped, and **no oscillation occurs**.
 
-When an object comes **into proximity**:
-![[Pasted image 20251120121429.png]]
-- The capacitance increases because the material’s permittivity is higher than air.
-- This increase **reduces the damping factor**. If it becomes smaller than 1, the circuit becomes underdamped → **oscillation starts**.
+## <span style="color:rgb(239, 179, 1)">Proximity / Distance Sensors Comparison</span>
+
+![[Pasted image 20251121115713.png]]
+
+So, we have studied **capacitive sensors, inductive sensors, acoustic sensors, and optical sensors**.  
+
+Let’s start with **capacitive sensors**. These sensors typically have the **shortest sensing range**. They are able to detect objects only if they are in **close proximity**, usually **just a few centimeters at most**. Their main advantage is the **high sensitivity to non-metallic materials**, but of course, the short range is a limitation.  
+
+Then, we have **acoustic sensors**. These sensors can detect objects at **intermediate ranges**, typically **1, 2, or 3 meters**. Acoustic sensors work by sending ultrasound waves and measuring either the **time of flight** or **amplitude variations**. Their advantage is that they can cover **longer distances than capacitive sensors**, but the resolution is not as high.  
+
+Next, **optical sensors**. These sensors can reach **much higher distances** than the previous ones. For example, **optical proximity sensors** can reach tens of meters, around **50 meters**, while time-of-flight systems like **LiDAR** can measure distances even in the **order of kilometers**. Optical sensors are very useful for **long-range detection**, but one thing to keep in mind is that their **resolution is generally lower than acoustic sensors** when measuring very small displacements.  
+
+Finally, **inductive sensors**. These sensors are **particularly suited for detecting metallic objects**. They work by generating eddy currents in the metal, which influences the oscillator in the sensor. Their range is usually short to medium, similar to capacitive sensors, but they are very robust for **metal detection**.  
+
+So, in summary:  
+
+- **Capacitive sensors** → short range, non-metallic materials, very sensitive.  
+- **Inductive sensors** → short/medium range, metallic materials, robust detection.
+- **Acoustic sensors** → medium range (meters), non-contact, good resolution.  
+- **Optical sensors** → long range (tens of meters to kilometers), less precise than acoustic, very flexible, especially for time-of-flight measurements like LiDAR.  
+
+The choice of the sensor **depends on the application**, the **required sensing range**, and the **type of material you want to detect**.  
+# <span style="color:rgb(223, 109, 109)"></span><span style="color:rgb(223, 109, 109)">Encoders</span>
+
+So, let’s now move to **encoders**. Encoders form an entire family of sensors that are used to measure **displacement**, but they differ significantly from the displacement sensors we have studied so far—such as potentiometers or capacitive and inductive displacement sensors. The key difference is that **encoders provide a digital output directly**. This means they do **not** require triggers or analog-to-digital converters to interpret their signal. The encoder itself already outputs digital information.
+
+We can classify displacement encoders into two main groups:
+
+- **Rotary encoders**, which respond to rotational motion, and
+- **Linear encoders**, which respond to linear displacement.
     
-The oscillation then grows to a **steady amplitude**, stabilized by the balance between positive and negative feedback.
+Both rotary and linear encoders can be implemented in two different architectures: **incremental** or **absolute**.
 
-- In other words: **no object → no oscillation**, **object present → oscillation appears**, which the sensor can detect and convert into a digital signal.
+### <span style="color:rgb(161, 40, 226)">Incremental Encoder</span>
 
-#### <span style="color:rgb(2, 141, 192)">Simulation</span>
+In an **incremental encoder**, the sensor generates a sequence of digital pulses as the shaft or slider moves. These pulses do not directly tell you the absolute position; instead, they tell you how much the position changes. For this reason, incremental encoders are typically used to measure **rotation speed** or **relative displacement**. You simply count the number of pulses per unit time or per revolution.
 
-![[Pasted image 20251120155742.png|400]]
+### <span style="color:rgb(161, 40, 226)">Absolute Encoder</span>
 
-To better understand how the capacitive proximity sensor works, I simulated the oscillator circuit. In the diagram, you can clearly identify the **RLC oscillator**, the resistor that provides **positive feedback**, and the pair of resistors that set the **negative feedback** of the operational amplifier.
+Instead, in an **absolute encoder**, the output at every position is a **unique digital word**—a multi-bit value. This means that at any moment you can read the encoder and know exactly in which position it is, without needing to know the previous positions. So absolute encoders give you the **true, absolute position** of the sensor.
 
-To reproduce the effect of a target approaching or moving away from the sensor, I added an extra capacitor (C2) in **parallel** with the main capacitor C1. This extra capacitor represents the **increase in capacitance** that occurs when an object comes close to the sensor. To control when this added capacitance is included in the circuit, I connected it through two switches.
+Encoders can be implemented using **optical** or **magnetic** technologies.
 
-Here’s how the switches behave:
+- Optical encoders are preferred when a **very high resolution** is required, because light-based detection allows extremely fine position measurement.
+- Magnetic encoders, on the other hand, are more robust and reliable in **harsh environments**, where dust, oil, vibration, or temperature variations would compromise optical components.
 
-- **Switch 1** starts as a _short circuit_ (closed).
-- **Switch 2** starts as an _open circuit_.
+## <span style="color:rgb(239, 179, 1)">Optical Encoders</span>
+
+Let us begin with **optical encoders**.
+
+| ![[Pasted image 20251121132100.png]] | ![[Pasted image 20251121132109.png]] |
+| ------------------------------------ | ------------------------------------ |
+Optical encoders consist of a **glass disc** (for rotary encoders) or a **glass strip** (for linear encoders). On the surface of this disc or strip, a **pattern of opaque and transparent lines** is deposited. These lines play a fundamental role: they either allow an optical beam to pass through or they block it.
+
+To operate, this type of sensor requires at least **one LED** on one side of the disc or strip, and a **photodiode** on the opposite side. The LED emits a beam of light. Whenever the transparent regions of the disc align with the LED and the photodiode, the light reaches the photodiode. Whenever an opaque line is in the way, the light is blocked. Therefore, as the disc or strip moves, the photodiode outputs a sequence of light/no-light signals, which are converted into digital pulses.
+
+![[Pasted image 20251121132239.png]]
+In **incremental encoders**, the disc usually contains **one or several equally spaced tracks** of lines. The encoder only produces a series of pulses, and these pulses correspond to the displacement.  
+In contrast, in **absolute encoders**, the disc contains **multiple concentric tracks**, each representing a bit of a digital word. At any given position, all tracks together form a multi-bit code that corresponds to the absolute position of the sensor.
+
+Let us examine incremental encoders more closely.
+
+Incremental encoders generate a certain number of pulses as the disc or strip moves. These pulses can be used, for example, to measure the **speed of rotation** (in the case of rotary encoders) or the **linear displacement** (in the case of linear encoders).
+
+There are two typical types of output in incremental encoders:
+![[Pasted image 20251121132333.png]]
+
+1. **Single-channel output**  
+   In this case, the encoder provides only one square wave. The frequency of this wave depends on how fast the encoder is moving. However, with only one channel, it is impossible to determine the **direction** of the motion. You can measure how fast it is moving, but not whether it is moving forward or backward.
+
+![[Pasted image 20251121132402.png]]
+
+2. **Quadrature output**  
+   To also obtain directional information, two channels are used: **channel A** and **channel B**. These channels are shifted in phase by 90 degrees (in quadrature).  
+   This phase shift allows the system to determine the direction:  
+   - If A leads B, the encoder is rotating (or moving) in one direction, for example clockwise.  
+   - If B leads A, the encoder is rotating in the opposite direction, for example counterclockwise.
+
+This same principle applies to linear encoders, where the direction would correspond to motion toward the right or toward the left.
+![[Pasted image 20251121132455.png]]
+
+In addition to channels A and B, many incremental encoders also include a **marker** (often called the index or Z signal). This marker provides a pulse once per revolution (for rotary encoders) or at a specific reference position (for linear encoders).  This index pulse serves as a known **zero position**. Once this reference has been detected, the system can count all subsequent pulses to compute the exact position relative to that zero.
+
+![[Pasted image 20251121132742.png]]
+In an **absolute encoder**, unlike an incremental encoder, you do **not** need to count pulses to determine the current position. The reason is that the position is **directly encoded** by the pattern of bits defined on the disc (or strip).  
+Each angular position corresponds to a unique combination of bits, and this combination can be read at any moment.
+
+In the example shown, the encoder produces **four bits**. This means the disc has **four concentric tracks**, and therefore you need **four photodiodes**, one for each track. Each photodiode detects whether light has passed through its corresponding track.  
+So, for a given position:
+
+- If the light is blocked for a particular track, the corresponding bit is **0**.
+- If the light passes through and reaches the photodiode, the corresponding bit is **1**.
     
-![[Pasted image 20251120155947.png]]
-At **2 ms**, Switch 2 closes. Since Switch 1 is already closed, the two switches now form a continuous path, and C2 becomes connected to the circuit. This moment simulates the **presence of the target**, because the total capacitance increases.
+For instance, if the disc is in a specific angular position where the inner two tracks are opaque and the outer two tracks are transparent, the resulting code would be 0 0 1 1. This code uniquely identifies that angular position.
 
-Then, at **5 ms**, Switch 1 opens. This breaks the connection and disconnects capacitor C2, simulating the moment when the **target moves away**.
+The position information can be encoded using **binary code** or **Gray code**.
+![[Pasted image 20251121132756.png|200]]
 
-The results of the simulation match exactly what we expected:
+Let us compare them:
 
-- At the beginning, with no target present and only C1 in the circuit, the capacitance is too low for oscillation to occur — so we see **no oscillation**.
-- At **2 ms**, when C2 is added in parallel, the capacitance increases enough for the circuit to become underdamped, and we see a **stable oscillation** appear.
-- At **5 ms**, when C2 is disconnected, the capacitance drops again, the circuit becomes overdamped, and the oscillations **disappear**.
+1. **Binary code**  
+    In binary, the code for each position follows the standard binary numbering. For example:
     
+    - 0 = 000
+    - 1 = 001
+    - 2 = 010  
+        Here, when you go from position 1 (001) to position 2 (010), two bits change simultaneously.
+        
+2. **Gray code**  
+    Gray code also uses only 0s and 1s, but with an important constraint: **only one bit changes between two consecutive positions**.  
+    Using the same example:
+    
+    - 0 = 000 (same as binary)
+    - 1 = 001 (same as binary)
+    - 2 = 011 (different from binary 010)  
+        In this transition from 001 to 011, only a single bit changes.
+        
 
-You may notice a small spike at the switching moments. This spike is not a physical effect — it is simply an artifact of the simulator when a circuit parameter changes very abruptly. To reduce or eliminate these non-physical spikes, you can increase the number of simulation points. The simulation will take longer, but the waveform will look smoother and more realistic.
+The reason Gray code is preferred in many encoders is technological. When the disc rotates, the photodiodes might not detect all bit transitions at the exact same instant if several bits are changing at once. In binary code, a multi-bit transition could cause momentary “wrong” readings. Gray code avoids this because **only one bit transitions at a time**, reducing reading errors during movement.
+
+Additionally, from a manufacturing perspective, it is easier to design and mask the disc using Gray code, because the transitions between neighbouring positions require less stringent alignment precision.
+
+## <span style="color:rgb(239, 179, 1)">Magnetic Encoder</span>
+
+
+Another type of encoder that we can use is the **magnetic encoder**. Magnetic encoders are often preferred in environments where optical encoders might be affected by dust, dirt, or vibration, because they are more robust.
+![[Pasted image 20251121133109.png]]
+
+There are two main types of magnetic encoders. The first type is the **variable reluctance sensor**.  
+
+In a **variable reluctance sensor**:  
+- The rotating element is typically a **metallic gear** or a toothed wheel.  
+- The sensor detects changes in **magnetic reluctance** caused by the movement of the teeth. As the metallic teeth pass near the sensor, they alter the path of the magnetic flux.  
+- This change in magnetic flux induces a voltage in a coil, which generates a **digital pulse** for each tooth.  
+- By counting these pulses, the sensor can measure the **rotational speed** of the gear.  
+
+Variable reluctance sensors are generally **incremental**, meaning they produce pulses proportional to rotation, but they do not provide the absolute position of the gear. They are widely used in **automotive applications**, such as measuring the speed of crankshafts or wheels.
+
+### <span style="color:rgb(161, 40, 226)">Magnetic Reluctance</span>
+
+Before analyzing the working principle of the sensor itself, it is important to review the concept of **magnetic reluctance**.
+
+Magnetic reluctance in a magnetic circuit is analogous to **resistance in an electrical circuit**. In particular, we can write:
+$$\mathcal{R} = \frac{F}{\Phi}  $$
+
+Where:
+
+- $(\mathcal{R})$ is the magnetic reluctance,
+- (F) is the **magneto-motive force (MMF)**, and
+- $(\Phi)$ is the **magnetic flux**.
+    
+The **magneto-motive force** (F) is the line integral of the magnetic field intensity $(H)$, while the flux $(\Phi)$ is the area integral of the magnetic flux density $(B)$.
+
+### <span style="color:rgb(161, 40, 226)">Variable Reluctance Working Principle</span>
+
+![[Pasted image 20251121133609.png]]
+
+Now, imagine we have a **rotating ferrous gear** and a **permanent magnet** generating a constant MMF. As the gear rotates:
+
+
+![[Pasted image 20251121133701.png]]
+
+- When a tooth is in proximity (left) to the sensor, the magnetic flux lines concentrate in the tooth, producing a **high flux**.
+- When the sensor is between two teeth (right), the flux decreases because the path of least reluctance is interrupted.
+
+![[Pasted image 20251121133609.png]]
+Since the magneto-motive force (F) is constant, these variations in flux ($\Phi$) correspond to changes in **magnetic reluctance**.
+
+We can place a **coil** near this system to take advantage of **Faraday’s Law**. The law tells us that a time-varying flux ($\Phi$) through a coil induces a voltage (V) across the coil:
+$$V = -N \frac{d\Phi}{dt}$$
+
+Where (N) is the number of turns in the coil. Therefore, as the gear rotates, the induced voltage across the coil changes, and this voltage can be measured to determine the rotation speed or position of the gear.
+
+Instead of using a permanent magnet, we can also generate a **fixed magnetic field with the coil itself**:
+![[Pasted image 20251121134014.png|300]]
+
+- By providing a **DC current** to the coil, a magnetic field (B) is generated perpendicular to the coil section.
+- The rotating gear changes the **reluctance** of the magnetic path, altering the flux through the coil.
+- Again, these variations in flux induce a voltage that can be measured to monitor the rotation.
+
+In summary, **variable reluctance sensors detect changes in magnetic flux caused by a rotating ferrous element**, and by measuring the induced voltage in the coil, we can infer rotational motion.
+
+### <span style="color:rgb(161, 40, 226)">Magnetic Wheel Encoders</span>
+
+Another way to implement a **magnetic encoder** is to use a **magnetic wheel**.  
+
+![[Pasted image 20251121134248.png]]
+
+In this configuration, the wheel can carry a **single permanent magnet**, and we place **two Hall effect sensors** nearby to detect the magnetic field generated by the magnet.  
+
+If the two Hall sensors are placed with a **90-degree phase difference**, we obtain a **quadrature incremental encoder**. Why? Because:  
+- As the wheel rotates, each Hall sensor detects the magnetic field at slightly different times due to their phase shift.  
+- This phase difference allows us to determine **not only the number of rotations** (like a simple incremental encoder) but also the **direction of rotation**, just like with quadrature optical encoders.  
+
+![[Pasted image 20251121134321.png]]
+Another possibility is to use **many permanent magnets** arranged around the wheel.  
+
+- In this case, a single Hall sensor can be used to produce a **single-channel output**, which generates pulses as each magnet passes by the sensor.  
+- This setup works as a **standard incremental encoder** and allows measuring the **rotation speed** with high precision.  
+
+With a **single magnet**, you can measure the **average rotational speed** or the **frequency of rotation** over a full turn. With **multiple magnets**, you can measure the rotational speed more precisely, even for **subsections of a revolution**, which increases the temporal resolution of your measurement.  
+	
+In summary, magnetic encoders using Hall sensors are versatile and can provide either incremental information or directional speed information depending on the number of magnets and the sensor configuration.  
 
 ### <span style="color:rgb(161, 40, 226)">Applications</span>
 
-Now let’s look at some **applications of capacitive sensors**. As we discussed earlier, capacitive sensors can be used in different ways depending on what we want to measure.
+**How to use magnetic encoders:**
 
-One common use is **displacement measurement**. For example:
-![[Pasted image 20251120160631.png]]
+Magnetic encoders are particularly useful as **non-contact sensors**, which means they do not require mechanical contact to measure motion. This makes them **very reliable**, even in **harsh environments** where dust, dirt, or vibration could affect traditional sensors.
 
-- They can be used to precisely track the position of mechanical parts in machinery.  
-- They are also used in precision stages, where you need to know the exact relative position between a sensor and an object.  
+One common application is the **variable reluctance sensor**, which can measure the **rotation speed of gears or wheels**. For example:
 
-Capacitive sensors are also useful for measuring **dynamic motion**, especially vibrations. A vibration is basically a small and rapid displacement around a fixed central position, so capacitive sensors can capture these changes very accurately.
-
-Another important application is **proximity sensing**. In this case, the sensor doesn’t measure a continuous value but simply detects whether an object is near or not.
-
-Proximity sensing is especially useful in areas like **assembly testing** or for **detecting objects through barriers**.
-![[Pasted image 20251120160647.png]]
-
-For example, imagine you want to check whether a plastic bottle contains liquid (like water) or if it is empty:
-
-- If the bottle contains only air, the permittivity (ε) around the sensor stays very low. Since air barely affects capacitance, the sensor will not detect any nearby object.
-- But if the bottle contains water, the situation changes completely. Water has a very high dielectric constant, so it increases the capacitance significantly. As a result, the sensor detects the presence of a target.
-
-This is extremely useful because the sensor does this **even though the bottle wall is between the sensor and the liquid**. The bottle acts as a barrier, but capacitive sensing is still able to “see” what is inside because capacitive fields are influenced by the dielectric properties of the material, not by light or reflection.
-
-Later, when we look at optical proximity sensors, we’ll see the contrast:  
-- An optical sensor would always detect the bottle itself, whether it is full or empty, because it only sees the surface.  
-- But a capacitive proximity sensor can distinguish **full vs empty**, because it reacts differently to air and to liquid.
-
-This is why capacitive sensors are often chosen when the goal is not just to detect the presence of an object, but to identify what the object **contains** or what material it is made of.
-
-## <span style="color:rgb(239, 179, 1)">Inductive Sensors</span>
-
-### <span style="color:rgb(161, 40, 226)">Self-Inductance</span>
-![[Pasted image 20251120162045.png]]
-
-Inductive sensors, like capacitive sensors, can be used to measure:
-
-- **Linear displacement**
-- **Proximity**
+- **Motors:** Magnetic encoders can measure the rotational speed, which is useful for **ABS systems** in cars.
+- **High-precision positioning:** They can measure the rotation of gears with **high accuracy**, useful in robotics or industrial machines.
+- **Human-machine interfaces:** They can be used to detect precise rotations or positions in control knobs, joysticks, or other input devices.
     
-
-In this part we will focus on the **LVDT** (Linear Variable Differential Transformer), a very precise inductive sensor used for linear displacement.
-
-Before studying the LVDT, we need to review the physics of **inductance** and **electromagnetic induction**.
-
-***Faraday–Neumann–Lenz Law***
-
-![[Pasted image 20251120162231.png|350]]
-Whenever there is a **time-varying magnetic flux** linked to a coil, a voltage is induced:
-$$V = -N \frac{d\Phi_B}{dt}  $$
-where:
-
-- $(N)$ = number of turns in the coil
-- $(\Phi_B)$ = magnetic flux
-- The negative sign means the induced voltage opposes the change in flux (_Lenz’s law_)
-
-The **magnetic flux** is:
-$$\Phi_B = \vec{B} \cdot \vec{A} = BA\cos\alpha$$
-If the magnetic field (B) is **normal to the coil area**, then:
-$$\alpha = 0,\ \cos 0 = 1 \Rightarrow \Phi_B = BA$$
-
-***Magnetic Field of a Solenoid***
-
-A solenoid carrying current *(I)* generates a magnetic field:
-$$B = \mu_0 \mu_r \frac{NI}{L}  $$
-where:
-
-- ($\mu_0$) = vacuum permeability
-- ($\mu_r$) = relative permeability of the core
-- ($N$) = number of turns
-- ($L$) = length of the solenoid
-- ($I$) = current
-
-***Combining Both Equations: Self-Induction***
-
-If the current ($I(t)$) varies in time (i.e., it is an AC current), then:
-
-- the magnetic field ($B(t)$) varies,
-- the magnetic flux ($\Phi_B(t)$) varies,
-- and the coil **induces a voltage in itself** (self-induced voltage):
-    
-$$V = -L \frac{dI}{dt}$$
-
-The constant (L) is the **self-inductance**, given by:
-$$L = \frac{\mu_0 \mu_r N^2 A}{L}$$
-So inductance:
-
-- increases with the **square** of the number of turns ($N^2$)
-- increases with the **area** of the coil
-- increases with the **permeability** of the core
-- decreases with the coil length
-
-***Why this matters for inductive sensors***
-
-This physics is essential because inductive sensors operate by detecting:
-
-- changes in magnetic fields
-- changes in inductance
-- changes in the coupling between coils
-    
-Examples:
-
-- In an **LVDT**, the displacement of a movable core changes the coupling between primary and secondary coils, producing a measurable change in voltage.
-- In **proximity inductive sensors**, the presence of metal changes the inductance of the coil.
-    
-### <span style="color:rgb(161, 40, 226)">Mutual Inductance Between Two Coils</span>
-
-Up to this point we have dealt with the concept of self-inductance, where a varying current flowing through a coil generates a magnetic field that changes in time, and this changing magnetic field induces a voltage in the same coil.  
-The same physical principles apply when we consider two separate coils placed near each other.
-#### <span style="color:rgb(2, 141, 192)">Magnetic Coupling Between Two Coils</span>
-
-Consider two coils, Coil 1 and Coil 2. Coil 1 is supplied with an alternating current ( $I_1(t)$ ). Because the current varies in time, Coil 1 generates a magnetic field ( $B_1(t)$ ).  A portion of this magnetic field reaches and links with Coil 2.
-![[Pasted image 20251120205303.png]]
-How much of the magnetic field produced by Coil 1 actually links Coil 2 depends on the distance between the coils, their orientation, their geometry, and the medium in which they are placed. To quantify this, we introduce the coupling coefficient ($k$).
-
-The coupling coefficient is defined such that:
-$$0 \le k \le 1 .$$
-A value of ($k = 0$) means that no magnetic field from Coil 1 reaches Coil 2. This happens when the coils are very far apart or misaligned.  A value of ($k = 1$) corresponds to perfect magnetic coupling. In this case the entire magnetic field produced by Coil 1 links Coil 2.
-
-The magnetic field from Coil 1 is given by:
-$$B_1 = \mu_0 \mu_r \frac{N_1 I_1}{L_1}$$
-
-where ( $\mu_0$ ) and ( $\mu_r$ ) are the permeability of free space and of the medium, ( $N_1$ ) is the number of turns of Coil 1, and ( $L_1$ ) is the length of the solenoid. The magnetic field effectively “seen” by Coil 2 is therefore:
-$$B_2 = k B_1$$
-#### <span style="color:rgb(2, 141, 192)">Voltage Induced in Coil 2</span>
-
-Since Coil 1 carries an alternating current ( $I_1(t)$ ), the magnetic field ( $B_1(t)$ ) is time-varying, and therefore the portion of the field that reaches Coil 2, ( $B_2(t)$ ), is also time-varying.  A time-varying magnetic field linked to Coil 2 induces a voltage across it, according to the Faraday–Neumann–Lenz law:
-$$V_2 = -N_2 A_2 \frac{dB_2}{dt}$$
-where ($N_2$) is the number of turns of Coil 2 and ($A_2$) is its cross-sectional area.
-
-Substituting the expression for ( $B_2$ ), we obtain:
-$$V_2 = -N_2 A_2 \frac{dB_2}{dt}\left(k \mu_0 \mu_r \frac{N_1 I_1}{L_1}\right).$$
-All the parameters except the current ( $I_1$) are constant, so the derivative only acts on the current. This yields:
-$$V_2 = -k \mu_0 \mu_r \frac{N_1 N_2 A_2}{L_1} \frac{dI_1}{dt}.  $$
-This expression shows that the induced voltage in Coil 2 is proportional to the rate of change of the current flowing in Coil 1 and to a set of geometric and physical constants of the system.
-#### <span style="color:rgb(2, 141, 192)">Definition of Mutual Inductance</span>
-
-Since all the geometric and material-dependent terms in the previous expression are constant, it is convenient to group them into a single parameter called the mutual inductance, denoted by $(M)$.  
-The induced voltage can then be written in a compact and standard form:
-$$V_2 = -M \frac{dI_1}{dt}$$
-
-The mutual inductance can be expressed in terms of the coupling coefficient and the self-inductances of the two coils:
-
-$$M = k \sqrt{L_1 L_2}$$
-
-In this expression, ($L_1$) and ($L_2$) are the self-inductances of Coil 1 and Coil 2, respectively, and ($k$) expresses how effectively the magnetic fields are coupled between the two coils.
-
-#### <span style="color:rgb(2, 141, 192)">Interpretation</span>
-![[Pasted image 20251120205918.png]]
-If the coupling coefficient is zero, then ($M = 0$), and no voltage is induced in Coil 2. This corresponds to the case where the coils do not interact magnetically.  
-If the coupling coefficient is one, the magnetic coupling is perfect, and the mutual inductance attains its maximum possible value. In practical situations, the value of ($M$) increases when the coils are closer, better aligned, have more turns, have larger areas, or are placed in a medium with higher permeability.
-
-This mutual inductance phenomenon forms the physical basis for devices such as transformers, inductive displacement sensors, and specifically the LVDT (Linear Variable Differential Transformer), which measures displacement through variations in magnetic coupling.
-
-### <span style="color:rgb(161, 40, 226)">Linear Variable Differential Transformer</span>
-
-Having introduced the concept of mutual inductance, we can now see how its variation can be exploited to measure displacement. The device that uses this principle is called the **Linear Variable Differential Transformer**, commonly abbreviated as **LVDT**. Sometimes it is also referred to as a *transducer*, sometimes as a *transformer*, but the operating principle is the same.
-
-The LVDT is a sensor designed to measure **linear displacement** by making use of the fact that the **coupling coefficient** between coils can be altered by moving a ferromagnetic core. Since the coupling coefficient directly affects the mutual inductance, and therefore the induced voltage in the secondary coils, the position of the core can be detected by analyzing these induced voltages.
-#### <span style="color:rgb(2, 141, 192)">Structure of the LVDT</span>
-
-The LVDT consists of three coils wound on a cylindrical structure:
-![[Pasted image 20251120210829.png]]
-1. **A primary coil**, located at the center.
-2. **Two secondary coils**, symmetrically placed on either side of the primary.
-
-The primary coil is excited by an alternating current. This AC excitation creates a time-varying magnetic field, which can link with the two secondary coils. However, the amount of magnetic field that links each secondary coil depends on the presence and the position of a **ferromagnetic core** that can slide along the axis of the coils.
-
-This movable core is mechanically connected to the object whose displacement we want to measure. Usually, a rigid rod transmits the movement of the object to the core so that the core moves exactly as the object moves.
-
-The core is made of a high-permeability material. Its function is to channel and concentrate the magnetic field. For this reason, the position of the core strongly influences how much magnetic flux reaches the first or the second secondary coil.
-
-#### <span style="color:rgb(2, 141, 192)">Operation of the LVDT</span>
-
-When the core is exactly centered with respect to the primary coil, the magnetic field produced by the primary is equally distributed toward the two secondary coils. As a consequence, the induced voltages in the two secondaries (often denoted as $(V_1)$ and $(V_2)$ have equal magnitude. In this condition, the LVDT is said to be at its *null position*, where $(V_1 = V_2)$.
-
-If the core is displaced toward the left, the magnetic coupling between the primary and the left secondary coil increases, because the core channels more magnetic flux toward that side. As a result, the induced voltage $(V_1)$ becomes larger than $(V_2)$. The opposite occurs if the core moves toward the right; then the coupling is stronger with the right secondary coil, and so the induced voltage $(V_2)$ becomes larger than $(V_1)$.
-
-This means that:
-
-- the **difference** between the two induced voltages indicates the magnitude of the displacement;
-- the **sign** of the difference (i.e., which voltage is greater) indicates the direction of the displacement.
-
-Because the LVDT operates with alternating current, the induced secondary voltages are AC signals as well. The position is determined by comparing their amplitudes, not by comparing their instantaneous values.
-#### <span style="color:rgb(2, 141, 192)">Summary of the Sensing Mechanism</span>
-
-To summarize the operating principle:
-
-![[Pasted image 20251120210648.png]]
-1. The primary coil is excited by an alternating current, producing a time-varying magnetic field.
-2. A ferromagnetic core shapes the distribution of this magnetic field.
-3. Two secondary coils receive different amounts of magnetic flux depending on the core’s position.
-4. The resulting induced voltages in the two secondaries are compared:
-   - equal voltages mean the core is centered,
-   - higher voltage in the first secondary means the core is displaced toward it,
-   - higher voltage in the second secondary means the core is displaced toward the opposite direction.
-5. The relationship between displacement and voltage difference is linear over a certain range, which makes the LVDT an accurate and highly reliable displacement sensor.
-
-Here is a **clearer, more textually explained** version of your content, still in **English**, without emojis, and keeping the technical meaning intact. I rewrote it so it reads smoothly, logically, and with stronger explanations.
-
-### <span style="color:rgb(161, 40, 226)">How to measure the imbalance?</span>
-
-![[Pasted image 20251120211629.png]]
-To measure the imbalance between the two voltages $( \Delta V_1)$ and $( \Delta V_2 )$, we need a specific circuit configuration. This is necessary because these voltages are **not constant**: each is an **AC signal**, typically a sinusoid. What we want is **not** the instantaneous value of each sinusoid, but rather **their amplitude**, since the amplitude is what depends on the position of the ferromagnetic core.
-
-The general structure is the following:
-
-- The primary coil is driven by an oscillator.
-- Two secondary coils generate $( \Delta V_1)$ and $( \Delta V_2)$.
-- Each of these secondary voltages is then processed to extract only its **peak value**, using a circuit known as a **peak stretcher**.
-
-#### <span style="color:rgb(2, 141, 192)">Understanding the Peak Stretcher</span>
-
-Let us focus on only one secondary coil, since both sides work identically.
-
-Assume the secondary coil generates a sinusoidal voltage whose amplitude changes with the displacement of the ferromagnetic core. To capture the amplitude, we use a circuit consisting of:
-
-- A diode
-- A capacitor
-- A resistor (which we add later to improve performance)
-
-***Circuit With Only a Diode and Capacitor***
-
-![[Pasted image 20251120214102.png]]
-Imagine the sinusoidal input voltage $(\Delta V_1)$ is applied through a diode to a capacitor.
-
-- When the sinusoid increases (positive peak), the diode becomes forward-biased, and the capacitor charges up.
-- Due to the diode’s threshold voltage (typically around 0.7 V for standard diodes, or 0.2–0.3 V for Schottky diodes), the capacitor voltage will be slightly lower than the peak of the sinusoid.
-- Once the sinusoid starts to decrease, the diode becomes reverse-biased.  
-  At this point the capacitor **cannot discharge** because the diode blocks current in that direction.
-
-As a result, the output voltage remains **constant**, equal to the peak reached previously. This gives us a voltage that represents the amplitude of the sinusoid.
-
-However, this represents a problem:  
-If the amplitude of the sinusoid later **decreases**, the capacitor voltage **cannot follow** this decrease because it has no path to discharge. Therefore, the circuit cannot track a decreasing envelope.
-
-***Adding a Resistor to Track Decreasing Amplitude***
-
-To solve this, we add a resistor in parallel with the capacitor.
-![[Pasted image 20251120214133.png]]
-Now:
-
-- The diode charges the capacitor during each positive peak of the sinusoid.
-- When the sinusoid decreases and the diode turns off, the capacitor can slowly discharge through the resistor.
-- The resistor value is chosen to make this discharge **slow**, so that the output still tracks the general envelope, but does not fall to zero between every cycle.
-
-This way, the output voltage always closely follows the amplitude of the sinusoid, even when that amplitude decreases.
-
-Thus, the output voltage represents the **true envelope** of the sinusoidal signal.
-
-#### <span style="color:rgb(2, 141, 192)">Applying This to the Differential Measurement</span>
-
-![[Pasted image 20251120214159.png]]
-
-The same peak-stretcher circuit is applied to each secondary coil:
-
-- At node ($V_+$), we obtain a voltage proportional to the amplitude of ($\Delta V_1$).
-- At node ($V_-$), we obtain a voltage proportional to the amplitude of ($\Delta V_2$).
-
-The final output is the difference:
-$$V_{\text{out}} = V_+ - V_-$$
-This provides the following behavior:
-
-- If the ferromagnetic core moves upward, the coupling to the first secondary increases.  
-  Therefore, ( $\Delta V_1 > \Delta V_2$ ), so $( V_{\text{out}} > 0)$.
-- If the core moves downward, then ($\Delta V_2 > \Delta V_1)$, and thus $(V_{\text{out}} < 0)$.
-- If the core is exactly centered, the amplitudes are identical, so the output is exactly zero.
-
-#### <span style="color:rgb(2, 141, 192)">Result</span>
-
-With this arrangement, we obtain a circuit where:
-
-- The output is **zero** when there is **no displacement**,
-- **Positive** for displacement in one direction,
-- **Negative** for displacement in the opposite direction.
-
-This allows the system to detect both the **direction** and **magnitude** of the displacement in a continuous and highly sensitive way.
- 
-
-Here is a **more textually explained**, clean, structured version of your content in **English**, without emojis, and keeping all the technical meaning intact. I made it clearer, more formal, and easier to read while preserving your message.
-
-### <span style="color:rgb(161, 40, 226)">Inductive Proximity Sensors</span>
-
-Now we move to a different type of inductive sensor, this time used specifically for **proximity detection**.  Although these sensors share some conceptual similarities with capacitive proximity sensors, their **output behavior is essentially the opposite**.
-#### <span style="color:rgb(2, 141, 192)">Opposite Behavior Compared to Capacitive Proximity Sensors</span>
-
-- In capacitive proximity sensors, the presence of a target generally **increases** the effective capacitance, changing the oscillation conditions in one direction.
-- In inductive proximity sensors, the effect is reversed:  
-  - When **no target** is present, the sensor’s internal circuit **oscillates normally**.  
-  - When a **metallic target** approaches the sensor, these oscillations **stop or are significantly attenuated**.  
-  - When the target is removed, the oscillations **resume**.
-
-Thus, the detection mechanism is based on whether the oscillation produced by the sensor is maintained or suppressed.
-#### <span style="color:rgb(2, 141, 192)">Physical Principle</span>
-
-In this type of sensor, we replace the capacitive element with an **inductor**, typically implemented as a coil.
-
-![[Pasted image 20251120220753.png|100]]
-
-1. **Generation of Magnetic Field**  
-   When current flows through the coil, it creates a magnetic field $(B)$.  
-   In this case, we supply an **alternating current**, so the magnetic field varies over time.
-
-2. **Interaction With Nearby Materials**  
-   This time-varying magnetic field can interact with conductive or ferromagnetic materials placed in front of the sensor.  
-   Such a material is called the **target**.
-
-3. **Effect of the Target**  
-   Metallic targets, in particular, affect the magnetic field in two major ways:
-   - They induce **eddy currents** inside the metal due to the alternating magnetic field.
-   - These eddy currents generate their **own magnetic field**, which opposes the original field.
-
-The result is that the presence of the metal modifies the impedance of the coil.  
-When this modification becomes significant enough, it **prevents the sustaining of oscillations** in the oscillator circuit connected to the coil.
-
-#### <span style="color:rgb(2, 141, 192)">Sensor Output</span>
-
-![[Pasted image 20251120220820.png|400]]
-
-The sensor’s electronics monitor whether the oscillator is running or not.
-
-- **Oscillation present** → **No target detected**  
-- **Oscillation suppressed** → **Target detected**
-
-This binary change is then processed and used as the output signal of the inductive proximity sensor.
- 
-Here is a clearer, more textually explained version of your paragraph. I kept all the physics intact but made it smoother, more structured, and easier to read. No emojis.
-
-#### <span style="color:rgb(2, 141, 192)">Detailed Explanation of the Working Principle</span>
-![[Pasted image 20251120221046.png]]
-
-Let us go deeper into how an inductive proximity sensor actually works.  
-As previously described, the sensor contains an **inductor**, usually implemented as a coil. This coil generates a **time-varying magnetic field**, represented here by the red arrows.
-
-Now imagine that a **metallic target** approaches the region where this magnetic field exists. When the metal enters the influence of the alternating magnetic field, a specific electromagnetic phenomenon takes place.
-##### <span style="color:rgb(71, 215, 140)">Eddy Current Formation</span>
-
-![[Pasted image 20251120221108.png]]
-If the magnetic field through the metal is **increasing** (due to the AC excitation of the coil), Faraday’s law tells us that a changing magnetic flux induces currents in conductive materials.  Inside the metal, these induced currents take the form of **closed circular paths**, known as **eddy currents**.
-
-These eddy currents always act in such a way that they **oppose the change** in the magnetic field that created them. This follows from **Lenz’s law**:
-
-- If the external magnetic field is increasing upward,  
-- the eddy currents will generate their own magnetic field **in the opposite direction**, attempting to counteract that increase.
-
-So the eddy currents create an opposing magnetic flux that tries to resist the variation imposed by the coil
-
-##### <span style="color:rgb(71, 215, 140)">Energy Dissipation and Effect on the Oscillator</span>
-
-These eddy currents are not stable or lossless. They circulate inside the metal and **dissipate energy as heat** due to the electrical resistance of the target material. Because of this dissipation:
-
-- The eddy currents continuously absorb energy from the coil’s alternating magnetic field.
-- This means that energy is effectively taken away from the **oscillator circuit** that drives the coil.
-
-If the target is close enough, the energy lost through eddy current dissipation becomes so significant that:
-
-- the oscillator can no longer maintain its oscillation,
-- its amplitude collapses,
-- and the oscillation **stops**.
-
-This transition—from a sustained oscillation to no oscillation—is precisely the mechanism that the sensor uses to detect the presence of the metallic target.
-#### <span style="color:rgb(2, 141, 192)">Detailed Explanation of the Oscillator Circuit Used in Inductive Proximity Sensors</span>
-
-To understand how an inductive proximity sensor detects a metallic object, we first look at the **oscillator circuit** that drives the sensing inductor.  
-This circuit is typically built around an **RLC network** and an operational amplifier.
-
- ***Structure of the RLC Oscillator***
-
-![[Pasted image 20251120221846.png|240]]
-The core of the circuit is an **RLC parallel oscillator**, composed of:
-- **L:** the inductor that generates the magnetic field used for sensing.
-- **C:** the capacitor of the oscillator.
-- **R:** the intrinsic resistance of the RLC network (representing losses).
-    
-
-In addition to these elements, there is a second resistance, called **Rp**, which is _not_ a physical resistor soldered in the circuit. Instead:
-
-- **Rp models the energy dissipated by eddy currents** when a metallic target comes close.
-- In other words, Rp represents the **additional losses** introduced by the presence of the target.
-    
-When no target is present, Rp is effectively infinite.  
-When a metal object approaches, Rp becomes finite and reduces the total effective resistance.
-
-##### <span style="color:rgb(71, 215, 140)">Why the Oscillator Needs Energy Compensation</span>
-
-Both the coil's resistance and Rp (when a target is present) dissipate energy. If the circuit relied only on the passive RLC network, it would eventually stop oscillating: all the stored energy in L and C would be lost through R and Rp.
-
-To prevent that, the circuit uses an **operational amplifier** configured to:
-![[Pasted image 20251120221934.png|200]]
-- Continuously feed energy back into the RLC network.
-- Maintain stable oscillation when no target is present.
-    
-The op-amp is connected in a **negative feedback configuration**, but the inductive coupling between the coils introduces an **additional positive feedback path**.
-
-##### <span style="color:rgb(71, 215, 140)">Origin of the Positive Feedback</span>
-
-Besides the standard negative feedback, the circuit also includes **mutual inductance** between two inductors. These inductors are marked with the two dots indicating the polarity of the mutual coupling.
-
-The mechanism is as follows:
-![[Pasted image 20251120222025.png|300]]
-1. Suppose the output voltage decreases.
-2. Because the reference ground is fixed, a decrease at the output means the voltage across the primary inductor increases.
-3. This changing voltage in the primary induces a voltage in the secondary.
-4. Due to the orientation of the polarity dots, the induced voltage at the secondary **increases the voltage fed into the negative input of the op-amp**.
-5. Increasing the voltage at the negative input further decreases the output.
-    
-
-This forms a **positive feedback loop**: A small decrease at the output causes an even larger decrease, reinforcing the change.
-##### <span style="color:rgb(71, 215, 140)">What Determines the Strength of the Positive Feedback</span>
-
-The overall loop gain depends on two factors:
-
-***(a) The coupling coefficient k***
-
-This is the ratio between the induced voltage and the primary voltage:
-$$k = \frac{V_2}{V_1} $$
-The closer the coils are magnetically coupled, the larger k becomes.
-
-***(b) The gain of the op-amp in the inverting configuration***
-
-At the operating frequency, the RLC impedance is dominated by its resistive part.  
-Thus the gain is approximately:
-$$g = -\frac{R_{feedback}}{R_1}  $$
-
-But since the feedback impedance at resonance becomes purely resistive:
-
-- With no target: ($R_{feedback} = R_L$)
-- With a target present: ($R_{feedback} = R_L \parallel R_P$), which is smaller
-
-Thus, the gain decreases when a target is present.
-
-##### <span style="color:rgb(71, 215, 140)">Barkhausen Criterion and Oscillation Condition</span>
-
-According to the **Barkhausen criterion**, an oscillator will sustain oscillation only if the loop gain is:
-$$g \cdot k > 1$$
-
-This forms the basis of detection:
-
-***Without a target***
-
-- $(R_P \to \infty)$    
-- The total feedback resistance is high.
-- The gain g is high.
-- So $(g \cdot k > 1)$
-- **The circuit oscillates normally.**
-
-***With a metallic target***
-
-- Rp becomes finite.
-- The effective resistance becomes $(R_L \parallel R_P)$, reducing the feedback gain.
-- Thus g decreases.
-- Eventually ($g \cdot k < 1$)
-- **The oscillation stops.**
-
-The electronics simply monitor whether the oscillator is active or not.  The presence of the target is detected when oscillation collapses.
-#### <span style="color:rgb(2, 141, 192)">Explanation of the Simulation Results</span>
-
-In the simulation we reproduced the same circuit that was previously analyzed theoretically. The structure includes:
-
-![[Pasted image 20251120222904.png|300]]
-- A **primary coil**, driven by the op-amp and responsible for generating the oscillation;
-- A **secondary coil**, magnetically coupled to the primary through a coupling coefficient (k = 0.7 in your setup);
-- The **capacitor and resistor** forming the RLC network of the oscillator;
-- A resistor **R3**, which corresponds to the previously defined ($R_P$), modeling the *energy dissipation caused by a metallic target*;
-- Two switches used to connect and disconnect R3 during a specific time interval, simulating the appearance and disappearance of a target.
-##### <span style="color:rgb(71, 215, 140)">Behavior of the Oscillator Without a Target</span>  
-
-![[Pasted image 20251120222959.png]]
-(From the start until 20 ms) At the beginning of the simulation, the oscillator needs a short **startup time**. During this interval, the op-amp reinjects energy into the RLC tank until the oscillation reaches a steady amplitude.
-
-Once the transient is over, the oscillator behaves as expected:
-
-- ($R_P$) is not connected (the simulated target is absent).
-- The total resistive loss is low, and therefore:
-$$g \cdot k > 1$$
-- The oscillator sustains a stable, continuous sinusoidal output.
-
-This corresponds to the normal operating condition of an inductive proximity sensor when no target is nearby.
-
-***Insertion of the Target (Between 20 ms and 35 ms)***
-
-At **20 ms**, the switch connects R3 (the simulated ($R_P$) into the circuit. This mimics the physical effect of a metallic target entering the sensing zone:
-
-1. The target introduces eddy-current losses.
-2. These are modeled by the resistance R3 placed in parallel with the oscillator.
-3. Parallel combination: ($R_L \parallel R_P$) reduces the effective resistance of the RLC branch.
-4. The gain of the feedback loop drops accordingly.
-
-Because of this, the loop-gain condition becomes:
-$$g \cdot k < 1$$
-Once this inequality is satisfied, the oscillator **cannot maintain oscillation**, and the sinusoidal output collapses.
-
-This is exactly what the simulation shows: between 20 ms and 35 ms no oscillation is present. The amplitude falls rapidly to zero because the RLC tank loses energy faster than the op-amp can replenish it.
-
-***Removal of the Target (After 35 ms)***
-
-At **35 ms** the switch disconnects R3, simulating that the target moves away.
-
-At that instant:
-
-- The effective resistance of the oscillator returns to its original higher value.
-- The gain increases again, making:
-$$g \cdot k > 1$$
-Therefore, the circuit is again capable of sustaining oscillation.
-
-However, the output does not immediately jump to the steady sinusoid.  Instead, you correctly observed a **restart transient**:
-
-- Energy must be gradually built up in the inductor and capacitor.
-- Because the oscillator is driven by feedback, the oscillation amplitude increases progressively.
-- After a certain time, the steady oscillation is restored.
-
-This behavior is exactly what happens physically in real inductive proximity sensors: even in real circuits, the oscillations collapse in the presence of a target and require some time to rebuild once the target leaves.
-
-#### <span style="color:rgb(2, 141, 192)">Circuit with better restart time</span>
-
-You want the oscillator to **restart faster** after a metallic target leaves the sensing zone. To do that, the circuit briefly increases the loop gain when the detector indicates the oscillation has collapsed, so the tank (L and C) builds up energy quickly and the oscillator comes back to steady operation.
-
-##### <span style="color:rgb(71, 215, 140)">Basic blocks in the improved circuit</span>
-
-![[Pasted image 20251120223932.png]]
-1. **RLC oscillator** (the sensing coil L, tank capacitor C, and the loss resistance RL).
-2. **Peak detector / rectifier** that converts the oscillator’s AC amplitude into a DC envelope voltage.
-3. **Two comparators** with two thresholds (Vref1 and Vref2) to detect “oscillation present” and “oscillation absent” with hysteresis.
-4. **A controllable switch** in the feedback path (the switch changes the input resistance seen by the amplifier). Closing the switch temporarily changes the feedback network to give higher loop gain.
-5. **A control feedback loop** that closes the switch when the envelope is below the lower threshold and opens it when the envelope recovers above the higher threshold.
-    
-##### <span style="color:rgb(71, 215, 140)">How it operates step by step</span>
-![[Pasted image 20251120224435.png]]
-1. **Normal condition — no target present**
-    - The oscillator runs at its steady amplitude.
-    - The rectifier output (the envelope) is high.        
-    - The comparators see the envelope above Vref1 so the switch is **open**.
-    - Loop gain is the normal value:  
-        $|g| \approx \frac{R_L}{R_1}$
-        and $(k\cdot|g| \gtrsim 1)$ so the oscillator sustains.
-        
-2. **Target arrives**
-    - The target introduces losses (modeled by ($R_P$)), so the effective feedback resistance becomes ($R_L \parallel R_P$).
-    - Loop gain falls:  $$ 
-        |g| \approx \frac{R_L \parallel R_P}{R_1}  
-        $$
-    - The envelope drops and eventually falls below the lower comparator threshold Vref2.
-    - The comparator output goes high (logic “1”) and **closes the switch**. This is the control signal that enables the fast-restart path.
-
-![[Pasted image 20251120224820.png]]
-1. **Switch closed — temporary high-gain mode**
-    - Closing the switch places an additional resistance (R) in parallel with ($R_1$) (so the input resistance becomes ($R_1 \parallel R$).
-    - The effective gain becomes:  
-        $$|g| \approx \frac{R_L \parallel R_P}{R_1 \parallel R},  $$
-        which is **larger** than before if (R) is chosen appropriately.
-    - Because the denominator is reduced, the loop gain jumps well above 1 and the oscillator **restarts quickly** — the tank charges faster and the AC amplitude rises fast.
-
-2. **Return to steady mode**
-    - As the oscillator amplitude rises, the rectifier output rises.
-    - When the envelope exceeds the upper threshold Vref1, the comparator output goes low and **opens the switch**.
-    - The circuit returns to the original feedback network and settles to a normal, stable oscillation (with (k\cdot|g|) close to 1).
-        
-##### <span style="color:rgb(71, 215, 140)">Why two thresholds (hysteresis) are important</span>
-The two thresholds (Vref2 < Vref1) create hysteresis:
-- They prevent chatter: once the switch closes at the low threshold, the envelope must rise above the higher threshold before the switch reopens.
-- This prevents the switch from rapidly toggling if the envelope hovers near a single threshold.
-
-### <span style="color:rgb(161, 40, 226)">Applications</span>
-
-Now that we have examined the inductive proximity sensor and its operating principle, we can briefly review some typical applications of inductive sensing.
-
-![[Pasted image 20251120224959.png|300]]
-
-First, inductive sensors are used in LVDTs, or Linear Variable Differential Transducers. These devices can achieve resolutions down to approximately one millimeter, making them useful in many industrial, military, or aerospace contexts. For example, the illustration here shows an LVDT integrated into an aircraft system to monitor the displacement of wing flaps.
-
-![[Pasted image 20251120225018.png|300]]
-Inductive sensors are also commonly employed as proximity detectors. Their ability to detect metallic objects without physical contact makes them suitable for safety and warning systems, for parking assistance, and for presence monitoring in automated production lines. In the example shown, the proximity sensor is used to confirm the position of a machine component as it moves along the line.
-
-With this, we have completed our discussion of potentiometers, capacitive sensors, and inductive sensors. In the next class, we will move on to acoustic and optical sensing technologies, particularly those used for distance and proximity measurement. We will also introduce magnetic sensors and their role in encoder systems.
-
-See you next time.
-
-
+In general, magnetic encoders provide **robust, precise, and reliable measurements** for both rotational and linear applications, complementing optical or other displacement sensors depending on the environment and required resolution.

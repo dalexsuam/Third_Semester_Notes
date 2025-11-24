@@ -1,986 +1,1147 @@
-30/10/2025
+
+6/11/2025
 ***
+# <span style="color:rgb(223, 109, 109)">Displacement, Proximity and Distance Sensors (Part 1)</span>
 
-# <span style="color:rgb(223, 109, 109)">Strain and Force Sensors</span>
+Hello everybody!  Today’s topic is **displacement, proximity, and distance sensors**.
+In this lecture, we will focus on **resistive sensors** (potentiometers), as well as **capacitive** and **inductive** sensors. In the next class, we will move on to **acoustic**, **optical**, and **magnetic** sensors.
 
-Hello everybody!  Today’s topic is **strain and force sensors**.
+## <span style="color:rgb(239, 179, 1)">Introduction to the Three Quantities</span>
 
-In particular, we will study two main types: **strain gauges** and **piezoelectric force sensors**.Let’s begin with **strain gauges**, which are resistive sensors used to measure strain.  They can be spelled either _strain gauges_ or _strain gages_—both forms are correct. Before going into the details, let’s quickly review some basic concepts from mechanics.
+Before analyzing the sensors, let’s clarify the three physical quantities we are interested in:
 
----
-# <span style="color:rgb(223, 109, 109)">Strain Gauges</span>
+### <span style="color:rgb(161, 40, 226)">• Displacement (linear or angular)</span>
 
-![[Pasted image 20251118104533.png|400]]
+**Linear displacement** is the straight-line change in position of an object from its initial point to its final point.  
+It can be measured using:
 
-## <span style="color:rgb(239, 179, 1)">Basic Principles - Mechanics</span>
-### <span style="color:rgb(161, 40, 226)">Stress</span>
+- Potentiometers
+- Capacitive sensors
+- Inductive sensors
+- Optical or magnetic encoders
+    
+**Angular displacement** is the angle through which an object rotates around a fixed axis.  
+It can be measured using:
 
-![[Pasted image 20251118104559.png]]
-Stress is defined as the ratio between the force applied to a material and its cross-sectional area.  If the cross-section is ($W \times H$), then:
-$$\sigma = \frac{F}{WH}, \space [Pa=N/m^2]  
-$$
-Stress is measured in **Pascals (Pa)**.
+- Potentiometers
+- Rotary encoders
+    
+### <span style="color:rgb(161, 40, 226)">• Proximity</span>
 
-### <span style="color:rgb(161, 40, 226)">Strain</span>
+A proximity sensor detects whether an object is **present or absent** within a specified range.  
+This means proximity sensing is **binary**:
 
-![[Pasted image 20251118104912.png]]
-Strain represents the **normalized elongation** of a material.  If a material of length $(L)$ is stretched by a force in the direction of its length, it will elongate by $(\Delta L)$.
-$$\varepsilon = \frac{\Delta L}{L}  $$
-Strain is dimensionless, but because the values are usually very small, it is often expressed in **microstrain** $(\mu\varepsilon = 10^{-6})$.
+- Output = 1 → an object is within the detection range
+- Output = 0 → no object is detected
+    
+Proximity sensing can be implemented using:
 
-### <span style="color:rgb(161, 40, 226)">Young’s Modulus</span>
+- Capacitive sensors
+- Inductive sensors
+- Acoustic (ultrasonic) sensors
+- Optical sensors
 
-The relationship between stress and strain is given by **Young’s modulus**, defined as:
-$$
-E = \frac{\sigma}{\varepsilon}  
-$$
-Young’s modulus is also measured in **Pascals**.
+### <span style="color:rgb(161, 40, 226)">• Distance</span>
 
-### <span style="color:rgb(161, 40, 226)">Necking</span>
+Distance is the **absolute separation** between the sensor and the target object.  
+Unlike proximity, it is not binary. It provides a **continuous measurement**.
 
-![[Pasted image 20251118105030.png]]
-When a material is subjected to tension, it elongates in the direction of the applied force, but it becomes thinner in the perpendicular directions.  
-This thinning effect is known as **necking**.
+Distance can be measured using:
 
-### <span style="color:rgb(161, 40, 226)">Poisson’s Ratio</span>
+- Acoustic (ultrasonic) sensors
+- Optical sensors (e.g., time-of-flight, laser triangulation)
 
-Poisson’s ratio quantifies this phenomenon (Necking). It is defined as the (negative) ratio between the relative change in width or height and the relative change in length:
-
-$$  
-\nu = -\frac{\Delta W/W}{\Delta L/L} = -\frac{\Delta H/H}{\Delta L/L}  
-$$
-The negative sign ensures that Poisson’s ratio is positive, since elongation ($\Delta L>0$) is accompanied by a reduction in width or height ($\Delta W<0$).
-
-
-## <span style="color:rgb(239, 179, 1)">Stress- Strain Curve</span>
-
-![[Pasted image 20251118122827.png]]
-
-Normally, for most materials we can distinguish two regions in the stress–strain curve. This curve shows how much stress must be applied to produce a given strain. As you can see, the curve is divided into two main regions: the **elastic region** and the **plastic region**.
-
-In the **elastic region**, the relationship between stress and strain is linear. This means that the Young’s modulus remains constant, since it corresponds to the slope of this linear portion of the curve.
-
-In the **plastic region**, the relationship is no longer linear. Instead, the curve starts to saturate until it reaches the **failure point**, which is the moment when the material breaks.
-
-## <span style="color:rgb(239, 179, 1)">Strain Gauge - Working Principle</span>
-
-![[Pasted image 20251118123606.png]]
-
-Now let’s better understand the working principle of strain gauges. A strain gauge is simply a resistor whose resistance changes when the material is strained. You know that the resistance $(R)$ of a conductor is:
-$$R = \rho \frac{L}{A} = \rho \frac{L}{W \cdot H}  $$
-If we apply tension to the material:
-
-- its length $(L)$ increases,
-- its cross-section $(A)$ decreases due to necking (both $(W)$ and $(H)$ shrink),
-
-and both effects cause the resistance to **increase**.
-
-If instead we apply compression:
-
-- the length decreases,
-- the cross-section increases,
-
-and the resistance **decreases**.
-
-For some materials, resistivity $(\rho)$ also changes with stress. This is the **piezoresistive effect**, where the normalized change in resistivity is proportional to the stress applied:
-
-$$\frac{\Delta \rho}{\rho} = \beta \cdot \sigma = \beta \cdot E \cdot \varepsilon = \beta \cdot E \cdot \frac{\Delta L}{L}$$
-and this can also be written using strain $(\Delta L / L)$ by including the Young’s modulus.
-### <span style="color:rgb(161, 40, 226)">Sensitivity to strain direction</span>
-
-The material is sensitive to strain **only when it is applied along the main length** of the resistor. If the stress is applied in the orthogonal direction, the resistance change is negligible.
-
-This remains true for **bonded strain gauges**, which are the most common type.  
-In these devices, the resistor is folded many times (zig-zag pattern) to increase the effective length. The sensor still responds mainly to tension or compression along its principal axis and remains almost insensitive to lateral forces applied perpendicular to that axis.
-
-### <span style="color:rgb(161, 40, 226)">Gauge Factor (Sensitivity of a Strain Gauge)</span>
-
-The **gauge factor (G)** represents the sensitivity of a strain gauge.  
-It is defined as:
+## <span style="color:rgb(239, 179, 1)">Potentiometers</span>
   
-$$G = \frac{dR/R}{\varepsilon} =\frac{dR / R}{dL / L}  $$
-where:
-- ($dR / R$) = relative change in resistance
-- ($dL / L$) = axial strain
-    
-**Deriving the Gauge Factor**
 
-The resistance of a conductor is:
-$$R = \rho \frac{L}{W H}$$
-Let's do some variations and apply $ln$ in both sides
-$$ ln(R)=ln(\rho)+ln(L)-ln(W)-ln(H)$$
-And if we make the derivative of all these we would get
-$$ d(ln(R))=d(ln(\rho))+d(ln(L))-d(ln(W))-d(ln(H))$$
-We finally obtain the relative variation of this expression gives:
-$$\frac{dR}{R}  
-= \frac{dL}{L}-\frac{d\rho}{\rho}-\frac{dW}{W}-\frac{dH}{H}$$
-(The width (W) and height (H) terms have negative signs because they are in the denominator)
 
-**Using Poisson’s Ratio**
-Poisson’s ratio is defined as:
-$$\nu = -\frac{dW/W}{dL/L} = -\frac{dH/H}{dL/L}$$
-Therefore:
-$$  -\frac{dW}{W} = \nu \frac{dL}{L}$$
-$$-\frac{dH}{H} = \nu \frac{dL}{L}  $$
 
-Substituting these into the expression for ($dR/R$):
+Let’s begin with potentiometers. Potentiometers, as mentioned earlier, are resistive sensors used to measure linear or angular displacement.
 
+You have already worked with a potentiometer during the laboratory sessions. Their operating principle is quite simple: a potentiometer is essentially a resistor with two fixed terminals, A and B, just like any ordinary resistor. However, it also includes a third terminal, known as the _wiper_, which moves along the resistive track.
+
+![[Pasted image 20251120094507.png]]
+
+As the wiper changes position, the electrical node at point C shifts accordingly, creating a different resistive division of the supply voltage ($V_s$) applied across terminals A and B.
+
+If the moving mechanical element is connected to the wiper, the wiper moves together with the object. Starting from a defined zero position, any displacement of the object corresponds to a shift in the wiper’s position, allowing us to measure the displacement (x).
+
+The operating equation is straightforward because it relies on the concept of a voltage divider. The output voltage ($V_{\text{out}}$), associated with the object’s position, is given by:
 $$  
-\frac{dR}{dR}  
-= \frac{dL}{dL} + \frac{d\rho}{\rho}+2\nu \frac{dL}{L}  
+V_{\text{out}} = V_s \cdot \frac{R_{AC}}{R_{AC} + R_{CB}}  
 $$
-**Including the Piezoresistive Effect**
 
-For piezoresistive materials:
-$$\frac{d\rho}{\rho} = \beta E \frac{dL}{L}  $$
-Substitute this:
-$$\frac{dR}{R}  = \left(1 + 2\nu + \beta E\right)\frac{dL}{L} $$
-Finally:
-$$\boxed{ G= 1 + 2\nu + \beta E  }$$
-> [!info] **Special Cases** Non-piezoresistive materials (most metals)
-$$\beta = 0 \quad \Rightarrow \quad G \approx 1 + 2\nu  $$
-Typical values:  
- $$G ≈ 2$$
+Since ($R_{AC} + R_{CB}$) equals the total resistance ($R_{AB}$), what we effectively measure is a voltage proportional to the resistance ($R_{AC}$). This resistance is, in turn, proportional to the object’s displacement (x).
 
-> [!error] Piezoresistive materials (e.g., silicon)  
-$$G = 1 + 2\nu + \beta E $$
-The term ($\beta E$) is large → G can be 50–150 or higher
+Therefore, by measuring the output voltage, we can infer the displacement of the object relative to its zero position.
+
+### <span style="color:rgb(161, 40, 226)">Types of Potentiometers</span>
 
 
-![[Pasted image 20251118210501.png]]
+There are two main types of potentiometers: **linear potentiometers** and **rotary potentiometers**.
 
-In this table, you can see the gauge factor values for different materials.  
-One important thing to notice is that the gauge factor is **not always constant** over the full strain range.
-
-To make this clearer, the table provides values for _low strain_ (typically below about 1%) and _high strain_.
-
-![[Pasted image 20251118210145.png]]
-
-For some materials—an example is **constantan alloy**—the relationship between ΔR/R and strain is almost perfectly linear.  
-Because of this, the gauge factor remains nearly constant for both low and high strain.
-
-However, other materials behave very differently.  
-For example, **nickel** shows a strong nonlinearity:
-
-- at low strain, the ΔR/R–strain curve has a **negative** slope
-- at higher strain, the slope becomes **positive** and more linear
-    
-This change of slope explains why the gauge factor for nickel is negative at low strain but becomes positive when the strain increases.
-
-## <span style="color:rgb(239, 179, 1)">Strain Gauge Fabrication</span>
-
-Now, regarding the structure and fabrication of strain gauges, there isn’t much new to say, because the process is essentially the same as the one used for thin-film, patterned RTDs. The fabrication is based on **photolithography**, which typically includes four main steps:
-
-![[Pasted image 20251118211247.png]]
-1. **Photoresist deposition** – A layer of photoresist is applied on top of the material.  
-    The photoresist can be _positive_ or _negative_, depending on whether it becomes stronger or weaker when exposed to light.
-2. **Exposure to light** – Ultraviolet light is used to define the desired pattern on the photoresist.
-3. **Etching** – The unprotected areas of the underlying material are removed.
-4. **Photoresist removal** – The remaining photoresist is stripped away, leaving the final patterned structure.
-    
-The main difference compared to thin-film RTDs lies in the **carrier material**.  
-For strain gauges, the carrier must be **flexible**, because the entire strain gauge is glued onto the specimen or structure being measured.  
-If the specimen undergoes elongation or compression, the carrier—and therefore the gauge itself—must deform in exactly the same way.  
-This ensures that the electrical resistance truly reflects the strain experienced by the specimen.
-
-
-## <span style="color:rgb(239, 179, 1)">Strain Gauge - Readout circuit<br></span>
-![[Pasted image 20251118211640.png]]
-When using strain gauges, we need a circuit to read their resistance changes, and the most common approach is to use a **Wheatstone bridge**, similar to what we do with RTDs.
-
-A key issue with strain gauges is **temperature sensitivity**. Since strain gauges are resistors, their resistance naturally changes with temperature. If we want the output of our measurement to reflect only the **strain applied to the material**, we need a way to cancel out any voltage changes caused by temperature.
-
-![[Pasted image 20251118211754.png|400]]
-One effective method is to use **two strain gauges placed orthogonally** (at right angles) to each other:
-
-- **Strain gauge 1:** Aligned with the main length of the material, so it is parallel to the applied force.
-- **Strain gauge 2:** Placed perpendicular (orthogonal) to the applied force, so it does not experience strain from the force.
-    
-Here’s why this works:
-
-- When **temperature changes**, both gauges’ resistances increase by the same amount. If we place them in the same branch of the Wheatstone bridge, the voltage at the intermediate point stays roughly at half the supply voltage. This means **temperature effects are canceled out**.
-    
-- When a **mechanical strain** is applied:
-    
-    - Gauge 1, which is aligned with the force, changes its resistance.
-    - Gauge 2, which is perpendicular, does **not** change.
-        
-
-This creates an **imbalance in the Wheatstone bridge**, which produces a voltage difference that we can measure. This voltage depends **only on the strain**, not on the temperature.
-
-In short, this orthogonal strain gauge configuration allows us to measure strain accurately while compensating for temperature variations.
-
-## <span style="color:rgb(239, 179, 1)">Strain Gauge - Bending measure</span>
-
-![[Pasted image 20251118212425.png]]
-Another important application is **measuring the bending of beams**. When a beam bends, one side experiences **tension** while the opposite side experiences **compression**:
-
-- In the example here, the **top side** of the beam is under tension.
-- The **bottom side** is under compression.
-    
-To measure this bending, we can place **two strain gauges**: one on the top and one on the bottom of the beam, and connect them in the **same branch of a Wheatstone bridge**.
-
-Here’s what happens:
-
-- The **top strain gauge** (under tension) increases its resistance.
-- The **bottom strain gauge** (under compression) decreases its resistance.
-- This difference creates an **imbalance in the Wheatstone bridge**, causing a measurable voltage difference at the intermediate node. This voltage tells us that bending is happening.
-    
-![[Pasted image 20251118212514.png|400]]
-An important feature of this setup is that it is **insensitive to uniform tension or compression**:
-
-- If the whole beam is just stretched (tension) or squeezed (compression), both top and bottom gauges change in the **same direction**.
-- This causes **little to no change** in the voltage at the intermediate node, so the bridge output does not respond to overall tension or compression—only to bending.
-    
-![[Pasted image 20251118212610.png]]
-If you want **higher sensitivity**, you can use a **full Wheatstone bridge with four resistances**:
-
-- Place two resistors corresponding to the **top side** in opposite positions of the bridge.
-- Place the other two resistors corresponding to the **bottom side** in the remaining opposite positions.
-    
-
-In this configuration:
-
-- The two resistors on the **tension side** increase in resistance.
-- The two resistors on the **compression side** decrease in resistance.
-- This creates a **larger voltage difference** between the two branches of the bridge, giving a stronger signal and higher sensitivity to bending.
-
-## <span style="color:rgb(239, 179, 1)">Strain Gauge - Possible Configurations</span>
-
-
-
-second configuration
-
-
-
-third 
-
-
-
-
-
-
-![[Pasted image 20251118213729.png]]
-
-Here we show **different Wheatstone bridge configurations**, ranging from the simplest (one strain gauge) to the most complete (four strain gauges). Here, we focus on **measuring tension or compression while being insensitive to bending**—the opposite of the bending-sensitive setup we discussed previously.
-
-### <span style="color:rgb(161, 40, 226)">1. Single strain gauge</span>
-![[Pasted image 20251118213749.png]]
-- Simple setup with **one strain gauge**.
-- Measures tension (resistance increases) and compression (resistance decreases).
-- **Drawbacks:** Sensitive to **temperature** and also to **bending**, which can cause unwanted voltage changes.
-    
-
-### <span style="color:rgb(161, 40, 226)">2. Two strain gauges on opposite sides</span>
-
-
-| Configuration                        | Readout Circuit                      |
+| Linear Potentiometer                 | Rotatory Potentiometer               |
 | ------------------------------------ | ------------------------------------ |
-| ![[Pasted image 20251118213816.png]] | ![[Pasted image 20251118213123.png]] |
+| ![[Pasted image 20251120095858.png]] | ![[Pasted image 20251120095937.png]] |
+| ![[Pasted image 20251120095947.png]] | ![[Pasted image 20251120095955.png]] |
 
-- Place two strain gauges on opposite sides of the beam in **opposite positions on the Wheatstone bridge**.
-- **Effect under tension:** Both resistors increase → voltage imbalance is measurable → output shows tension.
-- **Effect under bending:** One resistor increases (tension side), the other decreases (compression side) → the changes **balance each other**, so output is nearly zero → insensitive to bending.
-- **Temperature sensitivity:** Both resistors increase with temperature → output is still affected → **temperature is not compensated**.
+In a **linear potentiometer**, the resistive element is arranged in a straight, linear configuration, and the wiper moves along this path in a straight line.  
+In contrast, a **rotary potentiometer** features a resistive track arranged in a circular (wound) layout. In the simplified illustration, only one loop is shown, but in practice the resistive strip may be wound over multiple turns. The wiper moves rotationally along this circular track.
 
-### <span style="color:rgb(161, 40, 226)">3. Two gauges with one orthogonal for temperature compensation</span>
+Depending on the type of mechanical motion involved, both linear and rotary potentiometers can be used to measure either linear or angular displacement.
 
-| Configuration                        | Readout Circuit                      |
-| ------------------------------------ | ------------------------------------ |
-| ![[Pasted image 20251118213935.png]] | ![[Pasted image 20251118213220.png]] |
+For **linear displacement**, two approaches are possible:
 
-- Add a second gauge **orthogonal to the first** (insensitive to tension/compression).
-- **Temperature effect:** Both gauges on the same branch increase equally → intermediate node voltage remains constant → **temperature compensated**.
-- **Bending effect:** The first gauge still changes with bending → output voltage changes → **sensitive to bending**.
+
+| Linear Displacement                                                              | Angular Displacement                 |
+| -------------------------------------------------------------------------------- | ------------------------------------ |
+| ![[Pasted image 20251120100417.png]]<br>![[Pasted image 20251120100436.png]]<br> | ![[Pasted image 20251120100423.png]] |
+
+
+1. **Using a linear potentiometer**:  
+    The moving object is directly attached to the wiper, which moves linearly along the resistive strip.
+2. **Using a rotary potentiometer**:  
+    The linear motion of the object can be converted into rotation. This is typically achieved by attaching the object to a cable or string connected to a rotating shaft. As the object moves linearly, the cable causes the shaft to rotate, and this rotation is measured by the rotary potentiometer.
+
+
+On the other hand, **angular displacement** is typically measured using rotary potentiometers.  In this case, the rotating object or shaft is mechanically coupled to the rotating shaft of the potentiometer, allowing direct measurement of angular position.
+
+## <span style="color:rgb(239, 179, 1)">Capacitive Sensors - Distance</span>
+
+![[Pasted image 20251120103054.png]]
+Now let us move on to the next category of sensors: **capacitive sensors**.
+![[Pasted image 20251120103036.png]]
+Capacitive sensors are mainly used for **measuring linear displacement** or for **proximity detection**.  Before examining these applications, we first need to review the concept of **capacitance** and understand which parameters influence its value.
+
+### <span style="color:rgb(161, 40, 226)">Capacitance Review</span>
+Capacitors can be built using different geometries, but the two most common structures are the **parallel-plate capacitor** and the **cylindrical capacitor**.
+
+To determine the capacitance for these configurations, we rely on three key relationships:
+
+1. **Gauss’s Law**, which states that the electric flux of the electric field (E) depends on the enclosed charge (Q) divided by the permittivity $(\varepsilon$) of the medium.
+$$\Phi_E= EA=\frac{Q}{\varepsilon}$$
+2. The relation between electric field and voltage:  
+    $$E = \frac{\Delta V}{d}  $$
+    where (d) is the distance between the plates over which the voltage ($\Delta V$) is measured.
     
-### <span style="color:rgb(161, 40, 226)">4. Four-gauge configuration (optimal)</span>
-
-| Configuration                        | Readout Circuit                      |
-| ------------------------------------ | ------------------------------------ |
-| ![[Pasted image 20251118214027.png]] | ![[Pasted image 20251118213433.png]] |
-
-- Combines **temperature compensation** and **bending insensitivity**.
-- Arrangement:
-    
-    - **Top side:** two gauges in orthogonal positions.
-    - **Bottom side:** two gauges in orthogonal positions.
-        
-- **Temperature effect:** All four gauges change equally → bridge remains balanced → output = 0.
-![[Pasted image 20251118213609.png]]
-
-- **Tension effect:** Only the gauges aligned with the force change → creates imbalance → output shows tension/compression.
-- **Bending effect:** Top gauge under tension, bottom gauge under compression → intermediate node changes **cancel each other** → output remains near zero.
-    
-
-**Conclusion:**
-
-- By carefully choosing **gauge positions** and **bridge configuration**, you can design a system that is:
-    
-    - Sensitive **only to tension/compression**,
-    - Insensitive to **bending**,
-    - And/or **temperature variations**, depending on the configuration.
-        
-- The specific choice depends on the measurement objective for your application.
-    
-
-## <span style="color:rgb(239, 179, 1)">Strain Gauges - Applications</span>
-
-Strain gauges are used to measure small deformations or changes in length in various structures and devices. Their main applications include:
-
-![[Pasted image 20251118214809.png|400]]
-1. **Railroad Maintenance:** Strain gauges can be installed along railway tracks to monitor changes in the length of the rails. This helps track how the rails expand or contract with temperature changes and ensures timely maintenance.
-    
-2. **Structural Monitoring:** They are used in “smart” infrastructure, like bridges, to monitor stress and detect potential problems. Strain gauges can also be applied to structures such as wind turbine panels to measure stress on their walls.
-    
-3. **High-Precision Robotics:** In medical or delicate robotic applications, strain gauges provide feedback on the stress experienced in different parts of the robot. This helps control the force applied with high accuracy.
-![[Pasted image 20251118214829.png]]
-
-4. **Bathroom Scales:** Strain gauges are commonly used in scales to measure weight. The scale has a fixed base and a free end where the load is applied. The connecting beam bends depending on the load, and the strain gauge measures this bending. From this measurement, the scale can calculate the weight applied.
-
-# <span style="color:rgb(223, 109, 109)">Piezoelectric Force Sensor</span>
-
-![[Pasted image 20251118215300.png|300]]
-
-The second type of sensor we will study today is the **piezoelectric force sensor**. Like strain gauges, it is used to measure force. However, unlike strain gauges, piezoelectric sensors measure force **more directly**. Remember that strain gauges measure strain, and we calculate stress from strain using the material’s Young’s modulus. Piezoelectric sensors, instead, generate an electrical signal directly from the applied force.
-
-## <span style="color:rgb(239, 179, 1)">Piezoeletric Effect</span>
-![[Pasted image 20251118215315.png]]
-
-	In piezoelectric materials, we find a very useful property: **when an external force is applied, the material generates a voltage difference across its terminals**.
-
-Materials that show this piezoelectric behaviour include **quartz, many types of crystals, ceramics, and even some biological materials**.
-
-When **no force** is applied, the internal arrangement of charges inside the material is perfectly balanced. But if we apply a **force**, either tension or compression, the internal structure deforms, and this deformation causes the charges to become **unbalanced**.  
-As a result, there is a **separation of charges**, and we can measure a voltage across the two terminals of the material.
-
-- A **tensile force** produces a voltage with one sign.
-- A **compressive force** produces a voltage with the opposite sign.
-    
-
-The interesting part is that the **reverse effect** is also true: if you apply a voltage to a piezoelectric material, you can cause a small deformation in it.
-
-- Applying voltage in one direction makes the material **elongate**.
-- Applying voltage in the opposite direction makes it **compress**.
-    
-
->[!important] This deformation only responds to **changes** in the applied force.  
-If you apply a constant force, the material will generate a voltage at the moment when the force changes, but then it will gradually **relax** and return toward its original configuration. As a result, the voltage disappears even if the force remains applied.
-
-
-## <span style="color:rgb(239, 179, 1)">Piezoelectric Sensor - Electric Model</span>
-
-![[Pasted image 20251118222721.png]]
-For this reason, we can model a piezoelectric material using a **capacitor in parallel with a resistor and a current source**.
-
-- The **current source** represents the charge generated inside the material when it is stressed.
-- This current “injects” charge into the **capacitor**, and the voltage across the capacitor represents the **voltage generated by the piezoelectric material**.
-- The **resistor** models the fact that the material slowly **relaxes** and returns to its original, unstressed state. This relaxation causes the capacitor to discharge over time.
-
-We also know that the current needed to represent how the charge changes is related to the **derivative of the charge**.  
-In the Laplace domain, this becomes:
-$$I(t) = \frac{dQ(t)}{dt}$$
-$$I(s) = s \cdot Q(s)$$
-
-Please keep this relation in mind, because we will use it later when studying the **readout circuit** for this sensor.
-
-This model corresponds to the **Norton equivalent** of the sensor.  
-
-![[Pasted image 20251118222915.png]]
-
-Of course, we can also build the **Thevenin equivalent**, but its equations are more complicated. For this reason, we usually prefer to work with the Norton model.
-
-![[Pasted image 20251118223355.png|300]]
-As mentioned before, piezoelectric sensors are very sensitive to **changes** in the applied force.  This means that when the force varies, the sensor generates an **equivalent current**, which can be expressed as:
-
-$$I = \frac{\Delta Q}{\Delta t}  $$
-
-The typical amount of charge generated by these sensors is around **10–20 picocoulombs per newton**.
-
-This charge (Q) accumulates on the **equivalent capacitance** of the material, and the voltage you measure across the sensor is:
-$$V = \frac{Q}{C}  $$
-
-However, as we said earlier, if the force stays constant over time, the material will slowly **relax** back to its original state.  Because of this relaxation, the voltage across the piezoelectric material will also decrease and eventually return to zero. In our electrical model, this relaxation is represented by the **time constant** of the circuit, which is:
-$$\tau = C_p \cdot R_p  $$
-
-In theory, if we can measure the **peak voltage** generated by the sensor, we can determine the charge (Q), and from that, the value of the applied force.
-
-### <span style="color:rgb(161, 40, 226)">The practical problem: stray capacitances</span>
-
-The difficulty is that we do not only have the well-defined capacitance of the piezoelectric material. There are also **stray (parasitic) capacitances** in the system—coming from cables, connectors, or the environment.
-
-These stray capacitances appear **in parallel** with the piezoelectric capacitance, so the voltage we measure depends not only on the charge and the sensor’s own capacitance, but also on these unwanted extra capacitances.
-$$V = \frac{Q}{C_p+C_{stray}}$$
-
-Since stray capacitances are not perfectly controlled or predictable, they introduce **uncertainty** in the estimation of charge, and therefore in the estimation of force.
-
-
-## <span style="color:rgb(239, 179, 1)">Readout Circuits</span>
-
-As mentioned, we will examine two readout circuits:
-
-1. **The first circuit** gives an output directly proportional to the piezoelectric voltage ($V_p$).  
-    This circuit is affected by stray capacitances.
-2. **The second circuit** provides an output that does **not** depend on stray capacitances, making it the preferred solution.
-
-### <span style="color:rgb(161, 40, 226)">First Readout Circuit (Voltage Mode Readout)</span>
-
-Let’s begin with the first circuit. In this configuration, the piezoelectric material is modeled using its **Norton equivalent**, which includes:
-
-- a current source (representing the generated charge),
-- a capacitance ($C_p$),
-- and a resistance ($R_p$) (representing relaxation).
-![[Pasted image 20251118224152.png]]
-
-This sensor is followed by an **operational amplifier** in a **non-inverting configuration**.
-
-#### <span style="color:rgb(2, 141, 192)">1. Gain of the amplifier</span>
-In a non-inverting amplifier, the **low-frequency gain** is:
-$$G_{LF} = 1 + \frac{R_f}{R_g}  $$
-This matches what we see in the circuit. A capacitor ($C_f$) is connected in parallel with ($R_f$) to provide **high-frequency filtering**.
-
-#### <span style="color:rgb(2, 141, 192)">2. Cable capacitance</span>
-
-![[Pasted image 20251118224242.png]]
-The capacitance of the cable, ($C_c$), appears **in parallel** with the sensor capacitance ($C_p$).  
-This is the stray capacitance we discussed before, and it affects the final output because it changes the effective capacitance seen by the sensor.
-
-#### <span style="color:rgb(2, 141, 192)">3. Biasing the circuit<br></span>
-![[Pasted image 20251118224242.png]]
-The op-amp is powered with a **single supply** (0 V to $V_{cc}$).  
-However, we want to measure both:
-
-- tension → positive ($V_p$)
-- compression → negative ($V_p$)
-
-To allow this with a single supply, we **bias the entire circuit at half the supply**, ($V_{cc}/2$).  This makes ($V_{cc}/2$) the “resting point” when the sensor is not stressed.
-
-Here’s what happens when ($V_p = 0$):
-
-- There is no voltage difference across the sensor.
-- Both sensor terminals sit at the bias level ($V_{cc}/2$).
-- By negative feedback, the op-amp forces the **inverting input** to also be at ($V_{cc}/2$).
-- No current flows through ($R_g$) or ($R_f$).
-- Therefore, the output ($V_o$) is also equal to ($V_{cc}/2$).
-    
-When a force is applied, a voltage contribution is added on top of this ($V_{cc}/2$), and the output can move up or down depending on the direction of the force.
-
-Here is your full text rewritten in **clear, smooth, easy English**, keeping all the technical content but making the explanation much clearer and better organized. I did _not_ change the meaning—only the readability.
-
-
-#### <span style="color:rgb(2, 141, 192)">4. Transfer Function: From Input Charge to Output Voltage</span>
-
-To analyze how this circuit processes the signal from the piezoelectric sensor, we first consider the sensor’s behavior in terms of **input current**, and then we convert the result to a function of **input charge**.
-
-Normally, in circuit analysis we look at the transfer function between **voltage and current**, but piezoelectric sensors naturally generate **charge**, so the transfer function we ultimately want is:
-$$\frac{V_o}{Q}  $$
-
-To get there, we follow these steps:
-
-1. **First**, compute the relation between the output voltage ($V_o$) and the input current (I).
-2. **Then**, since in the Laplace domain  
-    $I(s) = sQ(s)$ 
-    we convert the result by simply multiplying by (s), which gives us  
-    $\frac{V_o}{Q} = s \cdot \frac{V_o}{I}$. 
-    
-Also, because the bias voltage ($V_{cc}/2$) does not affect the circuit’s frequency behavior, we set it to zero during the AC analysis.
-
-#### <span style="color:rgb(2, 141, 192)">5. Circuit for AC Analysis</span>
-
-When we draw the simplified AC model:
-![[Pasted image 20251118230014.png]]
-- The sensor is represented by:
-    
-    - a current source (I),
-    - a capacitance ($C_p$),
-    - a resistance ($R_p$).
-        
-- In parallel with this, we have the cable capacitance ($C_c$) and the bias resistor ($R_b$).
-- The amplifier is a standard non-inverting configuration with gain:  
-    $1 + \frac{R_f}{R_g}$    
-- The feedback includes a capacitor ($C_f$), providing high-frequency filtering.
-#### <span style="color:rgb(2, 141, 192)">5. Poles and Zero of the Circuit</span>
-
-**Pole 1 — due to ($C_p + C_c$)**
-The first pole is created by the **total capacitance at the input**, which is:
-$$C_p + C_c  $$
-The equivalent resistance seen by this capacitance is:
-$$R_p \parallel R_b  $$
-So the first pole frequency is:
-$$f_{p1} = \frac{1}{2\pi (C_p + C_c)(R_p \parallel R_b)}  $$
-
-**Pole 2 — due to ($C_f$)**
-
-The second pole comes from the feedback capacitor ($C_f$).  To find its frequency, we “turn off” all input sources.  This sets the op-amp inputs to 0 V, so no current flows through ($R_g$).  Thus, ($C_f$) only sees ($R_f$).
-
-So:
-$$f_{p2} = \frac{1}{2\pi C_f R_f}  $$
-**Zero — due to ($C_f$)**
-
-A zero appears when a capacitor becomes a **short circuit** but does _not_ force the output to zero.
-
-- When ($C_p$) and ($C_c$) are shorted at high frequencies → the input node is forced to 0 V → **no zero** from them.
-- When ($C_f$) is shorted → the output is _not_ forced to zero → this introduces a **zero**.
-
-To find the zero’s frequency, we set the output node to 0 V and find the equivalent resistance seen by ($C_f$):
+3. The definition of capacitance:  
+    $$Q = C \cdot \Delta V$$
+By combining these three equations, we obtain the capacitance expressions for different geometries.
+
+If we take equation 1 ($EA=Q/\varepsilon$) and equation two ($E=\Delta V/d$) we obtain
+$$\frac{\Delta V}{d}\cdot A=\frac{Q}{\varepsilon}
 $$
-R_f \parallel R_g  
+Now by replacing $Q$ in equation three and clearing the $C$,  we obtain
 $$
-So the zero is at:
+C=\frac{\varepsilon \cdot A}{d}
+$$
+### <span style="color:rgb(161, 40, 226)">Parallel-Plate Capacitor</span>
 
-$$f_z = \frac{1}{2\pi C_f (R_f \parallel R_g)}$$
+![[Pasted image 20251120103121.png]]
+For a parallel-plate capacitor, the capacitance is given by:
+$$C = \varepsilon_r \varepsilon_0 \frac{A}{d}  $$
 
-**Typical ordering of singularities**
+where:
 
-- ($C_p + C_c$) is usually quite large → **low-frequency pole**.   
-- ($C_f$) is small → **high-frequency pole**.
-- The zero comes at an even higher frequency because ($R_f \parallel R_g < R_f$).
+- $(A)$: area of the plates
+- $(d):$ distance between the plates
+- ($\varepsilon_r \varepsilon_0$): permittivity of the dielectric material between the plates
+### <span style="color:rgb(161, 40, 226)">Cylindrical Capacitor</span>
 
-Thus, the order is:
-$$f_{p1} < f_{p2} < f_z  $$
-#### <span style="color:rgb(2, 141, 192)">6. Transfer Function in Different Frequency Regions</span>
+![[Pasted image 20251120103136.png]]
+A cylindrical capacitor consists of:
 
-**1. Low Frequency (before the first pole)**
+- an **inner cylinder** with radius ($R_1$)
+- an **outer cylinder** with radius ($R_2$)
+    
+Using Gauss’s law and the same relationships as before, we can derive the capacitance formula for the cylindrical geometry. The full expression is more complex, but in the case of a **thin cylindrical capacitor**, the formula can be simplified.
 
-At low frequency, all capacitors behave as open circuits.
-$$V_p = I \cdot (R_p \parallel R_b)  $$
-The output voltage is simply the input voltage multiplied by the non-inverting gain:
-$$V_o = V_p \left(1 + \frac{R_f}{R_g}\right)  $$
-So the low-frequency gain is:
-$$\frac{V_o}{I} =  
-(R_p \parallel R_b)\left(1 + \frac{R_f}{R_g}\right)  $$
- **2. Medium Frequency (after pole 1, before pole 2)**
+Let us define:
+- ($R = \frac{R_1 + R_2}{2}$), the average radius
+- ($w = R_2 - R_1$), the spacing between the cylinders
 
-After the first pole, ($C_p + C_c$) behave like short circuits.  This forces the input node to **0 V**, so:
-$$V_p = 0 \quad\Rightarrow\quad V_o = 0  $$
-Thus:
-$$\frac{V_o}{I} = 0  $$
-**3. High Frequency (after the second pole and after the zero)**
+If the capacitor is thin (i.e., ($R_1$) and ($R_2$) are very close), then ($w \ll R$) and we can write:
+$$C = \frac{2 \pi \varepsilon l}{\ln(1 + w/R)}  $$
 
-At high frequency, both:
+Since ($w/R \to 0$), the logarithm can be approximated, giving the simplified formula:
+$$C = \varepsilon \frac{2 \pi R l}{w}  $$
 
-- ($C_p + C_c$) are shorted → input = 0 V    
-- ($C_f$) is shorted → feedback forces output = 0 V
+Here, ($2 \pi R l$) represents the **effective surface area** of the plates. The spacing between the plates is the difference between the radii, ($w = R_2 - R_1$). This final expression closely resembles the parallel-plate capacitor formula and is often easier to remember.
 
+### <span style="color:rgb(161, 40, 226)">Displacement Sensors</span>
+
+#### <span style="color:rgb(2, 141, 192)">Parallel-Plate Capacitive Displacement Sensor</span>
+
+Consider a parallel-plate capacitor in which a dielectric object moves between the plates.  
+The region between the plates is therefore partially filled with air (permittivity $\varepsilon_0$​) and partially filled with a material characterized by a relative permittivity $\varepsilon_r$.
+
+As the object moves, the portion of the capacitor occupied by the material changes, and therefore the overall capacitance varies with the object’s position $x$.
+
+**Modeling the capacitance**
+
+![[Pasted image 20251120105651.png]]
+We can represent the system as two capacitors in parallel:
+
+- **$C_1$​**: the upper region filled only with air
+- **$C_2$​**: the lower region filled with the dielectric material
+
+Both capacitors share:
+
+- Plate length $L$
+- Plate separation $W$ (constant)
+
+The height of the plates is $H$, but only a portion of this height corresponds to each region.
+
+**Capacitance of each region**
+
+***1. Upper capacitor (air only):***
+
+![[Pasted image 20251120105830.png|200]]
+$$C_1 = \varepsilon_0 \, \frac{L(H - x)}{W}$$
+
+***2. Lower capacitor (dielectric inserted):***
+![[Pasted image 20251120105924.png|200]]
+$$C_2 = \varepsilon_0 \varepsilon_r \, \frac{L x}{W}$$
+***Total capacitance***
+
+Since the two regions are in parallel:
+
+$$C_{\text{tot}} = C_1 + C_2$$
+Substituting:
+
+$$C_{\text{tot}} = \varepsilon_0 \frac{L}{W} \left( h - x + \varepsilon_r x \right)$$
+Rearranging:
+$$\boxed{ C_{\text{tot}} = \varepsilon_0 \frac{L}{w} \left[ h + x(\varepsilon_r - 1) \right] }$$
+This expression shows that the capacitance increases **linearly** with displacement $x$.
+
+
+#### <span style="color:rgb(2, 141, 192)">Cylindrical Capacitive Displacement Sensor</span>
+
+![[Pasted image 20251120110132.png]]
+A similar principle applies to the cylindrical geometry.  Here, the **moving object is mechanically connected to the inner cylinder** of a coaxial capacitor.  
+As the object moves, the axial overlap length between the inner and outer cylinders changes.
+
+Assuming the capacitor is thin (so that we can use the simplified expression for cylindrical capacitors), the capacitance is proportional to the lateral overlapping area.
+***Capacitance expression***
+$$C = \varepsilon_0 \varepsilon_r \frac{2\pi R x}{W}$$
+Where:
+
+- $R$: average radius of the cylinders
+- $x$: overlapping length (proportional to object displacement)
+- $W$: small radial separation between the two cylinders
+
+Again, the capacitance depends **linearly** on the displacement $x$.
+#### <span style="color:rgb(2, 141, 192)">Summary</span>
+
+Both geometries—parallel-plate and cylindrical—allow us to design a displacement sensor in which the capacitance varies linearly with the position of an object:
+
+- **Parallel-plate:** dielectric object moves between the plates
+- **Cylindrical:** inner cylinder moves along its axis with the object
+
+In both cases, the capacitance can be written as:
+$$C(x) = C_0 + kx$$
+
+where:
+- $C_0$​: constant component
+- $kx$: displacement-dependent component
+
+Typical capacitive displacement sensors can achieve a resolution of around **1 µm**.
+### <span style="color:rgb(161, 40, 226)">Measuring Capacitance (Single-Ended)</span>
+
+To determine the displacement ($x$) using a capacitive sensor, we must first **measure the capacitance**.  A common and effective method is to incorporate the sensor capacitor into an **oscillator circuit** whose **oscillation frequency depends on the capacitance**.  By measuring this frequency (or its period), we can infer the value of (C), and therefore the displacement.
+
+Below are two representative oscillator implementations: one based on **digital circuitry** and one based on **analog circuitry**. In both cases, the oscillation frequency is a function of the capacitance.
+
+#### <span style="color:rgb(2, 141, 192)">Measuring Capacitance Using a Digital Schmitt-Trigger Oscillator</span>
+
+![[Pasted image 20251120111158.png]]
+The first example uses a **Schmitt-trigger inverter**.  A Schmitt trigger is a digital component that:
+
+- Outputs the logical opposite of its input.
+- Exhibits **hysteresis**, meaning it switches its output at two distinct threshold voltages:
+    - a **higher threshold** for switching from HIGH → LOW
+    - a **lower threshold** for switching from LOW → HIGH
+        
+***Principle of operation***
+
+![[Pasted image 20251120111711.png]]
+![[Pasted image 20251120111855.png]]
+1. Assume the inverter output is initially HIGH.
+    - Since the inverter outputs the opposite of the input, the capacitor voltage ($V_C$) must be LOW.
+2. With the output HIGH, current flows through resistor (R) into the capacitor.
+    - The capacitor charges.
+    - The charging slope ($dV_C/dt$) depends on the time constant (RC).
+3. When the capacitor voltage reaches the **upper threshold**, the Schmitt trigger switches.
+    - The output abruptly goes LOW.
+4. With the output LOW, current reverses direction and the capacitor **discharges** through the same resistor.
+5. When the capacitor voltage reaches the **lower threshold**, the output switches HIGH again.
+    
+This charge–discharge cycle repeats indefinitely, creating a square-wave output whose **period (T)** depends on the charging and discharging slopes, therefore on:
+
+$$T \approx RC  $$
+Thus, if we measure the period (or frequency), we can deduce the capacitance:
+$$C \approx \frac{T}{R}$$
+#### <span style="color:rgb(2, 141, 192)">Measuring Capacitance Using an Analog Schmitt-Trigger Oscillator</span>
+
+![[Pasted image 20251120112112.png]]
+The second example uses two operational amplifiers:
+
+1. **A Schmitt-trigger comparator** (with positive feedback).  
+    This sets two voltage thresholds.    
+2. **An integrator** (op-amp with capacitor in feedback).  
+    This generates a linear ramp voltage across the capacitor.
+    
+***Principle of operation***
+
+![[Pasted image 20251120112415.png]]
+![[Pasted image 20251120112514.png]]
+
+- When the Schmitt-trigger output is HIGH:
+    - A constant current flows through the resistor into the capacitor.
+    - The integrator converts this current into a **linear decrease** in the voltage $(V_C$) (a negative ramp).
+- When the capacitor voltage reaches the lower threshold:
+    - The Schmitt trigger switches LOW.
+- With the output LOW:
+    - The current reverses direction.
+    - The integrator generates a **linear increase** in ($V_C$) (a positive ramp).
+- When ($V_C$) reaches the upper threshold:
+    - The trigger switches HIGH again.
+
+This produces a triangle waveform at the capacitor and a square wave at the comparator output.
+
+Since:
+$$I = C \frac{dV}{dt} \quad \Rightarrow \quad \frac{dV}{dt} = \frac{I}{C}  $$
+
+
+the slope of the triangle wave depends on (C), and the time required to traverse the thresholds defines the oscillation period.  
 Therefore:
-$$\frac{V_o}{I} = 0  $$
-#### <span style="color:rgb(2, 141, 192)">7.  Sketch of the Bode Plot</span>
+$$T \propto C  $$
+Thus, measuring the oscillation period directly yields the capacitance.
 
-The magnitude of $\dfrac{V_o}{I}$ looks like this:
 
-![[Pasted image 20251119081433.png]]
-- A constant gain at low frequency.
-- A first roll-off of **−20 dB/dec** after the first pole.
-- Then a second roll-off of **−40 dB/dec** after the second pole.
-- Then, after the zero, the slope returns to **−20 dB/dec**.
-#### <span style="color:rgb(2, 141, 192)">8. Compact transfer-function expression</span>
+#### <span style="color:rgb(2, 141, 192)">From Oscillation Period to Displacement</span>
 
-Start from the current-to-voltage form (useful for circuit algebra). The current-to-voltage transfer function of the voltage-mode readout is:
- $$ \boxed{\,\frac{V_o}{I}(s) = (R_p\!\parallel\!R_b)\left(1+\frac{R_f}{R_g}\right)\cdot \frac{1 + s\tau_z}{(1 + s\tau_{p1})(1 + s\tau_{p2})}\,}$$
-where the time constants are:
+If we can measure the oscillation period using, for example, a microcontroller’s digital input and a timer:
 
-![[Pasted image 20251119194909.png]]
-- low-frequency pole (sensor + cable):
-$$\tau_{p1} = (C_p + C_c)\,(R_p\!\parallel\!R_b)$$
-- high-frequency pole (feedback $C_f$ with $R_f$​):    
-$$\tau_{p2} = C_f\,R_f$$
-- zero (feedback $C_f$​ sees $R_f\parallel R_g$​ when $V_o=0$):
-$$\tau_z = C_f\,(R_f\!\parallel\!R_g)$$
-#### <span style="color:rgb(2, 141, 192)">9. Convert to charge-to-voltage</span>
+1. Count the number of oscillation cycles during a known time window.
+2. Compute the period (T) or frequency (f = 1/T).
+3. Use the calibrated relationship (C(x)) to calculate displacement (x).
+    
 
-Because in the Laplace domain $I(s)=s\cdot Q(s)$, the desired transfer function is simply
-  $$\boxed{\,\frac{V_o}{Q}(s) = s\cdot\frac{V_o}{I}(s)\,}$$
-So explicitly:
+### <span style="color:rgb(2, 141, 192)">Limitations of the Single-Ended Approach</span>
 
-$$\frac{V_o}{Q}(s) = s\,(R_p\!\parallel\!R_b)\left(1+\frac{R_f}{R_g}\right) \frac{1 + s\tau_z}{(1 + s\tau_{p1})(1 + s\tau_{p2})}$$
+Using a _single_ capacitor has drawbacks:
+- **Geometrical tolerances**  
+    Variations in ($L$) or ($w$) (plate dimensions) affect capacitance.
+    
+- **Temperature dependence**  
+    The dielectric constant ($\varepsilon_r$) changes with temperature, causing drift in the capacitance and therefore in the measured displacement.
+    
+These limitations motivate the use of **differential capacitive sensors**, which greatly reduce sensitivity to temperature and mechanical tolerances.
 
-#### <span style="color:rgb(2, 141, 192)">10. Useful frequency-region approximations</span>
+### <span style="color:rgb(161, 40, 226)">Measuring Capacitance (Differential Approach)<br></span>
+To mitigate the limitations of measuring a single capacitance—such as temperature drift, geometric tolerances, and variations in permittivity—we can adopt a **differential capacitive sensing approach**.
 
-Take $s=j\omega$. 
-***Low frequency ( $\omega \ll 1/\tau_{p1}$​ )***
+In this configuration, the output signal is not based on the variation of one capacitor alone, but on the **difference** between two capacitances, ($C_1$) and ($C_2$), which vary in opposite directions as the object moves.
 
-![[Pasted image 20251119194629.png]]
-All $1+s\tau\approx1$. 
-Then
-$$\frac{V_o}{Q}(s)\approx s\,(R_p\!\parallel\!R_b)\left(1+\frac{R_f}{R_g}\right)$$
-Since $s\to0$, the transfer tends to **0** (zero at origin). Physically: piezo responds to changes, so DC/very low frequencies give no steady output.
+An additional advantage of the differential approach is that we no longer require an oscillator circuit to infer capacitance. Instead, we can directly measure a **differential voltage** using a **Wheatstone bridge**, which simplifies the readout circuitry.
 
-***Mid frequencies (after $f_{p1}$​, before $f_{p2}$​: $1/\tau_{p1}\ll\omega\ll 1/\tau_{p2}$​)
+Both **parallel-plate** and **cylindrical** geometries can be implemented in differential form.
+#### <span style="color:rgb(2, 141, 192)">Differential Parallel-Plate Geometry</span>
 
-![[Pasted image 20251119194648.png]]
+![[Pasted image 20251120114802.png|300]]
+In this configuration we use **three plates**, where the middle plate is shared between two capacitors:
+- ($C_1$): formed by plates **A** and **B**
+- ($C_2$): formed by plates **B** and **C**
+    
+When the movable plate shifts by a displacement ($x$):
 
-Here $1+s\tau_{p1}\approx s\tau_{p1}$, but $1+s\tau_{p2}\approx1$ and $1+s\tau_z\approx1$ (zero not yet reached). Substitute and simplify:
-$$\frac{V_o}{Q}(s)\approx \frac{(R_p\!\parallel\!R_b)\left(1+\dfrac{R_f}{R_g}\right)}{(C_p+C_c)(R_p\!\parallel\!R_b)} = \frac{1+\dfrac{R_f}{R_g}}{C_p + C_c}$$
+- The separation of plates A–B becomes ($W - x$).
+- The separation of plates B–C becomes ($W + x$).
+    
+Thus, the capacitances are:
+$$C_1 = \frac{\varepsilon_0 A}{w - x}, \qquad  
+C_2 = \frac{\varepsilon_0 A}{w + x}  $$
+where ($A$) is the fixed plate area.
 
-So the mid-band response is **flat** (frequency independent) and equal to:
-$$\boxed{\ \frac{V_o}{Q}\ \Bigr|_{\text{mid}} = \frac{1 + R_f/R_g}{C_p + C_c}\ }$$ 
-Interpretation: amplifier gain multiplies the charge→voltage conversion set by the total input capacitance.
+Because the two capacitances vary oppositely, any common-mode effects (e.g., temperature-dependent permittivity) affect both equally and thus largely cancel out.
+#### <span style="color:rgb(2, 141, 192)">Wheatstone Bridge Readout</span>
+![[Pasted image 20251120114952.png]]
+To extract the imbalance between ($C_1(x)$) and ($C_2(x)$), we place them in one branch of a Wheatstone bridge driven by a sinusoidal excitation voltage ($V_A$).  
+The other branch contains two **fixed** capacitors equal to the nominal value at the zero-displacement position (i.e., ($\frac{\varepsilon_0 A}{W}$)).
 
-***High frequency ( $\omega \gg 1/\tau_{z}$  and $\omega\gg 1/\tau_{p2}$ )***
+Because capacitors have infinite impedance at DC, the bridge must be excited with an **AC voltage**, not a DC source.
 
-![[Pasted image 20251119194703.png]]
-All $1+s\tau$ dominated by the $s\tau$ terms. After cancellation (work shown below), the limit is:
- $$\boxed{\ \frac{V_o}{Q}\ \Bigr|_{\infty} = \frac{1}{C_p + C_c}\ }$$
-So at very high frequency the gain given by the amplifier cancels out and the response tends to $1/(C_p+C_c)$.
-$$(1+R_f/R_g)\cdot\frac{(R_f\parallel R_g)/R_f}{C_p+C_c}$$ But $(R_f\parallel R_g)/R_f = 1/(1+R_f/R_g)$, so the amplifier gain cancels.
+Let:
+- $(V_+)$ be the voltage at the midpoint of the variable branch.
+- ($V_-)$ be the voltage at the midpoint of the fixed branch.
 
-#### <span style="color:rgb(2, 141, 192)">11. Bode-shape summary</span>
+***Computation of ($V_+$)***
 
-![[Pasted image 20251119194754.png]]
-- At very low freq: starts at **0** (zero at origin, slope +20 dB/dec from origin if plotted vs. freq because of the multiplying sss).
-- Midband: **flat** plateau at $(1+R_f/R_g)/(C_p+C_c)$.
-- Above $f_{p2}$​ and after the zero $f_z$​: slope changes and the final high-freq plateau equals $1/(C_p+C_c)$.
+Using the capacitive divider rule:
+$$V_+ = V_A \cdot \frac{C_1}{C_1 + C_2}$$
 
-(Equivalent verbal description: zero at origin → midband flat → second pole rolls off → zero restores slope → high-freq limit.)
+Substitute definitions of ($C_1$) and ($C_2$), simplify, and we obtain:
+$$V_+ = V_A \frac{w + x}{2w}  $$
+***Computation of $(V_-)$***
 
-![[Pasted image 20251119194935.png]]
-#### <span style="color:rgb(2, 141, 192)">12. Additional Physical Insight</span>
+The fixed capacitors are equal, so the midpoint divides the voltage exactly in half:
+$$V_- = \frac{V_A}{2}$$
 
-In this voltage-mode readout circuit, we can only use the sensor signal reliably **in the frequency range where the transfer function is flat**—that is, **between the low-frequency pole and the high-frequency pole**.  
-In this region, the gain depends on the amplifier ratio $1 + R_f/R_g$​, which is good: both $R_f$​ and $R_g$​ are chosen by the designer and have well-controlled values.
+***Output of the Bridge***
+$$V_{\text{out}} = V_+ - V_-  
+= V_A \left( \frac{w + x}{2w} - \frac{1}{2} \right)  
+= \frac{V_A}{2} \frac{x}{w}$$
 
-However, the gain in this midband also depends on the **total input capacitance**:
-$C_p + C_c$
+Thus:
+$$\boxed{V_{\text{out}} = \frac{V_A}{2} \cdot \frac{x}{w}}$$
+
+The output voltage is **directly proportional to the displacement** (x), and importantly:
+
+- It **does not depend** on the permittivity ($\varepsilon_r$).
+- It is robust against common-mode variations.
+- It provides a **linear response** with respect to displacement.
+
+#### <span style="color:rgb(2, 141, 192)">Differential Cylindrical Geometry</span>
+
+![[Pasted image 20251120115324.png|300]]
+A similar differential principle can be implemented using cylindrical plates.
 
 Here:
+- There are two **fixed outer cylinders**, forming two capacitors with a **movable inner cylinder**.
+- When the inner cylinder shifts by (x), one capacitance increases and the other decreases.
 
-- $C_p$ is the piezoelectric capacitance (known and stable)
-- $C_c$​ is the **stray capacitance**, which is not well controlled and can vary with cables, connectors, layout, humidity, etc.
-- 
-Because the output voltage in this architecture is essentially:
-$$V_\text{out} \propto \frac{Q}{C_p + C_c}$$
+The capacitances are proportional to the lateral facing area:
+$$C_1 = \frac{\varepsilon_0 \varepsilon_r \pi d}{W} (L + x) $$
+$$C_2 = \frac{\varepsilon_0 \varepsilon_r \pi d}{W} (L - x) $$
 
-any uncertainty or change in $C_c$​ directly changes the output.  
-This means:
+where:
+- $(d)$ = diameter of the inner cylinder
+- $(L)$ = length of overlap at the zero position
 
-- $V_\text{out}$​ depends on how much unknown parasitic capacitance is present.
-- Therefore, the circuit **cannot accurately recover the charge Q***.
-- And since Q is proportional to the applied force, the circuit also **cannot reliably estimate the force**.
+Placing these in a Wheatstone bridge exactly as before yields:
+$$\boxed{V_{\text{out}} = V_A \frac{x}{2L}}  $$
+Again, the output is **linearly proportional** to the displacement and **independent** of permittivity.
+#### <span style="color:rgb(2, 141, 192)">Summary of Advantages</span>
+
+The differential capacitive approach offers:
+
+ Linear relationship between output voltage and displacement  
+ Immunity to variations in dielectric constant  
+ Reduced sensitivity to temperature and geometry tolerances  
+ Simple readout using a Wheatstone bridge (no oscillator required)  
+ Higher measurement stability and accuracy
+
+## <span style="color:rgb(239, 179, 1)">Capacitive Sensor - Proximity</span>
+  
+Now let’s talk about another type of **capacitive sensor**. Unlike the ones we discussed earlier, which measure displacement, this type of sensor is used to detect **proximity** — that is, whether an object is nearby or not.
+
+A **proximity sensor** is essentially an on-off sensor. It does not provide a continuous measurement; it simply tells you if an object is present or absent in its sensing range.
+![[Pasted image 20251120120405.png|300]]
+
+A capacitive proximity sensor is usually made using **two concentric electrodes**, forming what’s called a planar capacitor. Think of it like this:
+
+- There is a circular **inner plate** and a surrounding **outer plate**.
+- If you look at a cross-section, you can see the plates stacked. The outer plate may look like two parts in the cross-section, but it is actually one piece.
+- The sensor generates an **electric field** between these two plates.
     
-In other words:
+![[Pasted image 20251120120428.png]]
+When a target object comes close to the sensor, it **interacts with this electric field**. This interaction changes the **capacitance** of the sensor. Why does this happen? Because capacitance depends on:
 
->[!info] This voltage-mode readout suffers from the fact that the voltage across the piezoelectric element, $V_p$​, changes with stray capacitance. Because of this, the final output $V_\text{out}$​ is sensitive to parasitic effects, making precise force measurement impossible.
-
-This is the main limitation of this architecture and the reason why, in practice, designers prefer a different readout circuit (the charge-mode amplifier), which removes the dependence on $C_c​$.
-
-
-### <span style="color:rgb(161, 40, 226)">Second Readout Circuit (Charge mode amplifier)</span>
-
-![[Pasted image 20251119200236.png]]
-
-To eliminate the limitations of the first circuit, we can use a **charge amplifier** as the readout stage.
-
-Unlike the previous non-inverting configuration, the charge amplifier uses the operational amplifier in an **inverting topology** with a feedback capacitor $C_f$​.  
-Here, $C_f$​ is not simply a high-frequency compensation component—**it is the core element of the measurement**, because:
-
-#### <span style="color:rgb(2, 141, 192)">1. Goal of the charge amplifier<br></span>
-We want **all the charge produced by the piezoelectric sensor** to be **integrated on $C_f$​**.
-
-In the ideal case, the sensor—modeled by a Norton source (current generator + capacitor $C_p$​ + resistor $R_p$​)—is connected directly into an op-amp input that sits at **virtual ground (0 V)**.
-
-#### <span style="color:rgb(2, 141, 192)">2. Why we want Ri=0 (ideally)</span>
-
-Ideally, the input resistor $R_i$​ should be **zero ohms**.
-
-- With $R_i = 0$, the sensor is directly connected to virtual ground.
-- So **all current produced by the sensor flows into $C_f$​**.
-- This ensures that _100% of the charge_ is integrated, giving:
+1. The **permittivity** of the material between the plates (how easily the material allows an electric field to pass through it).
+2. The **area** of the plates.
+3. The **distance** between the plates.
     
-$$V_\text{out} = -\frac{Q}{C_f} + \frac{V_{cc}}{2}$$
 
-This equation is extremely important:  
-➡️ **The output depends only on the feedback capacitor—not on the sensor capacitance or stray capacitance.**
+As the target approaches, the effective permittivity between the plates increases, causing the capacitance to rise.
 
-This is the key advantage of charge-mode readout.
+To detect this change, the sensor is connected to an **oscillator circuit**:
 
-#### <span style="color:rgb(2, 141, 192)">3. Why we cannot actually make Ri=0</span>
-
-In practice, we must add a **small resistor $R_i$​** at the input. This resistor is _not_ part of the sensing model—it is purely for **stability compensation**.
-
-***Reason: Large sensor capacitance makes the op-amp unstable***
-
-The piezoelectric element has a large internal capacitance $C_p$​, and connecting a large capacitance directly to the inverting input of an op-amp is known to cause **instability** or even oscillation.
-
-You have already seen this effect with photodiode circuits:
-
-- Photodiode capacitance caused instability.
-- A feedback capacitor was added for compensation.
-
-Here the situation is similar, but the compensation method is different:
-
-#### <span style="color:rgb(2, 141, 192)">4. Compensation method</span>
-
-- We insert a small resistor $R_i$​ in series with the input.    
-- This resistor shifts the pole created by $C_p$​ from **infinite frequency** to a **finite, stabilizing frequency**.
-- The value of $R_i$​ can be _very small_, but it must be **non-zero** to guarantee phase margin.
+- The oscillator requires a minimum capacitance to start oscillating.
+- When the object is close enough, the capacitance rises, and the oscillator begins to work.
+- As the object moves farther away, the capacitance drops, the oscillation slows, and eventually stops.
     
-And importantly:
+A **trigger circuit** (like a comparator) monitors the oscillator. When the oscillation passes a certain threshold, the sensor outputs a **digital signal** indicating the presence of an object. Essentially, the output is high if an object is near and low if no object is nearby.
 
-$$R_i \ll R_p$$
-So most of the piezoelectric current still flows into the charge amplifier, not into $R_p$.
+### <span style="color:rgb(161, 40, 226)">How Material Properties Affect the Sensor<br></span>
+![[Pasted image 20251120120512.png|400]]
 
-This will simplify our transfer-function calculations later.
+The sensor’s behavior depends heavily on the **dielectric constant** (also called relative permittivity, εr) of the material it is detecting. Different materials affect the capacitance differently:
 
-#### <span style="color:rgb(2, 141, 192)">5. Biasing at VCC​/2</span>
-
-Just like in the first circuit, the op-amp uses a **single supply** (0–VCC), but we must measure both:
-
-- positive charge (compression)
-- negative charge (tension)
+- **Water** has a very high dielectric constant, which makes it easy for the sensor to detect from a longer distance.
+- **Air** and **vacuum** have very low dielectric constants (about 1), so they hardly change the sensor’s capacitance.
+- Other materials fall somewhere in between. For example, alcohol has a dielectric constant around 25.8, while plexiglass is around 3.
     
-Therefore:
-- We shift the operating point to **$V_{CC}/2$**.
-- This ensures the output can swing both above and below the midpoint.
+![[Pasted image 20251120120544.png|400]]
+This variation affects the **effective sensing distance** — the distance at which the sensor can reliably detect an object:
+
+- Sensors usually provide a **digital output**, so instead of sensitivity, we talk about the distance at which detection occurs.
+- Datasheets often define the sensing distance based on **water** because it has the highest dielectric constant and gives a clear reference.
     
-During transfer-function analysis, however, this constant bias does not affect the dynamics, so we “turn it off” (set it to 0 V).
 
-#### <span style="color:rgb(2, 141, 192)">6. Transfer Function Strategy</span>
+For example:
+![[Pasted image 20251120120609.png]]
 
-Again, we want the final result:
+- If a sensor has a **rated sensing distance of 10 mm for water**, it can detect water up to 10 mm away.
+- For alcohol (εr ≈ 25.8), the effective sensing distance drops to roughly **8.5 mm**.
+- For a material with εr = 10, the effective sensing distance might only be **6 mm**.
+    
+This is why the material in front of the sensor matters — the sensor might detect some objects farther away and others only when they are very close.
 
-$$\frac{V_\text{out}(s)}{Q(s)}$$
+Graphs in datasheets often show the **relative sensing distance**, which is the effective distance as a percentage of the rated distance for different materials. This makes it easier to understand how the sensor behaves with various targets.
 
-But as before, we start with something more familiar:
+### <span style="color:rgb(161, 40, 226)">Working Principle</span>
 
-1. **First compute** the transfer function
-    $$\frac{V_\text{out}(s)}{I(s)}$$
-2. Then use the fundamental relation in the Laplace domain:
-    $$I(s) = s Q(s)$$
-3. So,
-    $$\frac{V_\text{out}(s)}{Q(s)} = s \cdot \frac{V_\text{out}(s)}{I(s)}$$
-This is exactly the same reasoning as in the previous circuit.
+Now, let’s go deeper into how a **capacitive proximity sensor** actually works, focusing on the **oscillator circuit** it uses.
+![[Pasted image 20251120121212.png]]
+In a capacitive proximity sensor, the sensor’s capacitance is connected to an **oscillator**. The ability of this oscillator to generate a signal depends on the **capacitance** of the sensor: when the capacitance is high enough, the oscillator starts oscillating; when it is too low, it does not.
 
-#### <span style="color:rgb(2, 141, 192)">7. Computation</span>
+The oscillator used in these sensors is usually a **parallel RLC oscillator**, meaning it is made of a **resistor (R), inductor (L), and capacitor (C)** connected in parallel.
 
-![[Pasted image 20251119202521.png]]
-Okay, so let’s start with the analysis. We have our current source representing the piezoelectric sensor.  After that, we see the sensor’s internal capacitance, which is the parallel combination of ($C_p$) and the stray capacitance ($C_c$).  Then we have the resistor ($R_p$), which models the piezoelectric material’s leakage.  In series with this, we add the small compensation resistor ($R_i$).  Finally, the signal enters the charge amplifier: the non-inverting input is grounded, and the feedback network includes ($R_f$) and ($C_f$).
+- This oscillator has a **resonant frequency**, which is the natural frequency at which it oscillates. It is given by the formula:  
+    $$\omega_0 = \frac{1}{\sqrt{LC}}  $$
+However, a simple RLC circuit is not enough to maintain continuous oscillations. Why? Because **resistors dissipate energy**, which means that over time the oscillations would gradually die out. To sustain oscillation, we need a **source of energy**, and this is provided by an **operational amplifier (op-amp)** powered by an external supply.
+![[Pasted image 20251120121301.png|400]]
 
-Our goal is to compute the output voltage.
+- The op-amp provides **positive feedback** to keep the oscillation going.
+- At the same time, it also uses **negative feedback** to prevent the oscillation from growing uncontrollably.
 
-#### <span style="color:rgb(2, 141, 192)">8. Singularities of the Circuit</span>
+For the oscillation to remain **stable** — not too big and not zero — the **strength of the positive feedback** must exactly balance the **strength of the negative feedback**.
 
-As in the previous example, we start by identifying the poles and zeros.
+- In the circuit, the **negative feedback** is determined by a voltage divider (R1 and R2).
+- The **positive feedback** depends on the relationship between the impedance of the RLC circuit and a resistor (R4).
+    
 
- ***Pole from ($C_p \parallel C_c$)***
+The RLC circuit always oscillates at its resonant frequency, so to calculate the effective impedance of the RLC part, we consider:
+$$Z_{eq} = R3 \parallel (sL) \parallel \frac{1}{sC}$$
+- Here, ($s = j\omega_0$), corresponding to the resonant frequency.
+- At resonance, this equivalent impedance simplifies to **R3**, meaning the positive feedback is controlled by R3 and R4.
+- By choosing R1, R2, R3, and R4 correctly, we can balance positive and negative feedback, ensuring a **steady oscillation**.
+#### <span style="color:rgb(2, 141, 192)">Role of the Damping Factor</span>
+
+The behavior of the oscillator also depends on the **damping factor (ζ)**, which is related to the **quality factor (Q)** of the circuit:
+$$\zeta = \frac{1}{2Q} = \frac{1}{2R} \sqrt{\frac{L}{C}}  $$
+- If ζ < 1 → the circuit is **underdamped** and able to oscillate.
+- If ζ = 1 → the circuit is **critically damped** and cannot sustain oscillation.
+- If ζ > 1 → the circuit is **overdamped** and also cannot oscillate.
+    
+
+Now imagine the sensor **without any object nearby**:
+
+- The capacitance is small (close to that of air or vacuum).
+- This makes the damping factor ζ > 1 → the circuit is overdamped, and **no oscillation occurs**.
+
+When an object comes **into proximity**:
+![[Pasted image 20251120121429.png]]
+- The capacitance increases because the material’s permittivity is higher than air.
+- This increase **reduces the damping factor**. If it becomes smaller than 1, the circuit becomes underdamped → **oscillation starts**.
+    
+The oscillation then grows to a **steady amplitude**, stabilized by the balance between positive and negative feedback.
+
+- In other words: **no object → no oscillation**, **object present → oscillation appears**, which the sensor can detect and convert into a digital signal.
+
+#### <span style="color:rgb(2, 141, 192)">Simulation</span>
+
+![[Pasted image 20251120155742.png|400]]
+
+To better understand how the capacitive proximity sensor works, I simulated the oscillator circuit. In the diagram, you can clearly identify the **RLC oscillator**, the resistor that provides **positive feedback**, and the pair of resistors that set the **negative feedback** of the operational amplifier.
+
+To reproduce the effect of a target approaching or moving away from the sensor, I added an extra capacitor (C2) in **parallel** with the main capacitor C1. This extra capacitor represents the **increase in capacitance** that occurs when an object comes close to the sensor. To control when this added capacitance is included in the circuit, I connected it through two switches.
+
+Here’s how the switches behave:
+
+- **Switch 1** starts as a _short circuit_ (closed).
+- **Switch 2** starts as an _open circuit_.
+    
+![[Pasted image 20251120155947.png]]
+At **2 ms**, Switch 2 closes. Since Switch 1 is already closed, the two switches now form a continuous path, and C2 becomes connected to the circuit. This moment simulates the **presence of the target**, because the total capacitance increases.
+
+Then, at **5 ms**, Switch 1 opens. This breaks the connection and disconnects capacitor C2, simulating the moment when the **target moves away**.
+
+The results of the simulation match exactly what we expected:
+
+- At the beginning, with no target present and only C1 in the circuit, the capacitance is too low for oscillation to occur — so we see **no oscillation**.
+- At **2 ms**, when C2 is added in parallel, the capacitance increases enough for the circuit to become underdamped, and we see a **stable oscillation** appear.
+- At **5 ms**, when C2 is disconnected, the capacitance drops again, the circuit becomes overdamped, and the oscillations **disappear**.
+    
+
+You may notice a small spike at the switching moments. This spike is not a physical effect — it is simply an artifact of the simulator when a circuit parameter changes very abruptly. To reduce or eliminate these non-physical spikes, you can increase the number of simulation points. The simulation will take longer, but the waveform will look smoother and more realistic.
+
+### <span style="color:rgb(161, 40, 226)">Applications</span>
+
+Now let’s look at some **applications of capacitive sensors**. As we discussed earlier, capacitive sensors can be used in different ways depending on what we want to measure.
+
+One common use is **displacement measurement**. For example:
+![[Pasted image 20251120160631.png]]
+
+- They can be used to precisely track the position of mechanical parts in machinery.  
+- They are also used in precision stages, where you need to know the exact relative position between a sensor and an object.  
+
+Capacitive sensors are also useful for measuring **dynamic motion**, especially vibrations. A vibration is basically a small and rapid displacement around a fixed central position, so capacitive sensors can capture these changes very accurately.
+
+Another important application is **proximity sensing**. In this case, the sensor doesn’t measure a continuous value but simply detects whether an object is near or not.
+
+Proximity sensing is especially useful in areas like **assembly testing** or for **detecting objects through barriers**.
+![[Pasted image 20251120160647.png]]
+
+For example, imagine you want to check whether a plastic bottle contains liquid (like water) or if it is empty:
+
+- If the bottle contains only air, the permittivity (ε) around the sensor stays very low. Since air barely affects capacitance, the sensor will not detect any nearby object.
+- But if the bottle contains water, the situation changes completely. Water has a very high dielectric constant, so it increases the capacitance significantly. As a result, the sensor detects the presence of a target.
+
+This is extremely useful because the sensor does this **even though the bottle wall is between the sensor and the liquid**. The bottle acts as a barrier, but capacitive sensing is still able to “see” what is inside because capacitive fields are influenced by the dielectric properties of the material, not by light or reflection.
+
+Later, when we look at optical proximity sensors, we’ll see the contrast:  
+- An optical sensor would always detect the bottle itself, whether it is full or empty, because it only sees the surface.  
+- But a capacitive proximity sensor can distinguish **full vs empty**, because it reacts differently to air and to liquid.
+
+This is why capacitive sensors are often chosen when the goal is not just to detect the presence of an object, but to identify what the object **contains** or what material it is made of.
+
+## <span style="color:rgb(239, 179, 1)">Inductive Sensors</span>
+
+### <span style="color:rgb(161, 40, 226)">Self-Inductance</span>
+![[Pasted image 20251120162045.png]]
+
+Inductive sensors, like capacitive sensors, can be used to measure:
+
+- **Linear displacement**
+- **Proximity**
+    
+
+In this part we will focus on the **LVDT** (Linear Variable Differential Transformer), a very precise inductive sensor used for linear displacement.
+
+Before studying the LVDT, we need to review the physics of **inductance** and **electromagnetic induction**.
+
+***Faraday–Neumann–Lenz Law***
+
+![[Pasted image 20251120162231.png|350]]
+Whenever there is a **time-varying magnetic flux** linked to a coil, a voltage is induced:
+$$V = -N \frac{d\Phi_B}{dt}  $$
+where:
+
+- $(N)$ = number of turns in the coil
+- $(\Phi_B)$ = magnetic flux
+- The negative sign means the induced voltage opposes the change in flux (_Lenz’s law_)
+
+The **magnetic flux** is:
+$$\Phi_B = \vec{B} \cdot \vec{A} = BA\cos\alpha$$
+If the magnetic field (B) is **normal to the coil area**, then:
+$$\alpha = 0,\ \cos 0 = 1 \Rightarrow \Phi_B = BA$$
+
+***Magnetic Field of a Solenoid***
+
+A solenoid carrying current *(I)* generates a magnetic field:
+$$B = \mu_0 \mu_r \frac{NI}{L}  $$
+where:
+
+- ($\mu_0$) = vacuum permeability
+- ($\mu_r$) = relative permeability of the core
+- ($N$) = number of turns
+- ($L$) = length of the solenoid
+- ($I$) = current
+
+***Combining Both Equations: Self-Induction***
+
+If the current ($I(t)$) varies in time (i.e., it is an AC current), then:
+
+- the magnetic field ($B(t)$) varies,
+- the magnetic flux ($\Phi_B(t)$) varies,
+- and the coil **induces a voltage in itself** (self-induced voltage):
+    
+$$V = -L \frac{dI}{dt}$$
+
+The constant (L) is the **self-inductance**, given by:
+$$L = \frac{\mu_0 \mu_r N^2 A}{L}$$
+So inductance:
+
+- increases with the **square** of the number of turns ($N^2$)
+- increases with the **area** of the coil
+- increases with the **permeability** of the core
+- decreases with the coil length
+
+***Why this matters for inductive sensors***
+
+This physics is essential because inductive sensors operate by detecting:
+
+- changes in magnetic fields
+- changes in inductance
+- changes in the coupling between coils
+    
+Examples:
+
+- In an **LVDT**, the displacement of a movable core changes the coupling between primary and secondary coils, producing a measurable change in voltage.
+- In **proximity inductive sensors**, the presence of metal changes the inductance of the coil.
+    
+### <span style="color:rgb(161, 40, 226)">Mutual Inductance Between Two Coils</span>
+
+Up to this point we have dealt with the concept of self-inductance, where a varying current flowing through a coil generates a magnetic field that changes in time, and this changing magnetic field induces a voltage in the same coil.  
+The same physical principles apply when we consider two separate coils placed near each other.
+#### <span style="color:rgb(2, 141, 192)">Magnetic Coupling Between Two Coils</span>
+
+Consider two coils, Coil 1 and Coil 2. Coil 1 is supplied with an alternating current ( $I_1(t)$ ). Because the current varies in time, Coil 1 generates a magnetic field ( $B_1(t)$ ).  A portion of this magnetic field reaches and links with Coil 2.
+![[Pasted image 20251120205303.png]]
+How much of the magnetic field produced by Coil 1 actually links Coil 2 depends on the distance between the coils, their orientation, their geometry, and the medium in which they are placed. To quantify this, we introduce the coupling coefficient ($k$).
+
+The coupling coefficient is defined such that:
+$$0 \le k \le 1 .$$
+A value of ($k = 0$) means that no magnetic field from Coil 1 reaches Coil 2. This happens when the coils are very far apart or misaligned.  A value of ($k = 1$) corresponds to perfect magnetic coupling. In this case the entire magnetic field produced by Coil 1 links Coil 2.
+
+The magnetic field from Coil 1 is given by:
+$$B_1 = \mu_0 \mu_r \frac{N_1 I_1}{L_1}$$
+
+where ( $\mu_0$ ) and ( $\mu_r$ ) are the permeability of free space and of the medium, ( $N_1$ ) is the number of turns of Coil 1, and ( $L_1$ ) is the length of the solenoid. The magnetic field effectively “seen” by Coil 2 is therefore:
+$$B_2 = k B_1$$
+#### <span style="color:rgb(2, 141, 192)">Voltage Induced in Coil 2</span>
+
+Since Coil 1 carries an alternating current ( $I_1(t)$ ), the magnetic field ( $B_1(t)$ ) is time-varying, and therefore the portion of the field that reaches Coil 2, ( $B_2(t)$ ), is also time-varying.  A time-varying magnetic field linked to Coil 2 induces a voltage across it, according to the Faraday–Neumann–Lenz law:
+$$V_2 = -N_2 A_2 \frac{dB_2}{dt}$$
+where ($N_2$) is the number of turns of Coil 2 and ($A_2$) is its cross-sectional area.
+
+Substituting the expression for ( $B_2$ ), we obtain:
+$$V_2 = -N_2 A_2 \frac{dB_2}{dt}\left(k \mu_0 \mu_r \frac{N_1 I_1}{L_1}\right).$$
+All the parameters except the current ( $I_1$) are constant, so the derivative only acts on the current. This yields:
+$$V_2 = -k \mu_0 \mu_r \frac{N_1 N_2 A_2}{L_1} \frac{dI_1}{dt}.  $$
+This expression shows that the induced voltage in Coil 2 is proportional to the rate of change of the current flowing in Coil 1 and to a set of geometric and physical constants of the system.
+#### <span style="color:rgb(2, 141, 192)">Definition of Mutual Inductance</span>
+
+Since all the geometric and material-dependent terms in the previous expression are constant, it is convenient to group them into a single parameter called the mutual inductance, denoted by $(M)$.  
+The induced voltage can then be written in a compact and standard form:
+$$V_2 = -M \frac{dI_1}{dt}$$
+
+The mutual inductance can be expressed in terms of the coupling coefficient and the self-inductances of the two coils:
+
+$$M = k \sqrt{L_1 L_2}$$
+
+In this expression, ($L_1$) and ($L_2$) are the self-inductances of Coil 1 and Coil 2, respectively, and ($k$) expresses how effectively the magnetic fields are coupled between the two coils.
+
+#### <span style="color:rgb(2, 141, 192)">Interpretation</span>
+![[Pasted image 20251120205918.png]]
+If the coupling coefficient is zero, then ($M = 0$), and no voltage is induced in Coil 2. This corresponds to the case where the coils do not interact magnetically.  
+If the coupling coefficient is one, the magnetic coupling is perfect, and the mutual inductance attains its maximum possible value. In practical situations, the value of ($M$) increases when the coils are closer, better aligned, have more turns, have larger areas, or are placed in a medium with higher permeability.
+
+This mutual inductance phenomenon forms the physical basis for devices such as transformers, inductive displacement sensors, and specifically the LVDT (Linear Variable Differential Transformer), which measures displacement through variations in magnetic coupling.
+
+### <span style="color:rgb(161, 40, 226)">Linear Variable Differential Transformer</span>
+
+Having introduced the concept of mutual inductance, we can now see how its variation can be exploited to measure displacement. The device that uses this principle is called the **Linear Variable Differential Transformer**, commonly abbreviated as **LVDT**. Sometimes it is also referred to as a *transducer*, sometimes as a *transformer*, but the operating principle is the same.
+
+The LVDT is a sensor designed to measure **linear displacement** by making use of the fact that the **coupling coefficient** between coils can be altered by moving a ferromagnetic core. Since the coupling coefficient directly affects the mutual inductance, and therefore the induced voltage in the secondary coils, the position of the core can be detected by analyzing these induced voltages.
+#### <span style="color:rgb(2, 141, 192)">Structure of the LVDT</span>
+
+The LVDT consists of three coils wound on a cylindrical structure:
+![[Pasted image 20251120210829.png]]
+1. **A primary coil**, located at the center.
+2. **Two secondary coils**, symmetrically placed on either side of the primary.
+
+The primary coil is excited by an alternating current. This AC excitation creates a time-varying magnetic field, which can link with the two secondary coils. However, the amount of magnetic field that links each secondary coil depends on the presence and the position of a **ferromagnetic core** that can slide along the axis of the coils.
+
+This movable core is mechanically connected to the object whose displacement we want to measure. Usually, a rigid rod transmits the movement of the object to the core so that the core moves exactly as the object moves.
+
+The core is made of a high-permeability material. Its function is to channel and concentrate the magnetic field. For this reason, the position of the core strongly influences how much magnetic flux reaches the first or the second secondary coil.
+
+#### <span style="color:rgb(2, 141, 192)">Operation of the LVDT</span>
+
+When the core is exactly centered with respect to the primary coil, the magnetic field produced by the primary is equally distributed toward the two secondary coils. As a consequence, the induced voltages in the two secondaries (often denoted as $(V_1)$ and $(V_2)$ have equal magnitude. In this condition, the LVDT is said to be at its *null position*, where $(V_1 = V_2)$.
+
+If the core is displaced toward the left, the magnetic coupling between the primary and the left secondary coil increases, because the core channels more magnetic flux toward that side. As a result, the induced voltage $(V_1)$ becomes larger than $(V_2)$. The opposite occurs if the core moves toward the right; then the coupling is stronger with the right secondary coil, and so the induced voltage $(V_2)$ becomes larger than $(V_1)$.
+
+This means that:
+
+- the **difference** between the two induced voltages indicates the magnitude of the displacement;
+- the **sign** of the difference (i.e., which voltage is greater) indicates the direction of the displacement.
+
+Because the LVDT operates with alternating current, the induced secondary voltages are AC signals as well. The position is determined by comparing their amplitudes, not by comparing their instantaneous values.
+#### <span style="color:rgb(2, 141, 192)">Summary of the Sensing Mechanism</span>
+
+To summarize the operating principle:
+
+![[Pasted image 20251120210648.png]]
+1. The primary coil is excited by an alternating current, producing a time-varying magnetic field.
+2. A ferromagnetic core shapes the distribution of this magnetic field.
+3. Two secondary coils receive different amounts of magnetic flux depending on the core’s position.
+4. The resulting induced voltages in the two secondaries are compared:
+   - equal voltages mean the core is centered,
+   - higher voltage in the first secondary means the core is displaced toward it,
+   - higher voltage in the second secondary means the core is displaced toward the opposite direction.
+5. The relationship between displacement and voltage difference is linear over a certain range, which makes the LVDT an accurate and highly reliable displacement sensor.
+
+Here is a **clearer, more textually explained** version of your content, still in **English**, without emojis, and keeping the technical meaning intact. I rewrote it so it reads smoothly, logically, and with stronger explanations.
+
+### <span style="color:rgb(161, 40, 226)">How to measure the imbalance?</span>
+
+![[Pasted image 20251120211629.png]]
+To measure the imbalance between the two voltages $( \Delta V_1)$ and $( \Delta V_2 )$, we need a specific circuit configuration. This is necessary because these voltages are **not constant**: each is an **AC signal**, typically a sinusoid. What we want is **not** the instantaneous value of each sinusoid, but rather **their amplitude**, since the amplitude is what depends on the position of the ferromagnetic core.
+
+The general structure is the following:
+
+- The primary coil is driven by an oscillator.
+- Two secondary coils generate $( \Delta V_1)$ and $( \Delta V_2)$.
+- Each of these secondary voltages is then processed to extract only its **peak value**, using a circuit known as a **peak stretcher**.
+
+#### <span style="color:rgb(2, 141, 192)">Understanding the Peak Stretcher</span>
+
+Let us focus on only one secondary coil, since both sides work identically.
+
+Assume the secondary coil generates a sinusoidal voltage whose amplitude changes with the displacement of the ferromagnetic core. To capture the amplitude, we use a circuit consisting of:
+
+- A diode
+- A capacitor
+- A resistor (which we add later to improve performance)
+
+***Circuit With Only a Diode and Capacitor***
+
+![[Pasted image 20251120214102.png]]
+Imagine the sinusoidal input voltage $(\Delta V_1)$ is applied through a diode to a capacitor.
+
+- When the sinusoid increases (positive peak), the diode becomes forward-biased, and the capacitor charges up.
+- Due to the diode’s threshold voltage (typically around 0.7 V for standard diodes, or 0.2–0.3 V for Schottky diodes), the capacitor voltage will be slightly lower than the peak of the sinusoid.
+- Once the sinusoid starts to decrease, the diode becomes reverse-biased.  
+  At this point the capacitor **cannot discharge** because the diode blocks current in that direction.
+
+As a result, the output voltage remains **constant**, equal to the peak reached previously. This gives us a voltage that represents the amplitude of the sinusoid.
+
+However, this represents a problem:  
+If the amplitude of the sinusoid later **decreases**, the capacitor voltage **cannot follow** this decrease because it has no path to discharge. Therefore, the circuit cannot track a decreasing envelope.
+
+***Adding a Resistor to Track Decreasing Amplitude***
+
+To solve this, we add a resistor in parallel with the capacitor.
+![[Pasted image 20251120214133.png]]
+Now:
+
+- The diode charges the capacitor during each positive peak of the sinusoid.
+- When the sinusoid decreases and the diode turns off, the capacitor can slowly discharge through the resistor.
+- The resistor value is chosen to make this discharge **slow**, so that the output still tracks the general envelope, but does not fall to zero between every cycle.
+
+This way, the output voltage always closely follows the amplitude of the sinusoid, even when that amplitude decreases.
+
+Thus, the output voltage represents the **true envelope** of the sinusoidal signal.
+
+#### <span style="color:rgb(2, 141, 192)">Applying This to the Differential Measurement</span>
+
+![[Pasted image 20251120214159.png]]
+
+The same peak-stretcher circuit is applied to each secondary coil:
+
+- At node ($V_+$), we obtain a voltage proportional to the amplitude of ($\Delta V_1$).
+- At node ($V_-$), we obtain a voltage proportional to the amplitude of ($\Delta V_2$).
+
+The final output is the difference:
+$$V_{\text{out}} = V_+ - V_-$$
+This provides the following behavior:
+
+- If the ferromagnetic core moves upward, the coupling to the first secondary increases.  
+  Therefore, ( $\Delta V_1 > \Delta V_2$ ), so $( V_{\text{out}} > 0)$.
+- If the core moves downward, then ($\Delta V_2 > \Delta V_1)$, and thus $(V_{\text{out}} < 0)$.
+- If the core is exactly centered, the amplitudes are identical, so the output is exactly zero.
+
+#### <span style="color:rgb(2, 141, 192)">Result</span>
+
+With this arrangement, we obtain a circuit where:
+
+- The output is **zero** when there is **no displacement**,
+- **Positive** for displacement in one direction,
+- **Negative** for displacement in the opposite direction.
+
+This allows the system to detect both the **direction** and **magnitude** of the displacement in a continuous and highly sensitive way.
  
-The parallel combination ($C_p + C_c$) produces one pole.  Because of the presence of ($R_i$), this pole is **not** at infinite frequency.  
-Its frequency is:
-$$f_{p1} = \frac{1}{2\pi (C_p + C_c) \left( R_p \parallel R_i \right)}  $$
 
+Here is a **more textually explained**, clean, structured version of your content in **English**, without emojis, and keeping all the technical meaning intact. I made it clearer, more formal, and easier to read while preserving your message.
 
-Since the inverting input is at virtual ground, the capacitors and resistors are referenced to ground, so the parallel combination is valid.
+### <span style="color:rgb(161, 40, 226)">Inductive Proximity Sensors</span>
 
-Because ($R_i \ll R_p$), the parallel resistance is dominated by ($R_i$). Thus, we can approximate:
+Now we move to a different type of inductive sensor, this time used specifically for **proximity detection**.  Although these sensors share some conceptual similarities with capacitive proximity sensors, their **output behavior is essentially the opposite**.
+#### <span style="color:rgb(2, 141, 192)">Opposite Behavior Compared to Capacitive Proximity Sensors</span>
 
-$$f_{p1} \approx \frac{1}{2\pi (C_p + C_c) R_i }  $$
+- In capacitive proximity sensors, the presence of a target generally **increases** the effective capacitance, changing the oscillation conditions in one direction.
+- In inductive proximity sensors, the effect is reversed:  
+  - When **no target** is present, the sensor’s internal circuit **oscillates normally**.  
+  - When a **metallic target** approaches the sensor, these oscillations **stop or are significantly attenuated**.  
+  - When the target is removed, the oscillations **resume**.
 
- ***Pole from the feedback capacitor $(C_f)$***
+Thus, the detection mechanism is based on whether the oscillation produced by the sensor is maintained or suppressed.
+#### <span style="color:rgb(2, 141, 192)">Physical Principle</span>
 
-The second pole arises from the feedback network:
-$$f_{p2} = \frac{1}{2\pi R_f C_f}  $$
-Although ($C_p$) is physically much larger than ($C_f$), the corresponding pole is at a very high frequency because ($R_i$) is very small and close to zero.  
-Therefore:
+In this type of sensor, we replace the capacitive element with an **inductor**, typically implemented as a coil.
 
-- The pole associated with ($C_p + C_c$) is the **high-frequency pole**.
-- The pole associated with ($C_f$) is the **low-frequency pole**, which determines the integration range.
+![[Pasted image 20251120220753.png|100]]
 
-***Zeros***
+1. **Generation of Magnetic Field**  
+   When current flows through the coil, it creates a magnetic field $(B)$.  
+   In this case, we supply an **alternating current**, so the magnetic field varies over time.
 
-There are **no zeros** in this circuit.  If ($C_p$) or ($C_c$) were short-circuited, they would force the input voltage ($V_p$) to zero, and consequently the output would be zero.  
-Similarly, if ($C_f$) is shorted, the output node is directly tied to virtual ground.  
-Thus, neither ($C_f$) nor ($C_p \parallel C_c$) produces zeros.
+2. **Interaction With Nearby Materials**  
+   This time-varying magnetic field can interact with conductive or ferromagnetic materials placed in front of the sensor.  
+   Such a material is called the **target**.
 
-So the transfer function contains **only poles**.
+3. **Effect of the Target**  
+   Metallic targets, in particular, affect the magnetic field in two major ways:
+   - They induce **eddy currents** inside the metal due to the alternating magnetic field.
+   - These eddy currents generate their **own magnetic field**, which opposes the original field.
 
-#### <span style="color:rgb(2, 141, 192)">9. Transfer Function</span>
+The result is that the presence of the metal modifies the impedance of the coil.  
+When this modification becomes significant enough, it **prevents the sustaining of oscillations** in the oscillator circuit connected to the coil.
 
-We start by computing the low-frequency gain.
+#### <span style="color:rgb(2, 141, 192)">Sensor Output</span>
 
-Let ($I_f$) be the current flowing through ($R_i$) and therefore through the feedback network.  This current comes from the input current ($I)$, split between $(R_p)$ and $(R_i)$.  Using the current divider:
-$$I_f = I \cdot \frac{R_p}{R_p + R_i}  $$
-Since ($R_i \ll R_p$), this ratio is very close to 1.
+![[Pasted image 20251120220820.png|400]]
 
-At low frequency, the output voltage is:
-$$V_\text{out} = -I_f R_f  $$
+The sensor’s electronics monitor whether the oscillator is running or not.
 
-Thus:
-$$\frac{V_\text{out}}{I} =-\frac{R_p}{R_p + R_i} R_f  $$
+- **Oscillation present** → **No target detected**  
+- **Oscillation suppressed** → **Target detected**
 
-This gives the low-frequency constant gain.
+This binary change is then processed and used as the output signal of the inductive proximity sensor.
+ 
+Here is a clearer, more textually explained version of your paragraph. I kept all the physics intact but made it smoother, more structured, and easier to read. No emojis.
 
-***Mid frequencies***
+#### <span style="color:rgb(2, 141, 192)">Detailed Explanation of the Working Principle</span>
+![[Pasted image 20251120221046.png]]
 
-At mid frequencies, we are above the pole of ($C_f$), so ($C_f$) behaves as a short circuit.  This shorts the output node to virtual ground, giving:
-$$\frac{V_\text{out}}{I} = 0  $$
- ***High frequencies***
+Let us go deeper into how an inductive proximity sensor actually works.  
+As previously described, the sensor contains an **inductor**, usually implemented as a coil. This coil generates a **time-varying magnetic field**, represented here by the red arrows.
 
-At high frequency, the capacitors $(C_p)$ and $(C_c)$ also behave as shorts.  
-Thus:
+Now imagine that a **metallic target** approaches the region where this magnetic field exists. When the metal enters the influence of the alternating magnetic field, a specific electromagnetic phenomenon takes place.
+##### <span style="color:rgb(71, 215, 140)">Eddy Current Formation</span>
 
-- The input current flows through the short created by $(C_p \parallel C_c)$.
-- $(C_f)$ is also a short.
+![[Pasted image 20251120221108.png]]
+If the magnetic field through the metal is **increasing** (due to the AC excitation of the coil), Faraday’s law tells us that a changing magnetic flux induces currents in conductive materials.  Inside the metal, these induced currents take the form of **closed circular paths**, known as **eddy currents**.
 
-Therefore, again:
-$$\frac{V_\text{out}}{I} = 0  
-$$
+These eddy currents always act in such a way that they **oppose the change** in the magnetic field that created them. This follows from **Lenz’s law**:
 
+- If the external magnetic field is increasing upward,  
+- the eddy currents will generate their own magnetic field **in the opposite direction**, attempting to counteract that increase.
 
-#### <span style="color:rgb(2, 141, 192)">10. Bode Plot Interpretation</span>
+So the eddy currents create an opposing magnetic flux that tries to resist the variation imposed by the coil
 
-If we plot the magnitude of $(V_\text{out}/I)$:
+##### <span style="color:rgb(71, 215, 140)">Energy Dissipation and Effect on the Oscillator</span>
 
-- We start at the low-frequency gain  
-    $\left| \frac{-R_p}{R_p + R_i} R_f \right|$
-- Then we encounter the pole due to ($C_f$).
-- Afterwards, we encounter the high-frequency pole from ($C_p + C_c$).
+These eddy currents are not stable or lossless. They circulate inside the metal and **dissipate energy as heat** due to the electrical resistance of the target material. Because of this dissipation:
 
-![[Pasted image 20251119203315.png]]
+- The eddy currents continuously absorb energy from the coil’s alternating magnetic field.
+- This means that energy is effectively taken away from the **oscillator circuit** that drives the coil.
 
-So the final shape is:
-- **Flat** at low frequency
-- **-20 dB/dec** after the first pole
-- **-40 dB/dec** after the second pole
+If the target is close enough, the energy lost through eddy current dissipation becomes so significant that:
 
-with no zeros.
+- the oscillator can no longer maintain its oscillation,
+- its amplitude collapses,
+- and the oscillation **stops**.
 
+This transition—from a sustained oscillation to no oscillation—is precisely the mechanism that the sensor uses to detect the presence of the metallic target.
+#### <span style="color:rgb(2, 141, 192)">Detailed Explanation of the Oscillator Circuit Used in Inductive Proximity Sensors</span>
 
-#### <span style="color:rgb(2, 141, 192)">11. Transfer function dependent on Q</span>
-Up to now, we have computed the transfer function between the output voltage and the **input current**, $\frac{V_{\text{out}}}{I}$​​.  
-However, what we actually want is the transfer function between the output voltage and the **input charge**, $\frac{V_{\text{out}}}{Q}$​​.
+To understand how an inductive proximity sensor detects a metallic object, we first look at the **oscillator circuit** that drives the sensing inductor.  
+This circuit is typically built around an **RLC network** and an operational amplifier.
 
-To move from one to the other, we simply recall that in the Laplace domain:
-$$I(s)=sQ(s)$$
+ ***Structure of the RLC Oscillator***
 
-Therefore:
-$$\frac{V_{\text{out}}}{I} = \frac{V_{\text{out}}}{sQ} \quad \Rightarrow \quad \frac{V_{\text{out}}}{Q} = s \cdot \frac{V_{\text{out}}}{I}$$
-
-So we now write the full Laplace expression of VoutI\frac{V_{\text{out}}}{I}IVout​​, and then multiply by sss to obtain the charge transfer function.
-
-
- **Transfer Function $\frac{V_{\text{out}}}{I}$​​ in the Laplace Domain**
-
-We know the low-frequency gain is:
-$$\frac{V_{\text{out}}}{I} = - \frac{R_p}{R_p + R_i} R_f$$
-In this circuit there are two poles:
-
-![[Pasted image 20251119204252.png]]
-- the low-frequency pole from $C_f R_f$​,
-- the high-frequency pole from $(C_p + C_c)(R_p \parallel R_i)$.
-    
-Since there are no zeros, the Laplace form is:
-$$\frac{V_{\text{out}}}{I}(s) = - \frac{R_p}{R_p + R_i} R_f \; \frac{1}{(1 + s R_f C_f)\left[1 + s (C_p + C_c)(R_p \parallel R_i)\right]}$$
-
-***Now Multiply by $s$ to get $\frac{V_{\text{out}}}{Q}$​​***
-
-$$\frac{V_{\text{out}}}{Q}(s) = s \cdot \left[ - \frac{R_p}{R_p + R_i} R_f \; \frac{1}{(1 + s R_f C_f)\left[1 + s (C_p + C_c)(R_p \parallel R_i)\right]} \right]$$
-Now we analyze the three frequency regions.
-
- ***1. Low Frequency ($s \to 0$)***
-![[Pasted image 20251119205651.png]]
-
-When $s \to 0$:
-
-- The denominators → 1
-- The numerator contains a factor $s$, so:
-
-$$\frac{V_{\text{out}}}{Q} \to 0$$
-Thus the transfer function **starts at zero**.  
-This looks like a zero at the origin—but it is _not_ a physical circuit zero; it only appears because we multiplied by sss.
-
-***Mid Frequency (after the first pole, before the second)***
-
-![[Pasted image 20251119205643.png]]
-In this region:
-
-- For the first pole: $s R_f C_f \gg 1$
-    ⇒ $1 + s R_f C_f \approx s R_f C_f$
-- For the second pole: $s (C_p + C_c)(R_p \parallel R_i) \ll 1$  
-    ⇒ $s(\ldots) \approx 1$
-Then:
-
-$$\frac{V_{\text{out}}}{Q} \approx s \left[ - \frac{R_p}{R_p + R_i} R_f \; \frac{1}{s R_f C_f} \right]$$
-
-The $s$ cancels, $R_f$​ cancels, and since $R_i \ll R_p$​:
-
-$$\frac{R_p}{R_p + R_i} \approx 1$$
-Therefore the mid-band gain becomes:
-
-$$\frac{V_{\text{out}}}{Q} \approx -\frac{1}{C_f}$$
-This is the key result:  **the transfer function in the useful bandwidth is completely independent of the sensor capacitance.**
-
-***High Frequency (after both poles)***
-
-![[Pasted image 20251119205620.png]]
-In this region:
-
-- For both poles:  
-    $s R_f C_f \gg 1$ and  
-    $s (C_p + C_c)(R_p \parallel R_i) \gg 1$
-    
-Thus:
-$$\frac{V_{\text{out}}}{Q} \approx s \left[ - \frac{R_f}{s R_f C_f \; s (C_p + C_c)(R_p \parallel R_i)} \right]$$
-
-One $s$ cancels, leaving a remaining $1/s$:
-
-$$\frac{V_{\text{out}}}{Q} \propto \frac{1}{s} \to 0 \quad \text{as } s \to \infty$$
-
-So the high-frequency gain goes to **zero**, as expected.
-
-![[Pasted image 20251119205604.png]]
-
-#### <span style="color:rgb(2, 141, 192)">9. Final Shape of the Bode Magnitude Plot</span>
-
-The magnitude of $$\left|\frac{V_{\text{out}}}{Q}\right|$$
-![[Pasted image 20251119205711.png]]
-
-## <span style="color:rgb(239, 179, 1)">Applications</span>
-
-In conclusion, piezoelectric sensors are useful in any application where we need to measure a **dynamic force** or a **rapidly varying mechanical stimulus**.  
-Since piezoelectric materials cannot measure static forces (their response goes to zero at low frequency), they are ideal for applications involving **impact, vibration, acceleration, or periodic loading**.
-
-### <span style="color:rgb(161, 40, 226)">1. Force and pressure measurement</span>
-
-Piezoelectric elements are commonly used when we want to measure how force is applied to a surface.  
-
-![[Pasted image 20251119210004.png]]
-
-For example, **force plates** used in rehabilitation, sports science, and gait analysis often rely on piezoelectric sensors to capture how the load is distributed when someone walks, runs, or jumps.
-
-### <span style="color:rgb(161, 40, 226)">2. Energy harvesting</span>
-
-![[Pasted image 20251119210031.png]]
-
-Piezoelectric materials can convert mechanical vibrations or fluid flow into electrical energy. This capability makes them suitable for low-power energy harvesters, where ambient vibrations are transformed into voltage that can be stored or used to power small electronic devices.
-
-### <span style="color:rgb(161, 40, 226)">3. Ultrasonic technology (sensing and actuation)</span>
-
-![[Pasted image 20251119210018.png]]
-
-We will see in the next class that piezoelectric materials are fundamental in **ultrasonic systems**, where they serve both as:
-
-- **Sensors**, converting ultrasonic waves into electrical signals
-- **Actuators**, generating ultrasonic vibrations when a voltage is applied
+![[Pasted image 20251120221846.png|240]]
+The core of the circuit is an **RLC parallel oscillator**, composed of:
+- **L:** the inductor that generates the magnetic field used for sensing.
+- **C:** the capacitor of the oscillator.
+- **R:** the intrinsic resistance of the RLC network (representing losses).
     
 
-This dual property enables applications such as medical ultrasound imaging, ultrasonic cleaning, nondestructive testing, and sonar.
+In addition to these elements, there is a second resistance, called **Rp**, which is _not_ a physical resistor soldered in the circuit. Instead:
 
+- **Rp models the energy dissipated by eddy currents** when a metallic target comes close.
+- In other words, Rp represents the **additional losses** introduced by the presence of the target.
+    
+When no target is present, Rp is effectively infinite.  
+When a metal object approaches, Rp becomes finite and reduces the total effective resistance.
 
-### <span style="color:rgb(161, 40, 226)">4. Precision actuators</span>
+##### <span style="color:rgb(71, 215, 140)">Why the Oscillator Needs Energy Compensation</span>
 
-Piezoelectric elements are also used as **high-precision actuators**.  
-By applying a controlled voltage, the material expands or contracts by a very small and predictable amount.  
-This is particularly useful in:
+Both the coil's resistance and Rp (when a target is present) dissipate energy. If the circuit relied only on the passive RLC network, it would eventually stop oscillating: all the stored energy in L and C would be lost through R and Rp.
 
-- Precision dosing and pumping
-- Microfluidics
-- Optical alignment systems
-- High-resolution positioning stages
+To prevent that, the circuit uses an **operational amplifier** configured to:
+![[Pasted image 20251120221934.png|200]]
+- Continuously feed energy back into the RLC network.
+- Maintain stable oscillation when no target is present.
+    
+The op-amp is connected in a **negative feedback configuration**, but the inductive coupling between the coils introduces an **additional positive feedback path**.
+
+##### <span style="color:rgb(71, 215, 140)">Origin of the Positive Feedback</span>
+
+Besides the standard negative feedback, the circuit also includes **mutual inductance** between two inductors. These inductors are marked with the two dots indicating the polarity of the mutual coupling.
+
+The mechanism is as follows:
+![[Pasted image 20251120222025.png|300]]
+1. Suppose the output voltage decreases.
+2. Because the reference ground is fixed, a decrease at the output means the voltage across the primary inductor increases.
+3. This changing voltage in the primary induces a voltage in the secondary.
+4. Due to the orientation of the polarity dots, the induced voltage at the secondary **increases the voltage fed into the negative input of the op-amp**.
+5. Increasing the voltage at the negative input further decreases the output.
     
 
-These actuators are valued for their accuracy, fast response, and ability to produce extremely fine displacements.
+This forms a **positive feedback loop**: A small decrease at the output causes an even larger decrease, reinforcing the change.
+##### <span style="color:rgb(71, 215, 140)">What Determines the Strength of the Positive Feedback</span>
+
+The overall loop gain depends on two factors:
+
+***(a) The coupling coefficient k***
+
+This is the ratio between the induced voltage and the primary voltage:
+$$k = \frac{V_2}{V_1} $$
+The closer the coils are magnetically coupled, the larger k becomes.
+
+***(b) The gain of the op-amp in the inverting configuration***
+
+At the operating frequency, the RLC impedance is dominated by its resistive part.  
+Thus the gain is approximately:
+$$g = -\frac{R_{feedback}}{R_1}  $$
+
+But since the feedback impedance at resonance becomes purely resistive:
+
+- With no target: ($R_{feedback} = R_L$)
+- With a target present: ($R_{feedback} = R_L \parallel R_P$), which is smaller
+
+Thus, the gain decreases when a target is present.
+
+##### <span style="color:rgb(71, 215, 140)">Barkhausen Criterion and Oscillation Condition</span>
+
+According to the **Barkhausen criterion**, an oscillator will sustain oscillation only if the loop gain is:
+$$g \cdot k > 1$$
+
+This forms the basis of detection:
+
+***Without a target***
+
+- $(R_P \to \infty)$    
+- The total feedback resistance is high.
+- The gain g is high.
+- So $(g \cdot k > 1)$
+- **The circuit oscillates normally.**
+
+***With a metallic target***
+
+- Rp becomes finite.
+- The effective resistance becomes $(R_L \parallel R_P)$, reducing the feedback gain.
+- Thus g decreases.
+- Eventually ($g \cdot k < 1$)
+- **The oscillation stops.**
+
+The electronics simply monitor whether the oscillator is active or not.  The presence of the target is detected when oscillation collapses.
+#### <span style="color:rgb(2, 141, 192)">Explanation of the Simulation Results</span>
+
+In the simulation we reproduced the same circuit that was previously analyzed theoretically. The structure includes:
+
+![[Pasted image 20251120222904.png|300]]
+- A **primary coil**, driven by the op-amp and responsible for generating the oscillation;
+- A **secondary coil**, magnetically coupled to the primary through a coupling coefficient (k = 0.7 in your setup);
+- The **capacitor and resistor** forming the RLC network of the oscillator;
+- A resistor **R3**, which corresponds to the previously defined ($R_P$), modeling the *energy dissipation caused by a metallic target*;
+- Two switches used to connect and disconnect R3 during a specific time interval, simulating the appearance and disappearance of a target.
+##### <span style="color:rgb(71, 215, 140)">Behavior of the Oscillator Without a Target</span>  
+
+![[Pasted image 20251120222959.png]]
+(From the start until 20 ms) At the beginning of the simulation, the oscillator needs a short **startup time**. During this interval, the op-amp reinjects energy into the RLC tank until the oscillation reaches a steady amplitude.
+
+Once the transient is over, the oscillator behaves as expected:
+
+- ($R_P$) is not connected (the simulated target is absent).
+- The total resistive loss is low, and therefore:
+$$g \cdot k > 1$$
+- The oscillator sustains a stable, continuous sinusoidal output.
+
+This corresponds to the normal operating condition of an inductive proximity sensor when no target is nearby.
+
+***Insertion of the Target (Between 20 ms and 35 ms)***
+
+At **20 ms**, the switch connects R3 (the simulated ($R_P$) into the circuit. This mimics the physical effect of a metallic target entering the sensing zone:
+
+1. The target introduces eddy-current losses.
+2. These are modeled by the resistance R3 placed in parallel with the oscillator.
+3. Parallel combination: ($R_L \parallel R_P$) reduces the effective resistance of the RLC branch.
+4. The gain of the feedback loop drops accordingly.
+
+Because of this, the loop-gain condition becomes:
+$$g \cdot k < 1$$
+Once this inequality is satisfied, the oscillator **cannot maintain oscillation**, and the sinusoidal output collapses.
+
+This is exactly what the simulation shows: between 20 ms and 35 ms no oscillation is present. The amplitude falls rapidly to zero because the RLC tank loses energy faster than the op-amp can replenish it.
+
+***Removal of the Target (After 35 ms)***
+
+At **35 ms** the switch disconnects R3, simulating that the target moves away.
+
+At that instant:
+
+- The effective resistance of the oscillator returns to its original higher value.
+- The gain increases again, making:
+$$g \cdot k > 1$$
+Therefore, the circuit is again capable of sustaining oscillation.
+
+However, the output does not immediately jump to the steady sinusoid.  Instead, you correctly observed a **restart transient**:
+
+- Energy must be gradually built up in the inductor and capacitor.
+- Because the oscillator is driven by feedback, the oscillation amplitude increases progressively.
+- After a certain time, the steady oscillation is restored.
+
+This behavior is exactly what happens physically in real inductive proximity sensors: even in real circuits, the oscillations collapse in the presence of a target and require some time to rebuild once the target leaves.
+
+#### <span style="color:rgb(2, 141, 192)">Circuit with better restart time</span>
+
+You want the oscillator to **restart faster** after a metallic target leaves the sensing zone. To do that, the circuit briefly increases the loop gain when the detector indicates the oscillation has collapsed, so the tank (L and C) builds up energy quickly and the oscillator comes back to steady operation.
+
+##### <span style="color:rgb(71, 215, 140)">Basic blocks in the improved circuit</span>
+
+![[Pasted image 20251120223932.png]]
+1. **RLC oscillator** (the sensing coil L, tank capacitor C, and the loss resistance RL).
+2. **Peak detector / rectifier** that converts the oscillator’s AC amplitude into a DC envelope voltage.
+3. **Two comparators** with two thresholds (Vref1 and Vref2) to detect “oscillation present” and “oscillation absent” with hysteresis.
+4. **A controllable switch** in the feedback path (the switch changes the input resistance seen by the amplifier). Closing the switch temporarily changes the feedback network to give higher loop gain.
+5. **A control feedback loop** that closes the switch when the envelope is below the lower threshold and opens it when the envelope recovers above the higher threshold.
+    
+##### <span style="color:rgb(71, 215, 140)">How it operates step by step</span>
+![[Pasted image 20251120224435.png]]
+1. **Normal condition — no target present**
+    - The oscillator runs at its steady amplitude.
+    - The rectifier output (the envelope) is high.        
+    - The comparators see the envelope above Vref1 so the switch is **open**.
+    - Loop gain is the normal value:  
+        $|g| \approx \frac{R_L}{R_1}$
+        and $(k\cdot|g| \gtrsim 1)$ so the oscillator sustains.
+        
+2. **Target arrives**
+    - The target introduces losses (modeled by ($R_P$)), so the effective feedback resistance becomes ($R_L \parallel R_P$).
+    - Loop gain falls:  $$ 
+        |g| \approx \frac{R_L \parallel R_P}{R_1}  
+        $$
+    - The envelope drops and eventually falls below the lower comparator threshold Vref2.
+    - The comparator output goes high (logic “1”) and **closes the switch**. This is the control signal that enables the fast-restart path.
+
+![[Pasted image 20251120224820.png]]
+1. **Switch closed — temporary high-gain mode**
+    - Closing the switch places an additional resistance (R) in parallel with ($R_1$) (so the input resistance becomes ($R_1 \parallel R$).
+    - The effective gain becomes:  
+        $$|g| \approx \frac{R_L \parallel R_P}{R_1 \parallel R},  $$
+        which is **larger** than before if (R) is chosen appropriately.
+    - Because the denominator is reduced, the loop gain jumps well above 1 and the oscillator **restarts quickly** — the tank charges faster and the AC amplitude rises fast.
+
+2. **Return to steady mode**
+    - As the oscillator amplitude rises, the rectifier output rises.
+    - When the envelope exceeds the upper threshold Vref1, the comparator output goes low and **opens the switch**.
+    - The circuit returns to the original feedback network and settles to a normal, stable oscillation (with (k\cdot|g|) close to 1).
+        
+##### <span style="color:rgb(71, 215, 140)">Why two thresholds (hysteresis) are important</span>
+The two thresholds (Vref2 < Vref1) create hysteresis:
+- They prevent chatter: once the switch closes at the low threshold, the envelope must rise above the higher threshold before the switch reopens.
+- This prevents the switch from rapidly toggling if the envelope hovers near a single threshold.
+
+### <span style="color:rgb(161, 40, 226)">Applications</span>
+
+Now that we have examined the inductive proximity sensor and its operating principle, we can briefly review some typical applications of inductive sensing.
+
+![[Pasted image 20251120224959.png|300]]
+
+First, inductive sensors are used in LVDTs, or Linear Variable Differential Transducers. These devices can achieve resolutions down to approximately one millimeter, making them useful in many industrial, military, or aerospace contexts. For example, the illustration here shows an LVDT integrated into an aircraft system to monitor the displacement of wing flaps.
+
+![[Pasted image 20251120225018.png|300]]
+Inductive sensors are also commonly employed as proximity detectors. Their ability to detect metallic objects without physical contact makes them suitable for safety and warning systems, for parking assistance, and for presence monitoring in automated production lines. In the example shown, the proximity sensor is used to confirm the position of a machine component as it moves along the line.
+
+With this, we have completed our discussion of potentiometers, capacitive sensors, and inductive sensors. In the next class, we will move on to acoustic and optical sensing technologies, particularly those used for distance and proximity measurement. We will also introduce magnetic sensors and their role in encoder systems.
+
+See you next time.
 
 
-### <span style="color:rgb(161, 40, 226)">Final remark</span>
-
-So overall, piezoelectric materials are extremely versatile components that can function as **sensors**, **actuators**, or even **energy sources**, depending on how we exploit their electromechanical properties.
-
-That concludes today’s topic—see you in the next class!

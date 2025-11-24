@@ -322,8 +322,6 @@ And we shouldn't forget also to turn on its interrupt in the NVIC settings.
 
 4. <span style="font-weight:bold; color:rgb(161, 40, 226)">Initialize the LCD</span>
 Before printing anything, we must initialize the LCD and turn on its backlight using the provided library functions:
-
-
 ``` C#
 //Declare as global variables
 int index = 0;
@@ -343,19 +341,14 @@ int index = 0;
 }
 
 //define IRQ of timer 2 every 1 second
-
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	index++;
 	if (htim==&htim2){
 		lcd_println(names[index-1],0);
-		
 		if(index%5==0){
 			index=0;
 		}
-		
 		lcd_println(names[index],1);
 	}
 }
-
-
 ```

@@ -196,25 +196,17 @@ The **well capacity** is defined as the maximum charge that can be stored inside
 Let’s consider the following example:
 
 - Reverse voltage: $V_{cell} = 5V$ 
-- Pixel size: $5 μm×5 μm$
+- Pixel size: $5 \mu m\times 5 μm$
 - Oxide capacitance per unit area: $\frac{C_{ox}}{A} = 35 \, nF/cm^2$
 
 The charge per unit area can be computed as:
-
-$$\frac{Q}{A} = \frac{C_{ox}}{A} \cdot V_{cell}$$
-
+$$\frac{Q}{A} =\frac{C_{ox}}{A} \cdot V_{cell}$$
 Substituting the values:
-
 $$\frac{Q}{A} = 35 \, \frac{nF}{cm^2} \cdot 5 \, V \approx 175 \, \frac{nC}{cm^2}$$
-
 If we express this in electrons per $μm²:$
-
 $$\frac{Q}{A} \approx 11,000 \, \frac{e}{\mu m^2}$$
-
 Now, considering the total pixel area:
-
 $$A = 5 \, \mu m \times 5 \, \mu m = 25 \, \mu m^2$$
-
 The maximum number of electrons that can be collected in one pixel is:
 
 $$Q \approx 11,000 \cdot 25 \approx 300,000 \, e^-$$

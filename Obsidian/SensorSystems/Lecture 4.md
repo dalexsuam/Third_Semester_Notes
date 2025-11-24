@@ -64,9 +64,7 @@ This coefficient is defined as the **sensitivity divided by the nominal resistan
 
 Formally, the temperature coefficient can be written as:
 
-$$
-\alpha = \frac{(R_{100} - R_0)}{100 \cdot R_0} = \frac{S}{R_0} \left(\frac{\Omega}{^\circ C \cdot \Omega} \right)
-$$
+$$\alpha = \frac{(R_{100} - R_0)}{100 \cdot R_0} = \frac{S}{R_0} \left(\frac{\Omega}{^\circ C \cdot \Omega} \right)$$
 
 where $R_{100}$ and $R_0$​ are the resistances at $100^\circ C$ and $0^\circ C$, respectively.
 
