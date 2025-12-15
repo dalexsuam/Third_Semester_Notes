@@ -29,7 +29,6 @@ Alternatively, the signal might already come in as **digital**, for instance thr
 Once the signal becomes digital, it can be used in several ways:
 
 - It can be **stored in an input data register**, so the microcontroller can read it when needed — for example, checking whether a button has been pressed or not.
-    
 - It can also be routed to **alternate function inputs**. This means the signal can directly trigger certain actions inside the microcontroller — for example, pressing a button could start an ADC conversion, play a sound, or perform another hardware-controlled function without needing extra code.
     
 - Finally, the input pin could also be configured for **communication purposes**, such as receiving signals for **I²C** or **UART** protocols.
@@ -39,9 +38,8 @@ Once the signal becomes digital, it can be used in several ways:
 If you remember from last time, we looked at a table showing all the possible configurations for each pin. Normally, a pin can simply act as a **GPIO** — a **General Purpose Input/Output** — which means it can be used in a very basic way to read or write a digital signal. 
 However, many pins can also be assigned a **different, specialized role**, and that’s what we call an **alternate function**. For example, instead of just reading the state of a button, that same pin might be used as a **communication line** — like the data line of a UART interface, or the clock line in an I²C connection. In these cases, the pin is no longer used to store a simple “high” or “low” value in memory; instead, it becomes part of a communication or control system, driven by internal hardware inside the microcontroller.
 So, an alternate function essentially means that the **same physical pin** is being used for a **different internal purpose** — it could handle a serial communication signal, a timing clock, or even a PWM output, depending on how it’s configured.
+
 ![[Pasted image 20251005113816.png]]
-
-
 Below that, we find the **output driver** section. As we’ve already mentioned, this part isn’t just about simple reading or writing — it can also operate in **alternate function mode**, where the microcontroller itself generates specific signals, such as those used for communication or timing, and sends them out through this pin.
 
 ![[Pasted image 20251005113834.png]]
@@ -322,7 +320,7 @@ Objective of this project is to switch on the green LED on Nucleo board (LD2), e
 
 1. <span style="font-weight:bold; color:rgb(161, 40, 226)">Identifying the pins</span>: 
  
-Before starting, we need to identify which pins correspond to the **blue push button** and the **green LED** on our STM32 board.  
+Before starting, we need to identify which pins correspond to the **blue push button** and the **green LED** on our STM32 board. 
 According to the documentation:
 
 - The **green LED (LD2)** is connected to **pin PA5**.    

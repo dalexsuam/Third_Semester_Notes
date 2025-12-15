@@ -18,18 +18,17 @@ This is simply because the microcontroller is relatively simple. More advanced o
 ![[Pasted image 20251122083500.png]]
 $$V_{REF_-}=V_{SSA}=GND$$
 $$V_{REF_+}=V_{DDA}=3.3V$$
-
-Like any ADC, ours has an **input voltage range**. On the Nucleo board, the full range is available: **0 to 3.3 V**. This is important, because when converting a digital value back to an analog voltage, we must remember that the ADC maps its 12-bit output across this **0–3.3 V range**.
+Like any ADC, ours has an **input voltage range**. On the Nucleo board, the full range is available: **0 to 3.3 V**. This is important, because when converting a digital value back to an analogue voltage, we must remember that the ADC maps its 12-bit output across this **0–3.3 V range**.
 
 ![[Pasted image 20251122084147.png|400]]
 
 Here’s a very short recap of the sample-and-hold circuit I’m going to show you. I think most of you are already familiar with it. A sample-and-hold circuit is not very complicated — it’s basically just a switch, a capacitor, and a resistor. In other words, it’s an RC circuit with a switch.
 
-During the **sample phase**, the switch is closed. This allows the input signal to reach the capacitor and charge it. The sample phase must be long enough for the capacitor to charge to (approximately) the input level. Why do I say this? Because in your projects — and even inside a microcontroller — the sampling time must be chosen so that the RC network has enough time to charge. Typically, this means the sampling interval should be around four to five times the RC time constant. It doesn’t have to be exact, but it must be long enough; otherwise, the capacitor won’t fully charge (or discharge), and the ADC won’t receive the correct value.
+During the **sample phase**, the switch is closed. This allows the input signal to reach the capacitor and charge it. The sample phase must be long enough for the capacitor to charge to (approximately) the input level. Why do I say this? Because in your projects — and even inside a microcontroller — the sampling time must be chosen so that the RC network has enough time to charge. ==Typically, this means the sampling interval should be around four to five times the RC time constant==. It doesn’t have to be exact, but it must be long enough; otherwise, the capacitor won’t fully charge (or discharge), and the ADC won’t receive the correct value.
 
 During the **hold phase**, the switch opens. Now only the capacitor remains in the circuit, holding the voltage it reached during sampling. The ADC then reads this stored voltage. As a result, the output signal won’t be smooth but will look like a staircase, because once digitized it is no longer a continuous analog signal.
 
-Finally, the duration of the hold phase depends on the architecture of the ADC. For example, if the ADC has many bits and needs more time to approximate the input voltage, then the hold phase must be long enough for it to complete the conversion.
+Finally,==the duration of the hold phase depends on the architecture of the ADC. For example, if the ADC has many bits and needs more time to approximate the input voltage, then the hold phase must be long enough for it to complete the conversion.==
 ## <span style="color:rgb(239, 179, 1)">SAR ADC</span>
 
 Now, in our board we specifically use a **successive approximation (SAR) ADC**. I think you are all familiar with this type of converter. How does it work? Essentially, it _guesses_ the value step by step.
@@ -44,7 +43,6 @@ It may sound a bit tricky to describe verbally, but it’s very easy to understa
 
 This process continues, each time narrowing the range, becoming more precise at every step, ==until it reaches the final bit==. If we have a 12-bit ADC, this means the comparison is performed **12 times**. That requires time — many clock cycles — before we obtain the final digital value.
 ## <span style="color:rgb(239, 179, 1)">ADC Features</span>
-
 
 Here are some features of our ADC. First, we have **16 external input channels**. These are channels that come from outside the microcontroller and correspond to actual pins, meaning we can connect external sensors to them.
 
@@ -82,9 +80,7 @@ We have several different ways to manage the conversion process:
     The ADC generates an interrupt when the conversion finishes.  
     In the interrupt callback, we read the result.
 - **DMA mode**  
-    The DMA automatically transfers the ADC results into a buffer.  
-    We only get an interrupt when the buffer is full.  
-    This is the most optimized approach because the CPU is barely involved.
+    The DMA automatically transfers the ADC results into a buffer.  We only get an interrupt when the buffer is full.  This is the most optimized approach because the CPU is barely involved.
     
 ### <span style="color:rgb(161, 40, 226)">Continuous vs. Single Acquisition</span>
 
@@ -98,11 +94,9 @@ We have several different ways to manage the conversion process:
 ### <span style="color:rgb(161, 40, 226)">Scanning multiple channels</span>
 
 We can configure the ADC to read:
-
 - **A single channel**, or
 - **Multiple channels in sequence** (scan mode).
     
-
 Scan mode is useful when we want to sample more than one sensor—for example, both the internal temperature sensor and an external sensor. The ADC will convert each channel one after another.
 
 We can configure:
@@ -132,12 +126,12 @@ In general, the maximum ADC clock frequency is **36 MHz**. However, the microcon
 
 In addition to sampling time, the **resolution** (the number of bits) also affects conversion time.  A higher resolution (e.g., 12 bits) requires more comparison steps in a successive approximation ADC, increasing the total conversion duration.
 
-$$f_{sampling}=\frac{f_{ADC_{clock}}}{(ST+RES)}$$
+$$f_{sampling}=\frac{f_{ADC_{clock}}}{(T_s+RES)}$$
 
-The timing is given in **clock cycles** in the IOC, not in seconds. For our project, we will typically select the highest sampling time available. But if in an exam you are asked to modify these values, remember that **all timing parameters are interconnected**: sampling time, ADC clock, and resolution must be considered together. The formula shown in the slide reflects this relationship.
+The timing is given in **clock cycles** in the IOC, not in seconds. For our project, we will typically select the highest sampling time available. But if in an exam you are asked to modify these values, remember that **all timing parameters are interconnected**: ==sampling time (in clock cycles), ADC clock, and resolution== must be considered together. The formula shown in the slide reflects this relationship.
 
-For example, ==the maximum sampling frequency at 12-bit resolution is about **1.4 MHz**==. If we reduce the resolution to 3 bits, we can sample much faster because far fewer steps are required. In other words: **higher resolution = lower maximum sampling frequency**.
-$$ST_{min}=3 ;\space RES=12\space bits$$
+For example, ==the maximum sampling frequency at 12-bit resolution is about **1.4 MHz**==. If we reduce the resolution to 3 bits, we can sample much faster because far fewer steps are required. In other words: **higher resolution $\rightarrow$ lower maximum sampling frequency**.
+$$T_{s_{min}}=3  \space clock \space cycles ;\space RES=12\space bits$$
 This is the maximum sampling frequency at a resolution of 12 bits, for a sampling frequency of $1.4\space MHz$. (Remember the $f_{ADC_{clock}}=21\space MHz$)
 ### <span style="color:rgb(161, 40, 226)">Analog Watchdog</span>
 
@@ -161,20 +155,16 @@ When using DMA, the data is automatically placed into a buffer without CPU inter
 2. The memory buffer where DMA should store the samples.
     
 There are two DMA interrupts:
-
 - **Half-complete interrupt**
 - **Complete interrupt**
     
-
-Why do we need the half-complete interrupt?  
-Because DMA can operate in two modes:
+Why do we need the half-complete interrupt? Because DMA can operate in two modes:
 
 - **Normal mode**:  
     DMA fills the buffer once and stops, waiting for the CPU to read it.
 - **Circular mode**:  
     DMA keeps filling the buffer in a loop.  
     This is extremely useful for continuous sampling.
-    
 
 However, in circular mode, reading the buffer at the wrong time may cause overwritten data. If you wait until the buffer is fully filled, DMA may already be writing over the first part of the buffer while you’re trying to read it.
 
@@ -185,7 +175,6 @@ This is where the half-complete interrupt becomes essential:
 - When the second half is filled → **complete interrupt**  
     → you read the second half while DMA starts overwriting the first half.
     
-
 This alternating process ensures you never read data while it is being overwritten, preventing corruption.
 
 So, when you need continuous, high-speed sampling:  **Use circular mode + both interrupts (half and full).**
@@ -208,7 +197,7 @@ These diagrams show the internal structure of the ADC. You don’t need to memor
 - Here you can also see all the possible **triggers** for the ADC.  
     It can be triggered by different timers or by the two **EXTI** (external interrupt) lines.
 ![[Pasted image 20251122111130.png|300]]
-- At the bottom, you have the **ADC input channels**, which are the analog inputs it can sample.
+- At the bottom, you have the **ADC input channels**, which are the analogue inputs it can sample.
     
 ![[Pasted image 20251122111208.png|400]]
 In the IOC (the configuration interface), under the _Analog → ADC_ tab, you see all the settings we choose:
@@ -234,7 +223,6 @@ HAL_StatusTypeDef HAL_ADC_Start_DMA(ADC_HandleTypeDef* hadc, uint32_t* pData, ui
     - The ADC can be started in three modes: **Normal**, **Interrupt**, or **DMA**.
     - **DMA mode** requires a buffer to store the data.
     - When using **Interrupt mode**, you must always call the setup function at the start of your code. This initializes the peripheral correctly.
-
 ~~~c#
 HAL_StatusTypeDef HAL_ADC_Stop(ADC_HandleTypeDef* hadc)
 /*(simply aborts the conversion)*/
@@ -253,13 +241,10 @@ __weak void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) __weak void HAL_AD
     - Use `PollForConversion` to check if the conversion is finished.
     - The function returns `HAL_OK` when the conversion is complete.
     - Typically, you would use this in a polling loop in normal mode to wait for the result.
-        
 4. **Reading ADC Data**
     - Use `GetValue` to read the converted data.
     - Note: This returns an **unsigned int32**, so allocate appropriate storage.
-        
 5. **Interrupts**
-    
     - There are two main callbacks for DMA mode:
         - **Conversion Complete Callback**
         - **Conversion Half Complete Callback**
@@ -280,11 +265,10 @@ The goal of this project is to measure the voltage coming from a potentiometer o
 
 ### <span style="color:rgb(161, 40, 226)">1. GPIO and ADC Configuration</span>
 ![[Pasted image 20251013152410.png|300]]
-- The potentiometer is connected to **PA1**, which must be configured as **analog input** (no pull-up, no pull-down).
+- The potentiometer is connected to **PA1**, which must be configured as **analog input** (no pull-up, no pull-down). *ADC1_IN1*
 
-|                                           |                                           |
-| ----------------------------------------- | ----------------------------------------- |
 | ![[Pasted image 20251013153103.png\|300]] | ![[Pasted image 20251013155219.png\|300]] |
+| ----------------------------------------- | ----------------------------------------- |
 - In the ADC configuration:
     - Enable **Channel 1**, since PA1 corresponds to ADC1_IN1.
     - Use a **12-bit resolution**, giving a numerical range of **0–4095**.
@@ -345,7 +329,25 @@ This loop performs one complete ADC acquisition and UART transmission every seco
 
 
 ![[Pasted image 20251017190302.png|300]]
+Now, the approach to do it out of the `while()` and with a timer is by setting a timer interrupt and using its PeriodElapsedCallback, remember set it with the frequency we aim for. And don't forget initialize the timer as an interrupt :)
 
+~~~~c#
+HAL_TIM_Base_Start_IT(&htim2);
+
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	if(htim==&htim2){
+		HAL_ADC_Start(&hadc1);
+		if(HAL_ADC_PollForConversion(&hadc1, 10)==HAL_OK){
+			int conversion = HAL_ADC_GetValue(&hadc1);
+			float voltage = conversion*3.3/4096.0;
+			char string[100];
+			int lenght = snprintf(string, sizeof(string), "Voltage Polling: %.3f \r\n", voltage);
+			HAL_UART_Transmit(&huart2, string, lenght, 100);
+		}
+	}
+}
+~~~~
 # <span style="color:rgb(223, 109, 109)">Project 5b: ADC single acquisition - Interrupt</span> 
 In this project, we perform the same single conversion, but instead of polling we use **interrupt mode**. This means that the CPU does _not_ wait for the conversion to finish.  Instead, the ADC triggers an interrupt automatically when the conversion is complete, and a callback function is executed.
 
@@ -398,6 +400,31 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
 
 
 ![[Pasted image 20251017223443.png|400]]
+
+Now, if I would like to do the implementation with the timer interrupt, instead of `HAL_Delay()` within the `while()
+
+~~~c#
+//Don't forget here we use the ADC as IT
+//Don't forget also to initializate the Timer in the main
+HAL_TIM_Base_Start_IT(&htim2);
+
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	if(htim==&htim2){
+		HAL_ADC_Start_IT(&hadc1);
+	}
+}
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){
+	int value = HAL_ADC_GetValue(&hadc1);
+	float voltage = value*3.3/4096.0;
+	char string[100];
+	int length = snprintf(string, sizeof(string), "Voltage IT: %.3f V \r \n", voltage);
+	HAL_UART_Transmit(&huart2, string, length, 100);
+}
+~~~
+
+
 ### <span style="color:rgb(161, 40, 226)">Key Difference Between Polling and Interrupt Mode</span>
 
 - **Polling Mode:**  
@@ -406,8 +433,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
     
 - **Interrupt Mode:**  
     The CPU does _not_ wait.  
-    The ADC notifies the CPU automatically when the conversion is done, triggering the callback.  
-    This is more efficient, especially when timing is critical.
+    The ADC notifies the CPU automatically when the conversion is done, triggering the callback. This is more efficient, especially when timing is critical.
 
 ![[Pasted image 20251017224021.png|400]]
 Additionally, there is **no conflict** between ADC interrupts and UART interrupts because they operate independently with separate interrupt vectors.
@@ -417,7 +443,6 @@ Additionally, there is **no conflict** between ADC interrupts and UART interrupt
 ***
 ***
 ***
-
 # <span style="color:rgb(223, 109, 109)">Homework 5a: Try to send data from the PC via UART a string of variable length that is displayed on the LCD.</span>
 
 The objective of this exercise is to send a string from the PC (via UART) and display that string on the LCD. The string can be of variable length, and the reception can be implemented in two different ways:
@@ -661,7 +686,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
 	char string[64];
 	snprintf(string, sizeof(string), "Voltage: %.3f V \r \n", voltage);
 	lcd_println(string, 0);
-	lcd_drawBar((conversion/4096.0)*80.0);	
+	lcd_drawBar((conversion/4096.0)*80.0);	 // make sure the input of drawBar is an int, since it is defined like that
 }
 ~~~~
 

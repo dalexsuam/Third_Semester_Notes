@@ -13,7 +13,6 @@ The internal sensor is intended to:
 - Verify that the device is operating within its safe thermal range.
 - Enable basic thermal protection mechanisms if necessary.
     
-
 It is **not** designed for:
 
 - Precise temperature measurement.
@@ -210,7 +209,7 @@ int main(void){
 FSR = VDDA-VSSA;
 RESOLUTION_STEPS = (1)<<RESOLUTION_BITS; //ADC resolution steps calculation 2^(RESOLUTION)
 
-HAL_TIM_Base_Start(&htim2); //Timer not used in interrupt mode, we simply use its output by our timer
+HAL_TIM_Base_Start(&htim3); //Timer not used in interrupt mode, we simply use its output by our timer
 HAL_ADC_Start_DMA(&hadc1, voltages, ACQUISITIONS);
 ~~~
 This starts:
@@ -226,16 +225,18 @@ No interrupts are needed for ADC start.
 DMA finishes transferring all three conversion results, and the ADC interrupt triggers:
 ~~~c#
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){
-	//DMA GETS AUTOMATICALLY THE GetValue
-	float vpot= voltages[0]*FSR/RESOLUTION_STEPS;
-	float vtemp = ((voltages[1]*FSR/RESOLUTION_STEPS)-V25)/AVG_SLOPE+25;//
-	float vrefint = voltages[2]*FSR/RESOLUTION_STEPS;
-	static char string[74];
-	snprintf(string, sizeof(string), "Potentiometer: %.3f V, Temperature: %.3f degrees, VRef: %.3f V \r \n", vpot, vtemp, vrefint);
-	HAL_UART_Transmit_DMA(&huart2, string, sizeof(string)); 
+//DMA GETS AUTOMATICALLY THE GetValue
+	float vpot= voltages[0]*3.3/4096.0;
+	float vtemp = ((voltages[1]*3.3/4096.0)-V25)/SLOPE+25;//
+	float vrefint = voltages[2]*3.3/4096.0;
+
+	char string[72];
+
+	snprintf(string, sizeof(string), "Potentiometer: %.3f V, Temperature: %.3f °C, VRef: %.3f V \r \n", vpot, vtemp, vrefint);
+
+	HAL_UART_Transmit_DMA(&huart2, string, sizeof(string));
 }
 ~~~
-
 ### Explanation
 
 1. **DMA automatically fills the array**, so no need for `GetValue()`.
@@ -332,7 +333,7 @@ DMA is configured as:
     
 Buffer defined as:
 ~~~c#
-#define LENGTH 1000;
+#define LENGTH 1000
 uint16_t ADC_Values[2*LENGTH];
 ~~~
 

@@ -105,10 +105,9 @@ Here’s a schematic example of how the LCD is connected — you also have the f
 - **BL_ON:** Controls the backlight.
 
 When we enable the LCD and the backlight, the selected dots light up to show the numbers or characters.
-
 ![[Pasted image 20251011164756.png]]
 
-More details about the LCD can be found in the datasheet in the WeeBeep documentation folder. It’s a full datasheet, so you can refer to it for all technical details. As we saw, the LCD pins can be used to **read**, **write**, or **enable** signals, and the bus lines correspond to the data pins we discussed earlier. 
+More details about the LCD can be found in the datasheet in the WeeBeep documentation folder. It’s a full datasheet, so you can refer to it for all technical details. As we saw, the LCD pins can be used to **read**, **write**, or **enable** signals, and the bus lines correspond to the data pins we discussed earlier.
 
 ![[Pasted image 20251011164903.png]]
 Again, same.
@@ -214,12 +213,28 @@ HAL_Delay(1000);
 This simple program will **continuously send** the formatted message through the **USART2 interface** every second, which can be visualized on the **terminal emulator** once the correct **COM port** and **baud rate** are set.
 ![[Pasted image 20251007182455.png]]
 
-***
-***
-***
-***
-***
+If instead of using `HAL_Delay()` we would like to relay on timers, we enable our TIM2, with an $PSC=8400-1$ and $ARRX= 10000-1$ to have a period of $1 [s]$
+~~~c#
+HAL_TIM_Base_Start_IT(&htim2); //In init
 
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	char string[100];
+	char Name[] = "Diego";
+	char DOB[]= "07.05.2001";
+	int length = snprintf(string, sizeof(string), "%s, %s \r \n",Name, DOB);
+	if(htim == &htim2){
+		HAL_UART_Transmit(&huart2, string, length, 100);
+	}
+}
+~~~
+
+
+***
+***
+***
+***
+***
 # <span style="color:rgb(223, 109, 109)">Homework 4</span>
 
 ## <span style="color:rgb(239, 179, 1)">Homework 4a</span>
@@ -239,6 +254,7 @@ Complete the UART project with DMA, as in slide 10 of pack 06. Tip: enable the g
 ![[Pasted image 20251007183253.png]]
 
 4. <span style="font-weight:bold; color:rgb(161, 40, 226)">Enable USART2 Global interrupt:</span> We activate the USART2 global interrupt in the NVIC. Why?
+
 In the description of the code says that it is used to set the last byte sending completion detection in DMA non circular mode. In short: **we enable the global interrupt so the DMA (Direct Memory Access) can “talk back” to the microcontroller once it finishes sending data.**
 
 
@@ -298,7 +314,19 @@ We can take a flag and make it 0 when the communication is starting and when the
 HAL_UART_GetState(const UART_HandleTypeDef *huart) // It will give us the state of the UART as a HAL_State something. HAL_Error, HAL_Busy, HAL_Ok
 ~~~
 
-When `HAL_Ok` it means we can send some data 
+When `HAL_Ok` it means we can send some data. In the following, we implemented the transmission only when HAL_UART_GetState is ready, even if we speed up the timer, we'll make sure to check the channel is ready before doing this
+~~~~c#
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	if(htim==&htim2){
+		if(HAL_UART_GetState(&huart2)== HAL_UART_STATE_READY){
+			int length = snprintf(string, sizeof(string), "%s, %s \r\n", Name, DOB);
+			HAL_UART_Transmit_DMA(&huart2, string, length);
+		}
+	}
+}
+
+~~~~
+
 ## <span style="color:rgb(239, 179, 1)">Homework 4b</span>
 
 Write on the LCD the name of each member of your group, one per line, in alphabetical order. Scroll every one second such as indicated below:
@@ -324,9 +352,8 @@ And we shouldn't forget also to turn on its interrupt in the NVIC settings.
 Before printing anything, we must initialize the LCD and turn on its backlight using the provided library functions:
 ``` C#
 //Declare as global variables
-int index = 0;
+int indice = 0;
 char names[5][10]= {"Diego", "Luis", "Pedro", "Rodrigo", "Mohanesh"}; //5 limits the number of elements, 10 the number of characters per element.
-
 
 int main(void){
 //we initialize timer 2 as interrupt
@@ -334,21 +361,20 @@ HAL_TIM_Base_Start_IT(&htim2);
 //we initialize the LCD
 lcd_initialize();
 lcd_backlight_ON();
-int index = 0;
-
 	while(1){
 	}
 }
 
 //define IRQ of timer 2 every 1 second
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-	index++;
+
 	if (htim==&htim2){
-		lcd_println(names[index-1],0);
-		if(index%5==0){
-			index=0;
+		indice++;
+		lcd_println(names[indice-1],0);
+		if(indice%5==0){
+			indice=0;
 		}
-		lcd_println(names[index],1);
+		lcd_println(names[indice],1);
 	}
 }
 ```

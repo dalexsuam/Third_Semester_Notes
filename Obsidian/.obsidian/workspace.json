@@ -4,21 +4,55 @@
     "type": "split",
     "children": [
       {
-        "id": "110de30df8f99195",
+        "id": "11ce0df580b0a24b",
         "type": "tabs",
         "children": [
           {
-            "id": "7ff45c99d2c04fb5",
+            "id": "d76147efb3ed4dd4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SensorSystems/Lecture 10.md",
+                "file": "SensorSystems/Laboratory 7.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Lecture 10"
+              "title": "Laboratory 7"
+            }
+          },
+          {
+            "id": "333888a452e71e8d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SensorSystems/Laboratory 3.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Laboratory 3"
+            }
+          }
+        ]
+      },
+      {
+        "id": "51ca5afae6ecddb0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b2623d5121905c33",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SensorSystems/Index-Labs.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Index-Labs"
             }
           }
         ]
@@ -280,8 +314,28 @@
       "oz-clear-unused-images:Clear Unused Images": false
     }
   },
-  "active": "7ff45c99d2c04fb5",
+  "active": "b2623d5121905c33",
   "lastOpenFiles": [
+    "SensorSystems/Laboratory 7.md",
+    "SensorSystems/Laboratory 3.md",
+    "SensorSystems/Index-Labs.md",
+    "SensorSystems/Laboratory 6.md",
+    "SensorSystems/Laboratory 5.md",
+    "SensorSystems/Laboratory 4.md",
+    "SensorSystems/Laboratory 2.md",
+    "SensorSystems/Lecture 3.md",
+    "SensorSystems/Images/Pasted image 20251213081320.png",
+    "SensorSystems/Images/Pasted image 20251213081232.png",
+    "SensorSystems/Lecture 8.md",
+    "SensorSystems/Laboratory 8.md",
+    "SensorSystems/Lecture 9.md",
+    "SensorSystems/Laboratory 9.md",
+    "SensorSystems/Laboratory 11.md",
+    "SensorSystems/Laboratory 10.md",
+    "SensorSystems/Lecture 10.md",
+    "SensorSystems/Project_2a.md",
+    "SensorSystems/Lecture 4.md",
+    "SensorSystems/Lecture 1.md",
     "SensorSystems/Images/il_570xN.4108208755_addp.avif",
     "SensorSystems/Images/Pasted image 20251211120404.png",
     "SensorSystems/Images/Pasted image 20251211120213.png",
@@ -290,34 +344,14 @@
     "SensorSystems/Images/Pasted image 20251211120133.png",
     "SensorSystems/Images/Pasted image 20251211120123.png",
     "SensorSystems/Images/Pasted image 20251211115636.png",
-    "SensorSystems/Images/Pasted image 20251211115549.png",
-    "SensorSystems/Images/Pasted image 20251211115012.png",
-    "SensorSystems/Images/Pasted image 20251211114858.png",
     "VirtualModelling/Lecture 9.md",
     "VirtualModelling/Lecture 11.md",
     "VirtualModelling/Lecture 10.md",
-    "SensorSystems/Lecture 10.md",
-    "SensorSystems/Untitled.md",
     "VirtualModelling/Lecture 8.md",
     "VirtualModelling/Lecture 7.md",
     "VirtualModelling/Lecture 6.md",
-    "SensorSystems/Lecture 9.md",
     "MotorBehaviourTech/Lecture 3.md",
     "MotorBehaviourTech/Lecture 2.md",
-    "SensorSystems/Lecture 2.md",
-    "SensorSystems/Laboratory 9.md",
-    "SensorSystems/Laboratory 10.md",
-    "SensorSystems/Laboratory 11.md",
-    "SensorSystems/Laboratory 3.md",
-    "SensorSystems/Laboratory 2.md",
-    "SensorSystems/Lecture 1.md",
-    "SensorSystems/Laboratory 7.md",
-    "SensorSystems/Laboratory 8.md",
-    "SensorSystems/Untitled 1.md",
-    "SensorSystems/Lecture 8.md",
-    "SensorSystems/Laboratory 6.md",
-    "SensorSystems/Lecture 7.md",
-    "SensorSystems/Laboratory 5.md",
     "Untitled",
     "VirtualModelling/Images",
     "Untitled.canvas",
