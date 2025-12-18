@@ -16,7 +16,7 @@ An important feature of this accelerometer is the auto-increment function for mu
 
 ![[Pasted image 20251123122511.png|400]]
 
-The datasheet for this accelerometer is much larger than that of a simple temperature sensor. While a temperature sensor may have only a few registers, the accelerometer has dozens. This is because it supports more features and configurable options. One of the main configurable features is the full-scale range, which determines the maximum acceleration the sensor can measure. You can set it from -2g to +2g, up to -16g to +16g, depending on your application. The choice of full-scale range affects resolution: the number of bits per measurement stays the same (for example, 8 bits per register), but if the range is smaller, each bit represents a smaller acceleration increment, giving higher resolution. For small-scale measurements, like wearable devices, a large range like ±16g is unnecessary. On the other hand, the sensor datasheet also provides other crucial information, such as sensitivity per scale, operating temperature range, pin descriptions, and ADC configuration.
+The datasheet for this accelerometer is much larger than that of a simple temperature sensor. While a temperature sensor may have only a few registers, the accelerometer has dozens. This is because it supports more features and configurable options. ==One of the main configurable features is the full-scale range, which determines the maximum acceleration the sensor can measure==. You can set it from -2g to +2g, up to -16g to +16g, depending on your application. The choice of full-scale range affects resolution: the number of bits per measurement stays the same (for example, 8 bits per register), but if the range is smaller, each bit represents a smaller acceleration increment, giving higher resolution. For small-scale measurements, like wearable devices, a large range like ±16g is unnecessary. On the other hand, the sensor datasheet also provides other crucial information, such as sensitivity per scale, operating temperature range, pin descriptions, and ADC configuration.
 
 ![[Pasted image 20251123122602.png|400]]
 
@@ -59,7 +59,7 @@ We must **configure its control registers** before it outputs valid data.
 We have two possible sensors, so we define both addresses:
 ~~~c#
 uint8_t ACCEL_ADD = 0b01010000;
-uint8_t LIS2DE12_ADD = 0b00110000;
+uint8_t LIS2DE12_ADD = 0b00110000; //ONLY USE THIS
 ~~~
 Later, we will try one address; if communication fails, we switch to the other.
 

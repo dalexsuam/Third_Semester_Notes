@@ -317,7 +317,7 @@ int length = 0;
 ***Buffers and Variables***
 
 ```c#
-int8_t temperature_buffer[6];
+uint8_t temperature_buffer[6];
 int16_t temperature = 0;
 
 char string[32];
@@ -335,7 +335,7 @@ int length = 0;
 //Main init
 HAL_I2C_Master_Transmit(&hi2c1, LM75_ADDRESS, &LM75_TEMP_ADDRESS, 1, 100);
 
-HAL_TIM_Base_Start_IT(&htim2);0
+HAL_TIM_Base_Start_IT(&htim2);
 ~~~
 - The first line sets the **pointer register** of the LM75 to the temperature register.
 - `HAL_TIM_Base_Start_IT(&htim2)`: Starts TIM2 in interrupt mode to trigger temperature reads at regular intervals.

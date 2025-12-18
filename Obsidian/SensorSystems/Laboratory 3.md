@@ -54,7 +54,6 @@ The note decided to play was SOL#4
 To obtain a frequency of $415 Hz$ for SOL#4, we have first, divided the timer from $84MHz-> 840KHz$ with a $PSC$ of $100-1$.
 
 And to get a $f = 415 Hz$, (with a square wave with 50% of DC)
-
 $$
 f_{desired}=\frac{840KHz}{ARR+1}
 $$

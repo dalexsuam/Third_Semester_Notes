@@ -16,7 +16,7 @@ The goal of this project is to measure the voltage coming from a potentiometer o
 ## <span style="color:rgb(239, 179, 1)">Project 5b: ADC single acquisition - Interrupt</span> $->$ [[Laboratory 5]]
 
 In this project, we perform the same single conversion, but instead of polling we use **interrupt mode**. This means that the CPU does _not_ wait for the conversion to finish.  Instead, the ADC triggers an interrupt automatically when the conversion is complete, and a callback function is executed.
-## <span style="color:rgb(239, 179, 1)">Project 6a: ADC with DMA and Timer Trigger</span> -> [[VirtualModelling/Lecture 6|Lecture 6]]
+## <span style="color:rgb(239, 179, 1)">Project 6a: ADC with DMA and Timer Trigger</span> -> [[Laboratory 6]]
 
 **Objective:**  Acquire **three voltages**—
 1. Potentiometer (external analog input)
@@ -28,6 +28,11 @@ In this project, we perform the same single conversion, but instead of polling w
 - **UART** to send the measured values to a remote terminal.
 
 The ADC must perform **3 consecutive conversions**, and DMA stores all results in an array.
+
+## <span style="color:rgb(239, 179, 1)">Project 7a: Read the temperature of the LM75 and sent it to remote terminal every 1 second.</span> -> [[Laboratory 7]]
+
+
+The goal of this project is to **read the temperature measured by the LM75 sensor** and send it over UART every second. For simplicity, we read only the **most significant byte (MSB, 8 bits)** of the temperature register.
 
 # <span style="color:rgb(223, 109, 109)">Homework</span>
 ## <span style="color:rgb(239, 179, 1)">Homework 2a: Toggle led with Snap</span>  $->$[[Laboratory 2]]
@@ -67,3 +72,22 @@ This average is converted into:
 3. **Light level in lux**
 
 Finally, the result is sent via **UART**.
+
+## <span style="color:rgb(239, 179, 1)">Homework 7a: Read the temperature  of the LM75 with the 11 bits within an interrupt routine and with DMA :)</span> ->[[Laboratory 7]]
+
+The goal of this exercise is to read the temperature from the LM75 sensor, which outputs 9–11 bits of data, and send it to a remote terminal every second. Instead of polling, we now use interrupts and DMA to handle the data efficiently.
+
+## <span style="color:rgb(239, 179, 1)">Homework 8a: Read the acceleration measured by the accelerometer and send it to a remote terminal every 1 second. Using timer interrupts and UART DMA (file P8-a)</span> -> [[Laboratory 8]]
+
+## <span style="color:rgb(239, 179, 1)">Homework 8b: Read the acceleration measured by the accelerometer and send it to a remote terminal every 1 second. Using timer interrupts, I2C DMA and UART DMA</span> -> [[Laboratory 8]]
+
+## <span style="color:rgb(239, 179, 1)">Homework 9a: Transmit a letter to the LED matrix using SPI and a timer interrupt & Alternate between two letters (or one letter and one symbol) Use the SPI DMA write</span> -> [[Laboratory 9]]
+
+The goal of the project was to communicate via **SPI** with two shift registers connected in a **daisy-chain configuration**. This means that data are sent to the first shift register and then automatically propagated to the second one, as if they together formed a single, larger shift register.
+
+## <span style="color:rgb(239, 179, 1)">Homework 10a: Homework 10a: scan each column on the keyboard, of course using a timer interrupt</span> ->[[Laboratory 10]]
+
+## <span style="color:rgb(239, 179, 1)">Homework 10b: Read the encoder position and send to the PC the rotation speed in rpm</span> -> [[Laboratory 10]]
+
+The objective of the project is to readout a quadrature encoder using the specific modality of STM32 timers in order to provide the rotation frequency (expressed in rpm/rotations per minute) and direction (“+” for clockwise and “-” for counterclockwise). The result must be displayed using the remote terminal
+
