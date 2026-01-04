@@ -1,199 +1,731 @@
 
 ***
-Date:18/09/2025
+Date: 18/09/2025
 
-Resuming from last part...
-
+# <span style="color:rgb(223, 109, 109)">EMG Signal Generation and Muscle Force Regulation | The motor unit action potential</span> 
 ![[Pasted image 20250918163529.png]]
-The regulation of muscle force can be done by two means:
-* By the number of fibers recruited
-* To increase the force we have to rely on the frequency of fibers, having an increase on the number of fibers.
+The electrical signal measured from a muscle is the result of both spatial and temporal summation of individual potentials.
 
-If we want to increase more, we increase the number of fibers and the frequency of the mechanism.
+* ***Motor Unit Action Potential (MUAP):** This is the summation of several action potentials (APs) from the muscle fibers belonging to a single motor unit.
+* ***Motor Unit Action Potential Train (MUAPT):** Repeated recruitment of a single motor unit creates a train of MUAPs. While the shape of the MUAP remains constant for a specific unit, the timing between them is random, making the MUAPT a **stochastic process**.
 
-All of these are stochastic processes, so that's why they might be described as noise.
+**Force Regulation:** Muscle force is adjusted by two primary mechanisms:
 
-# The MUAPT (force regulation by increasing frequency)
+* ***Recruitment:** Increasing the number and kind of motor units (fibers) active.
+* ***Frequency:** Increasing the firing frequency of the fibers.
+
+**The EMG Signal (E(t)):** The final signal is the sum of all MUAPTs from different motor units. Because peaks can overlap and cancel each other out, the signal amplitude may sometimes be reduced (cancellation effect).
+
+
+# <span style="color:rgb(223, 109, 109)">Motor unit recruitment and MUAP trains in time (MUAPS)</span>
 
 ![[Pasted image 20250918163916.png]]
-Here we see the shape of a motor unit electrical activity, and this repeats in time almost equally no matter the shape of APs of fibers. 
+What we are describing here is **what happens over time** when we record **electromyographic (EMG) signals** in _neurological mode_, that is:
 
-Let's remember this shape is made up of the sum of all of the action potentials of single fibers APs.
+- using **needle electrodes** (intramuscular EMG), or
+- using **very small, weak muscle contractions**.
+    
+In these conditions, muscle movement is minimal, so:
 
-We see for each line a motor unit action potential which is the summation of the several APs of the muscular fibers, their shapes vary and the reason is that they differ in motor units, and there is a timing effect. We see the shape repeats exactly during time this time is random, and makes the process stochastic. 
+- electrode position with respect to muscle fibers does **not change significantly**,
+- the spatial relationship between fibers and electrodes is almost constant.
+    
+As a consequence, we can reasonably **assume that the shape of each MUAP does not change over time**.
 
-While the shape is the same, the time is different and it can be characterized as 
-![[Pasted image 20250918164603.png]]
+## <span style="color:rgb(239, 179, 1)">Motor units and MUAP shapes</span>
 
-There is another way to manage the position of randomness in time by the use of the Dirac delta function in the convolution
+Let us assume we have a set of motor units: $u_1, u_2, u_3, u_4, \dots$
+![[Pasted image 20251229185306.png|300]]
 
-![[Pasted image 20250918164812.png]]
+Each motor unit produces a **Motor Unit Action Potential (MUAP)** with a characteristic shape:
 
-Anyway, we start from a certain shape and we sum them up vertically as following shown
+- MUAP shapes are **different from one motor unit to another**    
+- The shape depends on:
+    - number of muscle fibers in the motor unit,
+    - spatial distribution of fibers,
+    - relative position of fibers with respect to the electrode.
+        
+However, under our assumptions:
 
-![[Pasted image 20250918164918.png]]
+> **Each MUAP shape remains constant in time**.
 
-And this is how the electrical effect E(t) in overall time and spatial summation shows an stochastic output. Note that some cancellation between peaks take place, it makes smaller the EMG signal and the reason is because it happens to reduce the amplitude of the signal.
+So, for example:
+![[Pasted image 20251229185401.png|400]]
+- MUAP from $u_1$​ always looks the same,
+- MUAP from $u_2$​ has a different shape, but also remains unchanged,
+- and so on.
 
-All of this is valid for a true iso-metric condition, the stochastic output, we do some measurements of EMG signal I should take into account I have to make an overall different measurements.
+## <span style="color:rgb(239, 179, 1)">Temporal recruitment and firing behavior<br></span>
+Motor units **do not fire continuously**. Instead:
 
-Now, up to this moment we've analyzed the signal generation, and will proceed with electrodes chemistry... 
+- Each motor unit fires **sporadically**, generating a MUAP at each firing time.
+- After firing once, the same motor unit will fire again after some time delay.
+- These delays are:
+    - in the order of milliseconds,
+    - **not periodic**,
+    - governed by the **neural drive** of the motor neuron.
+        
+Importantly:
+- Motor neuron activity is **stochastic**.
+- The firing intervals **never repeat exactly the same way**.
+- Different motor units fire **independently**, each with its own timing.
+    
+Additionally:
+- Spinal mechanisms may modulate firing frequency,
+- For example, **alternation of firing** can occur to reduce fatigue of individual fibers.
+    
+## <span style="color:rgb(239, 179, 1)">MUAP Train (MUAPT)</span>
 
-![[Pasted image 20250918165949.png]]
+If we look at **one motor unit only**, what we observe over time is:
+- the **same MUAP shape**,
+- repeated at different time instants.
+    
+This sequence is called a **Motor Unit Action Potential Train (MUAPT)**.
 
-# <span style="color:rgb(223, 109, 109)">EMG Electrodes</span> 
+In other words:
 
-These are metallic objects placed on the body of the patient.
+> A MUAPT is the temporal repetition of a MUAP generated by a single motor unit.
 
-It allows to obtain an electrical signal from the body. And, spoiler alert, we do it with metallic electrodes.
+We can model the MUAPT of motor unit iii as a **temporal summation** of identical MUAPs shifted in time:
+$$u_i(t) = \sum_{k} h_i(t - \tau_{k,i})$$
 
-The single electrode goes in saturation if we try to make a measurement for a long time, charges will acummulate in the electrode and will enter to a saturation stage, so that's why there should be something more in the electrode than a metallic, something that interfaces the electronic device which is interfaced with the body of the patient. 
+Where:
+![[Pasted image 20251229185728.png|400]]
+- $h_i(t)$ is the MUAP shape of motor unit i,
+- $\tau_{k,i}$​ is the firing time (delay) of the k-th activation of motor unit i,
+- $k$ indexes successive firings,
+- $u_i(t)$ is the resulting MUAP train (MUAPT).
+    
+Each term of the sum represents:
+- the **same MUAP waveform**,
+- shifted in time according to when the motor neuron fires.
+    
+Because firing times are stochastic:
+- the sequence $\tau_{k,i}$ is irregular,    
+- there is no periodicity in the MUAPT.
+So the EMG signal is inherently **non-repetitive and random in time**.
+## <span style="color:rgb(239, 179, 1)">Key takeaways</span>
 
-During this interface anions and cations transduced into electrodes.
+- EMG in neurological mode allows us to **observe individual motor unit activity**.
+- Under small contractions, **MUAP shapes can be assumed constant**.
+- Each motor unit generates a **MUAP train (MUAPT)** over time.
+- MUAPTs are:
+    - stochastic,
+    - non-periodic,
+    - governed by neural drive and fatigue mechanisms.
+- MUAPT can be modeled as a **sum of time-shifted MUAP waveforms**.
 
-## Interface body-measurement device: Electrodes ions versus electrons as charge carriers
+## <span style="color:rgb(239, 179, 1)">Modeling temporal randomness using Dirac delta functions</span>
+
+There is an alternative and very convenient way to represent the **random firing times of MUAPs**, based on the use of the **Dirac delta function** and **convolution**.
+
+This approach relies on an important assumption:
+
+> The minimum time interval between two consecutive MUAP firings of the same motor unit is **larger than the duration of the MUAP waveform** itself.
+
+![[Pasted image 20250918164812.png|500]]
+In other words:
+
+- successive MUAPs **do not overlap in time**,
+- there is no superposition between consecutive waveforms of the same motor unit.
+
+Using this assumption, we can represent the firing times of a motor unit as a **sequence of Dirac delta impulses**, each impulse marking the time at which a MUAP occurs.
+
+Instead of explicitly summing time-shifted MUAP waveforms, we:
+
+- describe the firing times as a train of delta functions,
+- convolve this impulse train with the MUAP shape.
+
+Mathematically, this formulation contains **exactly the same information** as the previous summation model. The difference is purely formal and often more convenient for analysis.
+![[Pasted image 20251229192629.png|400]]
+In this representation:
+
+- $h_i(t)$ is the MUAP shape of motor unit $i$,
+- the firing times are encoded as delta functions shifted by the delays $\tau_{k,i}$​
+- convolution places a copy of $h_i(t)$ at each firing time.
+    
+The index $i$ still identifies the motor unit, and the index $k$ identifies successive firings of that unit.
+
+## <span style="color:rgb(239, 179, 1)">From MUAP trains to the measured EMG signal</span>
+
+So far, we have considered the activity of **a single motor unit**. However, in real EMG recordings, electrodes do not measure individual MUAP trains in isolation.
+
+Instead, electrodes measure the **sum of all MUAP trains generated by the muscle**.
+
+This happens because:
+
+- many motor units are active simultaneously,
+- their MUAP trains occur at **stochastic time positions** relative to one another,
+- the electrode captures the superposition of all these contributions.
+![[Pasted image 20251229192810.png|400]]
+As a result, the measured signal E(t) is the **sum of all MUAP trains** produced by motor units located within the detection volume of the electrodes.
+
+This summed signal is commonly referred to as the **interference EMG signal**.
+
+### <span style="color:rgb(161, 40, 226)">Spatial considerations and detection volume</span>
+
+The contribution of a motor unit to the recorded EMG signal depends strongly on its **distance from the electrodes**.
+
+- Motor units closer to the electrodes produce larger signal amplitudes.
+- Motor units farther away still generate electrical activity, but their contribution:
+    - decreases with distance,
+    - theoretically never becomes exactly zero.
+
+In practice, however:
+
+- if the signal amplitude becomes smaller than the **noise level of the amplifier**, it becomes undetectable.
+- For example, a motor unit located several centimeters away might contribute only a few microvolts.
+- If the noise floor is around 10 microvolts, that contribution will be completely masked.
+
+Thus, only motor units within an effective **recording volume** meaningfully contribute to the interference EMG signal.
+
+### <span style="color:rgb(161, 40, 226)">Cancellation effects in interference EMG</span>
+
+
+![[Pasted image 20251229192947.png]]
+When multiple MUAP trains are summed together, **cancellation effects** may occur.
+
+These effects arise because:
+
+- MUAP waveforms have positive and negative phases,
+- overlapping waveforms from different motor units can partially cancel each other.
+    
+In most practical situations:
+
+- cancellation effects are limited,
+- they slightly reduce the overall signal amplitude,
+- they are usually not visually obvious.
+    
+However, cancellation can become more significant:
+
+- when electrodes have a **large detection volume**,
+- or when electrode placement causes signals from different motor units to overlap in specific ways.
+## <span style="color:rgb(239, 179, 1)">Key points to remember</span>
+
+- MUAP trains can be modeled using **Dirac delta functions and convolution**.
+- This representation assumes **no overlap between consecutive MUAPs of the same motor unit**.
+- The measured EMG signal is the **sum of all MUAP trains** generated by nearby motor units.
+- Distance from electrodes strongly affects signal amplitude.
+- Cancellation effects exist but typically cause only moderate amplitude reduction.
+
+***
+
+Understanding **electrode chemistry** and the **electrode–skin interface** is fundamental in EMG measurements, because the **quality of the recorded signal entirely depends on how effectively biological electrical activity is converted into an electrical signal usable by electronic devices**.
+
+In biological tissues, electrical signals are carried by **ions**, whereas electronic circuits work with **electrons**. Electrodes are therefore not just passive metal contacts: they act as **transducers** between two different charge-carrier domains.
+
+![[Pasted image 20250918165949.png|500]]
+
+# <span style="color:rgb(223, 109, 109)">EMG Electrodes: What They Really Are</span> 
+
+EMG electrodes are **metallic objects placed on the surface of the body** (or inside the muscle in intramuscular EMG). Their purpose is to collect electrical signals generated by muscle activity and deliver them to an electronic measurement system.
+
+However, electrodes **cannot be simple pieces of metal**.
+
+If we were to use a bare metal electrode in direct contact with the body:
+
+- ions from the tissue would accumulate at the metal surface,    
+- charge would progressively build up,
+- the electrode would eventually **saturate**,
+- the measurement would drift or completely fail over time.
+    
+This is why electrodes must include a **proper interface** between the biological medium and the electronic device—an interface that enables continuous signal transduction without saturation.
+## <span style="color:rgb(239, 179, 1)">Interface body-measurement device: Electrodes ions versus electrons as charge carriers</span>
+
+One of the key challenges in electrophysiological recordings is that:
+
+- **Inside the body**, current is carried by **ions** (cations and anions),
+- **Inside electronic devices**, current is carried by **electrons**.
+    
+Electrodes exist precisely to bridge this gap. They allow the conversion of **ionic currents** in biological tissues into **electronic currents** in wires and amplifiers.
+
+Without this conversion, it would be impossible to record bioelectric signals.
 
 ![[Pasted image 20250918170711.png]]
-If we make current flow into this parallel of this two impedances, multiplying the current for the impedance we'll obtain the electrical information of the voltage signal coming from the body.
 
-Having an electron impedance as just a resistor is making measurements with a galvanic current, the current crosses physically.
+The electrode–skin interface is often modeled electrically as a **parallel combination of two elements**:
 
-And then from the other scenario the capacitor would allow charges by displacement current, by alternate current (charges accumulate in one plate and bla bla...)
+1. **A resistive component**
+2. **A capacitive component**
+    
+If a current flows through this parallel impedance, the voltage measured across it (current multiplied by impedance) represents the electrical signal originating from the body.
+
+### <span style="color:rgb(161, 40, 226)">Resistive path (galvanic conduction)</span>
+- Represents **charge transfer reactions** at the electrode surface.
+- Electrons physically cross the interface due to electrochemical reactions.
+- This corresponds to **DC or very low-frequency conduction**.
+### <span style="color:rgb(161, 40, 226)">Capacitive path (displacement current)</span>
+
+- No actual charge crosses the interface.
+- Charges accumulate on either side of the interface.
+- Current flows only in the presence of **time-varying signals (AC)**.
+    
+In practice, EMG signals are predominantly AC signals, so the **capacitive behavior is essential** to prevent saturation and signal distortion.
+
+## <span style="color:rgb(239, 179, 1)">Why Electrode Position Matters<br></span>
+When recording electrophysiological signals, **electrode placement is critical**. The recorded EMG signal strongly depends on:
+
+- the position of the electrodes,
+- their distance from active muscle fibers,
+- the orientation of fibers relative to the electrode pair,
+- the spatial distribution of motor units.
+
+We have already seen that:
+
+- a **single muscle fiber action potential** can appear monophasic,
+- when recorded with a **differential configuration** (two electrodes, $E^+ - E^-$), the signal becomes **biphasic**,
+- when multiple fibers are involved, their signals combine into a **motor unit action potential (MUAP)**.
+### <span style="color:rgb(161, 40, 226)">From Single Fiber to Motor Unit Action Potential</span>
+
+A motor unit action potential results from the **superposition of action potentials from multiple muscle fibers** belonging to the same motor unit.
+
+Compared to a single fiber action potential:
+
+- the MUAP typically has **larger amplitude**,
+- its temporal duration is **shorter**,
+- its shape depends on:
+    
+    - number of fibers,
+    - fiber conduction velocities,
+    - spatial arrangement relative to the electrodes.
+        
+The differential electrode configuration enhances this effect by emphasizing local activity and reducing common-mode signals.
+
+### <span style="color:rgb(161, 40, 226)">Electrodes Are Transducers, Not Just Sensors</span>
+
+In summary, EMG electrodes are **not merely metal contacts** placed on the skin.
+
+They are:
+
+- electrochemical transducers,
+- interfaces between ionic and electronic charge carriers,
+- essential components that determine signal quality, stability, and fidelity.
+    
+Their design, material, interface chemistry, and placement all directly affect:
+
+- signal amplitude,
+- noise level,
+- long-term stability,
+- susceptibility to artifacts.
+
+## <span style="color:rgb(239, 179, 1)">Electrode-Electrolyte Interface</span>
+
+The interface of an EMG electrode consists of a **metal surface** (the black solid line in the figure) in contact with an **electrolyte layer**, typically a conductive gel placed between the electrode and the skin. This interface is where the crucial conversion between ionic and electronic currents occurs.
+![[Pasted image 20251229220307.png]]
+Let us fix the ideas by considering a **cation moving from the electrode into the electrolyte**. For this to happen, an atom at the electrode surface must release one or more electrons, depending on the valence of the species involved. Those electrons remain in the metal and flow toward the electronic amplifier, while the positively charged ions move into the electrolyte.
+
+If electrons were removed directly from the metal lattice without any chemical process, the electrode surface would rapidly charge up, causing a local voltage change that would oppose further electron removal. The current would therefore stop almost immediately. Continuous current flow would be impossible.
+
+To avoid this, the electrode is designed so that **chemical species at the interface can dissociate**. This dissociation does not occur deep inside the body, but rather in the **electrolyte layer at the electrode–skin interface**, which is rich in mobile ions. This electrolyte provides the necessary chemical environment to sustain charge transfer.
+### <span style="color:rgb(161, 40, 226)">Oxidation–Reduction (Half-Reaction) at the Electrode<br></span>
+![[Pasted image 20251229220550.png]]
+At the electrode surface, the process can be described as an **oxidation half-reaction**:
+$$C \rightarrow C^+ + e^-$$
+
+A neutral atom $C$ releases an electron and becomes a cation. The electron remains in the metal and contributes to the electronic current, while the cation diffuses into the electrolyte. Inside the electrolyte, electrical neutrality is preserved because anions migrate toward the region where positive charges accumulate.
+
+This process creates a current flowing from the electrolyte toward the electronic circuit. Importantly, this is only **one half of an electrochemical reaction**. Oxidation cannot exist on its own: for charge to circulate continuously, a complementary **reduction reaction must occur elsewhere**, typically at another electrode. Together, these two half-reactions close the electrical loop.
+
+Because only one half-reaction is shown here, the electrode behaves like **half of a battery**. The resulting potential difference at the interface—often called the **electrode potential**—depends on the chemical species involved and their electronegativity. Different electrode materials therefore produce different interface potentials.
+
+### <span style="color:rgb(161, 40, 226)">Reversing the Current<br></span>
+![[Pasted image 20251229220724.png]]
+
+If the current direction is reversed, the opposite reaction takes place:
+$$C^+ + e^- \rightarrow C$$
+
+In this case, cations in the electrolyte gain electrons from the metal and are reduced back to their neutral form. The direction of both ionic and electronic currents is reversed accordingly.
+
+However, an electrode cannot operate using only reduction or only oxidation indefinitely. If only one process occurred, charge would accumulate and the electrode would **saturate**, making further signal transduction impossible. This is why reversible redox systems are essential for stable electrophysiological recordings.
+
+### <span style="color:rgb(161, 40, 226)">Role of the Skin and the Electrolyte Gel</span>
+
+Although we often say that electrodes “enter the body,” this is not strictly true for surface EMG. The skin presents several highly resistive layers, including the **stratum corneum**, composed of dead cells and lipids, which strongly oppose ionic transport. Direct ion exchange between metal and tissue would therefore be extremely inefficient.
+
+To overcome this, an **electrolyte gel** is placed between the electrode and the skin. This gel contains mobile anions and cations that actively participate in the electrochemical reactions at the electrode surface. Its main function is to **reduce the interface impedance**, allowing ionic currents to flow more easily and enabling efficient conversion into electronic currents.
+
+In this sense, the electrolyte is not just a passive conductor: it is an essential chemical medium that sustains the oxidation–reduction reactions required for continuous, stable EMG measurements.
+
+### <span style="color:rgb(161, 40, 226)">Final Conceptual Picture<br></span>
+The electrode–electrolyte interface is governed by electrochemistry. Ionic currents in the body are converted into electronic currents through **reversible redox reactions** at the electrode surface, mediated by an electrolyte layer that lowers impedance and prevents saturation. Without this mechanism, long-term and reliable EMG recordings would not be possible.
 
 
-## Electrode-Electrolyte Interface
+## <span style="color:rgb(239, 179, 1)">Oxidation and Reduction at the Electrode Interface</span>
 
-![[Pasted image 20250918171444.png]]
+Oxidation is a chemical process in which a species **loses one or more electrons**, meaning its valence increases. If a neutral atom $C$ releases an electron and becomes a cation $C^+$,
+$$C \rightarrow C^+ + e^-$$
 
-It is based on oxidation and reduction chemical reduction.
+then $C$ is said to be **oxidized**. The released electron remains in the metal electrode and contributes to the electronic current.
 
-Oxidation means that neutral atoms free electrons, and
+Reduction is the opposite process: a species **gains electrons**. When a cation captures an electron and returns to a neutral state,
+$$C^+ + e^- \rightarrow C$$
+it is **reduced**.
 
-$C \rightarrow C^+ +e^-$
+A fundamental principle is that **oxidation and reduction cannot exist independently**. Any system that transfers charge must contain both processes somewhere: you cannot have oxidation without reduction, nor reduction without oxidation. This is required to preserve overall electrical neutrality.
 
-The cation spreads out to the electrolyte and the electron says in the electrode.
+### <span style="color:rgb(161, 40, 226)">Oxidizing and Reducing Species</span>
 
-And we have the current in this sense (from left to right)
+![[Pasted image 20251229222205.png]]
+Oxidizing agents are species that strongly attract electrons. Typical oxidizers include **oxygen and the halogens** (fluorine, chlorine, bromine). These elements are highly electronegative and tend to steal electrons from other species. The halogens occupy the same column of the periodic table and are called _halogenes_, meaning “salt generators,” because they readily form salts.
 
-![[Pasted image 20250918171647.png]]
+Reducing agents are species that easily give up electrons. These include **electropositive elements** such as lithium, sodium, potassium, calcium, magnesium, as well as metals like iron, zinc, and aluminum. Many of these ions—especially Na⁺, K⁺, and Ca²⁺—play a central role in the generation of bioelectric potentials in the body.
 
-If we reverse the current, we'll be placing together 
+### <span style="color:rgb(161, 40, 226)">Half-Reactions and Equilibrium</span>
 
-$C^+ +e^- \rightarrow C$
+At the electrode–electrolyte interface, oxidation or reduction occurs as a **half-reaction**. Each half-reaction is reversible, meaning it can proceed in either direction depending on conditions.
 
-And the current takes the opposite flow direction.
+When no current flows across the interface, the oxidation and reduction rates are equal. The system is then at **electrochemical equilibrium**, and a stable voltage appears between the metal electrode and the electrolyte. This voltage is the **equilibrium (or standard) electrode potential** $E_0$​.
 
-We can't use only reduction otherwise electrode would saturate without any electrones .
+This matters because, during EMG recording, this electrode potential appears **in series** with the biological signal generated by muscle fibers. In other words, the measured signal is the sum of the physiological signal and the electrode interface potential.
 
-![[Pasted image 20250918172020.png]]
+### <span style="color:rgb(161, 40, 226)">Effect of Current Direction</span>
 
-Oxidizing agents are reducing the number of electrons in the agent. These are part of the halogen family.
+When an actual current flows, equilibrium is broken. The direction of the current determines which process dominates at each electrode.
 
-Reducing agents are all electropositive species. Na, K, Ca are mostly involved in the mechanism of generation of potentials in the body.
+![[Pasted image 20251229220550.png]]
+If current flows from the electronic circuit into the body (left to right), **oxidation is prevalent** at that electrode. Metal atoms release electrons into the circuit, become cations, and enter the electrolyte. These cations attract anions in the electrolyte to maintain local charge neutrality.
 
+![[Pasted image 20251229220724.png]]
+At the other electrode, electrons arrive from the circuit. Here, **reduction is prevalent**: cations in the electrolyte capture electrons and may either deposit on the electrode surface or form precipitated compounds, depending on the chemical species involved.
+
+If the current direction is reversed, the roles of the two electrodes are exchanged. Oxidation becomes prevalent where reduction was before, and vice versa.
+
+### <span style="color:rgb(161, 40, 226)">Two-Electrode Picture<br></span>
 ![[Pasted image 20250918172603.png]]
+In a complete measurement setup with two electrodes connected through an external impedance, oxidation occurs at one electrode and reduction at the other. Electrons flow through the external circuit, while ions move within the electrolyte and the body. Together, these processes close the electrical loop.
 
-Here we see in each situation where reduction and oxidation is prevalent.
+This coupled ionic–electronic mechanism is what allows bioelectric signals to be measured reliably without charge accumulation or electrode saturation.
+
+### <span style="color:rgb(161, 40, 226)">Key Takeaway</span>
+
+Electrophysiological recordings rely on **paired oxidation–reduction reactions at the electrodes**. The direction of current determines where oxidation and reduction occur, and the equilibrium potentials generated at the interfaces are inseparable from the measured biological signal.
+
+## <span style="color:rgb(239, 179, 1)">Half-cell Potential Reading</span>
 
 ![[Pasted image 20250918172740.png]]
+What we really care about, at this point, is **the potential difference that appears at the electrode–electrolyte interface when the system is at equilibrium**, meaning **no current is flowing**. Even in this condition, a voltage exists because of the oxidation–reduction chemistry at the interface. This voltage is important because it appears **in series with the EMG signal** we want to measure.
 
-If we put the electrode and the electrolyte there would be an accumulation of charges and thus a capacitor in the boundary between the electrode and the skin (electrolyte). This double layer is a straight capacitor that increases the capacitive part of the impedance. It generates some kind of noise, the electrode is moving w.r.t the electrolyte and this capacitive effect will have in the measurement some noise related to the increase or decrease of the thickness of the interface, so that, if we don't take this into account we'll obtain a noise generator in low frequency associated to the electrode and this behavior would switch toward the electric capacitance and the resistance to obtain some pole...
+If this interface potential is very small—on the order of microvolts—it is usually not a problem. But if it were on the order of volts or tens of volts, it would seriously disturb the measurement and could even saturate the amplifier. For this reason, we need to understand both **the origin and the magnitude** of this equilibrium potential.
 
+The interface we are talking about is the one between the **metal electrode** and the **electrolyte layer**, which sits between the electrode and the skin. In practice, the electrode is not in direct contact with the body tissues. Instead, it is placed on the skin, with an electrolyte gel in between. This gel contains mobile ions and enables the electrochemical reactions that convert ionic currents in the body into electronic currents in the measurement system.
 
-There are two types of electrodes...
+Skin preparation plays a crucial role here. The goal is **not disinfection**, but **impedance reduction**. The outer layers of the skin—especially oils and dead cells—have a very high electrical impedance. Cleaning the skin with alcohol helps dissolve surface fats, which significantly lowers this impedance and improves electrical coupling.
 
-Polarizable and non-polarizable
+If an even more stable and lower-impedance contact is needed, the skin can be gently abraded using fine sandpaper (often called _abrasive prep_ in English). This removes part of the outer dead-cell layer and further reduces the electrode–skin impedance. Lower impedance leads to a more stable interface potential and a cleaner, more reliable EMG signal.
 
-![[Pasted image 20250918173312.png]]
+In short, the equilibrium electrode potential is always present, it is in series with the biological signal, and proper skin preparation is essential to keep this potential stable and small enough not to interfere with the measurement.
 
-For polarizable we'll never reach 0 frequency...
+***
+![[Pasted image 20251229223928.png]]
 
-THE MOST USED ELECTRODE
+A first, very intuitive idea would be: _“I want to know the potential at the electrode–electrolyte interface, so I’ll just measure it with a voltmeter.”_ A voltmeter has two probes, so you might think to place one probe on the metal electrode and the other directly into the electrolyte. Unfortunately, this does **not** work.
 
-![[Pasted image 20250918173522.png]]
+The problem is that the moment you insert the metal probe into the electrolyte, you create **another electrode–electrolyte interface**. That new interface undergoes its own oxidation–reduction reactions, generating its own half-cell potential. As a result, the voltmeter does not read the potential of the interface you are interested in, but a combination of multiple electrochemical potentials. In other words, the act of measuring disturbs what you want to measure.
 
-This is behaved as a non-polarizable electrode. We pass through several reduction and oxidation processes and depending on the direction of the current we'll have a layer (deposit) on the electrode subtracting AgCl
+To solve this problem, electrochemistry uses a clever reference: instead of measuring an absolute potential, we measure a **half-cell potential relative to a reference half-cell**. The universally adopted reference is the **standard hydrogen electrode (SHE)**. By definition, its potential is set to **0 volts**, and all other electrode potentials are measured relative to it.
 
+The hydrogen electrode is based on the oxidation–reduction reaction of hydrogen:  hydrogen molecules are converted into hydrogen ions while releasing electrons. This reaction is carried out under well-defined _standard conditions_: unit activity (or concentration) of ions, hydrogen gas at one atmosphere, and a temperature of 25 °C. Because this reference is fixed and reproducible, it provides a stable zero point.
 
-![[Pasted image 20250918173846.png]]
+When you connect your electrode of interest to the hydrogen electrode through a voltmeter, the measured voltage is simply the difference between the two half-cell potentials. For example, if one half-cell is at +1 V relative to hydrogen and another is at −1 V, the measured voltage between them will be 2 V. This is how standard electrode potentials are defined and tabulated.
 
+In the practical setup, the hydrogen reaction is monitored using an **inert electrode**, typically platinum. Platinum does not take part in oxidation or reduction itself; it only allows electrons to flow to and from the external circuit. This is crucial—if the electrode material reacted chemically, the reference potential would no longer be stable. This chemical inertness is also why precious metals like platinum and gold do not corrode or change appearance over time.
 
-Essentially the electrode changing the direction of the current, is corroded or is thickness is increased by the silver chloride. Silver chloride is also limited by dissociated capability.
+Once these measurements are performed, the resulting standard potentials are collected into tables. From these tables, we can directly read the equilibrium potentials of different electrode reactions relative to hydrogen. The reaction commonly used for electrophysiological electrodes (such as silver/silver chloride) has a potential of only **a few hundred millivolts**.
+
+This is a key result: the electrode–electrolyte interface potential is **not enormous** (not volts or tens of volts), but also **not negligible**. It is large enough to matter, but small enough to be safely handled by biomedical amplifiers without saturation, provided the interface is stable and well controlled.
+
+## <span style="color:rgb(239, 179, 1)">Types of Electrodes </span>
+
+At the electrode–electrolyte interface, charges do **not** freely cross as electrons. Instead, something very important forms: the **double charge layer**. This consists of electrons accumulated on the metal side and ions of opposite sign accumulated in the electrolyte right next to it.
+![[Pasted image 20251229224357.png|500]]
+
+At **equilibrium** (no net current), this double layer sustains a **contact potential** $E_0$​. No current flows, but a voltage exists. This is unavoidable and is always present in bioelectrical recordings.
+
+Because two layers of opposite charge are separated by a very small distance, the interface behaves like a **capacitor**. This is why electrodes exhibit a **capacitive behavior**, especially at **low frequencies**, and why low-frequency noise and drift appear in EMG and other electrophysiological signals. This capacitance is often referred to as _stray capacitance_, but physically it comes from the double layer itself.
+
+As a result, an electrode is never purely resistive. Its electrical model always includes **both resistance and capacitance**, and the balance between the two determines the electrode type.
+
+### <span style="color:rgb(161, 40, 226)">Idealized electrode models</span>
+
+If the electrode material is **very inert** (such as platinum), ions cannot easily participate in chemical reactions. Charges accumulate instead of crossing the interface. In this case, the electrode behaves almost like a **pure capacitor**:
+$$Z = \frac{1}{j\omega C}$$
+
+These are called **ideally polarizable electrodes**. They show strong capacitive effects and significant low-frequency noise.
+
+On the opposite side, if the electrode allows ions to cross the interface through reversible chemical reactions, charge transfer occurs easily. The interface then behaves mainly like a **resistor**:
+$$Z = R$$
+These are **ideally non-polarizable electrodes**, which are exactly what we want for EMG. The reference example is the **Ag–AgCl electrode**.
+
+### <span style="color:rgb(161, 40, 226)">Why Ag–AgCl works so well</span>
+
+The Ag–AgCl electrode uses **silver, silver chloride, and chloride ions** in equilibrium. The key point is that **both oxidation and reduction can occur easily**, preventing charge accumulation.
+![[Pasted image 20251229224719.png|400]]
+When current flows _into_ the electrode (reduction):
+- Silver ions $\text{Ag}^+$ capture electrons and become metallic silver.
+- AgCl dissociates, providing $\text{Cl}^-$ ions.
+- A thin silver layer is deposited on the electrode.
+
+![[Pasted image 20251229224752.png|400]]
+
+When current flows _out of_ the electrode (oxidation):
+- Metallic silver releases electrons and becomes $\text{Ag}^+$.
+- $\text{Ag}^+$ combines with $\text{Cl}^-$ to form AgCl.
+- Silver is consumed (mild corrosion).
+    
+Both processes are **reversible**, fast, and stable. This prevents saturation and keeps the electrode potential nearly constant.
+### <span style="color:rgb(161, 40, 226)">Physical structure of an Ag–AgCl electrode<br></span>
+From inside to outside:
+
+- Metallic silver core (conducts electrons)
+- Thin AgCl surface layer (enables ion–electron exchange)
+- Electrolytic gel saturated with AgCl (conducts ions)
+- Skin
+    
+The gel lowers skin impedance and provides ions for the redox reactions, while the Ag–AgCl interface ensures minimal polarization and low noise.
+
+### <span style="color:rgb(161, 40, 226)">Key takeaway (without definitions)</span>
+
+The double charge layer is unavoidable and creates a capacitive effect and low-frequency noise.   Electrode behavior depends on how easily charges can cross the interface. Ag–AgCl electrodes work so well for EMG because they **convert ionic currents into electronic currents without charge accumulation**, behaving almost resistively and keeping the signal stable.
+
+That’s why they are the gold standard for electrophysiological recordings.
 
 ![[Pasted image 20250918174143.png]]
 
 This shows how the electrode is built
 
+## <span style="color:rgb(239, 179, 1)">Electrode Equivalent Circuit</span>
+
 
 ![[Pasted image 20250918180422.png]]
 
-This is the equivalent circuit of the electrode. 
+Let’s move one step forward and **merge the chemistry with the electrical model**, because this is exactly what an electrode model is meant to do.
 
-Nernst Equation
+Up to now, we have seen three key ingredients at the electrode–skin interface:
 
-To compute the semi-element potential of the electrode-electrolyte interface w.r.t a standard semi-element potential Eo which corresponds to the hydrogen electrode (or helium, id remember) Eo = 0, Depending on the initial concentration of ions the semi-element potential of the electrode-electrolyte interface is positive or negative w.r.t to E0...
+1. **A voltage source** (the half-cell potential),
+2. **A resistive behavior** (due to charge transfer and tissue),
+3. **A capacitive behavior** (due to charge accumulation at the interface).
+    
+All of these must appear in the **equivalent electrical circuit** of the electrode.
+### <span style="color:rgb(161, 40, 226)">Why a capacitor appears in the model</span>
 
+At the interface between the metal electrode and the electrolyte, ions cannot freely cross as electrons. Instead, charges accumulate on both sides of the interface: electrons on the metal side, ions on the electrolyte side. These two layers of opposite charge are separated by a microscopic distance, so electrically they behave **exactly like the plates of a capacitor**.
+
+Importantly, no real charge crosses this interface in DC conditions. What you can have is only **displacement current**, meaning alternating current that charges and discharges this interfacial capacitance. This is why electrodes strongly affect **low-frequency signals**.
+
+This capacitive effect comes from the **double charge layer**, and it is also responsible for the half-cell potential at equilibrium.
+
+### <span style="color:rgb(161, 40, 226)">Why a voltage generator appears</span>
+
+At equilibrium (no current flow), the electrode–electrolyte interface sustains a **constant voltage**, called the **half-cell potential**. This voltage depends on:
+
+- The electrode material,
+- The electrolyte composition,
+- The ionic concentrations.
+    
+This potential is not something you can remove: it is always there, and it appears **in series** with the physiological signal you want to measure.
+
+To compute this potential with respect to a standard reference (the hydrogen electrode, whose potential is defined as $E_0$ = 0), we use the **Nernst equation**. The Nernst equation tells us how the electrode potential shifts when ion concentrations differ from standard conditions. Physically, this shift corresponds to a redistribution of charges at the interface.
+
+### <span style="color:rgb(161, 40, 226)">The complete electrode equivalent circuit</span>
+
+Putting everything together, a realistic electrode model includes:
+
+- A **voltage source** representing the half-cell potential,
+- A **capacitor** representing the double charge layer,
+- A **resistance** representing charge transfer processes and losses,
+- Additional **skin resistance**, accounting for the [[stratum corneum]] and tissue between electrode and muscle.
+![[Pasted image 20251229225306.png]]
+On the electronic side (cables and amplifier), current is carried by **electrons**. On the biological side (skin, gel, tissue), current is carried by **ions**. The electrode interface is the transducer between these two worlds.
+
+### <span style="color:rgb(161, 40, 226)">Why we need at least two electrodes<br></span>
+One electrode alone is meaningless electrically. To close the circuit, you always need:
+
+- A second electrode (reference or active),
+- Which has **the same type of model**: its own half-cell potential, resistance, and capacitance.
+
+In monopolar recordings, one electrode acts as reference.  In bipolar recordings, both electrodes are active, and the measured signal is the difference between them. In both cases, the electrode models are fundamental to understanding offsets, drift, noise, and signal distortion.
+
+### <span style="color:rgb(161, 40, 226)">Key idea to keep in mind</span>
+
+The electrode is **not a wire touching the body**.  It is an electrochemical system that behaves as a **voltage source in series with a resistive–capacitive network**.
+
+The double layer generates both the **half-cell potential** and the **capacitive behavior**, and this is why electrode choice and skin preparation are critical for high-quality EMG recordings.
 
 ![[Pasted image 20250918181007.png]]
 We can complicate stuff but we won't go so in depth :) 
 
+## <span style="color:rgb(239, 179, 1)">Electrode Impedance Calculation</span>
 
-IMPEDANCE CALCULATION.
+![[Pasted image 20251229230000.png]]
 
-![[Pasted image 20250918181039.png]]
+If we now plug in some **typical numerical values**, the electrode model becomes much easier to interpret.
 
-The rule is making the electrode work in where the gain is constant. 
+The **skin resistance $R_s$​** is usually on the order of **a few hundred ohms**; a representative value is about **500 Ω**.  The **charge-transfer resistance $R_d$​** at the electrode–electrolyte interface is much larger and, at very low frequency (close to DC), is around **30 kΩ**.  
+The **double-layer capacitance $C_d$** depends mainly on the **electrode area**: the larger the electrode, the larger the capacitance. Typical values lead to an impedance on the order of **tens of kilo-ohms at low frequency**.
 
-ELECTRODE TYPES
+If we are only interested in **impedance versus frequency**, we can ignore the DC voltage generator (the half-cell potential) and focus only on:
+
+- $R_s$​ in series with
+- the **parallel combination of $R_d$​ and $C_d$​**.
+    
+
+The capacitor $C_d$​ originates from the **double layer of charges** at the electrode–electrolyte interface.
+
+### <span style="color:rgb(161, 40, 226)">Behavior at frequency extremes</span>
+
+![[Pasted image 20251229230747.png]]
+At **high frequency**, the impedance of the capacitor
+$$Z_C = \frac{1}{j\omega C_d}$$
+tends to zero. This means the parallel branch is effectively short-circuited, and the total impedance is dominated by the skin resistance alone:
+$$Z \approx R_s$$
+At **very low frequency (DC)**, the capacitor behaves like an open circuit. The parallel branch reduces to $R_d$​, so the total impedance becomes:
+$$Z \approx R_d + R_s \approx R_d$$
+since $R_d \gg R_s$​. This explains why the electrode impedance at DC is very high (tens of kilo-ohms).
+
+### <span style="color:rgb(161, 40, 226)">Frequency-dependent behavior</span>
+
+Between these two extremes, the impedance is **frequency dependent**. The parallel combination of $R_d$​ and $C_d$​ introduces a **pole** at the frequency where:
+$$|Z_{R_d}| = |Z_{C_d}|$$
+which corresponds to a cutoff frequency approximately equal to:
+$$f_p \approx \frac{1}{2\pi R_d C_d}$$
+With realistic values, this pole typically falls around **100–200 Hz**. Beyond this pole, the impedance magnitude decreases with a **slope of 20 dB per decade**, which is characteristic of a first-order system.
+
+At higher frequencies (roughly **10–20 kHz**), a **zero** appears, and the impedance flattens again, converging toward $R_s$​. At that point, the electrode–electrolyte interface no longer plays a role, and only the skin resistance remains.
+### <span style="color:rgb(161, 40, 226)">Phase behavior and signal distortion</span>
+
+This frequency-dependent impedance also introduces a **phase shift**:
+
+- Near DC, the phase is approximately **0°**,
+- Around the pole, it approaches **–90°**,
+- At high frequency, it returns to **0°**.
+
+This phase variation can slightly distort the recorded signal if the signal bandwidth overlaps the pole or the zero. Since voltage division depends on impedance, any frequency-dependent impedance translates into amplitude and phase distortion.
+### <span style="color:rgb(161, 40, 226)">Practical implication for EMG</span>
+
+Surface EMG signals typically have a bandwidth of about **250–500 Hz**. By choosing an appropriate electrode area (thus tuning CdC_dCd​) and ensuring good skin preparation (lowering RsR_sRs​), the electrode impedance can be made **almost constant** across the EMG bandwidth.
+
+In practice, this allows:
+
+- Nearly constant gain,
+- Minimal phase distortion,
+- Reliable and reproducible EMG recordings.
+
+That is why electrode size, gel, and skin preparation are not minor details, but fundamental parts of EMG system design.
+
+# <span style="color:rgb(223, 109, 109)">Electrodes Types</span>
+
+If you look at the electrodes available on the market for **electrophysiological, neurological, or kinesiological recordings**, the first and most important classification is between **depth (intramuscular) electrodes** and **surface electrodes**.
 
 ![[Pasted image 20250918181937.png]]
 
-Intramuscular Recording also neurophysiological EMG, we need to acquire electrical information from small portions. Particularly for looking at the status of neurons, alpha-motor neurons in patient's muscles.
+**Depth electrodes** are mainly used in **neurophysiological EMG**. They are designed to record activity from a very **small working volume**, often close to individual muscle fibers or motor units. To do this, a **needle electrode is inserted directly into the muscle**, which makes the technique invasive and potentially painful. The advantage is precision: intramuscular electrodes allow highly detailed recordings of **single motor unit action potentials** and their firing behavior, with minimal influence from neighboring units and almost no sensitivity to muscle movement. For this reason, they are the only practical option when the goal is a fine-grained analysis of motor unit physiology.
 
-Surface electrodes also kinesiological EMG, also used when patient is moving. During moving, we don't using depth cos they're needles! :)
+**Surface electrodes**, on the other hand, are placed on the **skin** and are therefore **non-invasive**. Apart from mild discomfort during skin preparation (for example, light abrasion to reduce impedance), they are essentially painless. Surface electrodes are especially suited for **kinesiological EMG**, where the interest is in muscle activation during **movement and strong contractions**. They collect signals from a larger volume of muscle, producing an **interferential EMG signal** rather than isolated motor unit activity. This makes them ideal for studying coordination, timing, and intensity of muscle activation in functional tasks.
 
+In short, depth electrodes prioritize **selectivity and detail**, at the cost of invasiveness, while surface electrodes prioritize **comfort and robustness during movement**, at the cost of spatial specificity.
 
-SOME ELECTRODE TYPES: NEEDLES
+## <span style="color:rgb(239, 179, 1)">Electrode Types: Needles</span>
 
 ![[Pasted image 20250918182243.png]]
 
-Give information of measurements of muscular fibers. We have also, this kind of electrode which is called single fiber electromyographic signal (d) which is built by a conductive electrode which make all the way of the electrode inside the body and the position of the muscle fiber, it is a metal wire, a metal needle, and the needle outside is iso-potential, outside it is only a potential, and inside there is only a spot isolated around which makes it possible to use the electrode in very small areas of the muscle, called also, working volume, cos is part of the volume around muscle within the needle where the signal is detected. This is not motor unit action potential, but single muscle fibers.
+There are several **designs of intramuscular (needle) electrodes**, all based on the same idea: inserting a conductor directly into the muscle to record electrical activity from a very small working volume. What changes between the different types is **how much of the electrode is exposed**, **how many recording sites are present**, and therefore **how selective the recording is**.
 
-We have the classical at a, we have another (c) the fine wire electrode.
+![[Pasted image 20251229232923.png]]
+The most common design is the **concentric needle electrode**. It looks very similar to a standard hypodermic needle. The outer body of the needle is insulated, while a thin inner wire runs along its axis and is exposed only at the very tip. This tiny exposed area is the actual sensing element. Because the recording site is so small and the reference electrode is placed elsewhere on the body, this configuration is typically used for **monopolar recordings**. A key advantage is that it preserves the **true shape of the motor unit action potential**, without the biphasic or triphasic distortion that appears in differential recordings with closely spaced electrodes.
 
-![[Pasted image 20250918182801.png]]
+![[Pasted image 20251229232941.png]]
+If more spatial detail is needed, one can use a **multipolar needle electrode**. In this case, several insulated conductors run inside the same needle. Instead of being exposed only at the tip, they emerge on the side of the needle at very short distances from each other. This allows recordings from **multiple, very close sites within the muscle**, and also enables **local differential measurements**. Because the exposed areas are small and close together, the recorded signals mainly originate from fibers in the immediate vicinity of the electrode, giving higher selectivity than larger electrodes.
 
-what a pain, the needle's electrodes are painful.
+![[Pasted image 20251229232958.png]]
+Another approach is the **fine-wire electrode**. Here, a very thin wire is inserted into the muscle through a conventional injection needle. Once the wire is in place, the needle is removed, leaving only the flexible wire inside the muscle. Although it is still an intramuscular electrode, it is not a rigid needle during recording. This type is often used when muscle movement is expected, because the wire can move with the tissue more easily than a stiff needle.
 
+![[Pasted image 20251229233009.png]]
+Finally, there is the **macroelectrode or single-fiber EMG (SF-EMG) electrode**. In this design, the needle itself is electrically conductive and acts as a reference. A very small recording wire is exposed through a tiny insulated window along the needle shaft. Because the surrounding needle is at a uniform potential, the working volume of the exposed wire is extremely small—small enough that activity from **one or very few muscle fibers** can be detected. This high selectivity is crucial in clinical neurophysiology, where changes in single-fiber action potentials can reveal neuromuscular disorders. To achieve such selective recordings, subjects are usually asked to produce only minimal activation—sometimes just “thinking” about moving the muscle—so that only a few fibers fire.
+
+In summary, needle electrodes allow much easier separation of action potentials generated by different motor units. By choosing between concentric, multipolar, fine-wire, or single-fiber designs, one can trade off invasiveness, stability, and spatial selectivity depending on the clinical or research goal.
+
+
+### <span style="color:rgb(161, 40, 226)">Needle (intramuscular) electrodes</span>
+
+***Advantages***
+
+- **High spatial selectivity**: can record single motor units or even single fibers
+- **Deep muscle access**: signals from regions unreachable by surface electrodes
+- **Small working volume** → detailed neurophysiological information
+- **Repositionable** within the muscle to explore different areas
+    
+ ***Disadvantages***
+![[Pasted image 20251229233404.png|200]]
+
+- **Invasive and painful**
+- **Risk of infection** if sterility is not ensure
+- **Not suitable for movement or strong contractions** due to electrode displacement and increased pain
+
+## <span style="color:rgb(239, 179, 1)">Electrode types: fine wire</span>
 
 ![[Pasted image 20250918182945.png]]
 
-Fine wires... 
+- **Thin, flexible metallic wires** (≈ 25–100 µm diameter) made of platinum alloys, silver, Ni–Cr, etc.    
+- **Inserted into the muscle using a needle**, but **the needle is only a carrier**.
+- The wire is **not mechanically or electrically connected** to the needle.
+- A **small hook at the tip** helps the wire stay inside the muscle.
+- After insertion, **the needle is removed**, leaving only the fine wire in place.
+- The wire is **fully insulated** (polyurethane, Teflon, nylon), except for the **exposed tip**, which acts as the electrode.
+- The tip is exposed by **burning the insulation** or **abrading it** (e.g., with sandpaper).
+
+### <span style="color:rgb(161, 40, 226)">Key idea</span>
+
+Fine wire electrodes combine **deep, selective intramuscular recording** with **less discomfort and better tolerance to movement** compared to needle electrodes.
 
 ![[Pasted image 20250918183114.png]]
 
-Here a bit explained how it is placed.
- After being inserted can eventually move w.r.t the insertion point and we can't reposition them. They're stable during movement, but can't be adjusted.
+- Can be **inserted in pairs** (bipolar recording).    
+- After removing the needle, **they remain in place**.
+- **Very limited discomfort** due to the extremely small diameter.
+- Removal is done by **pulling them out**:
+    - Sometimes the hook opens and the wire comes out completely.
+    - Sometimes it breaks and a tiny piece remains, **clinically negligible**.
+- **More stable during movement** than needle electrodes (they are hooked).
+- **Main limitation**: once positioned, **they cannot be repositioned** to explore other motor units.
 
-We just pull them off to take them out
-
+## <span style="color:rgb(239, 179, 1)">Electrode types: Surface electrodes</span>
 
 ![[Pasted image 20250918183416.png]]
+- Placed **on the skin**, usually made of **Ag–AgCl**.
+- Two main types:
+    - **Reusable “top-hat” electrodes**:
+        - Require **manual electrolyte (gel)**.
+        - Must be **carefully cleaned** to avoid corrosion.
+    - **Disposable electrodes**:
+        - Pre-filled sponge/gel + adhesive pad.
+        - No corrosion issues; single-use.
+- Structure includes:
+    - Ag–AgCl electrode
+    - Electrolyte (gel or sponge)
+    - Adhesive support
+    - Connector to the amplifier
 
-Surface electrodes are most used, however, they have less resolution, they don't measure activity of a single fiber. There are re-usable and disposable electrodes... If we look at figure (a) what we see is a section of a top-hat shape, the electrode is made by Ag-AgCl and we have in the other side connection by the wire.
-
-Something similar are electrodes (b) plastic cup, these are disposable, they're small cost, and are also Ag-AgCl electrode and inside it you find also the electrolyte and another connector to connect the Ag-AgCl amplifier gel soaked sponge (avoid corrosion)
-
+### <span style="color:rgb(161, 40, 226)">Characteristics of surface electrodes</span>
 ![[Pasted image 20250918184035.png]]
 
+- **Non-invasive**, easy to use.
+- Record signals only from **superficial muscle layers** (few cm depth).
+- **Lower selectivity** than intramuscular electrodes.
+- **Crosstalk problem**:
+    - Signals from nearby muscles contaminate the recording.
+    - Worse when the target muscle is deep.
 
-So, electrodes and characteristics. Due to its diameter (1cm) there is a bad effect of crosstalk, data acquisition of collecting signals not only in one specified place where I put the electrode but also nearby muscle activity.  
+## <span style="color:rgb(239, 179, 1)">Anatomical Landmarks</span>
 
 ![[Pasted image 20250918184520.png]]
 
-
-Popular places to place correctly electrodes, with respect to the landmark.
-
 ![[Pasted image 20250918184607.png]]
-Fine wire sites, and surface sites...
 
+Electrode **repositioning is a critical issue** in electrophysiological recordings. Small changes in electrode placement can significantly alter the recorded signal, including the **shape and amplitude of motor unit action potentials**. Because of this, measurements taken on different days, by different operators, or even on the same subject can lead to **different results** if electrodes are not placed in exactly the same locations.
+
+These differences can be misleading: variations in the signal may be **incorrectly interpreted as physiological or pathological changes**, when in reality they are simply due to **different electrode positioning**.
+
+To minimize this problem and improve **reproducibility**, standardized **anatomical landmarks** are used. These landmarks provide reference points on the body that help define **where electrodes should be placed** for specific muscles and recording protocols.
+
+By consistently using anatomical landmarks, recordings become more **repeatable across sessions, subjects, and operators**, reducing variability that is unrelated to the actual physiological condition being studied.

@@ -37,8 +37,6 @@ The actual acceleration data is stored in specific registers, usually three: one
 Finally, the sensor may include a small internal temperature sensor, which isn’t needed for most acceleration measurements, but can be useful in some applications. Every chip has an internal ID register, like the "Who am I?" register, which helps identify the model. This is key when using multiple sensors or when troubleshooting. Overall, this accelerometer is more complex than a basic temperature sensor, offering many features, configurable settings, and multiple ways to read data efficiently.
 
 
-**LIS2DE found**
-
 ***
 ***
 ***

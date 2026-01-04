@@ -4,75 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "11ce0df580b0a24b",
+        "id": "b41593742f4fcad1",
         "type": "tabs",
-        "dimension": 76.14138438880707,
         "children": [
           {
-            "id": "d76147efb3ed4dd4",
+            "id": "47ea820ad0e8cd25",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SensorSystems/Laboratory 2.md",
+                "file": "MotorBehaviourTech/Lecture 6.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Laboratory 2"
+              "title": "Lecture 6"
             }
           },
           {
-            "id": "a26950987d595844",
+            "id": "01d4f7cbc0983148",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SensorSystems/Laboratory 3.md",
+                "file": "MotorBehaviourTech/Lecture 8.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Laboratory 3"
-            }
-          },
-          {
-            "id": "69b6ca6efc3252e2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SensorSystems/Laboratory 4.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Laboratory 4"
+              "title": "Lecture 8"
             }
           }
         ],
-        "currentTab": 2
-      },
-      {
-        "id": "51ca5afae6ecddb0",
-        "type": "tabs",
-        "dimension": 23.85861561119293,
-        "children": [
-          {
-            "id": "b2623d5121905c33",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SensorSystems/Index-Labs.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Index-Labs"
-            }
-          }
-        ]
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -330,43 +294,45 @@
       "oz-clear-unused-images:Clear Unused Images": false
     }
   },
-  "active": "69b6ca6efc3252e2",
+  "active": "01d4f7cbc0983148",
   "lastOpenFiles": [
-    "SensorSystems/Laboratory 3.md",
-    "SensorSystems/Laboratory 2.md",
-    "SensorSystems/Laboratory 11.md",
+    "MotorBehaviourTech/Images/Pasted image 20260103213648.png",
+    "MotorBehaviourTech/Images/Pasted image 20260103213547.png",
+    "MotorBehaviourTech/Practice 3.md",
+    "MotorBehaviourTech/Lecture 7.md",
+    "MotorBehaviourTech/Images/Pasted image 20260103130353.png",
+    "MotorBehaviourTech/Images/Pasted image 20260103130212.png",
+    "MotorBehaviourTech/Images/Pasted image 20260103130057.png",
+    "MotorBehaviourTech/Lecture 8.md",
+    "MotorBehaviourTech/Images/Pasted image 20260103104740.png",
+    "MotorBehaviourTech/Images/Pasted image 20260103102530.png",
+    "MotorBehaviourTech/Images/Pasted image 20260103102444.png",
+    "MotorBehaviourTech/Images/Pasted image 20260103102038.png",
+    "MotorBehaviourTech/Images/Pasted image 20260102231932.png",
+    "MotorBehaviourTech/Images/Pasted image 20260102231029.png",
+    "MotorBehaviourTech/Lecture 6.md",
+    "MotorBehaviourTech/Practice 1.md",
+    "MotorBehaviourTech/Lecture 11..md",
+    "MotorBehaviourTech/Lecture 10.md",
+    "MotorBehaviourTech/Lecture 9.md",
+    "MotorBehaviourTech/Lecture 5.md",
+    "MotorBehaviourTech/Lecture 4.md",
+    "MotorBehaviourTech/Practice 2.1.md",
+    "MotorBehaviourTech/Practice 2.2.md",
+    "MotorBehaviourTech/Lecture 3.md",
+    "MotorBehaviourTech/Images/1_EMG_Practice_1 (1).pdf",
+    "MotorBehaviourTech/Lecture 2.md",
+    "MotorBehaviourTech/Lecture 1.md",
+    "MotorBehaviourTech/Concepts/stratum corneum.md",
     "SensorSystems/Index-Labs.md",
-    "SensorSystems/Laboratory 9.md",
     "SensorSystems/Laboratory 10.md",
-    "SensorSystems/Images/Pasted image 20251217002410.png",
-    "SensorSystems/Images/Pasted image 20251216231951.png",
-    "SensorSystems/Images/Pasted image 20251216231313.png",
-    "SensorSystems/Images/Pasted image 20251216231105.png",
-    "SensorSystems/Images/Pasted image 20251216230621.png",
-    "SensorSystems/Images/Pasted image 20251216223931.png",
-    "SensorSystems/Images/Pasted image 20251216223831.png",
-    "SensorSystems/Images/Pasted image 20251216223510.png",
-    "SensorSystems/Images/Pasted image 20251216223347.png",
-    "SensorSystems/Images/Pasted image 20251216223312.png",
-    "SensorSystems/Laboratory 8.md",
+    "SensorSystems/Laboratory 5.md",
     "SensorSystems/Laboratory 7.md",
     "SensorSystems/Laboratory 6.md",
-    "SensorSystems/Lecture 6.md",
-    "SensorSystems/Laboratory 5.md",
-    "SensorSystems/Laboratory 4.md",
-    "SensorSystems/Lecture 3.md",
+    "SensorSystems/Laboratory 3.md",
+    "SensorSystems/Laboratory 2.md",
     "SensorSystems/Lecture 8.md",
-    "SensorSystems/Lecture 9.md",
-    "SensorSystems/Lecture 10.md",
-    "SensorSystems/Project_2a.md",
-    "SensorSystems/Lecture 4.md",
-    "SensorSystems/Lecture 1.md",
-    "VirtualModelling/Lecture 9.md",
-    "VirtualModelling/Lecture 11.md",
-    "VirtualModelling/Lecture 10.md",
-    "VirtualModelling/Lecture 8.md",
-    "VirtualModelling/Lecture 7.md",
-    "VirtualModelling/Lecture 6.md",
+    "SensorSystems/Laboratory 11.md",
     "Untitled",
     "VirtualModelling/Images",
     "Untitled.canvas",
@@ -377,7 +343,6 @@
     "SensorSystems/Attachments/Resistance Thermal Noise.pdf",
     "SensorSystems/Attachments",
     "Neuroengineering1/Gradient Descend.pdf",
-    "Excalidraw",
     "Neuroengineering1/Untitled.canvas",
     "Untitled 1.canvas"
   ]

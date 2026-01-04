@@ -310,7 +310,6 @@ Also, changing the number of fibers recruited will change the regulation of the 
 
 If I increase the frequency, I would theoretically increase the force. 
 
-
 When all individual fiber APs are **summed**, the resulting MUAP:
 
 - Has a **longer duration** and **greater amplitude**,

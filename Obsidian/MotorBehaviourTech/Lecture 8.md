@@ -1,23 +1,35 @@
 
 Date: 08/10/2025
 ***
+
+# <span style="color:rgb(223, 109, 109)">Force Measurement</span>
 ![[Pasted image 20251008083515.png]]
 
-Force measurements are for collecting data from which we're able to get kinematic and dynamic results. The force measurement in made by diff types of sensors that are able to compute torques and forces on subjects.
 
-The force measurement is done against the environment, environment might be something different, a force plate embedded in a floor or a dynamometers that are used, also that is sort of strange, this hammer designed in order to sense some forces towards applied to the hammer, it is shown that it is not necessary to have standard sensors to get measurement of forces carried out, also an example would be a fish scale, by using just gravity force it is able to give the required information which is the weight of the object which is appended in it. Thus the force is the gravity x weight of the object (low quality sensor tho)
+We are now moving to a different topic compared to what we have covered so far. We will set aside electrophysiological signals and focus instead on **force and moment signals**, which describe how the human body interacts with the external world.
 
-![[Pasted image 20251008083935.png]]
+These interactions are fundamental for:
 
-Another example which is not classical, but still used for measurement of forces for motor control. Note that the environment is the handle that exchanges forces between the subject and an embedded platform on the floor. Then he show the C-130 parabolic flight plot. 
+- **Feeding biomechanical models**, which will be introduced in the second part of the course.
+- **Diagnostic purposes**, since changes in the forces exchanged between the body and the environment can indicate pathological conditions.
+    
 
-![[Pasted image 20251008084130.png]]
+Importantly, this interaction is not limited to the body–ground interface (as in **ground reaction forces**, which are the most common case). It can also involve:
 
-To make a force measurement -> look at the deformation of the forces created on the object undergoing the measurement. Here there is an example of the test in cars to check if they're able to absorb the impact and be safe w.r.t the people who are inside.
+- Forces generated when pushing against external objects, such as a wall.
+- Forces measured through specialized devices, for example an **instrumented hammer**, which is used to detect structural faults in objects like pillars or other materials.
+    
 
-The deformation looked at could be in small or big dimensions, however, this kind of deformation is not suitable for measurements of force, because the interaction between the car-wall is anelastic, the car can't go back to its previous state after crashing.
+In all these cases, force and moment measurements provide valuable information about both human motor behavior and the properties of the external environment.
 
-Nowadays, if you're hit from behind, there is no damage unlike from the front cos it is not able to stand forces.
+![[Pasted image 20260103213547.png|500]]
+
+So in order to measure forces exchanged between some part of the body and environment, we need a deformation. So this is a particular kind of deformation, which is a classical car crash. and obviously we will be less obtrusive than this kind of approach. But anyway, in order to estimate the force, we need something which is deformed under that force. So you cannot measure forces if you are not deforming something.
+
+![[Pasted image 20260103213648.png|500]]
+
+
+
 
 ![[Pasted image 20251008085100.png]]
 

@@ -141,7 +141,6 @@ Once again, since the encoder outputs square-wave signals, we can connect these 
 - count the incoming pulses,
 - determine direction (in the quadrature case),
 - and indirectly measure speed based on how frequently the pulses occur.
-    
 
 So, even though these signals are not clock signals in the strict sense, they behave like clocks from the timer’s point of view, and the timer can decode them efficiently.
 

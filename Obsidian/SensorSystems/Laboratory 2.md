@@ -624,7 +624,6 @@ For $50\%$ DC I must set Capture/Compare Register (Also of 32-bits) half as ARR.
 Once saved the .ioc file. Timer2 will be initialized as it is going to be shown and we must start our PWM signal through the HAL command. 
 ``` C#
 MX_TIM2_Init(); /* USER CODE BEGIN 2 */ 
-
 HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1); // Add this line! /* USER CODE END 2 */
 ```
 

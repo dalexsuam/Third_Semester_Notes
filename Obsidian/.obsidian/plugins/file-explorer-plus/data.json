@@ -22,13 +22,6 @@
         "name": "",
         "active": true,
         "type": "DIRECTORIES",
-        "pattern": "SensorSystems",
-        "patternType": "STRICT"
-      },
-      {
-        "name": "",
-        "active": true,
-        "type": "DIRECTORIES",
         "pattern": "VirtualModelling",
         "patternType": "STRICT"
       },
@@ -37,6 +30,13 @@
         "active": true,
         "type": "FILES",
         "pattern": "SensorSystems/Index-Labs.md",
+        "patternType": "STRICT"
+      },
+      {
+        "name": "",
+        "active": true,
+        "type": "DIRECTORIES",
+        "pattern": "MotorBehaviourTech",
         "patternType": "STRICT"
       }
     ],
