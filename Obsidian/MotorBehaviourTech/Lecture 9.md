@@ -1,9 +1,76 @@
-16/10/2025
+
+Date: 16/10/2025
+***
+
 
 ![[Pasted image 20251016163558.png]]
+In strain-gauge systems, you usually find **four main wires**:
+- **Two wires for bridge excitation** (bridge supply: $V^+$ and $V^-$)
+- **Two wires for the bridge output** (differential output voltage)
 
-Here we have a circuit which compensates the losses of the resistor. The longer the wire, the higher the loss of voltage.
+This corresponds to a **full-bridge configuration**.
 
+#### <span style="color:rgb(2, 141, 192)">Why an extra “compensation” (sense) wire is sometimes used</span>
+
+In practice, strain-gauge bridges often have **low resistance values**, typically around **100 Ω or even less**.  Because of this, when the bridge is powered, a **non-negligible current** flows through the supply wires.
+
+Since the supply wires have their own resistance, a **voltage drop** occurs along the wires:
+- You may _set_ the excitation voltage to **5 V** at the power supply,
+- But the actual voltage at the bridge terminals may be only **4.8 V**.
+    
+
+This voltage drop depends on:
+- The current flowing in the bridge
+- The resistance of the supply cables
+    
+
+If not compensated, this causes an **error in the excitation voltage**, which directly affects the accuracy of the force or strain measurement.
+
+#### <span style="color:rgb(2, 141, 192)">Compensation (sense) wire principle</span>
+
+To correct this problem, an **additional wire**, called a **compensation wire** or **sense wire**, is used.
+Key idea:
+
+- The sense wire **does not carry current**
+- Therefore, **no voltage drop** occurs along it
+- It measures the **actual voltage at the bridge terminal**
+    
+This wire is connected directly to the **positive bridge supply point V+V^+V+** at the bridge.
+
+#### <span style="color:rgb(2, 141, 192)">How compensation works</span>
+![[Pasted image 20260103232853.png|400]]
+1. The system measures:
+    
+    - The **desired excitation voltage** (e.g. 5 V)
+    - The **actual voltage at the bridge** via the compensation wire (e.g. 4.8 V)
+        
+2. An **operational amplifier** compares:
+    
+    - The reference voltage (what you want)
+    - The sensed voltage (what you really have at the bridge)
+        
+3. If the sensed voltage is too low:
+    
+    - The amplifier **increases the supply voltage**
+    - This compensates for the voltage drop along the supply wire
+        
+4. The loop continues until:
+    
+    - The voltage at the bridge terminal $V^+$ is exactly equal to the desired value
+        
+When the two inputs of the operational amplifier are equal, the system is correctly regulated.
+#### <span style="color:rgb(2, 141, 192)">Why this is important</span>
+
+- The bridge output voltage is **proportional to the excitation voltage**
+- Any error in the excitation voltage directly introduces **measurement error**
+- Remote sensing ensures:
+    - Accurate excitation
+    - Better repeatability
+    - Higher measurement precision
+
+
+
+1.37.27.09.30
 ![[Pasted image 20251016163736.png]]
 
 If we're measuring the common mode of the bridge V0. 1/2 of the voltage, this means that we have 1/2 of Vi. We should expect ~mV or less and have some volts of common-mode noise. Thus, we use INA which has a higher CMRR. The other reason is that all analysis assumes no resistance on the output terminals of V0. When, we are going to read the deformation, we'll load the output with the resistor as shown below...
