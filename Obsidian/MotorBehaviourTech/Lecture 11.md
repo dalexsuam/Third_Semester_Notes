@@ -217,18 +217,16 @@ The transformation from global coordinates to camera coordinates is given by a *
 ![[Pasted image 20260105152542.png|500]]
 Here:
 
-- ( \mathbf{R} ) is a ( 3 \times 3 ) rotation matrix,
-    
-- ( \mathbf{T} ) is a ( 3 \times 1 ) translation vector representing the position of the camera center with respect to the global origin,
-    
-- the full matrix is a ( 4 \times 4 ) homogeneous transformation matrix.
+- ( $\mathbf{R}$ ) is a ( $3 \times 3$ ) rotation matrix,
+- ( $\mathbf{T}$ ) is a ( $3 \times 1$ ) translation vector representing the position of the camera center with respect to the global origin,
+- the full matrix is a ( $4 \times 4$ ) homogeneous transformation matrix.
     
 
 This matrix converts coordinates **from the global reference frame to the camera reference frame**.
 
 ---
 
-### Updated projection chain
+### <span style="color:rgb(161, 40, 226)">Updated projection chain</span>
 
 Because of this, the projection from 3D space to the image plane is **no longer a single-step operation**.
 
@@ -236,48 +234,23 @@ Instead, it consists of two consecutive transformations:
 
 1. **Extrinsic transformation**  
     Converts a point from the global reference frame to the camera reference frame:  
-    [  
-    \mathbf{P}_G \rightarrow \mathbf{P}_C  
-    ]
-    
+    $$\mathbf{P}_G \rightarrow \mathbf{P}_C$$
 2. **Intrinsic projection**  
-    Projects the point from the camera reference frame onto the image plane using the camera calibration matrix ( \mathbf{K} ):  
-    [  
-    \mathbf{P}_C \rightarrow \tilde{\mathbf{p}}  
-    ]
-    
-
+    Projects the point from the camera reference frame onto the image plane using the camera calibration matrix ( $\mathbf{K}$ ):  
+    $$\mathbf{P}_C \rightarrow \tilde{\mathbf{p}}$$
 Putting everything together:  
-[  
-\tilde{\mathbf{p}} = \lambda , \mathbf{K} , [\mathbf{R} \mid \mathbf{T}] , \tilde{\mathbf{P}}_G  
-]
+$$\tilde{\mathbf{p}} = \lambda \mathbf{K}  [\mathbf{R} \mid \mathbf{T}]  \tilde{\mathbf{P}}_G  $$
 
 This matrix:  
-[  
-\mathbf{P} = \mathbf{K} , [\mathbf{R} \mid \mathbf{T}]  
-]  
+$$\mathbf{P} = \mathbf{K} [\mathbf{R} \mid \mathbf{T}]  $$
 is called the **camera projection matrix**.
 
----
+### <span style="color:rgb(161, 40, 226)">Key takeaway</span>
 
-### Key takeaway
-
-- ( \mathbf{K} ) contains the **intrinsic parameters** (focal length, principal point, pixel scaling),
-    
-- ( \mathbf{R} ) and ( \mathbf{T} ) contain the **extrinsic parameters** (camera orientation and position),
-    
+- ( $\mathbf{K}$ ) contains the **intrinsic parameters** (focal length, principal point, pixel scaling),
+- ( $\mathbf{R}$ ) and ( $\mathbf{T}$ ) contain the **extrinsic parameters** (camera orientation and position),
 - Accurate 3D reconstruction and triangulation require **both** intrinsic and extrinsic calibration.
     
-
-From this point on, every measurement in image space must be interpreted through **both the camera calibration and the camera pose**.
-
----
-
-
-Perfect — I’ll **rewrite and clean up the last note in clear, structured English**, explicitly **integrating the two slides** (camera rotation/translation and intrinsic/extrinsic parameters), while **preserving the mathematical meaning and notation** used in your lecture.
-
----
-
 ## <span style="color:rgb(239, 179, 1)">Camera Projection with Rotation and Translation (Extrinsic + Intrinsic Parameters)</span>
 
 ![[Pasted image 20260105145520.png]]

@@ -601,12 +601,6 @@ In this case:
 - These two modes cover **most real-world piezoelectric sensor and actuator designs**.
     
 
-
-
-
-
-
-
 ## <span style="color:rgb(239, 179, 1)">Constitutive equations of piezoelectric materials</span>
 
 ### <span style="color:rgb(161, 40, 226)">1. Piezoelectric sensor behavior (direct effect)</span>
@@ -915,7 +909,6 @@ In this case:
     
 
 This is why piezoelectric crystals are commonly used as **time references and clock sources** in electronic devices.
-
 
 ## <span style="color:rgb(239, 179, 1)">Requirements for a piezoelectric sensor system</span>
 ![[Pasted image 20251016182216.png]]

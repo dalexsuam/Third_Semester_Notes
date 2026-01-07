@@ -172,7 +172,7 @@ So, increasing the window size improves noise reduction, but at the cost of **lo
 #### <span style="color:rgb(2, 141, 192)">How to compute the cutoff frequency of the MA filter?</span>
 ![[Pasted image 20260103102038.png]]
 
-The moving average filter has a well-defined transfer function $H(f)$, and its behavior strongly depends on the **number of points M** in the averaging window. In particular, the value of MMM determines the **cutoff frequency** of the filter.
+The moving average filter has a well-defined transfer function $H(f)$, and its behavior strongly depends on the **number of points M** in the averaging window. In particular, the value of $M$ determines the **cutoff frequency** of the filter.
 ![[Pasted image 20260103102444.png|200]]
 When the number of points is small, for example **3 points**, the cutoff frequency is relatively high. This means that the filter removes only very high-frequency components and leaves much of the signal unchanged. As M increases, the cutoff frequency moves toward lower frequencies, so the filter becomes more selective and behaves as a stronger low-pass filter.
 
