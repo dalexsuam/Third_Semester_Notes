@@ -386,7 +386,7 @@ The camera projection is fully described by:
 - **Intrinsic parameters** (how the camera forms images),
 - **Extrinsic parameters** (where the camera is and how it is oriented).
     
-All of this information is compactly encoded in the **camera projection matrix** ( \mathbf{M} ), which maps a 3D point in the world directly onto the 2D image plane.
+All of this information is compactly encoded in the **camera projection matrix** ( $\mathbf{M}$ ), which maps a 3D point in the world directly onto the 2D image plane.
 
 
 ## <span style="color:rgb(239, 179, 1)">Non-Square Pixels and the Intrinsic Matrix</span> ( K )
@@ -714,23 +714,20 @@ This separation is intentional:
     - radial terms (e.g. ( $r^2, r^4$ )),
     - sometimes tangential terms.
 
-- These models usually require **2 or more parameters**, stored in the vector ( \mathbf{q} ).
+- These models usually require **2 or more parameters**, stored in the vector ( $\mathbf{q}$ ).
     
-
 ### <span style="color:rgb(161, 40, 226)">The Apparent Paradox (and Why It Is Not a Problem)</span>
 
 You correctly noticed a conceptual issue:
 
-> The distortion correction depends on the _true_ (undistorted) point,  
-> but the true point is exactly what we are trying to estimate.
+> The distortion correction depends on the _true_ (undistorted) point,  but the true point is exactly what we are trying to estimate.
 
 This seems circular, but it is resolved as follows:
 
 - We **start from the measured distorted coordinates** ( ($x_d, y_d$) ).
 - Distortion models are constructed so that:
     - either the correction can be **applied iteratively**, or
-    - the inverse mapping can be **approximated accurately**.
-        
+    - the inverse mapping can be **approximated accurately**.    
 - In practice:
     - camera calibration estimates **both**:
         - the intrinsic/extrinsic parameters,
@@ -1033,15 +1030,13 @@ $$\mathbf{p} = (x, y, f)  $$
 ### <span style="color:rgb(161, 40, 226)">Introducing λ (scale factor)</span>
 ![[Pasted image 20251028133644.png]]
 The projection equation is:  
-
 $$\begin{cases}  
 X_{cam} = \lambda x \\  
 Y_{cam} = \lambda y \\  
 Z_{cam} = \lambda f  
 \end{cases} $$
 
-From the **third equation**, we can compute (\lambda):
-
+From the **third equation**, we can compute ($\lambda$):
 $$\lambda = \frac{f}{Z_{cam}}  $$
 where:  
 $$Z_{cam} = R_{31}(X - X_0) + R_{32}(Y - Y_0) + R_{33}(Z - Z_0)$$
@@ -1074,7 +1069,7 @@ R_{31}(X - X_0) + R_{32}(Y - Y_0) + R_{33}(Z - Z_0)
 - Therefore, the image point has only **two coordinates** ((x, y))
 This is why:
 - We start with **three equations**
-- One is used to compute (\lambda)
+- One is used to compute ($\lambda$)
 - The remaining **two equations** fully describe the projection
 
 This is exactly what we should expect physically and mathematically.
@@ -1203,11 +1198,6 @@ For this reason:
 - Control points should be **well distributed in 3D space**
 - A volumetric arrangement leads to **more stable and accurate calibration results**
 
-If you want, next I can:
-- explain the **linearization step using Taylor expansion**
-- derive the **Jacobian matrix**
-- or show how this leads to the **classical photogrammetric calibration algorithm**
-
 ![[Pasted image 20251028134954.png]]
 This is just a reminder that the elements ($r_{ij}$ ) of the rotation matrix ( $\mathbf{R}$ ) are **trigonometric functions** of the three rotation angles ( $\omega$ ), ( $\phi$ ), and ( $\kappa$ ).
 
@@ -1246,17 +1236,12 @@ When forming the Jacobian matrix for the linearized system:
     
 This is why the explicit trigonometric expressions of the rotation matrix are required before performing the linearization.
 
-Here is a **clear, structured, and corrected English version** of your explanation, written in a way that fits well as lecture notes or a textbook-style summary, while preserving the original meaning.
-
-
-***
-
 
 ![[Pasted image 20251028135605.png]]
 
 When applying this method of **linearizing a nonlinear problem**, it is necessary to start from an **initial guess**. This initial estimate is usually obtained from rough measurements and serves as the starting point of an **iterative procedure**.
 
-Let us denote this initial estimate of the parameter vector as ( \mathbf{P}' ).  
+Let us denote this initial estimate of the parameter vector as ( $\mathbf{P}'$ ).  
 Around this point, the nonlinear equations are **linearized using a Taylor series expansion**, which is truncated at the **first-order term**. This is the practical approximation used in the algorithm.
 ### <span style="color:rgb(161, 40, 226)">Linearization using the Taylor series</span>
 
